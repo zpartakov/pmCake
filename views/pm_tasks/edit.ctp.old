@@ -1,0 +1,210 @@
+<?php
+//Configure::write('debug', 2);
+//debug($this->Form);
+#cake title of the page
+$id= $_SERVER["REQUEST_URI"]; 
+$id=preg_replace("/^.*\//","",$id);
+$sql="
+SELECT * FROM pm_tasks, pm_members, pm_projects  
+WHERE 
+pm_tasks.project=pm_projects.id AND 
+pm_tasks.owner=pm_members.id AND 
+pm_tasks.id=".$id;
+#do and check sql
+$sql=mysql_query($sql);
+if(!$sql) {
+	echo "SQL error: " .mysql_error(); exit;
+}
+$name=mysql_result($sql,0,'name');
+$this->pageTitle = 'Modifier tâche: #' .$id ." " .$name; 
+$pid=mysql_result($sql,0,'project');
+
+?>
+<div class="pmTasks form" style="margin-top: 10px;">
+<?php #echo $this->Form->create('PmTask');?>
+<form name="etDForm" id="PmTaskEditForm" method="GET" action="/pmcake/pm_tasks/modifier" accept-charset="utf-8">
+	<fieldset>
+ 		<legend><div class="titre"><?php echo $this->pageTitle; ?></div></legend>
+		<table><tr><td>
+	<?php
+		echo $this->Form->input('id', array("type"=>"hidden", "value"=>$id));
+echo "<label>Projet</label><select id=\"PmTaskProject\" name=\"data[PmTask][project]\">";
+projets_sel($pid);
+echo "</select>";
+
+echo " " .$this->Html->link(__('View', true), array('action' => '../pm_projects/view/'. $pid));
+
+
+echo "</td><td>";
+		#echo $this->Form->input('project');
+	#	echo $this->Form->input('priority', array("label"=>"Priorité", "value"=>mysql_result($sql,0,'priority')));
+?>		
+<label for="PmTaskPriority">Priorité</label>
+<select name="data[PmTask][priority]" id="PmTaskPriority" />
+<?		
+#echo $this->Form->input('priority');		
+priorite(mysql_result($sql,0,'priority'));
+?>		
+</select>		
+<?
+		#echo $this->Form->input('status', array("value"=>mysql_result($sql,0,'status')));
+		echo "</td><td><label>Statut</label></lable><select name=\"status\" id=\"status\" />";
+		statut_sel(mysql_result($sql,0,'status'));
+		echo "</select></td><td>";
+?>		
+<div class="submit"><input type="submit" value="Modifier" /></div>
+<?		
+echo "</td>";
+		echo $this->Form->input('owner', array("type"=>"hidden", "value"=>mysql_result($sql,0,'owner')));
+		echo $this->Form->input('assigned_to', array("type"=>"hidden", "value"=>mysql_result($sql,0,'assigned_to')));
+		echo "</tr>";
+		
+		echo "<tr><td colspan=\"3\">" .$this->Form->input('name', array("style"=>"width: 800px;","value"=>mysql_result($sql,0,'name')));
+
+		echo "</td></tr>";
+		echo "<tr><td colspan=\"3\">" .$this->Form->input('description', array("type"=>"textarea", "cols"=>"100", "rows"=>"15", "value"=>mysql_result($sql,0,'description')));
+		echo "</td><td style=\"background-color: #FFFED8;\">";
+		urlise(mysql_result($sql,0,'description'));
+		echo "</td></tr>";
+		echo "<tr><td>" .$this->Form->input('start_date', array("value"=>mysql_result($sql,0,'start_date')));
+		//display a nice calendar
+		$sd=$this->Form->value('start_date');
+echo "<div class=\"calendrierjs\"><script type=\"text/javascript\">
+Calendar.setup({ inputField:\"sel1\", button:\"trigger_a\" });
+</script>
+<script language=\"JavaScript\">
+	new tcal ({
+		// form name
+		'formname': 'etDForm',
+		// input name
+		'controlname': 'start_date',
+		'selected': '" .$sd ."',
+		'today' : '" .$sd ."'
+	});
+	</script></div>
+";
+
+		echo "</td></tr><tr><td>".$this->Form->input('due_date', array("value"=>mysql_result($sql,0,'due_date')));
+			//display a nice calendar
+		$sd=$this->Form->value('due_date');
+echo "<div class=\"calendrierjs\"><script type=\"text/javascript\">
+Calendar.setup({ inputField:\"sel1\", button:\"trigger_a\" });
+</script>
+<script language=\"JavaScript\">
+	new tcal ({
+		// form name
+		'formname': 'etDForm',
+		// input name
+		'controlname': 'due_date',
+		'selected': '" .$sd ."',
+		'today' : '" .$sd ."'
+	});
+	</script></div>
+";
+		echo "</td><td><label>Complétion</label><select id=\"completion\" name=\"data[completion]\">";
+		
+#		.$this->Form->input('completion', array("value"=>mysql_result($sql,0,'completion')));
+completion(mysql_result($sql,0,'completion'));
+		echo "</select>";		
+		
+		echo $this->Form->input('estimated_time', array("type"=>"hidden", "value"=>mysql_result($sql,0,'estimated_time')));
+		echo $this->Form->input('actual_time', array("type"=>"hidden", "value"=>mysql_result($sql,0,'actual_time')));
+		echo "</td></tr><tr><td colspan=\"3\">" .$this->Form->input('comments', array("type"=>"textarea", "cols"=>"80", "rows"=>"5", "value"=>mysql_result($sql,0,'comments')));
+		echo "</td>";
+
+		echo $this->Form->input('assigned', array("type"=>"hidden", "value"=>mysql_result($sql,0,'assigned')));
+		echo $this->Form->input('published', array("type"=>"hidden", "value"=>mysql_result($sql,0,'published')));
+		echo $this->Form->input('parent_phase', array("type"=>"hidden", "value"=>mysql_result($sql,0,'parent_phase')));
+		echo $this->Form->input('complete_date', array("type"=>"hidden", "value"=>mysql_result($sql,0,'complete_date')));
+		echo $this->Form->input('service', array("type"=>"hidden", "value"=>mysql_result($sql,0,'service')));
+		echo $this->Form->input('milestone', array("type"=>"hidden", "value"=>mysql_result($sql,0,'milestone')));
+		echo $this->Form->input('PmTasksTime', array("type"=>"hidden", "value"=>mysql_result($sql,0,'PmTasksTime')));
+		?>
+</tr>		 </table>
+
+	</fieldset>
+	<div style="position: relative; top: -70px; left: 800px;">
+<?php echo $this->Form->end(__('Modifier', true));?>
+</div>
+</div>
+<div style="position: relative; top: -70px; left: 100px;">
+	<ul>		<li><?php echo $this->Html->link(__('View', true), array('action' => 'view', $this->Form->value('PmTask.id')), null); ?></li>
+
+
+		<li><?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $this->Form->value('PmTask.id')), null, sprintf(__('Are you sure you want to delete # %s?', true), $this->Form->value('PmTask.id'))); ?></li>
+	</ul>
+</div>
+	<div class="add_time">
+<form name="ajoutheure" action="/pmcake/pm_tasks_times/ajoutheure">
+<input type="hidden" name="projectid" value="<? echo $pid;?>">
+<input type="hidden" name="idtache" value="<? echo $id;?>">
+<select name="addtime" onChange="Javascript:document.ajoutheure.submit()"><option value==""> *** Temps travail *** </option>
+<?
+ajoutheure();
+?>
+</select>
+		<? 
+		echo $html->image("icons/chronometre.png", array('alt' => 'Ajout temps travail', 'style'=>'width: 30px'));
+		?>
+</form>
+
+
+
+</div>
+<!-- ###################### FILES #################### -->
+<div class="fichiers">
+	<a name="Fichiers"></a><h2>Fichiers > 
+	<a href="/pmcake/zefiles/add?task_id=<? echo $id;?>">Nouveau fichier</a>
+</h2>
+<?
+$sql="SELECT * FROM zefiles WHERE task_id=".$id;
+#do and check sql
+$sql=mysql_query($sql);
+if(!$sql) {
+	echo "SQL error: " .mysql_error(); exit;
+}
+
+$i=0;
+
+echo "<table>";
+while($i<mysql_num_rows($sql)){
+	echo "<tr><td>#" .mysql_result($sql,$i,'id') ."</td><td><a href=\"" .CHEMIN ."files/" .mysql_result($sql,$i,'task_id') ."/" .mysql_result($sql,$i,'name') ."\">".mysql_result($sql,$i,'name') ."</a></td><td>";
+	dateSQL2fr(mysql_result($sql,$i,'created'));
+	#http://129.194.18.217/pmcake/files/1946/maisonpotterCapture-Google%20Earth.png
+	echo "</td><td>";
+	$extension=preg_replace("/^.*\./","",mysql_result($sql,$i,'name'));
+	typefichier($extension);
+	echo "</td>";
+	$i++;
+	echo "</tr>";
+	}
+echo "</table>";
+
+/*OLD FILES FROM netoffice*/
+$sql="SELECT * FROM pm_files WHERE task=".$id;
+#do and check sql
+$sql=mysql_query($sql);
+if(!$sql) {
+	echo "SQL error: " .mysql_error(); exit;
+}
+
+$i=0;
+
+echo "<table>";
+while($i<mysql_num_rows($sql)){
+	#echo "<tr><td>#" .mysql_result($sql,$i,'id') ."</td><td>".mysql_result($sql,$i,'comments') ."</td><td>";
+
+	
+		echo "<tr><td>#" .mysql_result($sql,$i,'id') ."</td><td><a href=\"/pm.old/pm/files/" .mysql_result($sql,$i,'id') ."/" .mysql_result($sql,$i,'comments') ."\">".mysql_result($sql,$i,'name') ."</a></td><td>";
+
+		dateSQL2fr(mysql_result($sql,$i,'date'));
+	echo "</td><td>";
+	
+	typefichier(mysql_result($sql,$i,'extension'));
+	echo "</td>";
+	$i++;
+	echo "</tr>";
+	}
+echo "</table>";
+?>
+</div>

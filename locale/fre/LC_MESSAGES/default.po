@@ -1,0 +1,1031 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PmCake\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-02 09:53+0100\n"
+"PO-Revision-Date: 2011-03-02 10:09+0100\n"
+"Last-Translator: Fred Radeff <fradeff@gmail.com>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;___;__n;__d:2;__c;__dc;__dn;__dcn;___d:2\n"
+"X-Poedit-Basepath: /var/www/pmcake/app\n"
+"X-Poedit-SearchPath-0: /var/www/pmcake/app\n"
+
+#: /var/www/pmcake/app/webroot/test.php:88
+msgid "Debug setting does not allow access to this url."
+msgstr "Debug setting does not allow access to this url."
+
+#: /var/www/pmcake/app/views/helpers/calendar.php:122
+msgid "prev"
+msgstr "Précédent"
+
+#: /var/www/pmcake/app/views/helpers/calendar.php:126
+msgid "next"
+msgstr "Suivant"
+
+#: /var/www/pmcake/app/controllers/pm_organizations_controller.php:13
+#: /var/www/pmcake/app/controllers/pm_organizations_controller.php:33
+msgid "Invalid pm organization"
+msgstr "Nouveau client"
+
+#: /var/www/pmcake/app/controllers/pm_organizations_controller.php:23
+#: /var/www/pmcake/app/controllers/pm_organizations_controller.php:38
+msgid "The pm organization has been saved"
+msgstr "Le client a été sauvé"
+
+#: /var/www/pmcake/app/controllers/pm_organizations_controller.php:26
+#: /var/www/pmcake/app/controllers/pm_organizations_controller.php:41
+msgid "The pm organization could not be saved. Please, try again."
+msgstr "Le client n'a pas été sauvé, essayer à nouveau."
+
+#: /var/www/pmcake/app/controllers/pm_organizations_controller.php:51
+msgid "Invalid id for pm organization"
+msgstr "Id invalide pour client"
+
+#: /var/www/pmcake/app/controllers/pm_organizations_controller.php:55
+msgid "Pm organization deleted"
+msgstr "Nouveau client"
+
+#: /var/www/pmcake/app/controllers/pm_organizations_controller.php:58
+msgid "Pm organization was not deleted"
+msgstr "Le client n'a pas été supprimé"
+
+#: /var/www/pmcake/app/controllers/pm_files_controller.php:13
+#: /var/www/pmcake/app/controllers/pm_files_controller.php:88
+msgid "Invalid pm file"
+msgstr "Invalid pm bookmark"
+
+#: /var/www/pmcake/app/controllers/pm_files_controller.php:93
+msgid "The pm file has been saved"
+msgstr "The pm member has been saved"
+
+#: /var/www/pmcake/app/controllers/pm_files_controller.php:96
+msgid "The pm file could not be saved. Please, try again."
+msgstr "The pm file could not be saved. Please, try again."
+
+#: /var/www/pmcake/app/controllers/pm_files_controller.php:106
+msgid "Invalid id for pm file"
+msgstr "Invalid id for pm file"
+
+#: /var/www/pmcake/app/controllers/pm_files_controller.php:110
+msgid "Pm file deleted"
+msgstr "Fichier supprimé"
+
+#: /var/www/pmcake/app/controllers/pm_files_controller.php:113
+msgid "Pm file was not deleted"
+msgstr "Le Fichier n'a pas été supprimé"
+
+#: /var/www/pmcake/app/controllers/pm_tasks_times_controller.php:13
+#: /var/www/pmcake/app/controllers/pm_tasks_times_controller.php:37
+msgid "Invalid pm tasks time"
+msgstr "Invalid pm bookmark"
+
+#: /var/www/pmcake/app/controllers/pm_tasks_times_controller.php:23
+#: /var/www/pmcake/app/controllers/pm_tasks_times_controller.php:42
+msgid "The pm tasks time has been saved"
+msgstr "The pm member has been saved"
+
+#: /var/www/pmcake/app/controllers/pm_tasks_times_controller.php:26
+#: /var/www/pmcake/app/controllers/pm_tasks_times_controller.php:45
+msgid "The pm tasks time could not be saved. Please, try again."
+msgstr "The pm tasks time could not be saved. Please, try again."
+
+#: /var/www/pmcake/app/controllers/pm_tasks_times_controller.php:59
+msgid "Invalid id for pm tasks time"
+msgstr "Invalid id for pm tasks time"
+
+#: /var/www/pmcake/app/controllers/pm_tasks_times_controller.php:63
+msgid "Pm tasks time deleted"
+msgstr "Pm tasks time deleted"
+
+#: /var/www/pmcake/app/controllers/pm_tasks_times_controller.php:66
+msgid "Pm tasks time was not deleted"
+msgstr "Pm tasks time was not deleted"
+
+#: /var/www/pmcake/app/controllers/pm_notes_controller.php:13
+#: /var/www/pmcake/app/controllers/pm_notes_controller.php:33
+msgid "Invalid pm note"
+msgstr "Invalid pm bookmark"
+
+#: /var/www/pmcake/app/controllers/pm_notes_controller.php:23
+#: /var/www/pmcake/app/controllers/pm_notes_controller.php:38
+msgid "The pm note has been saved"
+msgstr "The pm member has been saved"
+
+#: /var/www/pmcake/app/controllers/pm_notes_controller.php:26
+#: /var/www/pmcake/app/controllers/pm_notes_controller.php:41
+msgid "The pm note could not be saved. Please, try again."
+msgstr "The pm note could not be saved. Please, try again."
+
+#: /var/www/pmcake/app/controllers/pm_notes_controller.php:51
+msgid "Invalid id for pm note"
+msgstr "Invalid id for pm note"
+
+#: /var/www/pmcake/app/controllers/pm_notes_controller.php:55
+msgid "Pm note deleted"
+msgstr "Pm note deleted"
+
+#: /var/www/pmcake/app/controllers/pm_notes_controller.php:58
+msgid "Pm note was not deleted"
+msgstr "Pm note was not deleted"
+
+#: /var/www/pmcake/app/controllers/pm_members_controller.php:18
+#: /var/www/pmcake/app/controllers/pm_members_controller.php:38
+msgid "Invalid pm member"
+msgstr "Invalid pm bookmark"
+
+#: /var/www/pmcake/app/controllers/pm_members_controller.php:28
+#: /var/www/pmcake/app/controllers/pm_members_controller.php:43
+msgid "The pm member has been saved"
+msgstr "The pm member has been saved"
+
+#: /var/www/pmcake/app/controllers/pm_members_controller.php:31
+#: /var/www/pmcake/app/controllers/pm_members_controller.php:46
+msgid "The pm member could not be saved. Please, try again."
+msgstr "The pm member could not be saved. Please, try again."
+
+#: /var/www/pmcake/app/controllers/pm_members_controller.php:56
+msgid "Invalid id for pm member"
+msgstr "Invalid pm bookmark"
+
+#: /var/www/pmcake/app/controllers/pm_members_controller.php:60
+msgid "Pm member deleted"
+msgstr "Pm member deleted"
+
+#: /var/www/pmcake/app/controllers/pm_members_controller.php:63
+msgid "Pm member was not deleted"
+msgstr "The pm member has been saved"
+
+#: /var/www/pmcake/app/controllers/pm_bookmarks_controller.php:13
+#: /var/www/pmcake/app/controllers/pm_bookmarks_controller.php:33
+msgid "Invalid pm bookmark"
+msgstr "Invalid pm bookmark"
+
+#: /var/www/pmcake/app/controllers/pm_bookmarks_controller.php:23
+#: /var/www/pmcake/app/controllers/pm_bookmarks_controller.php:38
+msgid "The pm bookmark has been saved"
+msgstr "The pm member has been saved"
+
+#: /var/www/pmcake/app/controllers/pm_bookmarks_controller.php:26
+#: /var/www/pmcake/app/controllers/pm_bookmarks_controller.php:41
+msgid "The pm bookmark could not be saved. Please, try again."
+msgstr "The pm bookmark could not be saved. Please, try again."
+
+#: /var/www/pmcake/app/controllers/pm_bookmarks_controller.php:51
+msgid "Invalid id for pm bookmark"
+msgstr "Invalid pm bookmark"
+
+#: /var/www/pmcake/app/controllers/pm_bookmarks_controller.php:55
+msgid "Pm bookmark deleted"
+msgstr "Signet"
+
+#: /var/www/pmcake/app/controllers/pm_bookmarks_controller.php:58
+msgid "Pm bookmark was not deleted"
+msgstr "Pm bookmark was not deleted"
+
+#: /var/www/pmcake/app/controllers/zefiles_controller.php:13
+#: /var/www/pmcake/app/controllers/zefiles_controller.php:88
+msgid "Invalid zefile"
+msgstr "Fichier invalide"
+
+#: /var/www/pmcake/app/controllers/zefiles_controller.php:93
+msgid "The zefile has been saved"
+msgstr "The pm member has been saved"
+
+#: /var/www/pmcake/app/controllers/zefiles_controller.php:96
+msgid "The zefile could not be saved. Please, try again."
+msgstr "The zefile could not be saved. Please, try again."
+
+#: /var/www/pmcake/app/controllers/zefiles_controller.php:106
+msgid "Invalid id for zefile"
+msgstr "Invalid id for zefile"
+
+#: /var/www/pmcake/app/controllers/zefiles_controller.php:110
+msgid "Zefile deleted"
+msgstr "Supprimer"
+
+#: /var/www/pmcake/app/controllers/zefiles_controller.php:113
+msgid "Zefile was not deleted"
+msgstr "Zefile was not deleted"
+
+#: /var/www/pmcake/app/controllers/pm_tasks_controller.php:65
+#: /var/www/pmcake/app/controllers/pm_tasks_controller.php:93
+msgid "Invalid pm task"
+msgstr "Invalid pm bookmark"
+
+#: /var/www/pmcake/app/controllers/pm_tasks_controller.php:76
+#: /var/www/pmcake/app/controllers/pm_tasks_controller.php:98
+msgid "The pm task has been saved"
+msgstr "The pm member has been saved"
+
+#: /var/www/pmcake/app/controllers/pm_tasks_controller.php:79
+#: /var/www/pmcake/app/controllers/pm_tasks_controller.php:101
+msgid "The pm task could not be saved. Please, try again."
+msgstr "The pm task could not be saved. Please, try again."
+
+#: /var/www/pmcake/app/controllers/pm_tasks_controller.php:121
+msgid "Invalid id for pm task"
+msgstr "Invalid pm bookmark"
+
+#: /var/www/pmcake/app/controllers/pm_tasks_controller.php:125
+msgid "Pm task deleted"
+msgstr "Tâche supprimée"
+
+#: /var/www/pmcake/app/controllers/pm_tasks_controller.php:128
+msgid "Pm task was not deleted"
+msgstr "La tâche n'a pas été supprimée"
+
+#: /var/www/pmcake/app/controllers/pm_updates_controller.php:13
+#: /var/www/pmcake/app/controllers/pm_updates_controller.php:35
+msgid "Invalid pm update"
+msgstr "Invalid pm bookmark"
+
+#: /var/www/pmcake/app/controllers/pm_updates_controller.php:23
+#: /var/www/pmcake/app/controllers/pm_updates_controller.php:40
+msgid "The pm update has been saved"
+msgstr "The pm member has been saved"
+
+#: /var/www/pmcake/app/controllers/pm_updates_controller.php:26
+#: /var/www/pmcake/app/controllers/pm_updates_controller.php:43
+msgid "The pm update could not be saved. Please, try again."
+msgstr "The pm update could not be saved. Please, try again."
+
+#: /var/www/pmcake/app/controllers/pm_updates_controller.php:55
+msgid "Invalid id for pm update"
+msgstr "Invalid id for pm update"
+
+#: /var/www/pmcake/app/controllers/pm_updates_controller.php:59
+msgid "Pm update deleted"
+msgstr "Pm update deleted"
+
+#: /var/www/pmcake/app/controllers/pm_updates_controller.php:62
+msgid "Pm update was not deleted"
+msgstr "Pm update was not deleted"
+
+#: /var/www/pmcake/app/controllers/pm_projects_controller.php:28
+#: /var/www/pmcake/app/controllers/pm_projects_controller.php:51
+msgid "Invalid pm project"
+msgstr "Invalid pm bookmark"
+
+#: /var/www/pmcake/app/controllers/pm_projects_controller.php:38
+#: /var/www/pmcake/app/controllers/pm_projects_controller.php:56
+msgid "The pm project has been saved"
+msgstr "The pm member has been saved"
+
+#: /var/www/pmcake/app/controllers/pm_projects_controller.php:41
+#: /var/www/pmcake/app/controllers/pm_projects_controller.php:59
+msgid "The pm project could not be saved. Please, try again."
+msgstr "The pm project could not be saved. Please, try again."
+
+#: /var/www/pmcake/app/controllers/pm_projects_controller.php:69
+msgid "Invalid id for pm project"
+msgstr "Invalid id for pm project"
+
+#: /var/www/pmcake/app/controllers/pm_projects_controller.php:73
+msgid "Pm project deleted"
+msgstr "Projet"
+
+#: /var/www/pmcake/app/controllers/pm_projects_controller.php:76
+msgid "Pm project was not deleted"
+msgstr "Pm project was not deleted"
+
+#: /var/www/pmcake/app/views/elements/navigation.ctp:31
+msgid "Tâches"
+msgstr "Tâches"
+
+#: /var/www/pmcake/app/views/elements/navigation.ctp:32
+msgid "OnField"
+msgstr "En cours"
+
+#: /var/www/pmcake/app/views/elements/navigation.ctp:37
+msgid "Incubateur"
+msgstr "Incubateur"
+
+#: /var/www/pmcake/app/views/elements/navigation.ctp:39
+#: /var/www/pmcake/app/views/elements/navigation.ctp:46
+msgid "(nouveau)"
+msgstr "(nouveau)"
+
+#: /var/www/pmcake/app/views/elements/navigation.ctp:44
+msgid "Références"
+msgstr "Références"
+
+#: /var/www/pmcake/app/views/elements/navigation.ctp:51
+msgid "Tools"
+msgstr "Outils"
+
+#: /var/www/pmcake/app/views/pm_tasks/edit.ctp:112
+#: /var/www/pmcake/app/views/pm_tasks/view.ctp:119
+msgid "Modifier"
+msgstr "Modifier"
+
+#: /var/www/pmcake/app/views/pm_tasks/edit.ctp:118
+#: /var/www/pmcake/app/views/pm_tasks/index.ctp:45
+#: /var/www/pmcake/app/views/pm_tasks/taches.ctp:50
+msgid "Delete"
+msgstr "Supprimer"
+
+#: /var/www/pmcake/app/views/pm_tasks/edit.ctp:118
+#: /var/www/pmcake/app/views/pm_tasks/index.ctp:45
+#: /var/www/pmcake/app/views/pm_tasks/taches.ctp:50
+#: /var/www/pmcake/app/views/pm_tasks/view.ctp:120
+#, php-format
+msgid "Are you sure you want to delete # %s?"
+msgstr "Confirmer suppression enregistrement # %s?"
+
+#: /var/www/pmcake/app/views/pm_tasks/onfield.ctp:44
+#: /var/www/pmcake/app/views/pm_tasks/index.ctp:17
+#: /var/www/pmcake/app/views/pm_tasks/index.ctp:65
+#: /var/www/pmcake/app/views/pm_tasks/taches.ctp:15
+#: /var/www/pmcake/app/views/pm_tasks/taches.ctp:60
+#: /var/www/pmcake/app/views/pm_tasks/view.ctp:117
+msgid "Actions"
+msgstr "Actions"
+
+#: /var/www/pmcake/app/views/pm_tasks/add.ctp:138
+msgid "Enregistrer"
+msgstr "Enregistrer"
+
+#: /var/www/pmcake/app/views/pm_tasks/index.ctp:43
+#: /var/www/pmcake/app/views/pm_tasks/taches.ctp:48
+msgid "View"
+msgstr "Voir"
+
+#: /var/www/pmcake/app/views/pm_tasks/index.ctp:44
+#: /var/www/pmcake/app/views/pm_tasks/taches.ctp:49
+msgid "Edit"
+msgstr "Modifier"
+
+#: /var/www/pmcake/app/views/pm_tasks/index.ctp:53
+msgid "Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%"
+msgstr "Page %page% de %pages%, montre %current% enregistrements d'un total de %count% , commence à l'enregistrement %start%, finit à l'enregistrement %end%"
+
+#: /var/www/pmcake/app/views/pm_tasks/index.ctp:58
+msgid "previous"
+msgstr "précédent"
+
+#: /var/www/pmcake/app/views/pm_tasks/index.ctp:67
+#: /var/www/pmcake/app/views/pm_tasks/taches.ctp:62
+msgid "New Pm Task"
+msgstr "Nouvelle tâche"
+
+#: /var/www/pmcake/app/views/pm_tasks/index.ctp:68
+#: /var/www/pmcake/app/views/pm_tasks/taches.ctp:63
+msgid "List Pm Projects"
+msgstr "Projet"
+
+#: /var/www/pmcake/app/views/pm_tasks/index.ctp:69
+#: /var/www/pmcake/app/views/pm_tasks/taches.ctp:64
+msgid "New Pm Project"
+msgstr "Nouveau projet"
+
+#: /var/www/pmcake/app/views/pm_tasks/index.ctp:70
+#: /var/www/pmcake/app/views/pm_tasks/taches.ctp:65
+msgid "List Pm Members"
+msgstr "Nouveau membre"
+
+#: /var/www/pmcake/app/views/pm_tasks/index.ctp:71
+#: /var/www/pmcake/app/views/pm_tasks/taches.ctp:66
+msgid "New Pm Member"
+msgstr "Nouveau membre"
+
+#: /var/www/pmcake/app/views/pm_tasks/index.ctp:72
+#: /var/www/pmcake/app/views/pm_tasks/taches.ctp:67
+msgid "List Pm Tasks Times"
+msgstr "Nouveau temps travail"
+
+#: /var/www/pmcake/app/views/pm_tasks/index.ctp:73
+#: /var/www/pmcake/app/views/pm_tasks/taches.ctp:68
+msgid "New Pm Tasks Time"
+msgstr "Nouveau temps travail"
+
+#: /var/www/pmcake/app/views/pm_tasks/taches.ctp:8
+msgid "Pm Tasks"
+msgstr "Tâches"
+
+#: /var/www/pmcake/app/views/pm_tasks/view.ctp:13
+msgid "Pm Project"
+msgstr "Projet"
+
+#: /var/www/pmcake/app/views/pm_tasks/view.ctp:18
+msgid "Priorité"
+msgstr "Priorité"
+
+#: /var/www/pmcake/app/views/pm_tasks/view.ctp:23
+msgid "Status"
+msgstr "Statut"
+
+#: /var/www/pmcake/app/views/pm_tasks/view.ctp:28
+msgid "Pm Member"
+msgstr "Nouveau membre"
+
+#: /var/www/pmcake/app/views/pm_tasks/view.ctp:33
+msgid "Assigned To"
+msgstr "Assigné à"
+
+#: /var/www/pmcake/app/views/pm_tasks/view.ctp:38
+msgid "Description"
+msgstr "Description"
+
+#: /var/www/pmcake/app/views/pm_tasks/view.ctp:43
+msgid "Start Date"
+msgstr "Date début"
+
+#: /var/www/pmcake/app/views/pm_tasks/view.ctp:48
+msgid "Due Date"
+msgstr "Date fin"
+
+#: /var/www/pmcake/app/views/pm_tasks/view.ctp:53
+msgid "Estimated Time"
+msgstr "Estimation temps"
+
+#: /var/www/pmcake/app/views/pm_tasks/view.ctp:58
+msgid "Actual Time"
+msgstr "Temps courant"
+
+#: /var/www/pmcake/app/views/pm_tasks/view.ctp:63
+msgid "Comments"
+msgstr "Remarques"
+
+#: /var/www/pmcake/app/views/pm_tasks/view.ctp:68
+msgid "Completion"
+msgstr "Completion"
+
+#: /var/www/pmcake/app/views/pm_tasks/view.ctp:73
+msgid "Created"
+msgstr "Créé"
+
+#: /var/www/pmcake/app/views/pm_tasks/view.ctp:78
+msgid "Modified"
+msgstr "Modifié"
+
+#: /var/www/pmcake/app/views/pm_tasks/view.ctp:83
+msgid "Assigned"
+msgstr "Assigné"
+
+#: /var/www/pmcake/app/views/pm_tasks/view.ctp:88
+msgid "Published"
+msgstr "Publié"
+
+#: /var/www/pmcake/app/views/pm_tasks/view.ctp:93
+msgid "Parent Phase"
+msgstr "Phase parente"
+
+#: /var/www/pmcake/app/views/pm_tasks/view.ctp:98
+msgid "Complete Date"
+msgstr "Completion"
+
+#: /var/www/pmcake/app/views/pm_tasks/view.ctp:103
+msgid "Service"
+msgstr "Service"
+
+#: /var/www/pmcake/app/views/pm_tasks/view.ctp:108
+msgid "Milestone"
+msgstr "Milestone"
+
+#: /var/www/pmcake/app/views/pm_tasks/view.ctp:120
+msgid "Supprimer"
+msgstr "Supprimer"
+
+#: /var/www/pmcake/app/views/pm_tasks/view.ctp:121
+msgid "Liste"
+msgstr "Liste"
+
+#: /var/www/pmcake/app/views/pm_tasks/view.ctp:122
+msgid "Nouveau"
+msgstr "Nouveau"
+
+#: /var/www/pmcake/app/views/pm_members/edit.ctp:4
+#: /var/www/pmcake/app/views/pm_members/view.ctp:99
+msgid "Edit Pm Member"
+msgstr "Nouveau membre"
+
+#: /var/www/pmcake/app/views/pm_members/edit.ctp:25
+#: /var/www/pmcake/app/views/pm_members/add.ctp:24
+#: /var/www/pmcake/app/views/pm_organizations/edit.ctp:26
+#: /var/www/pmcake/app/views/pm_organizations/add.ctp:25
+#: /var/www/pmcake/app/views/pm_updates/edit.ctp:13
+#: /var/www/pmcake/app/views/pm_updates/add.ctp:12
+#: /var/www/pmcake/app/views/zefiles/edit.ctp:19
+msgid "Submit"
+msgstr "Enregistrer"
+
+#: /var/www/pmcake/app/views/pm_members/edit.ctp:34
+#: /var/www/pmcake/app/views/pm_members/add.ctp:32
+#: /var/www/pmcake/app/views/pm_members/index.ctp:59
+#: /var/www/pmcake/app/views/pm_members/view.ctp:104
+#: /var/www/pmcake/app/views/pm_members/view.ctp:165
+msgid "New Projects"
+msgstr "Nouveau projet"
+
+#: /var/www/pmcake/app/views/pm_members/add.ctp:4
+msgid "Add Pm Member"
+msgstr "Ajout Nouveau membre"
+
+#: /var/www/pmcake/app/views/pm_members/index.ctp:2
+msgid "Pm Members"
+msgstr "Nouveau membre"
+
+#: /var/www/pmcake/app/views/pm_members/view.ctp:4
+#: /var/www/pmcake/app/views/pm_members/view.ctp:112
+#: /var/www/pmcake/app/views/pm_organizations/view.ctp:8
+#: /var/www/pmcake/app/views/pm_updates/view.ctp:4
+msgid "Id"
+msgstr "Id"
+
+#: /var/www/pmcake/app/views/pm_members/view.ctp:9
+#: /var/www/pmcake/app/views/pm_members/view.ctp:113
+msgid "Organization"
+msgstr "Client"
+
+#: /var/www/pmcake/app/views/pm_members/view.ctp:14
+msgid "Login"
+msgstr "Login"
+
+#: /var/www/pmcake/app/views/pm_members/view.ctp:19
+msgid "Password"
+msgstr "Mot de passe"
+
+#: /var/www/pmcake/app/views/pm_members/view.ctp:24
+#: /var/www/pmcake/app/views/pm_members/view.ctp:117
+#: /var/www/pmcake/app/views/pm_organizations/view.ctp:13
+msgid "Name"
+msgstr "Nom"
+
+#: /var/www/pmcake/app/views/pm_members/view.ctp:29
+msgid "Title"
+msgstr "Titre"
+
+#: /var/www/pmcake/app/views/pm_members/view.ctp:34
+msgid "Email Work"
+msgstr "Email professionnel"
+
+#: /var/www/pmcake/app/views/pm_members/view.ctp:39
+msgid "Email Home"
+msgstr "Email professionnel"
+
+#: /var/www/pmcake/app/views/pm_members/view.ctp:44
+msgid "Phone Work"
+msgstr "Téléphone prof"
+
+#: /var/www/pmcake/app/views/pm_members/view.ctp:49
+msgid "Phone Home"
+msgstr "Téléphone privé"
+
+#: /var/www/pmcake/app/views/pm_members/view.ctp:54
+msgid "Mobile"
+msgstr "Mobile"
+
+#: /var/www/pmcake/app/views/pm_members/view.ctp:59
+#: /var/www/pmcake/app/views/pm_organizations/view.ctp:48
+msgid "Fax"
+msgstr "Fax"
+
+#: /var/www/pmcake/app/views/pm_members/view.ctp:69
+msgid "Profil"
+msgstr "Profil"
+
+#: /var/www/pmcake/app/views/pm_members/view.ctp:79
+msgid "Logout Time"
+msgstr "Heure logout"
+
+#: /var/www/pmcake/app/views/pm_members/view.ctp:84
+msgid "Last Page"
+msgstr "Dernière page"
+
+#: /var/www/pmcake/app/views/pm_members/view.ctp:89
+msgid "Timezone"
+msgstr "Timezone"
+
+#: /var/www/pmcake/app/views/pm_members/view.ctp:100
+msgid "Delete Pm Member"
+msgstr "Supprimer membre"
+
+#: /var/www/pmcake/app/views/pm_members/view.ctp:108
+msgid "Related Pm Projects"
+msgstr "Projet lié"
+
+#: /var/www/pmcake/app/views/pm_members/view.ctp:114
+#: /var/www/pmcake/app/views/pm_organizations/view.ctp:78
+msgid "Owner"
+msgstr "Responsable"
+
+#: /var/www/pmcake/app/views/pm_members/view.ctp:115
+msgid "Priority"
+msgstr "Priorité"
+
+#: /var/www/pmcake/app/views/pm_members/view.ctp:119
+msgid "Url Dev"
+msgstr "Url Dev"
+
+#: /var/www/pmcake/app/views/pm_members/view.ctp:120
+msgid "Url Prod"
+msgstr "Url Prod"
+
+#: /var/www/pmcake/app/views/pm_members/view.ctp:124
+msgid "Upload Max"
+msgstr "Upload max"
+
+#: /var/www/pmcake/app/views/pm_members/view.ctp:125
+msgid "Phase Set"
+msgstr "Phase initialisés"
+
+#: /var/www/pmcake/app/views/pm_members/view.ctp:126
+#: /var/www/pmcake/app/views/pm_updates/view.ctp:9
+msgid "Type"
+msgstr "Type"
+
+#: /var/www/pmcake/app/views/pm_organizations/edit.ctp:33
+#: /var/www/pmcake/app/views/pm_organizations/add.ctp:31
+#: /var/www/pmcake/app/views/pm_organizations/view.ctp:90
+msgid "List Pm Organizations"
+msgstr "Liste clients"
+
+#: /var/www/pmcake/app/views/pm_organizations/index.ctp:53
+#: /var/www/pmcake/app/views/pm_organizations/view.ctp:91
+msgid "New Pm Organization"
+msgstr "Nouveau client"
+
+#: /var/www/pmcake/app/views/pm_organizations/view.ctp:18
+msgid "Address1"
+msgstr "Adresse 1"
+
+#: /var/www/pmcake/app/views/pm_organizations/view.ctp:23
+msgid "Address2"
+msgstr "Adresse 2"
+
+#: /var/www/pmcake/app/views/pm_organizations/view.ctp:28
+msgid "Zip Code"
+msgstr "Code postal"
+
+#: /var/www/pmcake/app/views/pm_organizations/view.ctp:33
+msgid "City"
+msgstr "Ville"
+
+#: /var/www/pmcake/app/views/pm_organizations/view.ctp:38
+msgid "Country"
+msgstr "Pays"
+
+#: /var/www/pmcake/app/views/pm_organizations/view.ctp:43
+msgid "Phone"
+msgstr "Téléphone"
+
+#: /var/www/pmcake/app/views/pm_organizations/view.ctp:53
+msgid "Url"
+msgstr "Url"
+
+#: /var/www/pmcake/app/views/pm_organizations/view.ctp:58
+msgid "Email"
+msgstr "Email"
+
+#: /var/www/pmcake/app/views/pm_organizations/view.ctp:73
+msgid "Extension Logo"
+msgstr "Extension logo"
+
+#: /var/www/pmcake/app/views/pm_organizations/view.ctp:88
+msgid "Edit Pm Organization"
+msgstr "Modifier client"
+
+#: /var/www/pmcake/app/views/pm_organizations/view.ctp:89
+msgid "Delete Pm Organization"
+msgstr "Supprimer client"
+
+#: /var/www/pmcake/app/views/pm_updates/edit.ctp:4
+#: /var/www/pmcake/app/views/pm_updates/view.ctp:39
+msgid "Edit Pm Update"
+msgstr "Modifier mise à jour"
+
+#: /var/www/pmcake/app/views/pm_updates/edit.ctp:20
+#: /var/www/pmcake/app/views/pm_updates/add.ctp:18
+#: /var/www/pmcake/app/views/pm_updates/view.ctp:41
+msgid "List Pm Updates"
+msgstr "Liste mises à jour"
+
+#: /var/www/pmcake/app/views/pm_updates/edit.ctp:21
+#: /var/www/pmcake/app/views/pm_updates/add.ctp:19
+#: /var/www/pmcake/app/views/pm_updates/index.ctp:56
+#: /var/www/pmcake/app/views/pm_updates/view.ctp:43
+msgid "List Pm Tasks"
+msgstr "Liste Tâches"
+
+#: /var/www/pmcake/app/views/pm_updates/add.ctp:4
+msgid "Add Pm Update"
+msgstr "Nouvelle mise à jour"
+
+#: /var/www/pmcake/app/views/pm_updates/index.ctp:2
+msgid "Pm Updates"
+msgstr "Mises à jour"
+
+#: /var/www/pmcake/app/views/pm_updates/index.ctp:55
+#: /var/www/pmcake/app/views/pm_updates/view.ctp:42
+msgid "New Pm Update"
+msgstr "Nouvelle mise à jour"
+
+#: /var/www/pmcake/app/views/pm_updates/view.ctp:2
+msgid "Pm Update"
+msgstr "Mise à jour"
+
+#: /var/www/pmcake/app/views/pm_updates/view.ctp:14
+msgid "Pm Task"
+msgstr "Tâche"
+
+#: /var/www/pmcake/app/views/pm_updates/view.ctp:19
+msgid "Member"
+msgstr "Membre"
+
+#: /var/www/pmcake/app/views/pm_updates/view.ctp:40
+msgid "Delete Pm Update"
+msgstr "Supprimer mise à jour"
+
+#: /var/www/pmcake/app/views/zefiles/edit.ctp:8
+msgid "Edit Zefile"
+msgstr "Modifier fichier"
+
+#: /var/www/pmcake/app/views/zefiles/edit.ctp:26
+#: /var/www/pmcake/app/views/zefiles/add.ctp:22
+msgid "List Zefiles"
+msgstr "Liste fichiers"
+
+#: /var/www/pmcake/app/views/zefiles/index.ctp:58
+msgid "New Zefile"
+msgstr "Nouveau fichier"
+
+#: /var/www/pmcake/app/views/zefiles/view.ctp:2
+msgid "Zefile"
+msgstr "Fichier"
+
+#: /var/www/pmcake/app/views/zefiles/view.ctp:19
+#: /var/www/pmcake/app/views/pm_files/view.ctp:34
+msgid "Size"
+msgstr "Taille"
+
+#: /var/www/pmcake/app/views/zefiles/view.ctp:24
+msgid "Data"
+msgstr "Donnée"
+
+#: /var/www/pmcake/app/views/zefiles/view.ctp:45
+msgid "Delete Zefile"
+msgstr "Supprimer Fichier"
+
+#: /var/www/pmcake/app/views/pm_events/edit.ctp:4
+#: /var/www/pmcake/app/views/pm_events/view.ctp:39
+msgid "Edit Pm Event"
+msgstr "Modifier événement"
+
+#: /var/www/pmcake/app/views/pm_events/edit.ctp:19
+#: /var/www/pmcake/app/views/pm_events/add.ctp:17
+#: /var/www/pmcake/app/views/pm_events/view.ctp:41
+msgid "List Pm Events"
+msgstr "Liste événements"
+
+#: /var/www/pmcake/app/views/pm_events/add.ctp:4
+msgid "Add Pm Event"
+msgstr "Nouvel événement"
+
+#: /var/www/pmcake/app/views/pm_events/index.ctp:3
+msgid "Pm Events"
+msgstr "Evénements"
+
+#: /var/www/pmcake/app/views/pm_events/index.ctp:54
+#: /var/www/pmcake/app/views/pm_events/view.ctp:42
+msgid "New Pm Event"
+msgstr "Nouvel événement"
+
+#: /var/www/pmcake/app/views/pm_events/view.ctp:2
+msgid "Pm Event"
+msgstr "Evénement"
+
+#: /var/www/pmcake/app/views/pm_events/view.ctp:14
+msgid "Event Date"
+msgstr "Date événement"
+
+#: /var/www/pmcake/app/views/pm_events/view.ctp:19
+msgid "Notes"
+msgstr "Notes"
+
+#: /var/www/pmcake/app/views/pm_events/view.ctp:40
+msgid "Delete Pm Event"
+msgstr "Supprimer événement"
+
+#: /var/www/pmcake/app/views/pm_files/edit.ctp:4
+#: /var/www/pmcake/app/views/pm_files/view.ctp:104
+msgid "Edit Pm File"
+msgstr "Modifier fichier"
+
+#: /var/www/pmcake/app/views/pm_files/edit.ctp:34
+#: /var/www/pmcake/app/views/pm_files/add.ctp:32
+#: /var/www/pmcake/app/views/pm_files/view.ctp:106
+msgid "List Pm Files"
+msgstr "Liste fichiers"
+
+#: /var/www/pmcake/app/views/pm_files/add.ctp:4
+msgid "Add Pm File"
+msgstr "Nouveau fichier"
+
+#: /var/www/pmcake/app/views/pm_files/index.ctp:2
+msgid "Pm Files"
+msgstr "Fichiers"
+
+#: /var/www/pmcake/app/views/pm_files/index.ctp:79
+#: /var/www/pmcake/app/views/pm_files/view.ctp:107
+msgid "New Pm File"
+msgstr "Nouveau fichier"
+
+#: /var/www/pmcake/app/views/pm_files/view.ctp:2
+msgid "Pm File"
+msgstr "Fichier"
+
+#: /var/www/pmcake/app/views/pm_files/view.ctp:14
+msgid "Project"
+msgstr "Projet"
+
+#: /var/www/pmcake/app/views/pm_files/view.ctp:19
+msgid "Task"
+msgstr "Tâche"
+
+#: /var/www/pmcake/app/views/pm_files/view.ctp:29
+msgid "Date"
+msgstr "Date"
+
+#: /var/www/pmcake/app/views/pm_files/view.ctp:39
+msgid "Extension"
+msgstr "Extension"
+
+#: /var/www/pmcake/app/views/pm_files/view.ctp:49
+msgid "Comments Approval"
+msgstr "Validation Remarques"
+
+#: /var/www/pmcake/app/views/pm_files/view.ctp:54
+msgid "Approver"
+msgstr "Approbateur"
+
+#: /var/www/pmcake/app/views/pm_files/view.ctp:59
+msgid "Date Approval"
+msgstr "Date approbation"
+
+#: /var/www/pmcake/app/views/pm_files/view.ctp:64
+msgid "Upload"
+msgstr "Upload"
+
+#: /var/www/pmcake/app/views/pm_files/view.ctp:79
+msgid "Vc Status"
+msgstr "Statut"
+
+#: /var/www/pmcake/app/views/pm_files/view.ctp:84
+msgid "Vc Version"
+msgstr "Vc Version"
+
+#: /var/www/pmcake/app/views/pm_files/view.ctp:89
+msgid "Vc Parent"
+msgstr "Vc Parent"
+
+#: /var/www/pmcake/app/views/pm_files/view.ctp:94
+msgid "Phase"
+msgstr "Phase"
+
+#: /var/www/pmcake/app/views/pm_files/view.ctp:105
+msgid "Delete Pm File"
+msgstr "Supprimer fichier"
+
+#: /var/www/pmcake/app/views/pm_notes/edit.ctp:4
+msgid "Edit Pm Note"
+msgstr "Modifier note"
+
+#: /var/www/pmcake/app/views/pm_notes/edit.ctp:23
+#: /var/www/pmcake/app/views/pm_notes/add.ctp:35
+msgid "List Pm Notes"
+msgstr "Liste notes"
+
+#: /var/www/pmcake/app/views/pm_notes/add.ctp:15
+msgid "Add Pm Note"
+msgstr "Nouvelle note"
+
+#: /var/www/pmcake/app/views/pm_notes/index.ctp:2
+msgid "Pm Notes"
+msgstr "Notes"
+
+#: /var/www/pmcake/app/views/pm_notes/index.ctp:57
+msgid "New Pm Note"
+msgstr "Nouvelle note"
+
+#: /var/www/pmcake/app/views/pm_notes/view.ctp:2
+msgid "Pm Note"
+msgstr "Note"
+
+#: /var/www/pmcake/app/views/pm_notes/view.ctp:19
+msgid "Topic"
+msgstr "Thème"
+
+#: /var/www/pmcake/app/views/pm_notes/view.ctp:24
+msgid "Subject"
+msgstr "Sujet"
+
+#: /var/www/pmcake/app/views/pm_notes/view.ctp:50
+msgid "Delete Pm Note"
+msgstr "Supprimer note"
+
+#: /var/www/pmcake/app/views/pm_tasks_times/edit.ctp:4
+#: /var/www/pmcake/app/views/pm_tasks_times/view.ctp:54
+msgid "Edit Pm Tasks Time"
+msgstr "Modifier temps travail"
+
+#: /var/www/pmcake/app/views/pm_tasks_times/index.ctp:2
+msgid "Pm Tasks Times"
+msgstr "Temps travail"
+
+#: /var/www/pmcake/app/views/pm_tasks_times/view.ctp:2
+msgid "Pm Tasks Time"
+msgstr "Temps travail"
+
+#: /var/www/pmcake/app/views/pm_tasks_times/view.ctp:29
+msgid "Hours"
+msgstr "Heures"
+
+#: /var/www/pmcake/app/views/pm_tasks_times/view.ctp:55
+msgid "Delete Pm Tasks Time"
+msgstr "Supprimer temps travail"
+
+#: /var/www/pmcake/app/views/pm_bookmarks/edit.ctp:4
+#: /var/www/pmcake/app/views/pm_bookmarks/view.ctp:69
+msgid "Edit Pm Bookmark"
+msgstr "Modifier Signet"
+
+#: /var/www/pmcake/app/views/pm_bookmarks/edit.ctp:25
+#: /var/www/pmcake/app/views/pm_bookmarks/add.ctp:23
+#: /var/www/pmcake/app/views/pm_bookmarks/view.ctp:71
+msgid "List Pm Bookmarks"
+msgstr "Liste Signets"
+
+#: /var/www/pmcake/app/views/pm_bookmarks/add.ctp:4
+msgid "Add Pm Bookmark"
+msgstr "Ajout Signet"
+
+#: /var/www/pmcake/app/views/pm_bookmarks/index.ctp:2
+msgid "Pm Bookmarks"
+msgstr "Signets"
+
+#: /var/www/pmcake/app/views/pm_bookmarks/index.ctp:65
+#: /var/www/pmcake/app/views/pm_bookmarks/view.ctp:72
+msgid "New Pm Bookmark"
+msgstr "Nouveau signet"
+
+#: /var/www/pmcake/app/views/pm_bookmarks/view.ctp:2
+msgid "Pm Bookmark"
+msgstr "Signet"
+
+#: /var/www/pmcake/app/views/pm_bookmarks/view.ctp:14
+msgid "Category"
+msgstr "Catégorie"
+
+#: /var/www/pmcake/app/views/pm_bookmarks/view.ctp:34
+msgid "Shared"
+msgstr "Partagé"
+
+#: /var/www/pmcake/app/views/pm_bookmarks/view.ctp:39
+msgid "Home"
+msgstr "Accueil"
+
+#: /var/www/pmcake/app/views/pm_bookmarks/view.ctp:49
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: /var/www/pmcake/app/views/pm_bookmarks/view.ctp:70
+msgid "Delete Pm Bookmark"
+msgstr "Supprimer signet"
+
+#: /var/www/pmcake/app/views/pm_projects/edit.ctp:4
+msgid "Edit Pm Project"
+msgstr "Modifier Projet"
+
+#: /var/www/pmcake/app/views/pm_projects/add.ctp:5
+msgid "Ajouter projet"
+msgstr "Ajouter projet"
+
+#: /var/www/pmcake/app/views/pm_projects/view.ctp:12
+msgid "Client"
+msgstr "Client"
+
+#: /var/www/pmcake/app/views/pm_projects/view.ctp:85
+msgid "Projets"
+msgstr "Projets"
+
+#: /var/www/pmcake/app/views/pm_projects/view.ctp:96
+msgid "Nouvelle tâche"
+msgstr "Nouvelle tâche"
+
+#: /var/www/pmcake/app/views/pm_projects/view.ctp:137
+#: /var/www/pmcake/app/views/pm_projects/view.ctp:182
+msgid "Voir"
+msgstr "Voir"
+
+#: /var/www/pmcake/app/views/pm_projects/view.ctp:153
+msgid "Nouvelle note"
+msgstr "Nouvelle note"
+
+#OTHERS
+msgid "Edit Obsoletelogin"
+msgstr "Modifier un login obsolète"

@@ -1,0 +1,23 @@
+/* PRINT CSS */
+
+* {
+	margin:0;
+	padding:0;
+}
+
+/** General Style Info **/
+body {
+	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
+	font-size: 9px;
+	margin: 0;
+	-moz-column-count:5;
+	size:landscape;
+}
+p {
+display: block;
+white-space:nowrap;
+padding-bottom: 6px;
+padding-left: 4px;
+/*nowrap*/
+}  
+

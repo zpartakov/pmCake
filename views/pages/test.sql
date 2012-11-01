@@ -1,0 +1,4 @@
+DROP TABLE IF EXISTS `test`;
+CREATE TABLE IF NOT EXISTS `test` (
+  `a` int(1) NOT NULL
+);
