@@ -1,11 +1,7 @@
-<?php
-#cake title of the page
-$this->pageTitle = 'Ajouter client/usager'; 
-?>
 <div class="pmOrganizations form">
 <?php echo $this->Form->create('PmOrganization');?>
 	<fieldset>
- 		<legend><?php echo $this->pageTitle; ?></legend>
+ 		<legend><?php printf(__('Add %s', true), __('Pm Organization', true)); ?></legend>
 	<?php
 		echo $this->Form->input('name');
 		echo $this->Form->input('address1');
@@ -19,16 +15,8 @@ $this->pageTitle = 'Ajouter client/usager';
 		echo $this->Form->input('email');
 		echo $this->Form->input('comments');
 		echo $this->Form->input('extension_logo');
-		#echo $this->Form->input('owner');
-		
+		echo $this->Form->input('owner');
 	?>
-<label>Responsable</label>
-	<select id="PmOrganizationOwner" name="data[PmOrganization][owner]">
-	<?
-membres_sel($this->Form->value('owner'));
-?>
-	</select>
-	
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
 </div>
@@ -36,6 +24,6 @@ membres_sel($this->Form->value('owner'));
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Html->link(__('List Pm Organizations', true), array('action' => 'index'));?></li>
+		<li><?php echo $this->Html->link(sprintf(__('List %s', true), __('Pm Organizations', true)), array('action' => 'index'));?></li>
 	</ul>
 </div>

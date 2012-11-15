@@ -79,7 +79,7 @@ echo $html->image("/img/toolbar/add.png", array('url' => '/pm_tasks/add', 'alt' 
 		
 		<li><?php echo $html->link('Heures aujourd\'hui', '/pm_tasks/hours_today'); ?></li>
 		<li><?php echo $html->link('Membres', '/pm_members/'); ?></li>
-		<li><?php echo $html->link('Clients', '/pm_organizations/'); ?></li>
+		<li><?php echo $html->link('Qui?', '/pm_organizations/'); ?></li>
 		<li><?php echo $html->link('Rapports', '/rapports/'); ?></li>
 		<li><?php echo $html->link('Config Temps travail', '/pm_times/'); ?></li>
 		<li><?php 

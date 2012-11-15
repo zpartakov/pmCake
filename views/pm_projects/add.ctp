@@ -15,7 +15,7 @@ App::import('Lib', 'functions'); //imports app/libs/functions
 		?>
 		<tr>
 		<td>
-		<label for="PmTaskPriority">Client</label>
+		<label for="PmTaskPriority">Qui?</label>
 		<select name="data[organization]" id="organization" />
 		<?
 			clients_sel(3);

@@ -19,7 +19,7 @@ $this->pageTitle = 'Modifier projet: #' .$id ." " .$name;
 		<table>
 		<tr>
 		<td>
-		<label for="PmProjectPriority">Client</label>
+		<label for="PmProjectPriority">Qui?</label>
 		<select id="PmProjectOrganization" name="data[PmProject][organization]" />
 			<?
 			if($this->Form->value('PmProject.organization')<4){

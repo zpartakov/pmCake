@@ -20,7 +20,7 @@ $this->pageTitle = 'Détail projet: ' .$pmProject['PmProject']['name'];
 <table>
 	<tr>
 		<td>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Client'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Qui?'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php clients( $pmProject['PmProject']['organization']); ?>
 			&nbsp;

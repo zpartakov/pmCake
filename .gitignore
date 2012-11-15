@@ -16,3 +16,4 @@ app/tmp/*
 app/config/database.php
 >>>>>>> 4811acb285b5751540f5e4d2f069a531dcd15118
 !empty
+pmCake/*
