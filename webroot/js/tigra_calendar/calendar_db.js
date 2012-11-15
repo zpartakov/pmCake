@@ -7,7 +7,7 @@
 //hack radeff
 parent = "/"+location.pathname.match(/\w+/)[0]+"/pmcake/";
 img=parent+'js/tigra_calendar/img/';
-alert(img);
+//alert(img);
 //	'months' : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
 
 //	'weekdays' : ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
