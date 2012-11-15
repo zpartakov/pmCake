@@ -1,4 +1,7 @@
-<code>
+since Nov 2012 see on github: https://github.com/zpartakov/pmCake/commits/master
+
+### before Nov 2012 (hg mercurial versioning) ###
+
 tag:         tip
 date:        Mon Sep 24 10:08:58 2012 +0200
 summary:     ergonomy print time current day
@@ -349,5 +352,3 @@ summary:     first putz
 
 date:        Tue Mar 01 16:56:45 2011 +0100
 summary:     initial commitment
-
-</code>
