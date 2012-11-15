@@ -21,7 +21,6 @@ $sql="
 INSERT INTO `pm_projects` (`id`, `organization`, `owner`, `priority`, `status`, `name`, `description`, `url_dev`, `url_prod`, `created`, `modified`, `published`, `upload_max`, `phase_set`, `type`) VALUES (
 NULL,
  '$organisation', '$owner', '$priority', '$status', '$name', '$description', '$url_dev', '$url_prod', '$created', '$modified', '$published', '$upload_max', '$phase_set', '$type')";
-
 #echo $sql; exit;
 
 #do and check sql
@@ -29,5 +28,5 @@ $sql=mysql_query($sql);
 if(!$sql) {
 	echo "SQL error: " .mysql_error(); exit;
 }
-header("Location: ".$_SERVER["HTTP_REFERER"]);
+header("Location: ".CHEMIN ."pm_projects/view/" .mysql_insert_id());
 ?>
