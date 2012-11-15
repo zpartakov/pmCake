@@ -1111,8 +1111,13 @@ function dateSQL2fr($date) {
 
 /*convert SQL long date time to french date*/
 function dateSQLlong2fr($date) {
-	$timestamp=strtotime($date);
-	//echo $date;
+	if($date>1000000000) {
+	//unixtime
+	$timestamp=$date;
+	} else {
+			$timestamp=strtotime($date);		
+	}
+		//echo $date;
 	$date_mod= date('D, d-m-Y H:i',$timestamp);
 	$today1=dateen2fr($date_mod);
 	echo $today1;
