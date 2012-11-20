@@ -3,6 +3,8 @@ class PmMenusController extends AppController {
 
 	var $name = 'PmMenus';
 var $paginate = array(
+        'limit' => 100,
+
 		'order' 	=> array(
 								'PmMenu.parent, PmMenu.rank',
 							)

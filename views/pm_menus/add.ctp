@@ -12,7 +12,7 @@
 		echo $this->Form->input('style_img');
 		echo $this->Form->input('target');
 		echo $this->Form->input('moddate');
-		echo $this->Form->input('line_after');
+		echo $this->Form->input('line_after',array("value"=>"0"));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
