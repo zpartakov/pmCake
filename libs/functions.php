@@ -356,6 +356,13 @@ function priorite($priorite) {
 	}
 }
 
+function prioritehighlight($priorite) {
+	$prioritelib=array("Vide","Très faible","Faible","Moyenne","Elevée","Très élevée");
+	$prioritecolor=array(  "white","white"           , "white"     ,"white"       ,"#FFC0CB","#FF6C7F");
+
+	echo "<div style=\"background-color: "  .$prioritecolor[$priorite] ."\">";
+	
+}
 	
 function prioriteView($i) {
 	$prioritelib=array("Vide","Très faible","Faible","Moyenne","Elevée","Très élevée");
