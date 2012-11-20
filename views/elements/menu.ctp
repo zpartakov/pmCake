@@ -79,7 +79,7 @@ while($i<mysql_num_rows($sqlM)){
 	}
 
 ?>
-<li style="width: 200px"><?php 
+<li style="width: 200px; margin-left: -50px;"><?php 
 			$date=date("Y-m-d", mktime (0, 0, 0, date("m"), date("d"), date("Y")));
 task_total_today($date);?></li>
 </ul>	  

@@ -642,9 +642,9 @@ function task_total_today($s_edate2) {
 	}
 
 	#echo $sql;
-	echo "Total ";
-	dateSQL2fr($s_edate2);
-	echo ": ";
+	//echo "Total ";
+	//dateSQL2fr($s_edate2);
+	echo "Tot: ";
 	$i=0;
 	$total=0;
 	while($i<mysql_num_rows($sql)){
