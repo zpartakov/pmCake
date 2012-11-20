@@ -1,5 +1,7 @@
 <!-- dynamic menu/navigation -->
-<div id="cakephp-global-navigation">
+<?php
+			App::import('Lib', 'functions'); //imports app/libs/functions
+?><div id="cakephp-global-navigation">
 <ul id="menuDeroulant">
 <?php
 /*dynamic cake navigation */
@@ -77,5 +79,8 @@ while($i<mysql_num_rows($sqlM)){
 	}
 
 ?>
+<li style="width: 200px"><?php 
+			$date=date("Y-m-d", mktime (0, 0, 0, date("m"), date("d"), date("Y")));
+task_total_today($date);?></li>
 </ul>	  
 </div>
