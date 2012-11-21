@@ -26,7 +26,10 @@ $pid=$this->data['PmProject']['id'];
 	<?php echo $this->AlaxosForm->create('PmTask', array("name"=>"etDForm"));?>
 	<?php echo $this->AlaxosForm->input('id'); ?>
 	
- 	<h2><?php echo $this->pageTitle; ?>&nbsp;<input type="submit" value="modifier" style="font-size: small"></h2>
+ 	<h2><?php echo $this->pageTitle; ?>&nbsp;<input type="submit" value="modifier" style="font-size: small">
+ 	
+ 	 Parent: <?php 		parent_task_small($this->data['PmTask']['id']);?></h2>
+ 	
  	<?php echo "<a href=\"#Remarques\">Remarques</a> | <a href=\"#Fichiers\">Fichiers</a>"; ?>
  	
 	 <div class="imprimepas" style="background-color:#FFFFB5 ;margin-top: 5px; width: 80%">

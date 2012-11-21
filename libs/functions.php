@@ -574,6 +574,7 @@ while($i<mysql_num_rows($sql)){
 function parent_task($task_id) {
 		//no project (new task)
 	$sql="SELECT parent_id FROM pm_tasks WHERE id=".$task_id; 
+//	echo "<br>".$sql ."<br>"; //tests
 	$sql=mysql_query($sql);
 	if(!$sql) {
 		echo "SQL error: " .mysql_error(); exit;
@@ -582,7 +583,7 @@ function parent_task($task_id) {
 	if($task_id>0) {
 	$sql="SELECT id, name FROM pm_tasks WHERE id=".$task_id ." ORDER BY due_date"; 
 	echo "<tr><td>";
-	//echo "<br>".$sql ."<br>"; //tests
+//	echo "<br>".$sql ."<br>"; //tests
 	#do and check sql
 	$sql=mysql_query($sql);
 	if(!$sql) {
@@ -603,6 +604,35 @@ function parent_task($task_id) {
 	/**/
 	}
 }
+
+
+function parent_task_small($task_id) {
+		//no project (new task)
+	$sql="SELECT parent_id FROM pm_tasks WHERE id=".$task_id; 
+//	echo "<br>".$sql ."<br>"; //tests
+	$sql=mysql_query($sql);
+	if(!$sql) {
+		echo "SQL error: " .mysql_error(); exit;
+	}
+	$task_id=mysql_result($sql,0,'parent_id');
+	if($task_id>0) {
+	$sql="SELECT id, name FROM pm_tasks WHERE id=".$task_id ." ORDER BY due_date"; 
+	#do and check sql
+	$sql=mysql_query($sql);
+	if(!$sql) {
+		echo "SQL error: " .mysql_error(); exit;
+	}
+	$i=0;
+	if(mysql_num_rows($sql)>0) {
+	while($i<mysql_num_rows($sql)){
+		echo "<a href=\"" .mysql_result($sql,$i,'id') ."\">" .mysql_result($sql,$i,'name') ."</a>";
+		$i++;
+		}
+
+	}
+	}
+}
+
 
 /* extract the children tasks for a given task */
 function children_tasks($task_id) {
