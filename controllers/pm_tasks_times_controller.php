@@ -26,7 +26,7 @@ class PmTasksTimesController extends AppController {
 			$this->PmTasksTime->create();
 			if ($this->PmTasksTime->save($this->data)) {
 	    // Redirect user to previous page
-       // $this->redirect($this->referer());
+        $this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The pm tasks time could not be saved. Please, try again.', true));
 			}
