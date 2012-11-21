@@ -551,7 +551,7 @@ function parent_tasks($pid,$task_id) {
 	if($pid=="") {
 	echo "<option value=\"0\">--- no parent ---</option>";	
 	} else {
-$sql="SELECT id, name FROM pm_tasks WHERE project=".$pid." AND status>2 ORDER BY name"; 
+$sql="SELECT id, name FROM pm_tasks WHERE project=".$pid." AND status>2 AND status < 10 ORDER BY name"; 
 #do and check sql
 $sql=mysql_query($sql);
 if(!$sql) {
