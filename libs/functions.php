@@ -630,6 +630,8 @@ function parent_task_small($task_id) {
 		}
 
 	}
+	} else {
+		echo " - ";
 	}
 }
 
