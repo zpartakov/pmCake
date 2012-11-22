@@ -114,7 +114,10 @@ $this->pageTitle = 'Détail projet: ' .$pmProject['PmProject']['name'];
  * */
 $plib="Tâches"; $pid=$pmProject['PmProject']['id']; $order="due_date"; $status=3; $operator="=";$anchor="taches";
 project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
-
+/* ################### WAIT ########################
+ * */
+$plib="En attente"; $pid=$pmProject['PmProject']['id']; $order="due_date"; $status=5; $operator="=";$anchor="taches";
+project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
 /* ################### DREAMS / INCUBATEUR ########################
  * */
 $plib="Incubateur"; $pid=$pmProject['PmProject']['id']; $order="priority DESC,status,due_date"; $status=17; $operator="="; $anchor="dreams";
@@ -125,6 +128,13 @@ project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
 $plib="Références"; $pid=$pmProject['PmProject']['id']; $order="priority DESC,status,due_date"; $status=22; $operator="="; $anchor="references";
 project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
 
+/* ################### SUSPENDED ########################
+ * */
+$plib="Suspendus"; $pid=$pmProject['PmProject']['id']; $order="due_date"; $status=4; $operator="=";$anchor="taches";
+project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
+/* ################### DREAMS / INCUBATEUR ########################
+ * 
+ */
 /* ################### CLOSED TASKS ########################
  * */
 $plib="Tâches terminées"; $pid=$pmProject['PmProject']['id']; $order="priority DESC,status,due_date"; $status="2 AND status!=3 AND status !=17 AND status !=22";  $operator="!="; $anchor="finished"; 
