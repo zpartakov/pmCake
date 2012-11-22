@@ -28,10 +28,23 @@ SELECT SUM(hours) AS hours FROM pm_tasks_time WHERE pm_tasks_time.task IN (SELEC
 
 /* show tasks for current project */
 function project_tasks_show($plib,$pid,$order,$statut,$operator,$anchor) {
+	
+	$sql="SELECT * FROM pm_tasks WHERE project=".$pid;
+
+	if($_GET['statut']) {$statut = $_GET['statut'];}
+		$statut = " AND status" .$operator .$statut;
+
+	$sql.=$statut;
+	$sql.= " ORDER BY " .$order;
+	#echo $sql;
+	$sql=mysql_query($sql);
+	if(!$sql) { echo "SQL error: " .mysql_error(); }
+	
 echo '	<a name="'.$anchor .'"></a>
 	<div class="pmTasks index" style="background-color: #F1CB84; padding-bottom: 13px;">
 	<a name="taches"></a><h2>';
 echo $plib;
+echo " (".mysql_num_rows($sql) .") ";
 echo '<a href="/intranet/pmcake/pm_tasks/add"><img src="/intranet/pmcake/img/toolbar/add.png" alt="Ajouter" title="Ajouter" /></a>';
 //e($html->link($html->image('toolbar/add.png', array('alt' => 'Ajouter', 'title' => 'Ajouter')), array('controller' => 'pm_tasks', 'action'=>'add'), array('escape' => false)));
 echo '
@@ -47,16 +60,7 @@ echo '
 			<th class="actions" colspan="2">Actions</th>
 	</tr>
 ';
-	$sql="SELECT * FROM pm_tasks WHERE project=".$pid;
 
-	if($_GET['statut']) {$statut = $_GET['statut'];}
-		$statut = " AND status" .$operator .$statut;
-
-	$sql.=$statut;
-	$sql.= " ORDER BY " .$order;
-	#echo $sql;
-	$sql=mysql_query($sql);
-	if(!$sql) { echo "SQL error: " .mysql_error(); }
 
 $i=0;
 while($i<mysql_num_rows($sql)){
