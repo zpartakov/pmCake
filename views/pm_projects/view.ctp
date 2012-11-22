@@ -7,7 +7,9 @@ $this->pageTitle = 'Détail projet: ' .$pmProject['PmProject']['name'];
 <div class="pmProjects view">
 <h2><?php echo $this->pageTitle;?></h2>
 <div class="project_view_actions">
-<a href="#taches">Tâches</a> | <a href="#dreams">Incubateur</a> | <a href="#references">Références</a> | <a href="#finished">Terminé</a> | <a href="#notes">Notes</a> <? e($html->link($html->image('toolbar/editor.png', array('alt' => 'Modifier')), array('action'=>'edit', $pmProject['PmProject']['id']), array('alt' => 'Modifier', 'title' => 'Modifier', 'escape' => false)));?>
+<a href="#taches">Tâches</a> | <a href="#dreams">Incubateur</a> | <a href="#wait">En Attente</a> | 
+<a href="#delegated">Tâches déléguées</a>
+ | <a href="#suspended">Suspendues</a>  <a href="#references">Références</a> | <a href="#finished">Terminé</a> | <a href="#notes">Notes</a> <? e($html->link($html->image('toolbar/editor.png', array('alt' => 'Modifier')), array('action'=>'edit', $pmProject['PmProject']['id']), array('alt' => 'Modifier', 'title' => 'Modifier', 'escape' => false)));?>
 </div>
 <div class="zactions">
 	<?
@@ -111,8 +113,14 @@ $this->pageTitle = 'Détail projet: ' .$pmProject['PmProject']['name'];
 <hr>
 <? 
 /* ################### ACTIVE TASKS ########################
+ * 
  * */
-$plib="Tâches"; $pid=$pmProject['PmProject']['id']; $order="due_date"; $status=3; $operator="=";$anchor="taches";
+$plib="Tâches à faire"; $pid=$pmProject['PmProject']['id']; $order="due_date"; $status=3; $operator="=";$anchor="taches";
+project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
+/* ################### ACTIVE TASKS ########################
+ * 
+ * */
+$plib="Tâches déléguées"; $pid=$pmProject['PmProject']['id']; $order="due_date"; $status=6; $operator="=";$anchor="delegated";
 project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
 /* ################### WAIT ########################
  * */
@@ -130,7 +138,7 @@ project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
 
 /* ################### SUSPENDED ########################
  * */
-$plib="Suspendus"; $pid=$pmProject['PmProject']['id']; $order="due_date"; $status=4; $operator="=";$anchor="suspended";
+$plib="Suspendues"; $pid=$pmProject['PmProject']['id']; $order="due_date"; $status=4; $operator="=";$anchor="suspended";
 project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
 /* ################### DREAMS / INCUBATEUR ########################
  * 
