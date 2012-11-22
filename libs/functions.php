@@ -349,7 +349,7 @@ function completion($completion) {
 	
 function priorite($priorite) {
 	$prioritelib=array("Vide","Très faible","Faible","Moyenne","Elevée","Très élevée");
-	$prioritecolor=array(  "white","white"           , "white"     ,"white"       ,"#FFC0CB","#FF6C7F");
+	$prioritecolor=array(  "white", "#00FF00", "#90EE90" ,"#FFA500" ,"#FFC0CB","#FF6C7F");
 	for($i=0;$i<6;$i++) {	
 		echo "<option value=\"" .$i ."\"";
 		if($i==$priorite) {
@@ -362,7 +362,7 @@ function priorite($priorite) {
 
 function prioritehighlight($priorite) {
 	$prioritelib=array("Vide","Très faible","Faible","Moyenne","Elevée","Très élevée");
-	$prioritecolor=array(  "white","white"           , "white"     ,"white"       ,"#FFC0CB","#FF6C7F");
+	$prioritecolor=array(  "white","#00FF00"           , "#90EE90"     ,"#FFA500"       ,"#FFC0CB","#FF6C7F");
 
 	echo "<div style=\"background-color: "  .$prioritecolor[$priorite] ."\">";
 	
@@ -370,7 +370,7 @@ function prioritehighlight($priorite) {
 	
 function prioriteView($i) {
 	$prioritelib=array("Vide","Très faible","Faible","Moyenne","Elevée","Très élevée");
-	$prioritecolor=array(  "white","white"           , "white"     ,"white"       ,"#FFC0CB","#FF6C7F");
+	$prioritecolor=array(  "white","#00FF00"           , "#90EE90"     ,"#FFA500"       ,"#FFC0CB","#FF6C7F");
 
 		echo "<span style=\"background-color: "  .$prioritecolor[$i] ."\">" .$prioritelib[$i] ."</span>";
 }
