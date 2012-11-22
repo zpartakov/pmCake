@@ -116,7 +116,7 @@ $plib="Tâches"; $pid=$pmProject['PmProject']['id']; $order="due_date"; $status=
 project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
 /* ################### WAIT ########################
  * */
-$plib="En attente"; $pid=$pmProject['PmProject']['id']; $order="due_date"; $status=5; $operator="=";$anchor="taches";
+$plib="En attente"; $pid=$pmProject['PmProject']['id']; $order="due_date"; $status=5; $operator="=";$anchor="wait";
 project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
 /* ################### DREAMS / INCUBATEUR ########################
  * */
@@ -130,14 +130,15 @@ project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
 
 /* ################### SUSPENDED ########################
  * */
-$plib="Suspendus"; $pid=$pmProject['PmProject']['id']; $order="due_date"; $status=4; $operator="=";$anchor="taches";
+$plib="Suspendus"; $pid=$pmProject['PmProject']['id']; $order="due_date"; $status=4; $operator="=";$anchor="suspended";
 project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
 /* ################### DREAMS / INCUBATEUR ########################
  * 
  */
 /* ################### CLOSED TASKS ########################
  * */
-$plib="Tâches terminées"; $pid=$pmProject['PmProject']['id']; $order="priority DESC,status,due_date"; $status="2 AND status!=3 AND status !=17 AND status !=22";  $operator="!="; $anchor="finished"; 
+//$plib="Tâches terminées"; $pid=$pmProject['PmProject']['id']; $order="priority DESC,status,due_date"; $status="2 AND status!=3 AND status !=17 AND status !=22";  $operator="!="; $anchor="finished"; 
+$plib="Tâches terminées"; $pid=$pmProject['PmProject']['id']; $order="priority DESC,status,due_date"; $status="0 OR status=1";  $operator="="; $anchor="finished"; 
 project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
 ?>
 	<!-- ##################### NOTES ##################### -->
