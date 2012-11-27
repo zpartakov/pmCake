@@ -253,7 +253,7 @@ QRcode::png($qrcode, '/var/www/qrcode/pm.jpg'); // creates file
 	?></span>
 </div>
 	<div class="add_time">
-<form name="ajoutheure" action="/pmcake/pm_tasks_times/ajoutheure">
+<form name="ajoutheure" action="/intranet/pmcake/pm_tasks_times/ajoutheure">
 <input type="hidden" name="projectid" value="<? echo $this->data['PmProject']['id'];?>">
 <input type="hidden" name="idtache" value="<? echo $this->data['PmTask']['id'];?>">
 <select name="addtime" onChange="Javascript:document.ajoutheure.submit()"><option value==""> *** Temps travail *** </option>
