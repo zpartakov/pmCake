@@ -139,7 +139,7 @@ echo "<br />This page was created in ".$totaltime." seconds";
 <table>
 	<tr>
 		<td class="tablepied"><?
-echo "<a target=\"_blank\" href=\"http://www.akademia.ch/dokuwiki/info:pmcake:\">";
+echo "<a target=\"_blank\" href=\"/dokuwiki/info:pmcake:\">";
 echo $html->image('help.png', array("alt"=>"Documentation","title"=>"Documentation","width"=>"50","height"=>"50"));
 echo "</a>";
 ?>
@@ -156,7 +156,7 @@ echo "</a>";
 <!-- about -->
 <td class="tablepied">
 <?php
-echo '<a target="_blank" class="contact" href="http://www.akademia.ch/dokuwiki/fred_radeff" title="Fred Radeff">'.$html->image('linux/tux_che.jpg', array("alt"=>"Fred Radeff")).'</a>';
+echo '<a target="_blank" class="contact" href="/dokuwiki/fred_radeff" title="Fred Radeff">'.$html->image('linux/tux_che.jpg', array("alt"=>"Fred Radeff")).'</a>';
 ?>
 <br />			<?php 
 		echo $html->image("cake.power.gif", array('url' => 'http://www.cakephp.org/', 'alt' => 'CakePHP', 'title' => 'CakePHP'));
@@ -165,7 +165,7 @@ echo '<a target="_blank" class="contact" href="http://www.akademia.ch/dokuwiki/f
 <!-- contact -->
 <td class="tablepied">
 <?php
-echo '<a target="_blank" class="contact" href="http://www.akademia.ch/writemail.php" title="Contact">'.$html->image('ico-contact.gif', array("alt"=>"Contact")).'</a>';
+echo '<a target="_blank" class="contact" href="/writemail.php" title="Contact">'.$html->image('ico-contact.gif', array("alt"=>"Contact")).'</a>';
 ?>
 </td>
 
