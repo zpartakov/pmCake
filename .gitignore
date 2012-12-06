@@ -1,8 +1,9 @@
 .htaccess
 .buildpath
 config/database.php.ori
-gitpull
-gitpush
+pull.sh
+push.sh
+clearcache.sh
 tmp/*
 config/database.php
 <<<<<<< HEAD
