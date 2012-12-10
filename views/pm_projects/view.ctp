@@ -9,7 +9,10 @@ $this->pageTitle = 'Détail projet: ' .$pmProject['PmProject']['name'];
 <div class="project_view_actions">
 <a href="#taches">Tâches</a> | <a href="#dreams">Incubateur</a> | <a href="#wait">En Attente</a> | 
 <a href="#delegated">Tâches déléguées</a>
- | <a href="#suspended">Suspendues</a>  <a href="#references">Références</a> | <a href="#finished">Terminé</a> | <a href="#notes">Notes</a> <? e($html->link($html->image('toolbar/editor.png', array('alt' => 'Modifier')), array('action'=>'edit', $pmProject['PmProject']['id']), array('alt' => 'Modifier', 'title' => 'Modifier', 'escape' => false)));?>
+ | <a href="#suspended">Suspendues</a>  <a href="#references">Références</a> 
+ <!-- prend trop de temps à calculer! -->
+ <!-- | <a href="#finished">Terminé</a> -->
+  | <a href="#notes">Notes</a> <? e($html->link($html->image('toolbar/editor.png', array('alt' => 'Modifier')), array('action'=>'edit', $pmProject['PmProject']['id']), array('alt' => 'Modifier', 'title' => 'Modifier', 'escape' => false)));?>
 </div>
 <div class="zactions">
 	<?
@@ -146,8 +149,8 @@ project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
 /* ################### CLOSED TASKS ########################
  * */
 //$plib="Tâches terminées"; $pid=$pmProject['PmProject']['id']; $order="priority DESC,status,due_date"; $status="2 AND status!=3 AND status !=17 AND status !=22";  $operator="!="; $anchor="finished"; 
-$plib="Tâches terminées"; $pid=$pmProject['PmProject']['id']; $order="priority DESC,status,due_date"; $status="0 OR status=1";  $operator="="; $anchor="finished"; 
-project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
+#$plib="Tâches terminées"; $pid=$pmProject['PmProject']['id']; $order="priority DESC,status,due_date"; $status="0 OR status=1";  $operator="="; $anchor="finished"; 
+#project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
 ?>
 	<!-- ##################### NOTES ##################### -->
 <div class="pmNotes index">
