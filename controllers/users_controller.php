@@ -62,4 +62,8 @@ class UsersController extends AppController {
 	function generate_random_passwd(){
 		
 	}
+	
+	function pmstatistics(){
+		
+	}
 }

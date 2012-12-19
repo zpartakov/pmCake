@@ -3,14 +3,20 @@
  * tool for generating passwords
  */
 	App::import('Lib', 'functions'); //imports app/libs/functions
+	
+	$this->pageTitle = "Génération aléatoire de mots de passe";
+	
+	
 if(!$_GET['longueur']){
 	$longueur=10; //default length for password
 }
 if(!$_GET['nbpwd']){
-	$nbpwd=30; //default # of generated passwords
+	$nbpwd=20; //default # of generated passwords
 }
 //echo $longueur ." - " . $nbpwd;
 ?>
+<h1><?php echo $this->pageTitle;?></h1>
+
 <!-- <form method="GET">
 Longueur du mot de passe: <input type="text" name="longueur" value="10">
 Nombre de mots de passe: <input type="text" name="nbpwd" value="20">

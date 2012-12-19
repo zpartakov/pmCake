@@ -1,3 +1,6 @@
+<?php 
+	$this->pageTitle = "Modifier utilisateur";
+?>
 <div class="users form">
 <?php echo $this->Form->create('User');?>
 	<fieldset>
