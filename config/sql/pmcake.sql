@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.24, for debian-linux-gnu (i686)
+-- MySQL dump 10.13  Distrib 5.5.28, for debian-linux-gnu (x86_64)
 --
--- Host: localhost    Database: akademiach4
+-- Host: localhost    Database: pmCake
 -- ------------------------------------------------------
--- Server version	5.5.24-0ubuntu0.12.04.1
+-- Server version	5.5.28-0ubuntu0.12.04.3
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -142,7 +142,7 @@ CREATE TABLE `cms` (
   `version` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `rem` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=181 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=191 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -210,7 +210,7 @@ CREATE TABLE `contacts` (
   `Profession` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `Category` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=898 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=899 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -293,7 +293,25 @@ CREATE TABLE `faqs` (
   `rem` text COLLATE utf8_unicode_ci NOT NULL,
   `date_mod` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='base de connaissance';
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='base de connaissance';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fonctions`
+--
+
+DROP TABLE IF EXISTS `fonctions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fonctions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `lib` varchar(255) COLLATE utf8_bin NOT NULL,
+  `fonction` text COLLATE utf8_bin NOT NULL,
+  `note` text COLLATE utf8_bin NOT NULL,
+  `date_mod` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `prog_language_id` int(12) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='usefull functions';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -371,7 +389,7 @@ CREATE TABLE `obsoletelogins` (
   `lastmodif` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   `remarques` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=102 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=109 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -406,7 +424,7 @@ CREATE TABLE `patchadmins` (
   `priv` tinyint(4) NOT NULL DEFAULT '1',
   `meladmin` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=66 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -546,7 +564,7 @@ CREATE TABLE `pm_menus` (
   `moddate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `line_after` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='application menus';
+) ENGINE=MyISAM AUTO_INCREMENT=73 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='application menus';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -593,7 +611,7 @@ CREATE TABLE `pm_organizations` (
   `extension_logo` char(3) NOT NULL DEFAULT '',
   `owner` mediumint(8) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -620,7 +638,7 @@ CREATE TABLE `pm_projects` (
   `phase_set` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `type` char(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=116 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=139 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -656,7 +674,7 @@ CREATE TABLE `pm_tasks` (
   `milestone` char(1) NOT NULL DEFAULT '',
   `mod_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3369 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3691 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -768,6 +786,42 @@ CREATE TABLE `pm_tasks20120828` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `pm_tasks20121120`
+--
+
+DROP TABLE IF EXISTS `pm_tasks20121120`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pm_tasks20121120` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `parent_id` mediumint(8) NOT NULL COMMENT 'parent task id, 0 if none',
+  `project` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `priority` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `status` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `owner` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `assigned_to` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `name` varchar(155) DEFAULT NULL,
+  `description` text,
+  `start_date` varchar(10) DEFAULT NULL,
+  `due_date` varchar(10) DEFAULT NULL,
+  `estimated_time` varchar(10) DEFAULT NULL,
+  `actual_time` varchar(10) DEFAULT NULL,
+  `comments` text,
+  `completion` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `created` varchar(16) DEFAULT NULL,
+  `modified` varchar(16) DEFAULT NULL,
+  `assigned` varchar(16) DEFAULT NULL,
+  `published` char(1) NOT NULL DEFAULT '',
+  `parent_phase` int(10) unsigned NOT NULL DEFAULT '0',
+  `complete_date` varchar(10) DEFAULT NULL,
+  `service` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `milestone` char(1) NOT NULL DEFAULT '',
+  `mod_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3569 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `pm_tasks_revs`
 --
 
@@ -800,7 +854,7 @@ CREATE TABLE `pm_tasks_revs` (
   `version_id` int(11) NOT NULL AUTO_INCREMENT,
   `version_created` datetime NOT NULL,
   PRIMARY KEY (`version_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4040 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1190 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -821,7 +875,7 @@ CREATE TABLE `pm_tasks_time` (
   `created` datetime DEFAULT NULL,
   `modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=16137 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=17749 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -948,6 +1002,23 @@ CREATE TABLE `pm_urls_logs` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `prog_languages`
+--
+
+DROP TABLE IF EXISTS `prog_languages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `prog_languages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `lib` varchar(255) COLLATE utf8_bin NOT NULL,
+  `note` text COLLATE utf8_bin NOT NULL,
+  `date_mod` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `url` varchar(255) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='usefull functions';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `roles`
 --
 
@@ -976,26 +1047,6 @@ CREATE TABLE `servers` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Temporary table structure for view `showcms`
---
-
-DROP TABLE IF EXISTS `showcms`;
-/*!50001 DROP VIEW IF EXISTS `showcms`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `showcms` (
-  `lib` varchar(255),
-  `server` varchar(255),
-  `url` varchar(255),
-  `login` varchar(255),
-  `email` varchar(255),
-  `date` timestamp,
-  `rem` text,
-  `id` int(12)
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `statuts`
@@ -1105,6 +1156,575 @@ CREATE TABLE `tasks_revs` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `ttrss_access_keys`
+--
+
+DROP TABLE IF EXISTS `ttrss_access_keys`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_access_keys` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `access_key` varchar(250) NOT NULL,
+  `feed_id` varchar(250) NOT NULL,
+  `is_cat` tinyint(1) NOT NULL DEFAULT '0',
+  `owner_uid` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `owner_uid` (`owner_uid`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ttrss_archived_feeds`
+--
+
+DROP TABLE IF EXISTS `ttrss_archived_feeds`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_archived_feeds` (
+  `id` int(11) NOT NULL,
+  `owner_uid` int(11) NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `feed_url` text NOT NULL,
+  `site_url` varchar(250) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  KEY `owner_uid` (`owner_uid`),
+  CONSTRAINT `ttrss_archived_feeds_ibfk_1` FOREIGN KEY (`owner_uid`) REFERENCES `ttrss_users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ttrss_cat_counters_cache`
+--
+
+DROP TABLE IF EXISTS `ttrss_cat_counters_cache`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_cat_counters_cache` (
+  `feed_id` int(11) NOT NULL,
+  `owner_uid` int(11) NOT NULL,
+  `value` int(11) NOT NULL DEFAULT '0',
+  `updated` datetime NOT NULL,
+  KEY `ttrss_cat_counters_cache_owner_uid_idx` (`owner_uid`),
+  CONSTRAINT `ttrss_cat_counters_cache_ibfk_1` FOREIGN KEY (`owner_uid`) REFERENCES `ttrss_users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ttrss_counters_cache`
+--
+
+DROP TABLE IF EXISTS `ttrss_counters_cache`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_counters_cache` (
+  `feed_id` int(11) NOT NULL,
+  `owner_uid` int(11) NOT NULL,
+  `value` int(11) NOT NULL DEFAULT '0',
+  `updated` datetime NOT NULL,
+  KEY `ttrss_counters_cache_feed_id_idx` (`feed_id`),
+  KEY `ttrss_counters_cache_owner_uid_idx` (`owner_uid`),
+  KEY `ttrss_counters_cache_value_idx` (`value`),
+  CONSTRAINT `ttrss_counters_cache_ibfk_1` FOREIGN KEY (`owner_uid`) REFERENCES `ttrss_users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ttrss_enclosures`
+--
+
+DROP TABLE IF EXISTS `ttrss_enclosures`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_enclosures` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content_url` text NOT NULL,
+  `content_type` varchar(250) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `duration` text NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `post_id` (`post_id`),
+  KEY `ttrss_enclosures_post_id_idx` (`post_id`),
+  CONSTRAINT `ttrss_enclosures_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `ttrss_entries` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=14836 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ttrss_entries`
+--
+
+DROP TABLE IF EXISTS `ttrss_entries`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_entries` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` text NOT NULL,
+  `guid` varchar(255) NOT NULL,
+  `link` text NOT NULL,
+  `updated` datetime NOT NULL,
+  `content` longtext NOT NULL,
+  `content_hash` varchar(250) NOT NULL,
+  `no_orig_date` tinyint(1) NOT NULL DEFAULT '0',
+  `date_entered` datetime NOT NULL,
+  `date_updated` datetime NOT NULL,
+  `num_comments` int(11) NOT NULL DEFAULT '0',
+  `comments` varchar(250) NOT NULL DEFAULT '',
+  `author` varchar(250) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `guid` (`guid`),
+  KEY `ttrss_entries_date_entered_index` (`date_entered`),
+  KEY `ttrss_entries_guid_index` (`guid`),
+  KEY `ttrss_entries_updated_idx` (`updated`)
+) ENGINE=InnoDB AUTO_INCREMENT=17950 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ttrss_entry_comments`
+--
+
+DROP TABLE IF EXISTS `ttrss_entry_comments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_entry_comments` (
+  `id` int(11) NOT NULL,
+  `ref_id` int(11) NOT NULL,
+  `owner_uid` int(11) NOT NULL,
+  `private` tinyint(1) NOT NULL DEFAULT '0',
+  `date_entered` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ref_id` (`ref_id`),
+  KEY `owner_uid` (`owner_uid`),
+  CONSTRAINT `ttrss_entry_comments_ibfk_1` FOREIGN KEY (`ref_id`) REFERENCES `ttrss_entries` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `ttrss_entry_comments_ibfk_2` FOREIGN KEY (`owner_uid`) REFERENCES `ttrss_users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ttrss_feed_categories`
+--
+
+DROP TABLE IF EXISTS `ttrss_feed_categories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_feed_categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `owner_uid` int(11) NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `collapsed` tinyint(1) NOT NULL DEFAULT '0',
+  `order_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `owner_uid` (`owner_uid`),
+  CONSTRAINT `ttrss_feed_categories_ibfk_1` FOREIGN KEY (`owner_uid`) REFERENCES `ttrss_users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ttrss_feedbrowser_cache`
+--
+
+DROP TABLE IF EXISTS `ttrss_feedbrowser_cache`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_feedbrowser_cache` (
+  `feed_url` text NOT NULL,
+  `site_url` text NOT NULL,
+  `title` text NOT NULL,
+  `subscribers` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ttrss_feeds`
+--
+
+DROP TABLE IF EXISTS `ttrss_feeds`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_feeds` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `owner_uid` int(11) NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `cat_id` int(11) DEFAULT NULL,
+  `feed_url` text NOT NULL,
+  `icon_url` varchar(250) NOT NULL DEFAULT '',
+  `update_interval` int(11) NOT NULL DEFAULT '0',
+  `purge_interval` int(11) NOT NULL DEFAULT '0',
+  `last_updated` datetime DEFAULT '0000-00-00 00:00:00',
+  `last_error` varchar(250) NOT NULL DEFAULT '',
+  `site_url` varchar(250) NOT NULL DEFAULT '',
+  `auth_login` varchar(250) NOT NULL DEFAULT '',
+  `auth_pass` varchar(250) NOT NULL DEFAULT '',
+  `parent_feed` int(11) DEFAULT NULL,
+  `private` tinyint(1) NOT NULL DEFAULT '0',
+  `rtl_content` tinyint(1) NOT NULL DEFAULT '0',
+  `hidden` tinyint(1) NOT NULL DEFAULT '0',
+  `include_in_digest` tinyint(1) NOT NULL DEFAULT '1',
+  `cache_images` tinyint(1) NOT NULL DEFAULT '0',
+  `auth_pass_encrypted` tinyint(1) NOT NULL DEFAULT '0',
+  `last_viewed` datetime DEFAULT NULL,
+  `last_update_started` datetime DEFAULT NULL,
+  `always_display_enclosures` tinyint(1) NOT NULL DEFAULT '0',
+  `update_method` int(11) NOT NULL DEFAULT '0',
+  `order_id` int(11) NOT NULL DEFAULT '0',
+  `mark_unread_on_update` tinyint(1) NOT NULL DEFAULT '0',
+  `update_on_checksum_change` tinyint(1) NOT NULL DEFAULT '0',
+  `strip_images` tinyint(1) NOT NULL DEFAULT '0',
+  `pubsub_state` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `owner_uid` (`owner_uid`),
+  KEY `cat_id` (`cat_id`),
+  KEY `parent_feed` (`parent_feed`),
+  CONSTRAINT `ttrss_feeds_ibfk_1` FOREIGN KEY (`owner_uid`) REFERENCES `ttrss_users` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `ttrss_feeds_ibfk_2` FOREIGN KEY (`cat_id`) REFERENCES `ttrss_feed_categories` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `ttrss_feeds_ibfk_3` FOREIGN KEY (`parent_feed`) REFERENCES `ttrss_feeds` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB AUTO_INCREMENT=238 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ttrss_filter_actions`
+--
+
+DROP TABLE IF EXISTS `ttrss_filter_actions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_filter_actions` (
+  `id` int(11) NOT NULL,
+  `name` varchar(120) NOT NULL,
+  `description` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`),
+  UNIQUE KEY `description` (`description`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ttrss_filter_types`
+--
+
+DROP TABLE IF EXISTS `ttrss_filter_types`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_filter_types` (
+  `id` int(11) NOT NULL,
+  `name` varchar(120) NOT NULL,
+  `description` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`),
+  UNIQUE KEY `description` (`description`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ttrss_filters`
+--
+
+DROP TABLE IF EXISTS `ttrss_filters`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_filters` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `owner_uid` int(11) NOT NULL,
+  `feed_id` int(11) DEFAULT NULL,
+  `filter_type` int(11) NOT NULL,
+  `reg_exp` varchar(250) NOT NULL,
+  `filter_param` varchar(250) NOT NULL DEFAULT '',
+  `inverse` tinyint(1) NOT NULL DEFAULT '0',
+  `enabled` tinyint(1) NOT NULL DEFAULT '1',
+  `cat_filter` tinyint(1) NOT NULL DEFAULT '0',
+  `cat_id` int(11) DEFAULT NULL,
+  `action_id` int(11) NOT NULL DEFAULT '1',
+  `action_param` varchar(250) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  KEY `filter_type` (`filter_type`),
+  KEY `owner_uid` (`owner_uid`),
+  KEY `feed_id` (`feed_id`),
+  KEY `cat_id` (`cat_id`),
+  KEY `action_id` (`action_id`),
+  CONSTRAINT `ttrss_filters_ibfk_1` FOREIGN KEY (`filter_type`) REFERENCES `ttrss_filter_types` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `ttrss_filters_ibfk_2` FOREIGN KEY (`owner_uid`) REFERENCES `ttrss_users` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `ttrss_filters_ibfk_3` FOREIGN KEY (`feed_id`) REFERENCES `ttrss_feeds` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `ttrss_filters_ibfk_4` FOREIGN KEY (`cat_id`) REFERENCES `ttrss_feed_categories` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `ttrss_filters_ibfk_5` FOREIGN KEY (`action_id`) REFERENCES `ttrss_filter_actions` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ttrss_labels2`
+--
+
+DROP TABLE IF EXISTS `ttrss_labels2`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_labels2` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `owner_uid` int(11) NOT NULL,
+  `caption` varchar(250) NOT NULL,
+  `fg_color` varchar(15) NOT NULL DEFAULT '',
+  `bg_color` varchar(15) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  KEY `owner_uid` (`owner_uid`),
+  CONSTRAINT `ttrss_labels2_ibfk_1` FOREIGN KEY (`owner_uid`) REFERENCES `ttrss_users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ttrss_linked_feeds`
+--
+
+DROP TABLE IF EXISTS `ttrss_linked_feeds`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_linked_feeds` (
+  `feed_url` text NOT NULL,
+  `site_url` text NOT NULL,
+  `title` text NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  `instance_id` int(11) NOT NULL,
+  `subscribers` int(11) NOT NULL,
+  KEY `instance_id` (`instance_id`),
+  CONSTRAINT `ttrss_linked_feeds_ibfk_1` FOREIGN KEY (`instance_id`) REFERENCES `ttrss_linked_instances` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ttrss_linked_instances`
+--
+
+DROP TABLE IF EXISTS `ttrss_linked_instances`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_linked_instances` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `last_connected` datetime NOT NULL,
+  `last_status_in` int(11) NOT NULL,
+  `last_status_out` int(11) NOT NULL,
+  `access_key` varchar(250) NOT NULL,
+  `access_url` text NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `access_key` (`access_key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ttrss_prefs`
+--
+
+DROP TABLE IF EXISTS `ttrss_prefs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_prefs` (
+  `pref_name` varchar(250) NOT NULL,
+  `type_id` int(11) NOT NULL,
+  `section_id` int(11) NOT NULL DEFAULT '1',
+  `short_desc` text NOT NULL,
+  `help_text` varchar(250) NOT NULL DEFAULT '',
+  `access_level` int(11) NOT NULL DEFAULT '0',
+  `def_value` text NOT NULL,
+  PRIMARY KEY (`pref_name`),
+  KEY `type_id` (`type_id`),
+  KEY `section_id` (`section_id`),
+  CONSTRAINT `ttrss_prefs_ibfk_1` FOREIGN KEY (`type_id`) REFERENCES `ttrss_prefs_types` (`id`),
+  CONSTRAINT `ttrss_prefs_ibfk_2` FOREIGN KEY (`section_id`) REFERENCES `ttrss_prefs_sections` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ttrss_prefs_sections`
+--
+
+DROP TABLE IF EXISTS `ttrss_prefs_sections`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_prefs_sections` (
+  `id` int(11) NOT NULL,
+  `section_name` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ttrss_prefs_types`
+--
+
+DROP TABLE IF EXISTS `ttrss_prefs_types`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_prefs_types` (
+  `id` int(11) NOT NULL,
+  `type_name` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ttrss_sessions`
+--
+
+DROP TABLE IF EXISTS `ttrss_sessions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_sessions` (
+  `id` varchar(250) NOT NULL,
+  `data` text,
+  `expire` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  KEY `id_2` (`id`),
+  KEY `expire` (`expire`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ttrss_settings_profiles`
+--
+
+DROP TABLE IF EXISTS `ttrss_settings_profiles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_settings_profiles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(250) NOT NULL,
+  `owner_uid` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `owner_uid` (`owner_uid`),
+  CONSTRAINT `ttrss_settings_profiles_ibfk_1` FOREIGN KEY (`owner_uid`) REFERENCES `ttrss_users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ttrss_tags`
+--
+
+DROP TABLE IF EXISTS `ttrss_tags`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_tags` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `owner_uid` int(11) NOT NULL,
+  `tag_name` varchar(250) NOT NULL,
+  `post_int_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `post_int_id` (`post_int_id`),
+  KEY `owner_uid` (`owner_uid`),
+  CONSTRAINT `ttrss_tags_ibfk_1` FOREIGN KEY (`post_int_id`) REFERENCES `ttrss_user_entries` (`int_id`) ON DELETE CASCADE,
+  CONSTRAINT `ttrss_tags_ibfk_2` FOREIGN KEY (`owner_uid`) REFERENCES `ttrss_users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=22658 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ttrss_user_entries`
+--
+
+DROP TABLE IF EXISTS `ttrss_user_entries`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_user_entries` (
+  `int_id` int(11) NOT NULL AUTO_INCREMENT,
+  `ref_id` int(11) NOT NULL,
+  `uuid` varchar(200) NOT NULL,
+  `feed_id` int(11) DEFAULT NULL,
+  `orig_feed_id` int(11) DEFAULT NULL,
+  `owner_uid` int(11) NOT NULL,
+  `marked` tinyint(1) NOT NULL DEFAULT '0',
+  `published` tinyint(1) NOT NULL DEFAULT '0',
+  `tag_cache` text NOT NULL,
+  `label_cache` text NOT NULL,
+  `last_read` datetime DEFAULT NULL,
+  `score` int(11) NOT NULL DEFAULT '0',
+  `note` longtext,
+  `unread` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`int_id`),
+  KEY `ref_id` (`ref_id`),
+  KEY `feed_id` (`feed_id`),
+  KEY `orig_feed_id` (`orig_feed_id`),
+  KEY `owner_uid` (`owner_uid`),
+  KEY `ttrss_user_entries_unread_idx` (`unread`),
+  CONSTRAINT `ttrss_user_entries_ibfk_1` FOREIGN KEY (`ref_id`) REFERENCES `ttrss_entries` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `ttrss_user_entries_ibfk_2` FOREIGN KEY (`feed_id`) REFERENCES `ttrss_feeds` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `ttrss_user_entries_ibfk_3` FOREIGN KEY (`orig_feed_id`) REFERENCES `ttrss_archived_feeds` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `ttrss_user_entries_ibfk_4` FOREIGN KEY (`owner_uid`) REFERENCES `ttrss_users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=25566 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ttrss_user_labels2`
+--
+
+DROP TABLE IF EXISTS `ttrss_user_labels2`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_user_labels2` (
+  `label_id` int(11) NOT NULL,
+  `article_id` int(11) NOT NULL,
+  KEY `label_id` (`label_id`),
+  KEY `article_id` (`article_id`),
+  CONSTRAINT `ttrss_user_labels2_ibfk_1` FOREIGN KEY (`label_id`) REFERENCES `ttrss_labels2` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `ttrss_user_labels2_ibfk_2` FOREIGN KEY (`article_id`) REFERENCES `ttrss_entries` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ttrss_user_prefs`
+--
+
+DROP TABLE IF EXISTS `ttrss_user_prefs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_user_prefs` (
+  `owner_uid` int(11) NOT NULL,
+  `pref_name` varchar(250) DEFAULT NULL,
+  `value` longtext NOT NULL,
+  `profile` int(11) DEFAULT NULL,
+  KEY `profile` (`profile`),
+  KEY `owner_uid` (`owner_uid`),
+  KEY `pref_name` (`pref_name`),
+  CONSTRAINT `ttrss_user_prefs_ibfk_1` FOREIGN KEY (`profile`) REFERENCES `ttrss_settings_profiles` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `ttrss_user_prefs_ibfk_2` FOREIGN KEY (`owner_uid`) REFERENCES `ttrss_users` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `ttrss_user_prefs_ibfk_3` FOREIGN KEY (`pref_name`) REFERENCES `ttrss_prefs` (`pref_name`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ttrss_users`
+--
+
+DROP TABLE IF EXISTS `ttrss_users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `login` varchar(120) NOT NULL,
+  `pwd_hash` varchar(250) NOT NULL,
+  `last_login` datetime DEFAULT NULL,
+  `access_level` int(11) NOT NULL DEFAULT '0',
+  `theme_id` int(11) DEFAULT NULL,
+  `email` varchar(250) NOT NULL DEFAULT '',
+  `full_name` varchar(250) NOT NULL DEFAULT '',
+  `email_digest` tinyint(1) NOT NULL DEFAULT '0',
+  `last_digest_sent` datetime DEFAULT NULL,
+  `salt` varchar(250) NOT NULL DEFAULT '',
+  `created` datetime DEFAULT NULL,
+  `twitter_oauth` longtext,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `login` (`login`),
+  KEY `theme_id` (`theme_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ttrss_version`
+--
+
+DROP TABLE IF EXISTS `ttrss_version`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ttrss_version` (
+  `schema_version` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `types`
 --
 
@@ -1117,7 +1737,7 @@ CREATE TABLE `types` (
   `version` varchar(255) NOT NULL,
   `url` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1270,6 +1890,20 @@ DROP TABLE IF EXISTS `webcal_config`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `webcal_config` (
+  `cal_setting` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `cal_value` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`cal_setting`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `webcal_config_akademia`
+--
+
+DROP TABLE IF EXISTS `webcal_config_akademia`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `webcal_config_akademia` (
   `cal_setting` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `cal_value` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`cal_setting`)
@@ -1725,27 +2359,8 @@ CREATE TABLE `zefiles` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=133 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=136 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Final view structure for view `showcms`
---
-
-/*!50001 DROP TABLE IF EXISTS `showcms`*/;
-/*!50001 DROP VIEW IF EXISTS `showcms`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8 */;
-/*!50001 SET character_set_results     = utf8 */;
-/*!50001 SET collation_connection      = utf8_general_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `showcms` AS select `t`.`lib` AS `lib`,`c`.`server` AS `server`,`c`.`url` AS `url`,`c`.`login` AS `login`,`c`.`email` AS `email`,`c`.`date` AS `date`,`c`.`rem` AS `rem`,`c`.`id` AS `id` from (`types` `t` join `cms` `c`) where (`c`.`type_id` = `t`.`id`) order by `c`.`type_id` */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -1756,4 +2371,4 @@ CREATE TABLE `zefiles` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-09-24 10:22:51
+-- Dump completed on 2012-12-19 11:51:16
