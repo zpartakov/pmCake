@@ -4,10 +4,10 @@
  */
 	App::import('Lib', 'functions'); //imports app/libs/functions
 if(!$_GET['longueur']){
-	$longueur=8; //default length for password
+	$longueur=10; //default length for password
 }
 if(!$_GET['nbpwd']){
-	$nbpwd=20; //default # of generated passwords
+	$nbpwd=30; //default # of generated passwords
 }
 //echo $longueur ." - " . $nbpwd;
 ?>
@@ -23,21 +23,23 @@ Nombre de mots de passe: <input type="text" name="nbpwd" value="20">
 <h1>Mot de passes avancés</h1>
 </td>
 <td>
-<h1>Mot de passes simples</h1>
+<h1>Mot de passes simples #<?php echo $longueur;?> caractères</h1>
 </td></tr>
 <tr><td><?php 	
+/*
+ * strong passwd
+ */
 for($i=0;$i<$nbpwd;$i++) {
-echo passe_mnemo($longueur);
+echo passe_mnemo($longueur-2);
 echo "<br>";	
 }
-
-
-//echo passe_mnemo();
-//
 
 ?>
 </td><td>
 <?php 
+/*
+ * mnemotechnic passwd
+ */
 for($i=0;$i<$nbpwd;$i++) {
 echo generate_password($longueur);
 echo "<br>";
@@ -49,16 +51,16 @@ echo "<br>";
 </tr>
 <tr>
 <td>
-<h1>Autre</h1>
+<h1>Mot de passes simples #<?php echo $longueur+1;?> caractères</h1>
 </td>
 <td>
-<h1>Autre2</h1>
+<h1>Mot de passes simples #<?php echo $longueur+2;?> caractères</h1>
 </td>
 </tr>
 <tr><td>
 <?php 
 for($i=0;$i<$nbpwd;$i++) {
-echo generatePassword($longueur);
+echo generatePassword($longueur+1);
 echo "<br>";	
 }
 ?>
