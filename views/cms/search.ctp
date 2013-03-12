@@ -139,6 +139,12 @@ while($i<mysql_num_rows($sqlq)){
 			<?php 
 			if($versionc!=$cm['cms']['version']) {
 
+				/*
+				 * is there any upgrade to be done?
+				 */
+			echo "<a href=\"upgrade?cms_id=" .$cm['cms']['id'] ."&type_id=" .$cm['cms']['type_id'] ."\">";
+echo $html->image('icons/upgrade.png', array("alt"=>"Upgrade","title"=>"Upgrade","width"=>"25","height"=>"25"));
+echo "</a>&nbsp;";
 			/*special for Joomla15 and Joomla16*/
 
 
@@ -156,9 +162,7 @@ if($cm['cms']['version']=="1"&&$versionc!="16") {
 				echo "</span>";
 			}#6DFF93
 			
-			echo "&nbsp;<a href=\"upgrade?cms_id=" .$cm['cms']['id'] ."&type_id=" .$cm['cms']['type_id'] ."\">";
-echo $html->image('icons/upgrade.png', array("alt"=>"Upgrade","title"=>"Upgrade","width"=>"25","height"=>"25"));
-echo "</a>";
+
 			
 			?>
 		</td>
