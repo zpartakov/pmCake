@@ -135,7 +135,7 @@ while($i<mysql_num_rows($sqlq)){
 		<td>
 			<?php echo $cm['cms']['date']; ?>
 		</td>
-		<td>
+		<td style="width: 100px">
 			<?php 
 			if($versionc!=$cm['cms']['version']) {
 
