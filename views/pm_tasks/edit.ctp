@@ -134,7 +134,7 @@ priorite($this->data['PmTask']['priority']);
 			echo $this->AlaxosForm->input('description', array('label' => false,  "cols"=>"80", "rows"=>"25")); ?>
 		</td>
 		<?
-			$changer="'description','lalibelletache','".$this->data['PmTask']['id']."'";
+			$changer="'description','ladescription','".$this->data['PmTask']['id']."'";
 		
 		echo
 		"<td class=\"imprimepas\" style=\"background-color: #FFFED8; padding: 0px;\"><div style=\"font-size: smaller\">";

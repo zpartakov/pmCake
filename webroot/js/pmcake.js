@@ -26,7 +26,7 @@ function task_ok(id,value) {
 	});
 }
 
-/* change task name */
+/* edit task: change content of a text or textarea field */
 function libelle_change_status(champ,libelle,id) {
 	//alert("lib: "+libelle +" id: " +id);
 	
@@ -37,7 +37,10 @@ function libelle_change_status(champ,libelle,id) {
 		   type: "GET",
 		   url: "/intranet/pmcake/pm_tasks/changelibelle?identifiant="+id+"&champ="+libelle+"&ajout="+modif,
 		   error:function(msg){
-			 alert( "Error !: " + msg );
+			   /*
+			    * todo fixme: makes a bug, so deactivated
+			    */
+			 //alert( "Error !: " + msg );
 		   },
 		   success:function(data){
 			   lid="#tr"+id;
