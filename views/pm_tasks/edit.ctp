@@ -116,9 +116,15 @@ priorite($this->data['PmTask']['priority']);
 	
 	<tr>
 		<td colspan="2">
-			<?php ___('Libellé') ?>
+			<?php ___('Libellé');
 
-			<?php echo $this->AlaxosForm->input('name', array('label' => false, "style"=>"width: 800px;")); ?>
+//			echo $this->data['PmTask']['id'];
+			?>
+
+			<?php 
+			$changer="'name','libelletache','".$this->data['PmTask']['id']."'";
+			//echo $changer;
+			echo $this->AlaxosForm->input('name', array('id'=>'libelletache', 'label' => false, "style"=>"width: 800px;", "onChange" => "libelle_change_status($changer)")); ?>
 </td>
 	</tr>
 	<tr>
@@ -128,9 +134,11 @@ priorite($this->data['PmTask']['priority']);
 			echo $this->AlaxosForm->input('description', array('label' => false,  "cols"=>"80", "rows"=>"25")); ?>
 		</td>
 		<?
+			$changer="'description','lalibelletache','".$this->data['PmTask']['id']."'";
+		
 		echo
 		"<td class=\"imprimepas\" style=\"background-color: #FFFED8; padding: 0px;\"><div style=\"font-size: smaller\">";
-		$description=$this->AlaxosForm->value('description');
+		$description=$this->AlaxosForm->value('description', array('id'=>'ladescription', "onChange" => "libelle_change_status($changer)"));
 		//$description=extrait_titres($description);
 		$chaine=extrait_titres($description);
 		//$chaine=$text;
@@ -199,7 +207,10 @@ Calendar.setup({ inputField:\"sel1\", button:\"trigger_a\" });
 		<td colspan="2"><a name="Remarques"></a>
 			<?php ___('Remarques') ?>
 		<br/>
-			<?php echo $this->AlaxosForm->input('comments', array('label' => false,  "cols"=>"80", "rows"=>"15")); ?>
+			<?php 
+						$changer="'comments','commentstache','".$this->data['PmTask']['id']."'";
+			
+			echo $this->AlaxosForm->input('comments', array('label' => false,  "cols"=>"80", "rows"=>"15", 'id'=>'commentstache', "onChange" => "libelle_change_status($changer)")); ?>
 			
 			<?php 
 $qrcode='http://'.$_SERVER["REMOTE_ADDR"].$_SERVER["REQUEST_URI"];

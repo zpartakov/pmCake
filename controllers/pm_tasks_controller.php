@@ -212,6 +212,12 @@ $last_id=mysql_result($last_id, 0,'id');
 	function ok() {
 	}
 	
+	/* a function to get the task libelle changed */
+	function changelibelle() {
+	}
+	
+	
+	
 	/* a function to show the time spent on task today - or another selected day */
 	function hours_today() {
 	}

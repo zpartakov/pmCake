@@ -26,6 +26,28 @@ function task_ok(id,value) {
 	});
 }
 
+/* change task name */
+function libelle_change_status(champ,libelle,id) {
+	//alert("lib: "+libelle +" id: " +id);
+	
+	modif=document.getElementById(libelle).value;
+	//alert("yo: "+champ +" id: " +id);
+	
+	$.ajax({
+		   type: "GET",
+		   url: "/intranet/pmcake/pm_tasks/changelibelle?identifiant="+id+"&champ="+libelle+"&ajout="+modif,
+		   error:function(msg){
+			 alert( "Error !: " + msg );
+		   },
+		   success:function(data){
+			   lid="#tr"+id;
+			   /*cache la tache déplacée*/
+			   $(lid).fadeOut();
+			}
+		});
+}
+
+
 
 /* change task status */
 function task_change_status(id,status) {
