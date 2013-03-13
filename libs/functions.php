@@ -1036,26 +1036,6 @@ function passe_mnemo(){
 #ZbleUrg (prononçable, mais difficile).
 #Auteur : Damien Seguy
 #Url : http://www.nexen.net
-/*
- * mod radeff: suppressed i, I, 1, o, O and 0
- * 
- *   $lettre[0] = array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
-  'j', 'k', 'l', 'm', 'o', 'n', 'p', 'q', 'r',
-  's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A',
-  'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
-  'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'D',
-  'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '9',
-  '0', '6', '5', '1', '3');
-  $lettre[1] = array('a', 'e', 'i', 'o', 'u', 'y', 'A', 'E',
-  'I', 'O', 'U', 'Y' , '1', '3', '0' );
-  $lettre[-1] = array('b', 'c', 'd', 'f', 'g', 'h', 'j', 'k',
-  'l', 'm', 'n', 'p', 'q', 'r', 's', 't',
-  'v', 'w', 'x', 'z', 'B', 'C', 'D', 'F',
-  'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P',
-  'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Z',
-  '5', '6', '9');
-
- */
  if (func_num_args() == 1){ $nb = func_get_arg(0);} else { $nb = 6;}
  
   // on utilise certains chiffres : 1 = i, 5 = S, 6=b, 3=E, 9=G, 0=O
@@ -1075,7 +1055,33 @@ function passe_mnemo(){
   'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P',
   'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Z',
   '5', '6', '9');
+
+  
+ /*
+ * mod radeff: suppressed i, I, 1, o, O and 0
+ * 
+ */   $lettre[0] = array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 
+  'j', 'k', 'm', 'n', 'p', 'q', 'r',
+  's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A',
+  'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+  'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'D',
+  'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '9', '6', '5', '3');
+  $lettre[1] = array('a', 'e', 'o', 'u', 'y', 'A', 'E',
+  'I',  'U', 'Y' , '3' );
+  $lettre[-1] = array('b', 'c', 'd', 'f', 'g', 'h', 'j', 'k',
+   'm', 'n', 'p', 'q', 'r', 's', 't',
+  'v', 'w', 'x', 'z', 'B', 'C', 'D', 'F',
+  'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P',
+  'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Z',
+  '5', '6', '9');
+
  
+  
+  
+  
+  
+  
+  
   $retour = "";
   $prec = 1;
   $precprec = -1;

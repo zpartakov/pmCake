@@ -35,13 +35,32 @@ Nombre de mots de passe: <input type="text" name="nbpwd" value="20">
 /*
  * strong passwd
  */
+?>
+<table>
+<tr>
+<td>
+<?php 
 for($i=0;$i<$nbpwd;$i++) {
 echo passe_mnemo($longueur-2);
 echo "<br>";	
 }
 
 ?>
-</td><td>
+</td>
+<td>
+<?php 
+for($i=0;$i<$nbpwd;$i++) {
+echo passe_mnemo($longueur-2);
+echo "<br>";	
+}
+
+?>
+</td>
+
+</tr>
+</table>
+</td>
+<td>
 <?php 
 /*
  * mnemotechnic passwd
