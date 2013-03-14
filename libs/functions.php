@@ -717,7 +717,8 @@ function task_resume($s_edate2) {
 	LIKE '$s_edate2' 
 	AND pm_tasks_time.project=pm_projects.id 
 	AND pm_projects.type NOT LIKE 'p' 
-	GROUP BY pm_projects.name
+	GROUP BY pm_projects.name 
+	ORDER BY pm_tasks_time.id
 	";
 
 	#echo nl2br($sql)."<br>";
