@@ -26,13 +26,37 @@ function task_ok(id,value) {
 	});
 }
 
+/* ajout_heure: ajax add time for a given task  
+ * 
+ * 		$changer="'remarqueheuretask','".$projectid ."','".$idtache ."'";
+
+ * */
+function ajout_heure(champ,pid,taskid) {
+	task=document.getElementById(champ).value;
+	heure=document.getElementById('heuretask').value;
+	if(isNaN(Number(heure))||Number(heure)<0.05){
+		alert("Préciser le temps!");
+	} else if(task.length<1) {
+		alert("Mettre un commentaire");
+	} else {
+		/*alert("/intranet/pmcake/pm_tasks_times/ajoutheure?projectid="+pid+"&idtache="+taskid+"&addtime="+heure+"&comments="+task);*/ 
+	$.ajax({
+		   type: "GET",
+		   url: "/intranet/pmcake/pm_tasks_times/ajoutheure?projectid="+pid+"&idtache="+taskid+"&addtime="+heure+"&comments="+task,
+		   error:function(msg){
+			 alert( "Error !: " + msg );
+		   },
+		   success:function(data){
+			   /*alert("OK, time added");*/
+		   }
+		});
+		
+	}
+}
+
 /* edit task: change content of a text or textarea field */
 function libelle_change_status(champ,libelle,id) {
-	//alert("lib: "+libelle +" id: " +id);
-	
 	modif=document.getElementById(libelle).value;
-	//alert("yo: "+champ +" id: " +id);
-	
 	$.ajax({
 		   type: "GET",
 		   url: "/intranet/pmcake/pm_tasks/changelibelle?identifiant="+id+"&champ="+libelle+"&ajout="+modif,
@@ -49,7 +73,6 @@ function libelle_change_status(champ,libelle,id) {
 			}
 		});
 }
-
 
 
 /* change task status */
