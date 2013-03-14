@@ -25,7 +25,9 @@ $this->pageTitle = 'Ajouter temps de travail à une tâche';
 		$changer="'remarqueheuretask','".$projectid ."','".$idtache ."'";
 		echo $this->Form->input('owner', array('type'=>'hidden', 'value'=>'3')); //todo: current user session-based
 		echo $this->Form->input('date', array('value'=>date('Y-m-d')));
-		echo $this->Form->input('hours', array('label'=>'Heures', 'style'=>'width: 70px;', 'id'=>'heuretask', 'onChange' => "ajout_heure($changer)"));
+		//echo $this->Form->input('hours', array('label'=>'Heures', 'style'=>'width: 70px;', 'id'=>'heuretask', 'onChange' => "ajout_heure($changer)"));
+		echo $this->Form->input('hours', array('label'=>'Heures', 'style'=>'width: 70px;', 'id'=>'heuretask'));
+		echo "<strong>Commencer par noter les heures</strong>";
 		echo $this->Form->input('comments', array('label'=>'Remarques', 'id'=>'remarqueheuretask', 'onChange' => "ajout_heure($changer)"));
 	?>
 	</fieldset>
