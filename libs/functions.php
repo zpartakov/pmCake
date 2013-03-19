@@ -793,9 +793,15 @@ echo "<tr><td class=\"" .$classe ."\">";
 echo mysql_result($sql,$i,'pm_projects.name');
 echo "</td><td class=\"" .$classe ."\">";
 echo mysql_result($sql,$i,'pm_tasks.name');
+
 echo " <a href=\"" .CHEMIN ."pm_tasks_times/edit/" .mysql_result($sql,$i,'pm_tasks_time.id') ."\" title=\"Modifier le temps\">";
 echo "<img src=\"" .CHEMIN ."img/icons/chronometre.png\" alt=\"modifier heures\" style=\"width: 25px\">";
 echo "</a>";
+
+echo " <a href=\"" .CHEMIN ."pm_tasks_times/delete/" .mysql_result($sql,$i,'pm_tasks_time.id') ."\" title=\"Supprimer le temps\">";
+echo "<img src=\"" .CHEMIN ."img/toolbar/drop.png\" alt=\"supprimer heures\" style=\"width: 25px\">";
+echo "</a>";
+
 echo " <a href=\"" .CHEMIN ."pm_tasks/edit/" .mysql_result($sql,$i,'pm_tasks.id') ."\" title=\"modifier tâche\">";
 echo "<img src=\"" .CHEMIN ."img/toolbar/editor.png\" alt=\"modifier tâche\" style=\"width: 25px\">";
 echo " <a href=\"" .CHEMIN ."pm_tasks/view/" .mysql_result($sql,$i,'pm_tasks.id') ."\"title=\"voir la tâche\">";

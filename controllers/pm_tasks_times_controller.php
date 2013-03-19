@@ -65,12 +65,13 @@ class PmTasksTimesController extends AppController {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for pm tasks time', true));
 			$this->redirect(array('action'=>'index'));
-		}
+					}
 		if ($this->PmTasksTime->delete($id)) {
 			#$this->Session->setFlash(__('Pm tasks time deleted', true));
 			#$this->redirect(array('action'=>'index'));
 				    // Redirect user to previous page
-
+			        $this->redirect($this->referer());
+			
 		}
 		$this->Session->setFlash(__('Pm tasks time was not deleted', true));
 		$this->redirect(array('action' => 'index'));
