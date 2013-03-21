@@ -29,7 +29,8 @@ echo "boolean: " .$boolean;
 <a href="#types">Types CMS</a> | 
 <a href="#patchadmins">CMS persos</a> | 
 <a href="#bookmarks">bookmarks</a> | 
-<a href="#fonctions">Fonctions</a>
+<a href="#fonctions">Fonctions</a> | 
+<a href="#contacts">Contacts</a>
 
 </div>
 <?php 
@@ -464,19 +465,15 @@ echo "</table>";
 /* fonctions */
 echo "<a name=\"fonctions\" /><h1>Fonctions</h1>
 <table>";
- if($boolean=="on") {//boolean		
-$sql="SELECT * FROM fonctions WHERE 
-		MATCH (lib) AGAINST ('".$qboole."'  IN BOOLEAN MODE) 
-		OR MATCH (fonction) AGAINST ('".$qboole."'  IN BOOLEAN MODE) 
-		OR MATCH (note) AGAINST ('".$qboole."'  IN BOOLEAN MODE) 
-		ORDER BY lib";
-} else { //regular
+/*
+ * 		SQL error: The used table type doesn't support FULLTEXT
+ *  --> no boolean search
+ *  */
 $sql="SELECT * FROM fonctions WHERE 
 		lib LIKE '%".$q."%'  
 		OR fonction LIKE '%".$q."%'  
 		OR note LIKE '%".$q."%'  
 		ORDER BY lib";
-}
 
 	
 	//	echo $sql;
@@ -494,6 +491,85 @@ $sql="SELECT * FROM fonctions WHERE
 			"<td>" .mysql_result($sql,$i,'lib') ."</td>"
 			."<td><em>(" .utf8_encode(substr(mysql_result($sql,$i,'fonction'),0,50)) ." - " .mysql_result($sql,$i,'note').")</em></td>"
 			."<td><a href=\"" .CHEMIN ."fonctions/edit/" .mysql_result($sql,$i,'id') ."\">modifier</a>";
+			$task .=  "</td></tr>";
+			$i++;
+			}
+			
+if($task=="") {
+	$task="<em>Pas de résultats</em>";
+}
+echo $task;
+echo "</table>";
+?>
+
+<?php 
+/* contacts */
+echo "<a name=\"contacts\" /><h1>Contacts</h1>
+<table>";
+ if($boolean=="on") {//boolean		
+
+/*
+SELECT * FROM fonctions WHERE 
+		MATCH (lib) AGAINST ('".$qboole."'  IN BOOLEAN MODE) 
+		OR MATCH (fonction) AGAINST ('".$qboole."'  IN BOOLEAN MODE) 
+		OR MATCH (note) AGAINST ('".$qboole."'  IN BOOLEAN MODE) 
+		ORDER BY lib";*/
+ 	
+$sql="
+SELECT *
+FROM `contacts`
+WHERE 
+MATCH (FirstName) AGAINST ('".$qboole."'  IN BOOLEAN MODE) 
+OR MATCH (LastName) AGAINST ('".$qboole."'  IN BOOLEAN MODE) 
+OR MATCH (Notes) AGAINST ('".$qboole."'  IN BOOLEAN MODE) 
+OR MATCH (EmailAddress) AGAINST ('".$qboole."'  IN BOOLEAN MODE) 
+OR MATCH (Email2Address) AGAINST ('".$qboole."'  IN BOOLEAN MODE) 
+OR MATCH (Email3Address) AGAINST ('".$qboole."'  IN BOOLEAN MODE) 
+OR MATCH (PrimaryPhone) AGAINST ('".$qboole."'  IN BOOLEAN MODE) 
+OR MATCH (HomePhone) AGAINST ('".$qboole."'  IN BOOLEAN MODE) 
+OR MATCH (HomePhone2) AGAINST ('".$qboole."'  IN BOOLEAN MODE) 
+OR MATCH (MobilePhone) AGAINST ('".$qboole."'  IN BOOLEAN MODE) 
+OR MATCH (Fax) AGAINST ('".$qboole."'  IN BOOLEAN MODE) 
+OR MATCH (HomeAddress) AGAINST ('".$qboole."'  IN BOOLEAN MODE) 
+OR MATCH (Profession) AGAINST ('".$qboole."'  IN BOOLEAN MODE) 
+OR MATCH (Category) AGAINST ('".$qboole."'  IN BOOLEAN MODE) 
+ORDER BY LastName, FirstName"; 	
+ 	
+} else { //regular
+$sql="
+SELECT *
+FROM `contacts`
+WHERE `FirstName` LIKE '%".$q."%' 
+OR `LastName` LIKE '%".$q."%' 
+OR `Notes` LIKE '%".$q."%' 
+OR `EmailAddress` LIKE '%".$q."%' 
+OR `Email2Address` LIKE '%".$q."%' 
+OR `Email3Address` LIKE '%".$q."%' 
+OR `PrimaryPhone` LIKE '%".$q."%' 
+OR `HomePhone` LIKE '%".$q."%' 
+OR `HomePhone2` LIKE '%".$q."%' 
+OR `MobilePhone` LIKE '%".$q."%' 
+OR `Fax` LIKE '%".$q."%' 
+OR `HomeAddress` LIKE '%".$q."%' 
+OR `Profession` LIKE '%".$q."%' 
+OR `Category` LIKE '%".$q."%' ORDER BY LastName, FirstName";
+}
+
+	
+	//	echo $sql;
+		$sql=mysql_query($sql);
+		if(!$sql) { echo "SQL error: " .mysql_error(); }
+		$task=""; $i=0;
+		while($i<mysql_num_rows($sql)){
+					$class = null;
+		if (intval($i/2) == ($i/2)) {
+			$class = ' class="altrow"';
+		}
+		$tache=mysql_result($sql,$i,'status');
+			$task .=  "<tr " .$class .">";
+			$task .=
+			"<td><a href=\"mailto:" .mysql_result($sql,$i,'EmailAddress')."\">" .mysql_result($sql,$i,'LastName') ." " .mysql_result($sql,$i,'FirstName') ."</a></td>"
+			."<td><a href=\"" .CHEMIN ."contacts/edit/" .mysql_result($sql,$i,'id') ."\">modifier</a>&nbsp;<a href=\"" .CHEMIN ."contacts/view/" .mysql_result($sql,$i,'id') ."\">voir</a>";
 			$task .=  "</td></tr>";
 			$i++;
 			}
