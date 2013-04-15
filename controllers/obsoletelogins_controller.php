@@ -61,8 +61,9 @@ class ObsoleteloginsController extends AppController {
 			if ($this->Obsoletelogin->save($this->data)) {
 				$this->Session->setFlash(__('The Obsoletelogin has been saved', true));
 				//$this->redirect(array('action'=>'index'));
-								$this->redirect($this->Session->read('Temp.referer'));			
-				
+//								$this->redirect($this->Session->read('Temp.referer'));			
+							     $this->redirect('./index/page:1/sort:lastmodif/direction:asc');
+								
 				
 			} else {
 				$this->Session->setFlash(__('The Obsoletelogin could not be saved. Please, try again.', true));
