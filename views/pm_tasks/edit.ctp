@@ -1,3 +1,30 @@
+<script>
+/*
+ * keyboard shortcuts
+ */
+var isCtrl = false;$(document).keyup(function (e) {
+
+	if(e.which == 17) isCtrl=false;
+
+	}).keydown(function (e) {
+
+	    if(e.which == 17) isCtrl=true;
+
+	    if(e.which == 83 && isCtrl == true) {
+
+	        // Votre fonction à déclencher au Ctrl+S
+	    	$.ajax({
+	    	    url:'/intranet/pmcake/pm_tasks/sauver',
+	    	    type:'POST',
+	    	    data:data
+	    	});
+
+	   return true;
+
+	 }
+
+	});
+</script>
 
 
 <?php
