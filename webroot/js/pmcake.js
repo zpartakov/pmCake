@@ -135,4 +135,43 @@ theForm.elements[i].checked = status;
 
 
 
+/*
+ * keyboard shortcuts
+ */
 
+
+var isCtrl = false;$(document).keyup(function (e) {
+
+	if(e.which == 225) isCtrl=false;
+
+	}).keydown(function (e) {
+
+	    if(e.which == 225) isCtrl=true;
+
+	    if(e.which == 72 && isCtrl == true) {
+	    	/*
+	    	 * new helpdesk time add: ALTgr+h
+	    	 */
+	    	window.location = "/intranet/pmcake/pm_tasks_times/add?projectid=38&idtache=227";
+	   return true;
+	 } else if(e.which == 32 && isCtrl == true) {
+		 /*
+		  * home: ALT+SPACE
+		 */	    
+		 window.location = "/intranet/pmcake/";
+
+		   return true;
+
+	 } else if(e.which == 78 && isCtrl == true) {
+			 /*
+			  * new task: ALT+N
+			 */	    
+			 window.location = "/intranet/pmcake/pm_tasks/add";
+
+			   return true;
+
+	 }
+
+
+	    
+	});
