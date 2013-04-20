@@ -273,6 +273,13 @@ $last_id=mysql_result($last_id, 0,'id');
 	
 	function archive() {
 	}
+	
+	function sauver() {
+		if ($this->data != null) {
+			$this->PmTask->save($this->data);
+			// whatever else needs doing... TODO
+		}
+	}
 
 }
 ?>
