@@ -194,7 +194,7 @@ if($incub=="") {
 if($ref=="") {
 	$ref="<em>Pas de résultats</em>";
 }
-echo "<a name=\"jours\" /><h1>Tâches / heures</h1>";
+echo "<a name=\"hours\" /><h1>Tâches / heures</h1>";
 
 ?>
 
