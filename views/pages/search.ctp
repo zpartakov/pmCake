@@ -21,6 +21,7 @@ echo "boolean: " .$boolean;
 <div style="background-color: #FFFEB9">
 <a href="#Projets">Projets</a> | 
 <a href="#tasks">Tâches</a> | 
+<a href="#hours">Tâches / heures</a> | 
 <a href="#dreams">Incubateur / Idées</a> | 
 <a href="#references">Références</a> | 
 <a href="#CMS">CMS</a> | 
@@ -155,6 +156,71 @@ echo $task;
 
 ?>
 </table>	
+
+<!-- ############## TASKS / HOURS  ############## -->
+<?
+//boolean		
+
+	//regular
+		$sql="SELECT * FROM pm_tasks_time WHERE comments LIKE '%".$q."%' 
+		ORDER BY created";
+			
+		//echo $sql; //test
+		$sql=mysql_query($sql);
+		if(!$sql) { echo "SQL error: " .mysql_error(); }
+?>
+<?		
+$task=""; $incub=""; $ref="";
+
+$i=0;
+		while($i<mysql_num_rows($sql)){
+					$class = null;
+		if (intval($i/2) == ($i/2)) {
+			$class = ' class="altrow"';
+		}
+		$tache=mysql_result($sql,$i,'comments');
+			$task .=  "<tr " .$class .">";
+			$task .=  "<td><a href=\"" .CHEMIN ."pm_tasks_times/edit/" .mysql_result($sql,$i,'id') ."\">" .utf8_encode($tache) ."</a> <em>(" .projet_nom_return(mysql_result($sql,$i,'project')) ." - " .mysql_result($sql,$i,'created').")</em></td>";
+			$task .=  "</tr>";
+			
+			$i++;
+			}
+if($task=="") {
+	$task="<em>Pas de résultats</em>";
+}
+if($incub=="") {
+	$incub="<em>Pas de résultats</em>";
+}
+if($ref=="") {
+	$ref="<em>Pas de résultats</em>";
+}
+echo "<a name=\"jours\" /><h1>Tâches / heures</h1>";
+
+?>
+
+<table>
+<? 
+
+echo $task;
+
+?>
+</table>	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <a name="dreams" /><h1>Incubateur / Idées</h1>
