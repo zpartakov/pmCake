@@ -505,7 +505,9 @@ echo '<small><a onclick="montrecache2();"><img src="/intranet/pmcake/img/icons/o
 	
 	#echo "<td>" .mysql_result($sql,$i,'owner') ."</td>";
 #	echo '<td><a href="' .CHEMIN .'pm_tasks/edit/'.mysql_result($sql,$i,'id').'" onmouseOver="task_detail('.mysql_result($sql,$i,'id').')">'.mysql_result($sql,$i,'name') .'</a>';
-	echo '<td><a href="' .CHEMIN .'pm_tasks/edit/'.mysql_result($sql,$i,'id').'" class="tooltip">'.mysql_result($sql,$i,'name');
+	echo '<td>';
+	echo '<a href="' .CHEMIN .'pm_tasks/edit/'.mysql_result($sql,$i,'id').'"><img src="/intranet/pmcake/img/toolbar/loupe.png" alt="Modifier" title="Modifier" />&nbsp;</a>';
+	echo '<a href="' .CHEMIN .'pm_tasks/edit/'.mysql_result($sql,$i,'id').'" class="tooltip">&nbsp;'.mysql_result($sql,$i,'name');
 if(strlen(	mysql_result($sql,$i,'description'))>0) {
 	echo '<em><span></span>'.nl2br(mysql_result($sql,$i,'description')).'</em>';
 }
