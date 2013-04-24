@@ -429,8 +429,6 @@ function print_tasks($catlib,$quand) {
 		LIMIT 0, 30";
 	//echo nl2br($sql); exit;
 	}
-	/** */
-	
 	
 	#echo nl2br($sql)."<br>"; //tests
 	$sql=mysql_query($sql);
@@ -438,9 +436,14 @@ function print_tasks($catlib,$quand) {
 		echo "SQL error: " .mysql_error(); exit;
 	}
 	$i=0;
+	/*
+	 * display main category
+	 */
 	echo '<div id="' .$catlib .'"><h2><a name="' .$catlib .'"></a>'. ucfirst($catlib) .'</h2><form id="'.$catlib.'">';
 	
-	//some special css classes to hide/show
+	/*
+	 * some special css classes to hide/show
+	 */
 	if($quand=="demain") {
 echo '<small><a onclick="montrecache1();"><img src="/intranet/pmcake/img/icons/open_tab.gif"></a></small>
 <div id="tomorrowContainer" style="display: none;">';
@@ -449,6 +452,9 @@ echo '<small><a onclick="montrecache1();"><img src="/intranet/pmcake/img/icons/o
 echo '<small><a onclick="montrecache2();"><img src="/intranet/pmcake/img/icons/open_tab.gif"></a></small>
 <div id="futureContainer" style="display: none;">';
 	}
+	/*
+	 * total on field tasks + headers of the table
+	 */
 	echo '<h3>Total tâches en cours: #'.mysql_num_rows($sql).'</h3>
 			<table cellpadding="0" cellspacing="0">
 			<tr>
@@ -469,6 +475,9 @@ echo '<small><a onclick="montrecache2();"><img src="/intranet/pmcake/img/icons/o
 			</tr>
 	';
 
+	/*
+	 * loop on results
+	 */
 	$i=0;
 	while($i<mysql_num_rows($sql)){
 		$class = null;
@@ -480,11 +489,7 @@ echo '<small><a onclick="montrecache2();"><img src="/intranet/pmcake/img/icons/o
 /* special classes for statuts wait */
 			$class = ' class="wait"';
 			} 
-		
-
-		
-		
-		echo "<tr" .$class;
+	echo "<tr" .$class;
 	echo " id=\"tr" .mysql_result($sql,$i,'id')."\"";
 	echo  ">";
 	//experimental not working (select all and apply a common action
@@ -502,18 +507,12 @@ echo '<small><a onclick="montrecache2();"><img src="/intranet/pmcake/img/icons/o
 	echo "<td>";
 	statut(mysql_result($sql,$i,'status'));
 	echo  "</td>";
-	
-	#echo "<td>" .mysql_result($sql,$i,'owner') ."</td>";
-#	echo '<td><a href="' .CHEMIN .'pm_tasks/edit/'.mysql_result($sql,$i,'id').'" onmouseOver="task_detail('.mysql_result($sql,$i,'id').')">'.mysql_result($sql,$i,'name') .'</a>';
-	echo '<td>';
-	echo '<a href="' .CHEMIN .'pm_tasks/edit/'.mysql_result($sql,$i,'id').'"><img src="/intranet/pmcake/img/toolbar/loupe.png" alt="Modifier" title="Modifier" />&nbsp;</a>';
-	echo '<a href="' .CHEMIN .'pm_tasks/edit/'.mysql_result($sql,$i,'id').'" class="tooltip">&nbsp;'.mysql_result($sql,$i,'name');
-if(strlen(	mysql_result($sql,$i,'description'))>0) {
-	echo '<em><span></span>'.nl2br(mysql_result($sql,$i,'description')).'</em>';
-}
+	echo '<td><a href="' .CHEMIN .'pm_tasks/edit/'.mysql_result($sql,$i,'id').'" class="tooltip">'.mysql_result($sql,$i,'name');
+	if(strlen(	mysql_result($sql,$i,'description'))>0) {
+		echo '<em><span></span>'.nl2br(mysql_result($sql,$i,'description')).'</em>';
+	}
 	echo '</a>';
 	echo "</td>";
-#	echo '<div id="detail'.mysql_result($sql,$i,'id').'" style="display: none; position: relative; top: 3px; left: 10px">'.nl2br(mysql_result($sql,$i,'description')) .'</div>';
 	echo "<td>";
 	dateSQL2fr(mysql_result($sql,$i,'due_date'));
 	echo "<br /><em style=\"font-size: smaller\">(";
@@ -525,7 +524,18 @@ if(strlen(	mysql_result($sql,$i,'description'))>0) {
 	################ BEGIN PUSH DELAYS  ################
 	$idc=mysql_result($sql,$i,'id');
 	push_delays($idc);
-	echo '<td><a href="/intranet/pmcake/pm_tasks/view/' .$idc .'" alt="Voir" title="Voir"><img src="/intranet/pmcake/img/toolbar/loupe.png" alt="Voir" /></a><a href="/intranet/pmcake/pm_tasks/edit/' .$idc .'" alt="Modifier" title="Modifier"><img src="/intranet/pmcake/img/toolbar/editor.png" alt="Modifier" /></a><a href="/intranet/pmcake/pm_tasks/delete/' .$idc .'" alt="Effacer" title="Effacer" onclick="return confirm(\'Voulez-vous vraiment effacer cet élément ?\');"><img src="/intranet/pmcake/img/toolbar/drop.png" alt="effacer" /></a></td></tr>';
+	echo '<td>
+		<a href="/intranet/pmcake/pm_tasks/view/' .$idc .'" alt="Voir" title="Voir">
+			<img src="/intranet/pmcake/img/toolbar/loupe.png" alt="Voir" />
+		</a>
+		<a href="/intranet/pmcake/pm_tasks/edit/' .$idc .'" alt="Modifier" title="Modifier">
+			<img src="/intranet/pmcake/img/toolbar/editor.png" alt="Modifier" />
+		</a>
+		<a href="/intranet/pmcake/pm_tasks/delete/' .$idc .'" alt="Effacer" title="Effacer" onclick="return confirm(\'Voulez-vous vraiment effacer cet élément ?\');">
+			<img src="/intranet/pmcake/img/toolbar/drop.png" alt="effacer" />
+		</a>
+		</td>
+		</tr>';
 	 ################ END PUSH DELAYS  ################  
 	/* ACTIONS END */
 		echo "</tr>\n\n";
@@ -1361,12 +1371,9 @@ return $les_actions;
 
 /* report the delay for a given task */
 function push_delays($idc) {
-echo "<a href=\"mel?id='" .$idc ."\">@</a> 
-	<form action=\"repousser\" method=\"get\" name=\"" .$idc ."\">
+echo "<form action=\"repousser\" method=\"get\" name=\"" .$idc ."\">
 	<input type=\"hidden\" name=\"identifiant\" value=\"" .$idc ."\" />
-
 	<a href=\"javascript:demain(" .$idc .")\"><img src=\"/pmcake/img/icons/bullet_arrow.gif\" alt=\"Déplacer à demain\" title=\"Déplacer à demain\"></a>
-	
         <select name=\"ajout\" class=\"micro\" size=\"1\" onchange=\"repousser(" .$idc .",this.value)\" id=\"sel" .$idc ."\">";
 delais();
 echo "        </select>
