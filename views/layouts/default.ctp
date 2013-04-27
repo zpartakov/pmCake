@@ -1,15 +1,3 @@
-<?php
-//ecritlog();
-
-#echo $javascript->link(array('scrolltopcontrol')); //utility to have a back to top link 1/2
-#calcul temps execution du script
-#source:http://www.developerfusion.co.uk/show/2058/
-#put this at the top of the page
-   $mtime = microtime();
-   $mtime = explode(" ",$mtime);
-   $mtime = $mtime[1] + $mtime[0];
-   $starttime = $mtime;
-?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -119,18 +107,7 @@ echo $this->element('menu');
 
 		</div>
 
-	<div class="exectime">	<?
-#fin calcul temps execution du script
-#source:http://www.developerfusion.co.uk/show/2058/
-#put this code at the bottom of the page
-   $mtime = microtime();
-   $mtime = explode(" ",$mtime);
-   $mtime = $mtime[1] + $mtime[0];
-   $endtime = $mtime;
-   $totaltime = ($endtime - $starttime);
-echo "<br />This page was created in ".$totaltime." seconds"; 
-?>
-	</div>
+
 </div><!-- END CONTAINER HTML BODY-->
 
 <div id="footer">
