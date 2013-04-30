@@ -148,9 +148,9 @@ project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
  */
 /* ################### CLOSED TASKS ########################
  * */
-//$plib="Tâches terminées"; $pid=$pmProject['PmProject']['id']; $order="priority DESC,status,due_date"; $status="2 AND status!=3 AND status !=17 AND status !=22";  $operator="!="; $anchor="finished"; 
-#$plib="Tâches terminées"; $pid=$pmProject['PmProject']['id']; $order="priority DESC,status,due_date"; $status="0 OR status=1";  $operator="="; $anchor="finished"; 
-#project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
+$plib="Tâches terminées"; $pid=$pmProject['PmProject']['id']; $order="priority DESC,status,due_date"; $status="2 AND status!=3 AND status !=17 AND status !=22";  $operator="!="; $anchor="finished"; 
+$plib="Tâches terminées"; $pid=$pmProject['PmProject']['id']; $order="priority DESC,status,due_date"; $status="0 OR status=1";  $operator="="; $anchor="finished"; 
+project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
 ?>
 	<!-- ##################### NOTES ##################### -->
 <div class="pmNotes index">
