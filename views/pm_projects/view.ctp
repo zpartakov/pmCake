@@ -11,7 +11,7 @@ $this->pageTitle = 'Détail projet: ' .$pmProject['PmProject']['name'];
 <a href="#delegated">Tâches déléguées</a>
  | <a href="#suspended">Suspendues</a>  <a href="#references">Références</a> 
  <!-- prend trop de temps à calculer! -->
- <!-- | <a href="#finished">Terminé</a> -->
+ | <a href="#finished">Terminé</a>
   | <a href="#notes">Notes</a> <? e($html->link($html->image('toolbar/editor.png', array('alt' => 'Modifier')), array('action'=>'edit', $pmProject['PmProject']['id']), array('alt' => 'Modifier', 'title' => 'Modifier', 'escape' => false)));?>
 </div>
 <div class="zactions">
