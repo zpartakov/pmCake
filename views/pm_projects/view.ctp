@@ -1,17 +1,43 @@
+<script language="JavaScript" type="text/javascript">
+
+	
+	function finished(){
+		if(document.getElementById("closedtasks").style.display=="none"){
+			/*
+			 display completed tasks and jump to completed tasks 
+			*/
+			
+		document.getElementById("closedtasks").style.display="block";		
+		window.location = "#finished";
+		} else {
+			/*
+			 hide completed tasks and jump to home
+			*/
+			document.getElementById("closedtasks").style.display=="none";
+			window.location = "#home";
+			
+		}
+	}
+
+
+
+</script>
+
 <?php
 App::import('Lib', 'functions'); //imports app/libs/functions
 //Configure::write('debug', 2);
 #cake title of the page
 $this->pageTitle = 'Détail projet: ' .$pmProject['PmProject']['name']; 
 ?>
-<div class="pmProjects view">
+	<a name="home"></a>
+	<div class="pmProjects view">
 <h2><?php echo $this->pageTitle;?></h2>
 <div class="project_view_actions">
 <a href="#taches">Tâches</a> | <a href="#dreams">Incubateur</a> | <a href="#wait">En Attente</a> | 
 <a href="#delegated">Tâches déléguées</a>
- | <a href="#suspended">Suspendues</a>  <a href="#references">Références</a> 
- <!-- prend trop de temps à calculer! -->
- | <a href="#finished">Terminé</a>
+ | <a href="#suspended">Suspendues</a> 
+ | <a href="#references">Références</a> 
+ | <a href="javascript:finished();">Terminé</a>
   | <a href="#notes">Notes</a> <? e($html->link($html->image('toolbar/editor.png', array('alt' => 'Modifier')), array('action'=>'edit', $pmProject['PmProject']['id']), array('alt' => 'Modifier', 'title' => 'Modifier', 'escape' => false)));?>
 </div>
 <div class="zactions">
@@ -148,9 +174,12 @@ project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
  */
 /* ################### CLOSED TASKS ########################
  * */
+echo "<div id=\"closedtasks\" style=\"display: none;\">";
+echo "<a href=\"javascript:finished();\">Cacher tâches terminées</a>";
 $plib="Tâches terminées"; $pid=$pmProject['PmProject']['id']; $order="priority DESC,status,due_date"; $status="1";  $operator="="; $anchor="finished"; 
 project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
 ?>
+</div>
 	<!-- ##################### NOTES ##################### -->
 <div class="pmNotes index">
 <a name="notes"></a>
