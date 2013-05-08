@@ -1,19 +1,8 @@
-<?
+<?php
+/*
+ * all the external cakePHP functions for pmcake
+ */
 ####### PROJECTS ##########
-/* a function to have all hours spended on a project
- * 
- * function total_hours_task($task_id) {
-		$sql2="
-			SELECT SUM(hours) AS hours FROM pm_tasks_time 
-			WHERE task=" .$task_id;
-			#echo $sql2;
-			#echo mysql_result($sql,$i,'hours');
-			$sql2=mysql_query($sql2);
-			$hours=mysql_result($sql2,0,'hours');
-			echo $hours;
-}
- * 
- * */
 function Total_heures($pid) {
 $sql2="
 SELECT SUM(hours) AS hours FROM pm_tasks_time WHERE pm_tasks_time.task IN (SELECT id FROM pm_tasks WHERE project=" .$pid .") ";
@@ -395,6 +384,24 @@ function total_hours_task($task_id) {
 			$sql2=mysql_query($sql2);
 			$hours=mysql_result($sql2,0,'hours');
 			echo $hours;
+		$sql2="
+			SELECT date, sum(hours) AS hours FROM pm_tasks_time 
+			WHERE task=" .$task_id ." 
+			GROUP BY date";
+		echo "&nbsp;<a href=\"javascript:showdetailtaskhours()\">Détail</a><p><div id=\"showdetailtaskhours\" style=\"display: none\">";
+			#echo $sql2;
+			#echo mysql_result($sql,$i,'hours');
+			$sql2=mysql_query($sql2);
+			$i=0;
+			while($i<mysql_num_rows($sql2)) {
+			$hours=mysql_result($sql2,$i,'hours');
+			dateSQL2frSmall(mysql_result($sql2,$i,'date'));
+			echo ", " .$hours;
+			echo "<br/>";
+			$i++;
+			}
+			echo "</div></p>";
+			
 }
 #############################################################################
 

@@ -126,6 +126,9 @@ function task_change_status(id,status) {
 	});
 	}
 
+	/*
+	 * check all checkbox
+	 */
 function checkAll(theForm, cName, status) {
 for (i=0,n=theForm.elements.length;i<n;i++)
 if (theForm.elements[i].className.indexOf(cName) !=-1) {

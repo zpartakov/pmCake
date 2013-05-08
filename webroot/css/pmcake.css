@@ -830,3 +830,11 @@ color: lightgreen;*/
 filter:alpha(opacity=40); /* For IE8 and earlier */
 }
 	
+#showdetailtaskhours {
+position: relative;
+top: -100px;
+left: 300px;
+font-size: smaller;
+background-color: lightyellow;
+width: 100px;
+}	
