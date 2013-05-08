@@ -123,16 +123,15 @@ div.actions {
 }
 
 div.zactions, div.delays {
-position: relative;
-top: -10px;
-left: 70%;
+	position: relative;
+	top: -10px;
+	left: 70%;
 }
 
 div.actions h3 {
 	padding-top:0;
 	color:#777;
 }
-
 
 /** Tables **/
 table {
@@ -287,13 +286,13 @@ form div.submit {
 }
 
 label {
-/* no br after label and before input £*/
+	/* no br after label and before input radeff mod */
 	/*display: block;*/
 	font-size: 110%;
 	margin-bottom:3px;
 }
 label:after {
-content:": ";
+	content:": ";
 }
 input, textarea {
 }
@@ -424,8 +423,6 @@ td.actions a {
 	min-width: 0;
 }
 
-
-
 input[type=submit]:hover,
 div.actions ul li a:hover,
 td.actions a:hover {
@@ -544,33 +541,32 @@ div.code-coverage-results span.result-good {
 }
 
 .col0{
-float: left;
-width: 45%;
+	float: left;
+	width: 45%;
 }
 .col1{
-float: right;
-width: 45%;
+	float: right;
+	width: 45%;
 }
 
 /*CSS Table styles*/
 div.table {
-        display:table;
-        /* Joindre les bords des cellules */
-        border-collapse:collapse;
-        /* Forcer le tableau à prendre la largeur écran */
-        width:100%;
+	display:table;
+	/* Joindre les bords des cellules */
+	border-collapse:collapse;
+	/* Forcer le tableau à prendre la largeur écran */
+	width:100%;
 }
 div.caption {
-        /* Ffox n'affiche pas le caption dans la table
-                il faut le déclarer bloc */
+        /* Ffox n'affiche pas le caption dans la table il faut le déclarer bloc */
         display:block;
-        /* Si déclaré bloc, lui donner la largeur des
-                td cumulés */
+        /* Si déclaré bloc, lui donner la largeur des td cumulés */
         width:400%; /* 100 % x 4 colonnes */
         /* Aligner le titre au centre */
         text-align:center;
 }
         /* tbody optionnel */
+        
 div.tbody {
         display:table-row-group;
 }
@@ -584,25 +580,23 @@ div.td {
         width:24.5%;
 }
 div.end {
-        width:auto;
-                border:thin solid grey;
-
+	width:auto;
+	order:thin solid grey;
 }
 
 .submitR {
-position: relative;
-float: right;
-top: -100px;
+	position: relative;
+	float: right;
+	top: -100px;
 }
 
 /* the search button*/
 .btnCherche {
-position: relative;
-left: 200px;
-top: -23px;
-font-size: .8em;
+	position: relative;
+	left: 200px;
+	top: -23px;
+	font-size: .8em;
 }
-
 
 div.auto_complete    {
      position         :absolute;
@@ -612,165 +606,165 @@ div.auto_complete    {
      margin           :0px;
      padding          :0px;
 } 
+
 li.selected    { background-color: #ffb; }
 
 /* LOCAL VALUES */
 /* a class for displaying time of calc page */
 .exectime {
-position: relative;
-bottom: 15px;
-left: 15px;
-font-size:xx-small;
-font-style: italic;
-color: #4D4D4D;
-/*margin-right: 20px;
-float: right;*/
+	position: relative;
+	bottom: 15px;
+	left: 15px;
+	font-size:xx-small;
+	font-style: italic;
+	color: #4D4D4D;
+	/*margin-right: 20px;
+	float: right;*/
 }
 
 /* add time to task */
 .add_time {
-position: absolute;
-right: 53px;
-top: 43px;
-background-color: #FFFFE0;
-
+	position: absolute;
+	right: 53px;
+	top: 43px;
+	background-color: #FFFFE0;
 }
 .add_time_view {
-position: absolute;
-left: 50%;
-top: 123px;
-background-color: #FFFFE0;
+	position: absolute;
+	left: 50%;
+	top: 123px;
+	background-color: #FFFFE0;
 }
 /* js calendar */
 .calendrierjs {
-position: relative;
-top: -45px;
-left: 160px;
+	position: relative;
+	top: -45px;
+	left: 160px;
 }
 
 /* smaller font */
 .petit {
-font-size: .9em;
+	font-size: .9em;
 }
 
 /*hide dot for <li> tag*/
 .puce_cache {
-list-style-type: none;
+	list-style-type: none;
 }
 
 /* projects bg select list highlight categories */
 .projet_sel {
-background-color: #fff
+	background-color: #fff
 }
 .projet_sel:before {
- content:url(/pmcake/img/icons/logounige.jpg);
- padding-right: 5px;
- }
+	 content:url(/pmcake/img/icons/logounige.jpg);
+	 padding-right: 5px;
+}
 
 .projet_sel_perso {
-background-color:  #FFD689;
+	background-color:  #FFD689;
 }
 
 .projet_sel_perso:before {
- content:url(/pmcake/img/icons/redstar.png);
-  padding-right: 5px;
+	content:url(/pmcake/img/icons/redstar.png);
+	padding-right: 5px;
  }
 
 .outils {
-padding-left: 10px;
+	padding-left: 10px;
 }
 .outils:after {
- content:url(/pmcake/img/icons/toolsmall.png);
-  padding-left: 5px;
+	content:url(/pmcake/img/icons/toolsmall.png);
+	padding-left: 5px;
  }
  
 /* autocomplete */
 .globalsearch {
-position: absolute;
-right: 12%;
-top: 2px;
+	position: absolute;
+	right: 12%;
+	top: 2px;
 	background: #204c58;
-		z-index: 499;
+	z-index: 499;
 }
+
 .autofill {
-position: absolute;
-right: 10%;
-top: 20px;
-width: 400px;
-background: #204c58;
-z-index: 499;
+	position: absolute;
+	right: 10%;
+	top: 20px;
+	width: 400px;
+	background: #204c58;
+	z-index: 499;
 }
 
-
-	.suggestionsBox {
+.suggestionsBox {
 	position: absolute;
 	left: 10px;
-	}
-	.suggestionList {
-	}
-	.autofilltask {
-	}
-	.suggestionList li {
-		padding: 3px;
-		cursor: pointer;
-		list-style-type: none;
-	}
-	.suggestionList li:hover {
-		background-color: #659CD8;
-	}
-	.projet_autofill {
-		padding: 2px;
-	}
-	.projet_autofillR {
-	}
+}
+.suggestionList {
+}
+.autofilltask {
+}
+.suggestionList li {
+	padding: 3px;
+	cursor: pointer;
+	list-style-type: none;
+}
+.suggestionList li:hover {
+	background-color: #659CD8;
+}
+.projet_autofill {
+	padding: 2px;
+}
+.projet_autofillR {
+}
 
 
 /* footer */
 .tablepied {
-text-align: center;
+	text-align: center;
 }
 
 /* form submit button */
 .enregistrer {
-position: absolute;
-top: 7%;
-right: 10%;
+	position: absolute;
+	top: 7%;
+	right: 10%;
 }
 
 /* page's title */
 .titre {
-margin-bottom: 1em;
-width: 100%;
-border-style: outset;
-font-size: larger;
-background-color: #FFA500;
-color: black;
-padding: 3px;
+	margin-bottom: 1em;
+	width: 100%;
+	border-style: outset;
+	font-size: larger;
+	background-color: #FFA500;
+	color: black;
+	padding: 3px;
 }
 
 /* checkbox click task done */
 .taskok {
-display: block;
-  width: 5px;
-/*border-style: outset;
-position: relative; 
-left: 90%;
-  background-color: red;
-  border: 2px inset ThreeDFace;
-  height: 5px;*/
+	display: block;
+	width: 5px;
+	/*border-style: outset;
+	position: relative; 
+	left: 90%;
+	  background-color: red;
+	  border: 2px inset ThreeDFace;
+	  height: 5px;*/
   }
 .taskok:after {
 /*  content: 'ok?';
   padding-left: 3px;*/
 }
 .multicol2 {
--moz-column-count:2
+	-moz-column-count:2
 }
 .multicol3 {
--moz-column-count:3
+	-moz-column-count:3
 }
 .multicol4 {
--moz-column-count:4
+	-moz-column-count:4
 }
 
 /* css for displaying tooltip - infobulles, see functions.php */
@@ -784,7 +778,7 @@ a.tooltip:hover {
 }
 a.tooltip:hover em {
     z-index: 500;
-	    font-style: normal;
+    font-style: normal;
     display: block;
     position: absolute;
     top: 20px;
@@ -817,24 +811,28 @@ a.tooltip:hover em span {
  .obsoletelogins form textarea, .patchadmins form textarea {
 	/*color: red;*/
 	position: absolute;
-		left: 250px;
+	left: 250px;
 	width: 600px;
 	height: 50px;
 	margin-top: -10px;
 }
 .wait {
-font-style: italic;
-/*font-size: 10px;
-color: lightgreen;*/
+	font-style: italic;
+	/*font-size: 10px;
+	color: lightgreen;*/
 	opacity:0.6;
-filter:alpha(opacity=40); /* For IE8 and earlier */
+	filter:alpha(opacity=40); /* For IE8 and earlier */
 }
 	
 #showdetailtaskhours {
-position: relative;
-top: -100px;
-left: 300px;
-font-size: smaller;
-background-color: lightyellow;
-width: 100px;
+	/*
+	a class for displaying detail hours spent on a task
+	*/
+	padding: 5px;
+	position: relative;
+	top: -100px;
+	left: 300px;
+	font-size: smaller;
+	background-color: lightyellow;
+	width: 100px;
 }	

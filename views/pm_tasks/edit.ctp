@@ -25,17 +25,7 @@ var isCtrl = false;$(document).keyup(function (e) {
 
 	});
 
-/*
- * hide - show DIV element
- */
 
-function showdetailtaskhours() {
-	if(document.getElementById("showdetailtaskhours").style.display=="none"){
-		document.getElementById("showdetailtaskhours").style.display="block";		
-		} else {
-		document.getElementById("showdetailtaskhours").style.display="none";		
-	}
-}
 
 </script>
 
