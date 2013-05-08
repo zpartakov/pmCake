@@ -830,9 +830,10 @@ a.tooltip:hover em span {
 	*/
 	padding: 5px;
 	position: relative;
-	top: -100px;
-	left: 300px;
+	top: 10px;
+	left: 30px;
 	font-size: smaller;
-	background-color: lightyellow;
+	background-color: #FFE4B3;
 	width: 100px;
-}	
+}
+

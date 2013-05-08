@@ -388,7 +388,7 @@ function total_hours_task($task_id) {
 			SELECT date, sum(hours) AS hours FROM pm_tasks_time 
 			WHERE task=" .$task_id ." 
 			GROUP BY date";
-		echo "&nbsp;<a href=\"javascript:showdetailtaskhours()\">Détail</a><p><div id=\"showdetailtaskhours\" style=\"display: none\">";
+		echo "&nbsp;<a href=\"javascript:showdetailtaskhours()\">Détail</a><p><div id=\"showdetailtaskhours\" style=\"display: none\">Détail heures:<br/>";
 			#echo $sql2;
 			#echo mysql_result($sql,$i,'hours');
 			$sql2=mysql_query($sql2);
