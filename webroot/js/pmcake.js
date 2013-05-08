@@ -188,3 +188,29 @@ var isCtrl = false;$(document).keyup(function (e) {
 
 	    
 	});
+
+/*
+ * some fonction for homepage
+ * 
+ */
+function montrecache1() {
+	if(document.getElementById("tomorrowContainer").style.display=="none"){
+		document.getElementById("tomorrowContainer").style.display="block";		
+	} else {
+		document.getElementById("tomorrowContainer").style.display="none";		
+	}
+}
+
+function montrecache2() {
+	if(document.getElementById("futureContainer").style.display=="none"){
+		document.getElementById("futureContainer").style.display="block";		
+		} else {
+		document.getElementById("futureContainer").style.display="none";		
+	}
+}
+
+function task_detail(id) {
+	id='detail'+id;
+				document.getElementById(id).style.display="block";		
+
+}
