@@ -126,12 +126,15 @@ if($tache<17) {
 			$task .=  "</tr>";
 }elseif($tache==17) {
 			$incub .=  "<tr " .$class .">";
-			$incub .=  "<td>" ."<a href=\"" .CHEMIN ."pm_tasks/edit/" .mysql_result($sql,$i,'id') ."\">" .utf8_encode(mysql_result($sql,$i,'name')) ."</a></td>";
+			$incub .=  "<td>" ."<a href=\"" .CHEMIN ."pm_tasks/edit/" .mysql_result($sql,$i,'id') ."\">" .mysql_result($sql,$i,'name') ."</a></td>";
 			$incub .=  "</tr>";
 }elseif($tache==22) {
+	//echo "id ref=".mysql_result($sql,$i,'id')."<br>";
 			$ref .=  "<tr " .$class .">";
-			$ref .=  "<td>" ."<a href=\"" .CHEMIN ."pm_tasks/edit/" .mysql_result($sql,$i,'id') ."\">" .utf8_encode(mysql_result($sql,$i,'name')) ."</a></td>";
+			$ref .=  "<td>" ."<a href=\"" .CHEMIN ."pm_tasks/edit/" .mysql_result($sql,$i,'id') ."\">" .mysql_result($sql,$i,'name') ."</a></td>";
 			$ref .=  "</tr>";
+	//echo $ref;		
+	//echo "len: " .strlen($ref);
 }			
 			
 			$i++;
@@ -142,7 +145,8 @@ if($task=="") {
 if($incub=="") {
 	$incub="<em>Pas de résultats</em>";
 }
-if($ref=="") {
+if(strlen($ref)<1) {
+	//echo 'bla';
 	$ref="<em>Pas de résultats</em>";
 }
 echo "<a name=\"tasks\" /><h1>Tâches</h1>";
@@ -170,7 +174,7 @@ echo $task;
 		if(!$sql) { echo "SQL error: " .mysql_error(); }
 ?>
 <?		
-$task=""; $incub=""; $ref="";
+//$task=""; $incub=""; $ref="";
 
 $i=0;
 		while($i<mysql_num_rows($sql)){
