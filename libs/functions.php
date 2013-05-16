@@ -418,11 +418,21 @@ function print_tasks($catlib,$quand) {
 	}elseif($quand=="demain") {
 		$quandSQL=" AND (tas.due_date <= DATE_ADD('$datenow', INTERVAL 1 DAY) AND (tas.due_date > '$datenow') ";
 	}
+	
+	$taskstatus="< 17";
+
+	if($catlib=="dreams") {
+		$taskstatus="= 17";
+	}
+	if($catlib=="ref") {
+		$taskstatus="= 22";
+	}
+	
 	global $sql, $idc;
 	$sql="
 	SELECT * FROM pm_tasks AS tas, pm_projects as proj 
 	WHERE tas.status > 1 
-	AND tas.status < 17". $quandSQL
+	AND tas.status " .$taskstatus . $quandSQL
 	." AND tas.due_date <> '--') 
 	AND tas.project=proj.id " .$projtyp;
 		if($quand=="futur") {
@@ -434,10 +444,10 @@ function print_tasks($catlib,$quand) {
 		AND tas.project=proj.id 
 		ORDER BY tas.due_date ASC 
 		LIMIT 0, 30";
-	//echo nl2br($sql); exit;
 	}
 	
-	#echo nl2br($sql)."<br>"; //tests
+	
+//	echo nl2br($sql)."<br>"; //tests
 	$sql=mysql_query($sql);
 	if(!$sql) {
 		echo "SQL error: " .mysql_error(); exit;
