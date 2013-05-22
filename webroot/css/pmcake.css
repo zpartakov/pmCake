@@ -294,17 +294,18 @@ label {
 	display: block;
 	font-size: 110%;
 	margin-bottom:3px;
-		float: left;
+	float: left;
 	text-align: right;
-	        padding-right: 20px;
-	
+    padding-right: 10px;
+
 }
 label:after {
 	content:": ";
 }
 input, textarea {
 	display: block;
-	float: right;
+	
+	margin-left: 20%;
 }
 
     br
