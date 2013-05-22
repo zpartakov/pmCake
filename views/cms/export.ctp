@@ -1,4 +1,5 @@
-<?php
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
+	<?php
 /**
 * @version        $Id: export.ctp v1.0 15.11.2010 18:02:55 CET $
 * www.unige.ch
@@ -29,7 +30,7 @@ while($i<mysql_num_rows($sql)){
 	$i++;
 	}
 echo "<pre>";
-echo nl2br($export);
+echo nl2br(utf8_encode($export));
 echo "</pre>";
 
 ?>    
