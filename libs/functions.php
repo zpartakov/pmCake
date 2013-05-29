@@ -428,26 +428,38 @@ function print_tasks($catlib,$quand) {
 		$taskstatus="= 22";
 	}
 	
+	$ordertask=" ORDER BY tas.priority DESC, tas.status ASC, tas.due_date ASC";
+	/*
+	 * present tasks
+	 */
 	global $sql, $idc;
 	$sql="
 	SELECT * FROM pm_tasks AS tas, pm_projects as proj 
 	WHERE tas.status > 1 
 	AND tas.status " .$taskstatus . $quandSQL
 	." AND tas.due_date <> '--') 
-	AND tas.project=proj.id " .$projtyp;
-		if($quand=="futur") {
+	AND tas.project=proj.id " .$projtyp .$ordertask;
+
+	/*
+	 * future tasks
+	 */
+	if($quand=="futur") {
 		$sql="
 		SELECT * FROM pm_tasks AS tas, pm_projects as proj 
 		WHERE tas.status > 1 
 		AND tas.status < 17 
 		AND (tas.due_date > DATE_ADD('".$datenow."', INTERVAL 1 DAY)) AND tas.due_date <> '--' 
-		AND tas.project=proj.id 
-		ORDER BY tas.due_date ASC 
+		AND tas.project=proj.id " .$ordertask ." 
 		LIMIT 0, 30";
 	}
 	
-	
-//	echo nl2br($sql)."<br>"; //tests
+	/*
+	 * tests: show sql query; uncomment for debug
+	 */
+#	echo nl2br($sql)."<br>"; //tests
+	/*
+	 * run sql query
+	 */
 	$sql=mysql_query($sql);
 	if(!$sql) {
 		echo "SQL error: " .mysql_error(); exit;
@@ -461,9 +473,15 @@ function print_tasks($catlib,$quand) {
 	/*
 	 * some special css classes to hide/show
 	 */
+	/*
+	 * tomorrow tasks
+	 */
 	if($quand=="demain") {
 echo '<small><a onclick="montrecache1();"><img src="/intranet/pmcake/img/icons/open_tab.gif"></a></small>
 <div id="tomorrowContainer" style="display: none;">';
+/*
+ * future tasks
+ */
 	}elseif($quand=="futur") {
 #echo '<div id="clickme2" style="display: block; position: relative; top: 18px; right: 20px;"><small><a onclick="montrecache2();"><img src="/intranet/pmcake/img/icons/open_tab.gif"></a></small></div><div id="futureContainer" style="display: none;">';
 echo '<small><a onclick="montrecache2();"><img src="/intranet/pmcake/img/icons/open_tab.gif"></a></small>
@@ -577,6 +595,7 @@ echo '</div>
 <!-- CLOSE '.$catlib.' TASKS -->
 	';
 }
+
 
 /* extract the tasks for a given projects, to select the parent_task_id for a given task */
 function parent_tasks($pid,$task_id) {
