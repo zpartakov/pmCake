@@ -46,6 +46,8 @@ echo '
 			<th>début</th>
 			<th>délai</th>
 			<th>milestone</th>
+			<th>heures</th>
+			<th>ok</th>
 			<th class="actions" colspan="2">Actions</th>
 	</tr>
 ';
@@ -85,7 +87,10 @@ if(strlen(	mysql_result($sql,$i,'description'))>0) {
 		<td>';
 	echo mysql_result($sql,$i,'milestone');
 	echo '&nbsp;</td>
-		<td class="oktask">
+		<td>';
+		total_hours_task(mysql_result($sql,$i,'id'));
+	echo '</td>
+	<td class="oktask">
 	     <!-- ############ task ok ######### -->
 			&#x2714;<input type="checkbox" title="OK?" onChange="task_ok(';
 	echo mysql_result($sql,$i,'id');
