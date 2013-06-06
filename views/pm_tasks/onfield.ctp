@@ -21,8 +21,8 @@ function task_detail(id) {
 
 		<a href="#prof">Prof</a> | 
 		<a href="#perso">Perso</a> | 
-		<a href="#demain">Demain</a> | 
-		<a href="#A venir">A venir</a>
+		<a href="#demain" onclick="montrecache1();">Demain</a> | 
+		<a href="#A venir" onclick="montrecache2();">A venir</a>
 <?
 $sql="";
 global $sql;
