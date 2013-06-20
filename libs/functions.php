@@ -159,8 +159,12 @@ if(!$sql) {
 	echo "SQL error: " .mysql_error(); exit;
 }
 
+	
+	echo "<a href=\"" .CHEMIN. "pm_projects/view/" .$pid ."\">";
 	echo mysql_result($sql,0,'name');
+	echo "</a>";
 }
+
 
 /*function to return the name of a given project*/
 function projet_nom_return($pid) {
@@ -377,7 +381,12 @@ $sql=mysql_query($sql);
 if(!$sql) {
 	echo "SQL error: " .mysql_error(); exit;
 }
+    echo "<a href=\"" .CHEMIN. "pm_tasks/view/" .$pid ."\">";
 	echo mysql_result($sql,0,'name');
+	echo "</a>";
+	
+	
+	
 }
 /*time spent on a task*/
 function total_hours_task($task_id) {

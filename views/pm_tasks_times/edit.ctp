@@ -2,28 +2,18 @@
 <?php 
 App::import('Lib', 'functions'); //imports app/libs/functions
 echo $this->Form->create('PmTasksTime');
-
-
-		#echo "<br>date: " .$this->data[PmTasksTime][date] ."<br>";
-				$ladate=$this->data[PmTasksTime][date];
-
-		echo "<br>date: " .		$ladate ."<br>";
-
-
 ?>
 	<fieldset>
  		<legend><?php __('Edit Pm Tasks Time'); ?></legend>
  				
-<h2>Projet: <?php projet_nom_print($this->Form->value('project')); ?></h2><h3>Tâche: <?php task_nom_print($this->Form->value('task')); ?></h3>
- 				<?php
- 				echo $this->Html->link(__('Voir Projet', true), array('controller' => 'pm_projects', 'action' => 'view'.$this->Form->value('project'))); ?> | 
-<?php echo $this->Html->link(__('Tâche', true), array('controller' => 'pm_tasks', 'action' => 'edit'.$this->Form->value('task'))); ?>
+<h2>Projet: <?php projet_nom_print($this->Form->value('project')); ?></h2>
+<h3>Tâche: <?php task_nom_print($this->Form->value('task')); ?></h3>
+<br/>
 	<?php
-	echo "Projet: " .$this->Form->value('project');
 		echo $this->Form->input('id');
-		echo $this->Form->input('project');
-		echo $this->Form->input('task');
-		echo $this->Form->input('owner');
+		echo $this->Form->input('project', array('type'=>'hidden'));
+		echo $this->Form->input('task', array('type'=>'hidden'));
+		echo $this->Form->input('owner', array('type'=>'hidden'));
 		echo $this->Form->input('date');
 		echo $this->Form->input('hours');
 		echo $this->Form->input('comments');
