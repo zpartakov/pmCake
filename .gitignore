@@ -2,6 +2,9 @@
 .buildpath
 pull.sh
 push.sh
+egoDB.mm
+exportaka.sh
+exportakadb.sh
 clearcache.sh
 config/database.php
 config/database.php.ori
