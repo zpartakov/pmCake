@@ -82,7 +82,7 @@ for($i=0;$i<mysql_num_rows($sql);$i++){
 			$class = ' class="altrow"';
 		}
 		echo "<tr " .$class .">";
-						echo  "<td><a href=\"" .CHEMIN ."pm_projects/view/" .mysql_result($sql,$i,'id') ."\">" .utf8_encode(mysql_result($sql,$i,'name')) ."</a></td>";
+						echo  "<td><a href=\"" .CHEMIN ."pm_projects/view/" .mysql_result($sql,$i,'id') ."\">" .mysql_result($sql,$i,'name') ."</a></td>";
 
 			echo "</tr>";
 }
@@ -122,7 +122,7 @@ $i=0;
 if($tache<17) {
 			$task .=  "<tr " .$class .">";
 #			$task .=  "<td>" .$html->link(mysql_result($sql,$i,'name'),'/pmcake/pm_tasks/edit/'.mysql_result($sql,$i,'id')) ."</td>";
-			$task .=  "<td>" .statutreturn(mysql_result($sql,$i,'status'))." <a href=\"" .CHEMIN ."pm_tasks/edit/" .mysql_result($sql,$i,'id') ."\">" .utf8_encode(mysql_result($sql,$i,'name')) ."</a> <em>(" .projet_nom_return(mysql_result($sql,$i,'project')) ." - " .mysql_result($sql,$i,'due_date').")</em></td>";
+			$task .=  "<td>" .statutreturn(mysql_result($sql,$i,'status'))." <a href=\"" .CHEMIN ."pm_tasks/edit/" .mysql_result($sql,$i,'id') ."\">" .mysql_result($sql,$i,'name') ."</a> <em>(" .projet_nom_return(mysql_result($sql,$i,'project')) ." - " .mysql_result($sql,$i,'due_date').")</em></td>";
 			$task .=  "</tr>";
 }elseif($tache==17) {
 			$incub .=  "<tr " .$class .">";
@@ -184,7 +184,7 @@ $i=0;
 		}
 		$tache=mysql_result($sql,$i,'comments');
 			$task .=  "<tr " .$class .">";
-			$task .=  "<td><a href=\"" .CHEMIN ."pm_tasks_times/edit/" .mysql_result($sql,$i,'id') ."\">" .utf8_encode($tache) ."</a> <em>(" .projet_nom_return(mysql_result($sql,$i,'project')) ." - " .mysql_result($sql,$i,'created').")</em></td>";
+			$task .=  "<td><a href=\"" .CHEMIN ."pm_tasks_times/edit/" .mysql_result($sql,$i,'id') ."\">" .$tache ."</a> <em>(" .projet_nom_return(mysql_result($sql,$i,'project')) ." - " .mysql_result($sql,$i,'created').")</em></td>";
 			$task .=  "</tr>";
 			
 			$i++;
@@ -419,7 +419,7 @@ $sql="SELECT * FROM faqs WHERE
 		}
 			$task .=  "<tr " .$class .">";
 			$task .="<td><a href=\"" .CHEMIN ."faqs/edit/" .mysql_result($sql,$i,'id') ."\">";
-			 $task .=utf8_encode(substr(mysql_result($sql,$i,'lib'),0,50));
+			 $task .=substr(mysql_result($sql,$i,'lib'),0,50);
 			$task .="</a>";
 			$task .=  "</td></tr>";
 			$i++;
@@ -470,8 +470,8 @@ $sql="SELECT * FROM patchadmins WHERE
 			$task .=  "<tr " .$class .">";
 			$task .=  "<td><a href=\"mailto:" .mysql_result($sql,$i,'meladmin') ."\">" .mysql_result($sql,$i,'meladmin') ."</a></td>"
 			."<td><a href=\"" .mysql_result($sql,$i,'url') ."\">" .mysql_result($sql,$i,'url') ."</a></td>"
-			."<td><em>(" .utf8_encode(substr(mysql_result($sql,$i,'rem'),0,50)) ." - " .mysql_result($sql,$i,'miseajour').")</em></td>"
-			."<td><a href=\"" .CHEMIN ."patchadmins/edit/" .mysql_result($sql,$i,'id') ."\">" .utf8_encode(substr(mysql_result($sql,$i,'contenu'),0,50)) 
+			."<td><em>(" .substr(mysql_result($sql,$i,'rem'),0,50) ." - " .mysql_result($sql,$i,'miseajour').")</em></td>"
+			."<td><a href=\"" .CHEMIN ."patchadmins/edit/" .mysql_result($sql,$i,'id') ."\">" .substr(mysql_result($sql,$i,'contenu'),0,50) 
 			."</a>";
 			$task .=  "</td></tr>";
 			$i++;
@@ -518,7 +518,7 @@ $sql="SELECT * FROM pm_bookmarks WHERE
 			$task .=  "<tr " .$class .">";
 			$task .=
 			"<td><a href=\"" .mysql_result($sql,$i,'url') ."\">" .mysql_result($sql,$i,'name') ."</a></td>"
-			."<td><em>(" .utf8_encode(substr(mysql_result($sql,$i,'description'),0,50)) ." - " .mysql_result($sql,$i,'created').")</em></td>"
+			."<td><em>(" .substr(mysql_result($sql,$i,'description'),0,50) ." - " .mysql_result($sql,$i,'created').")</em></td>"
 			."<td><a href=\"" .CHEMIN ."pm_bookmarks/edit/" .mysql_result($sql,$i,'id') ."\">modifier</a>";
 			$task .=  "</td></tr>";
 			$i++;
@@ -559,7 +559,7 @@ $sql="SELECT * FROM fonctions WHERE
 			$task .=  "<tr " .$class .">";
 			$task .=
 			"<td>" .mysql_result($sql,$i,'lib') ."</td>"
-			."<td><em>(" .utf8_encode(substr(mysql_result($sql,$i,'fonction'),0,50)) ." - " .mysql_result($sql,$i,'note').")</em></td>"
+			."<td><em>(" .substr(mysql_result($sql,$i,'fonction'),0,50) ." - " .mysql_result($sql,$i,'note').")</em></td>"
 			."<td><a href=\"" .CHEMIN ."fonctions/edit/" .mysql_result($sql,$i,'id') ."\">modifier</a>";
 			$task .=  "</td></tr>";
 			$i++;

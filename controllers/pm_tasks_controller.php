@@ -18,41 +18,13 @@ class PmTasksController extends AppController {
 	
 	function index() {
 		$this->PmTask->recursive = 0;
-if($_GET['tasktype']=="incub") { //incubateur - dreams
- $options = array(
- "PmTask.status=17"
- );
-/* FIXME sort and diplay nicer incubateur index
- *  $options =     array(
-    'conditions' => array('PmTask.status' => '17'), //array of conditions
-#    'recursive' => 1, //int
-#    'fields' => array('Model.field1', 'DISTINCT Model.field2'), //array of field names
-    'order' => array('PmTask.project', 'PmTask.due_date DESC')
-    );
-    
-    
-     $this->paginate = array(
-        'conditions' => array('PmTask.status LIKE' => '17'),
-        'limit' => 10
-    );
- $this->set(array('pmTasks' => $this->paginate('PmTask', $options)));
-    
-    $data = $this->paginate('Recipe');
-    $this->set(compact('data'));
-
-
- 
- #$this->set(array('pmTasks' => $this->paginate('PmTask', $options)));
-      $this->paginate = array(
-        'conditions' => array('PmTask.status LIKE' => '17'),
-        'limit' => 10,
-          'order' => array('PmTask.project', 'PmTask.due_date DESC')
-   
-    );  */ 
- $this->set(array('pmTasks' => $this->paginate('PmTask', $options)));
- 
- 
-				} elseif($_GET['tasktype']=="ref") { //references
+		if($_GET['tasktype']=="incub") { //incubateur - dreams
+	//echo "yo"; exit;
+		 $options = array(
+		 "PmTask.status=17"
+		 );
+		 $this->set(array('pmTasks' => $this->paginate('PmTask', $options)));
+ 		} elseif($_GET['tasktype']=="ref") { //references
 			$options = array(
 					"PmTask.status=22"
 					);			
@@ -67,17 +39,6 @@ if($_GET['tasktype']=="incub") { //incubateur - dreams
 			$this->set(array('pmTasks' => $this->paginate('PmTask', $options))); 		
 
 		} else { //all tasks		
-	/*
-			$pmTasks=$this->PmTask;
-			$options =  array(
-			   'conditions' => array(
-			   'PmTask.status' => "<17",
-			   'order' => 'due_date ASC', //?? not working? debug todo
-			   'limit' => 100 //?? not working? debug todo
-		   )); //array of conditions
-			$pmTasks = $this->PmTask->find('all', $options);
-			$this->set(array('pmTasks' => $this->paginate($pmTasks))); 	
-		*/
 			$options = array(
 					"PmTask.status <17"
 					);		

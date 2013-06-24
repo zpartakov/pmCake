@@ -1,20 +1,17 @@
 .htaccess
 .buildpath
-config/database.php.ori
 pull.sh
 push.sh
 clearcache.sh
+config/database.php
+config/database.php.ori
+config/core.php
 tmp/*
 config/database.php
-<<<<<<< HEAD
 config/core.php
-app/tmp/*
-app/config/database.php
-app/config/core.php
-app/webroot/files
-=======
-app/tmp/*
-app/config/database.php
->>>>>>> 4811acb285b5751540f5e4d2f069a531dcd15118
+webroot/files
+tmp/*
+config/database.php
 !empty
 pmCake/*
+webroot/img/*

@@ -14,8 +14,27 @@ $x=preg_replace("/Liste des tâches: incub/","Incubateur",$x);
 $this->pageTitle = $x; 
 ?>
 
+<?
+$sql="";
+global $sql;
+if($_GET['tasktype']=="incub") { //incubateur - dreams
+	//echo "incub"; exit;
+print_tasks("dreams","auj"); //PROF TASKS
+
+/*
+ * ref
+ */
+}elseif($_GET['tasktype']=="ref") { //incubateur - dreams
+print_tasks("ref","auj"); //PROF TASKS
+
+} else {
+?>
+
+
 	<div class="pmTasks index">
 	<h2><?php echo $this->pageTitle;?></h2>
+			<a href="#perso">Perso</a> | 
+	
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<!--<th><?php echo $this->Paginator->sort('project',$urlplus);?></th>-->
@@ -113,3 +132,11 @@ echo '</a>';
 	</ul>
 </div>
 
+<h1><?php echo $this->pageTitle; ?></h1>
+
+		<a href="#prof">Prof</a> | 
+		<a href="#perso">Perso</a> | 
+		<a href="#demain">Demain</a> | 
+		<a href="#A venir">A venir</a>
+<?php 
+}?>

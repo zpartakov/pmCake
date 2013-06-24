@@ -6,6 +6,7 @@
 
 <div class="patchadmins index">
 <h2><?php __('Patchadmins');?></h2>
+<a href="http://imu105.infomaniak.ch/MySQLAdmin/tbl_structure.php?db=akademiach7&table=patchadmins">phpMyAdmin akademia</a>&nbsp;
 <?php 			e($html->link($html->image('toolbar/add.png', array('alt' => 'Ajouter', 'title' => 'Ajouter')), array('action'=>'add'), array('escape' => false)));
 		?>
 <p>

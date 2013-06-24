@@ -1,0 +1,81 @@
+
+<?php
+
+exit;
+$mbox = imap_open("{mail.infomaniak.ch:143}", "fradeff@akademia.ch", "mao") or die("connexion impossible : " . imap_last_error());
+echo "<h1>Mailboxes</h1>\n";
+
+$num_mgs = imap_num_msg($mbox);
+
+echo "<h1>Total messages: " .$num_mgs ."</h1>"; 
+
+$folders = imap_listmailbox($mbox, "{mail.infomaniak.ch:143}", "*");
+if ($folders == false) {
+   echo "Appel échoué<br />\n";
+} else {
+   foreach ($folders as $val) {
+       echo $val . "<br />\n";
+   }
+}
+
+echo "<h1>en-têtes dans INBOX</h1>\n";
+$headers = imap_headers($mbox);
+#$headers=imap_mime_header_decode($headers);
+if ($headers == false) {
+   echo "Appel échoué<br />\n";
+} else {
+$i=0;
+   foreach ($headers as $val) {
+$i++;
+       echo $val . "<br />\n";
+
+$contenu=imap_body($mbox , $i);
+$info=imap_fetchstructure($mbox , $i);
+#$contenu=strstr($contenu,0,100);
+#$contenu=str_split($contenu,500);
+$contenu=substr($contenu,0,100);
+$contenu=nl2br($contenu);
+#$contenu=utf8_decode($contenu);
+
+ $numero=imap_msgno($mbox,0);
+echo $numero ."-" .$contenu;
+// find out how may parts the object has
+$numparts = count($info->parts);
+
+// find if if multipart message
+if ($numparts > 1) {
+
+   echo "More then one part<BR>";
+   
+   foreach ($info->parts as $part) {
+
+      if ($part->disposition == "INLINE") {
+         // inline message. Show number of lines
+      
+         printf("Inline message has %s lines<BR>", $part->lines);
+      
+      } elseif ($part->disposition == "ATTACHMENT") {
+         // an attachment
+      
+         echo "Attachment found!";
+         // print out the file name
+         #echo "Filename: ", $part->dparameters[0]->value;
+         
+      }
+      
+   }
+   
+} else {
+   // only one part so get some useful info
+   echo "Only one part";
+}
+echo "<hr>";
+
+   }
+}
+
+imap_close($mbox);
+
+
+
+?>

@@ -1,0 +1,209 @@
+<div class="pmTasks form">
+
+	<?php echo $this->AlaxosForm->create('PmTask');?>
+	<?php echo $this->AlaxosForm->input('id'); ?>
+	
+ 	<h2><?php ___('edit pm task'); ?></h2>
+ 	
+ 	<?php
+	echo $this->element('toolbar/toolbar', array('plugin' => 'alaxos', 'list' => true, 'back_to_view_id' => $pmTask['PmTask']['id']));
+	?>
+ 	
+ 	<table border="0" cellpadding="5" cellspacing="0" class="edit">
+	<tr>
+		<td>
+			<?php ___('project') ?>
+		</td>
+		<td>:</td>
+		<td>
+			<?php echo $this->AlaxosForm->input('project', array('label' => false)); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<?php ___('priority') ?>
+		</td>
+		<td>:</td>
+		<td>
+			<?php echo $this->AlaxosForm->input('priority', array('label' => false)); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<?php ___('status') ?>
+		</td>
+		<td>:</td>
+		<td>
+			<?php echo $this->AlaxosForm->input('status', array('label' => false)); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<?php ___('owner') ?>
+		</td>
+		<td>:</td>
+		<td>
+			<?php echo $this->AlaxosForm->input('owner', array('label' => false)); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<?php ___('assigned_to') ?>
+		</td>
+		<td>:</td>
+		<td>
+			<?php echo $this->AlaxosForm->input('assigned_to', array('label' => false)); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<?php ___('name') ?>
+		</td>
+		<td>:</td>
+		<td>
+			<?php echo $this->AlaxosForm->input('name', array('label' => false)); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<?php ___('description') ?>
+		</td>
+		<td>:</td>
+		<td>
+			<?php echo $this->AlaxosForm->input('description', array('label' => false)); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<?php ___('start_date') ?>
+		</td>
+		<td>:</td>
+		<td>
+			<?php echo $this->AlaxosForm->input('start_date', array('label' => false)); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<?php ___('due_date') ?>
+		</td>
+		<td>:</td>
+		<td>
+			<?php echo $this->AlaxosForm->input('due_date', array('label' => false)); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<?php ___('estimated_time') ?>
+		</td>
+		<td>:</td>
+		<td>
+			<?php echo $this->AlaxosForm->input('estimated_time', array('label' => false)); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<?php ___('actual_time') ?>
+		</td>
+		<td>:</td>
+		<td>
+			<?php echo $this->AlaxosForm->input('actual_time', array('label' => false)); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<?php ___('comments') ?>
+		</td>
+		<td>:</td>
+		<td>
+			<?php echo $this->AlaxosForm->input('comments', array('label' => false)); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<?php ___('completion') ?>
+		</td>
+		<td>:</td>
+		<td>
+			<?php echo $this->AlaxosForm->input('completion', array('label' => false)); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<?php ___('assigned') ?>
+		</td>
+		<td>:</td>
+		<td>
+			<?php echo $this->AlaxosForm->input('assigned', array('label' => false)); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<?php ___('published') ?>
+		</td>
+		<td>:</td>
+		<td>
+			<?php echo $this->AlaxosForm->input('published', array('label' => false)); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<?php ___('parent_phase') ?>
+		</td>
+		<td>:</td>
+		<td>
+			<?php echo $this->AlaxosForm->input('parent_phase', array('label' => false)); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<?php ___('complete_date') ?>
+		</td>
+		<td>:</td>
+		<td>
+			<?php echo $this->AlaxosForm->input('complete_date', array('label' => false)); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<?php ___('service') ?>
+		</td>
+		<td>:</td>
+		<td>
+			<?php echo $this->AlaxosForm->input('service', array('label' => false)); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<?php ___('milestone') ?>
+		</td>
+		<td>:</td>
+		<td>
+			<?php echo $this->AlaxosForm->input('milestone', array('label' => false)); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<?php ___('mod_date') ?>
+		</td>
+		<td>:</td>
+		<td>
+			<?php echo $this->AlaxosForm->input('mod_date', array('label' => false)); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<?php ___('PmTasksTime') ?>
+		</td>
+		<td>:</td>
+		<td>
+			<?php echo $this->AlaxosForm->input('PmTasksTime', array('label' => false)); ?>		</td>
+	</tr>
+				<tr>
+ 		<td></td>
+ 		<td></td>
+ 		<td>
+			<?php echo $this->AlaxosForm->end(___('update', true)); ?> 		</td>
+ 	</tr>
+	</table>
+
+</div>

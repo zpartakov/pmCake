@@ -1,0 +1,474 @@
+<?php
+App::import('Lib', 'functions'); //imports app/libs/functions
+#Configure::write('debug', 2);
+$this->pageTitle = 'GTD ' .dateen2fr(date("D, d-M-Y")); 
+$datenow = date("Y-m-d");
+
+/* currents tasks */
+
+?>
+
+<script language="JavaScript" type="text/javascript">
+	function montre_ou_cache() {
+		if(document.getElementById("pmTasksperso").style.display=="none"){
+			document.getElementById("pmTasksperso").style.display="block";
+			document.getElementById("pmTaskspersomontre").style.display="block";
+		} else {
+			document.getElementById("pmTasksperso").style.display="none";
+			document.getElementById("pmTaskspersomontre").style.display="block";
+		}
+	}
+	function montre_ou_cache2() {
+			document.getElementById("pmTasksperso").style.display="block";
+			document.getElementById("pmTaskspersomontre").style.display="none";
+	}
+
+	function setVisibility(id, visibility) {
+	document.getElementById(id).style.display = visibility;
+	}
+	function montrecache1() {
+
+	if(document.getElementById("clickme1").style.display=="none"){
+		document.getElementById("clickme1").style.display="block";
+		document.getElementById("clickme1a").style.display="block";
+		document.getElementById("tomorrowContainer1").style.display="none";		
+	} else {
+		document.getElementById("clickme1").style.display="none";
+		document.getElementById("clickme1a").style.display="none";
+		document.getElementById("tomorrowContainer1").style.display="block";		
+	}
+
+}
+
+	function montrecache2() {
+
+	if(document.getElementById("clickme2").style.display=="none"){
+		document.getElementById("clickme2").style.display="block";
+		document.getElementById("clickme2a").style.display="block";
+		document.getElementById("futureContainer").style.display="none";		
+	} else {
+		document.getElementById("clickme2").style.display="none";
+		document.getElementById("clickme2a").style.display="none";
+		document.getElementById("futureContainer").style.display="block";		
+	}
+
+}
+</script>
+<h1><?php echo $this->pageTitle;?></h1>
+		<a href="#prof">Prof</a> | 
+		<a href="#perso">Perso</a> | 
+		<a href="#demain">Demain</a> | 
+		<a href="#avenir">A venir</a>
+<div><!-- BEGIN PROF TASKS -->
+<?
+
+/* ########################### prof tasks  ########################### */
+$sql="
+SELECT * FROM pm_tasks AS tas, pm_projects as proj 
+WHERE tas.status > 1 
+AND tas.status < 17 
+AND (tas.due_date <= '$datenow' 
+AND tas.due_date <> '--') 
+AND tas.project=proj.id 
+AND proj.type !='p'";
+
+#echo nl2br($sql)."<br>";
+$sql=mysql_query($sql);
+if(!$sql) {
+	echo "SQL error: " .mysql_error(); exit;
+}
+$i=0;
+?>
+	<h2><a name="prof"></a>Prof</h2>
+	<h3>Total tâches en cours: #<? echo mysql_num_rows($sql);?></h3>
+		<table cellpadding="0" cellspacing="0">
+		<tr>
+<th style="padding: 0px 3px;">
+<input id="_TechSelectAll_" type="hidden" value="0" name="data[_Tech][selectAll]">
+<input id="_TechSelectAll" type="checkbox" value="1" style="margin-bottom: 8px;" name="data[_Tech][selectAll]">
+</th>			<th>project</th>
+			<th>priority</th>
+			<th>status</th>
+		<!--	<th>owner</th>-->
+			<th>name</th>
+			<th>due_date</th>
+			<th>milestone</th>
+			<th class="actions" colspan="2"><?php __('Actions');?></th>
+		</tr>
+		<?
+		while($i<mysql_num_rows($sql)){
+					$class = null;
+				if (intval($i/2) == ($i/2)) {
+					$class = ' class="altrow"';
+				}
+						echo "<tr" .$class;
+						echo " id=\"tr" .mysql_result($sql,$i,'id')."\"";
+						echo  ">";
+#echo '<input id="User1Id" class="model_id" type="checkbox" value="1" name="data[User][1][id]">';
+echo '<td><input id="PmTask' .mysql_result($sql,$i,'id').'Id" class="model_id" type="checkbox" value="' .mysql_result($sql,$i,'id').'" name="data[PmTask][' .mysql_result($sql,$i,'id').'][id]"></td>';
+			
+			echo "<td>";
+			if(mysql_result($sql,$i,'proj.type')=="p") {
+					perso_list();
+			}
+			?>
+						<?php echo $this->Html->link(mysql_result($sql,$i,'proj.name'), array('controller' => 'pm_projects', 'action' => 'view', mysql_result($sql,$i,'proj.id'))); ?>
+
+			<?
+			echo "</td>";
+			echo "<td>";
+			prioriteView(mysql_result($sql,$i,'priority'));
+			echo "</td>";
+			echo "<td>";
+			statut(mysql_result($sql,$i,'status'));
+			echo  "</td>";
+			#echo "<td>" .mysql_result($sql,$i,'owner') ."</td>";
+			echo "<td>" .$this->Html->link(__(mysql_result($sql,$i,'name'), true), array('action' => 'view', mysql_result($sql,$i,'id')));
+			echo "</td>";
+			echo "<td>";
+			dateSQL2fr(mysql_result($sql,$i,'due_date'));
+			
+			echo "<br /><em>(";
+			dateSQL2fr(mysql_result($sql,$i,'start_date'));
+			echo ")</em> ";
+			echo "</td>";
+			echo "<td>" .mysql_result($sql,$i,'milestone') ."</td>";
+			echo "<td>";
+		?>
+
+
+
+
+<!-- ################ BEGIN PUSH DELAYS  ################  -->
+<?
+$idc=mysql_result($sql,$i,'id');
+push_delays($idc);
+			e($html->link($html->image('toolbar/loupe.png', array('alt' => 'Voir')), array('action'=>'view', $idc), array('alt' => 'Voir', 'title' => 'Voir', 'escape' => false)));
+			e($html->link($html->image('toolbar/editor.png', array('alt' => 'Modifier')), array('action'=>'edit', $idc), array('alt' => 'Modifier', 'title' => 'Modifier', 'escape' => false)));
+			$delete_text = isset($delete_text) ? $delete_text : ___d('alaxos', 'do you really want to delete this item ?', true);
+			e($html->link($html->image('toolbar/drop.png', array('alt' => __d('alaxos', 'delete', true))), array('action' => 'delete', $idc), array('alt' => ___d('alaxos', 'delete', true), 'title' => ___d('alaxos', 'delete', true), 'escape' => false), $delete_text));
+	echo "</td>";
+
+/* ACTIONS END */
+
+	echo "</tr>\n\n";
+	$i++;
+}
+?>
+<!-- ################ END PUSH DELAYS  ################  -->
+
+</table>
+<div class="choose_action">
+Action à effectuer sur les éléments sélectionnés&nbsp;
+<select id="ActionToPerform" name="data[_Tech][action]">
+<option value=""></option>
+<option value="deleteAll">Tout effacer</option>
+</select>
+<input id="_TechActionAllUrl" type="hidden" value="/caketest2/users/actionAll" name="data[_Tech][actionAllUrl]">
+<button id="chooseActionFormBtn" type="button">Lancer</button>
+</div>
+</div>
+<!-- CLOSE PROF TASKS -->
+
+
+<div id="pmTasksperso">
+
+			  <div id="pmTaskspersomontre" onclick="montre_ou_cache();"  style="display: none;"><small><a href="<? echo CHEMIN; ?>" onclick="montre_ou_cache2();"><?php echo $html->image('icons/close_tab.gif');?></a></small></div>
+	<h2>Perso</h2>
+<!-- BEGIN PERSONAL TASKS -->
+<a name="perso" />
+<?
+#do and check sql
+$datenow = date("Y-m-d");
+
+/* ########################
+ * private tasks OPEN  PERSONAL TASKS 
+ * */
+$sql="
+SELECT * FROM pm_tasks AS tas, pm_projects as proj 
+WHERE tas.status > 1 
+AND tas.status < 17 
+AND (tas.due_date <= '$datenow' 
+AND tas.due_date <> '--') 
+AND tas.project=proj.id 
+AND proj.type='p'";
+#echo nl2br($sql)."<br>";
+$sql=mysql_query($sql);
+if(!$sql) {
+	echo "SQL error: " .mysql_error(); exit;
+}
+$i=0;
+?>
+  <div style="display: block; position: relative; top: -25px; right: 20px;"><small><a onclick="montre_ou_cache();"><?php echo $html->image('icons/open_tab.gif');?></a></small></div>
+  <div style="position: relative; top: -20px">
+	<h3>Total tâches en cours: #<? echo mysql_num_rows($sql);?></h3>
+		<table cellpadding="0" cellspacing="0">
+		<tr>
+			<th>project</th>
+			<th>priority</th>
+			<th>status</th>
+		<!--	<th>owner</th>-->
+			<th>name</th>
+			<th>due_date</th>
+			<th>milestone</th>
+			<th class="actions" colspan="2"><?php __('Actions');?></th>
+		</tr>
+		<?
+		while($i<mysql_num_rows($sql)){
+					$class = null;
+				if (intval($i/2) == ($i/2)) {
+					$class = ' class="altrow"';
+				}
+						echo "<tr" .$class;
+						echo " id=\"tr" .mysql_result($sql,$i,'id')."\"";
+						echo  ">";
+						
+			echo "<td>";
+			if(mysql_result($sql,$i,'proj.type')=="p") {
+					perso_list();
+			}
+			?>
+			<?php echo $this->Html->link(mysql_result($sql,$i,'proj.name'), array('controller' => 'pm_projects', 'action' => 'view', mysql_result($sql,$i,'proj.id'))); ?>
+			<?
+			echo "</td>";
+			echo "<td>";
+			prioriteView(mysql_result($sql,$i,'priority'));
+			echo "</td>";
+			echo "<td>";
+			statut(mysql_result($sql,$i,'status'));
+			echo  "</td>";
+			#echo "<td>" .mysql_result($sql,$i,'owner') ."</td>";
+			echo "<td>" .$this->Html->link(__(mysql_result($sql,$i,'name'), true), array('action' => 'view', mysql_result($sql,$i,'id')));
+			echo "</td>";
+			echo "<td>";
+			dateSQL2fr(mysql_result($sql,$i,'due_date'));
+			echo "</td>";
+			echo "<td>" .mysql_result($sql,$i,'milestone') ."</td>";
+			echo "<td>";
+		?>
+
+<!-- ################ BEGIN PUSH DELAYS  ################  -->
+<?
+$idc=mysql_result($sql,$i,'id');
+push_delays($idc);
+			e($html->link($html->image('toolbar/loupe.png', array('alt' => 'Voir')), array('action'=>'view', $idc), array('alt' => 'Voir', 'title' => 'Voir', 'escape' => false)));
+			e($html->link($html->image('toolbar/editor.png', array('alt' => 'Modifier')), array('action'=>'edit', $idc), array('alt' => 'Modifier', 'title' => 'Modifier', 'escape' => false)));
+			$delete_text = isset($delete_text) ? $delete_text : ___d('alaxos', 'do you really want to delete this item ?', true);
+			e($html->link($html->image('toolbar/drop.png', array('alt' => __d('alaxos', 'delete', true))), array('action' => 'delete', $idc), array('alt' => ___d('alaxos', 'delete', true), 'title' => ___d('alaxos', 'delete', true), 'escape' => false), $delete_text));
+	echo "</td>";
+
+/* ACTIONS END */
+
+	echo "</tr>\n\n";
+	$i++;
+}
+?>
+<!-- ################ END PUSH DELAYS  ################  -->
+
+</table>
+
+</div>
+</div>
+<!-- CLOSE PERSONAL TASKS -->
+
+
+<div><!-- BEGIN TOMORROW TASKS -->
+<!-- ################### TOMORROW ################### -->
+<?
+$sql="
+SELECT * FROM pm_tasks AS tas, pm_projects as proj 
+WHERE tas.status > 1 
+AND tas.status < 17 
+AND (tas.due_date <= DATE_ADD('$datenow', INTERVAL 1 DAY) AND (tas.due_date > '$datenow')) 
+AND tas.due_date <> '--' 
+AND tas.project=proj.id";
+#echo nl2br($sql)."<br>";
+$sql=mysql_query($sql);
+if(!$sql) {
+	echo "SQL error: " .mysql_error(); exit;
+}
+$i=0;
+?>
+	<a name="demain"></a>
+	<h2>GTD: Demain</h2>	
+
+	<div id="clickme1" style="display: block; position: relative; top: -28px; right: 20px;">
+	  <small><a onclick="montrecache1();"><?php echo $html->image('icons/open_tab.gif');?></a></small>
+	</div>
+
+
+	<div id="tomorrowContainer1" style="display: none;">
+	<h3>Total tâches en cours: #<? echo mysql_num_rows($sql);?></h3>
+		<div id="clickme1a" style="position: relative; top: -55px; right: 20px;">
+		  <small><a onclick="montrecache1();"><?php echo $html->image('icons/close_tab.gif');?></a></small>
+		</div>
+		<table cellpadding="0" cellspacing="0">
+		<tr>
+			<th>project</th>
+			<th>priority</th>
+			<th>status</th>
+		<!--	<th>owner</th>-->
+			<th>name</th>
+			<th>due_date</th>
+			<th>milestone</th>
+			<th class="actions" colspan="2"><?php __('Actions');?></th>
+		</tr>
+		<?
+		while($i<mysql_num_rows($sql)){
+					$class = null;
+				if (intval($i/2) == ($i/2)) {
+					$class = ' class="altrow"';
+				}
+
+	echo "<tr" .$class;
+						echo " id=\"tr" .mysql_result($sql,$i,'id')."\"";
+						echo  ">";
+
+			echo "<td>";
+			if(mysql_result($sql,$i,'proj.type')=="p") {
+					perso_list();
+			}
+			echo mysql_result($sql,$i,'proj.name') ."</td>";
+			echo "<td>";
+			prioriteView(mysql_result($sql,$i,'priority'));
+			echo "</td>";
+			echo "<td>";
+			statut(mysql_result($sql,$i,'status'));
+			echo  "</td>";
+			#echo "<td>" .mysql_result($sql,$i,'owner') ."</td>";
+			echo "<td>" .$this->Html->link(__(mysql_result($sql,$i,'name'), true), array('action' => 'view', mysql_result($sql,$i,'id')));
+			echo "</td>";
+			echo "<td>";
+			dateSQL2fr(mysql_result($sql,$i,'due_date'));
+			echo "</td>";
+			echo "<td>" .mysql_result($sql,$i,'milestone') ."</td>";
+			echo "<td>";		
+		?>
+
+
+
+<!-- ################ BEGIN PUSH DELAYS  ################  -->
+<?
+$idc=mysql_result($sql,$i,'id');
+push_delays($idc);
+			e($html->link($html->image('toolbar/loupe.png', array('alt' => 'Voir')), array('action'=>'view', $idc), array('alt' => 'Voir', 'title' => 'Voir', 'escape' => false)));
+			e($html->link($html->image('toolbar/editor.png', array('alt' => 'Modifier')), array('action'=>'edit', $idc), array('alt' => 'Modifier', 'title' => 'Modifier', 'escape' => false)));
+			$delete_text = isset($delete_text) ? $delete_text : ___d('alaxos', 'do you really want to delete this item ?', true);
+			e($html->link($html->image('toolbar/drop.png', array('alt' => __d('alaxos', 'delete', true))), array('action' => 'delete', $idc), array('alt' => ___d('alaxos', 'delete', true), 'title' => ___d('alaxos', 'delete', true), 'escape' => false), $delete_text));
+	echo "</td>";
+
+/* ACTIONS END */
+
+	echo "</tr>\n\n";
+	$i++;
+}
+?>
+<!-- ################ END PUSH DELAYS  ################  -->
+</table>
+	</div>
+</div><!-- CLOSE TOMORROW TASKS -->
+
+<div><!-- BEGIN FUTURE TASKS -->
+<!-- ################### FUTURE ################### -->
+<?
+$datenow = date("Y-m-d");
+$sql="
+SELECT * FROM pm_tasks AS tas, pm_projects as proj 
+WHERE tas.status > 1 
+AND tas.status < 17 
+AND (tas.due_date > DATE_ADD('$datenow', INTERVAL 2 DAY)) AND tas.due_date <> '--' 
+AND tas.project=proj.id 
+ORDER BY tas.due_date ASC";
+#echo nl2br($sql)."<br>";
+$sql=mysql_query($sql);
+if(!$sql) {
+	echo "SQL error: " .mysql_error(); exit;
+}
+$i=0;
+?>
+				<a name="avenir"></a>
+	<h2>GTD: A venir</h2>
+	
+
+</div>
+<div id="clickme2" style="display: block; position: relative; top: -28px; right: 20px;">
+  <small><a onclick="montrecache2();"><?php echo $html->image('icons/open_tab.gif');?></a></small>
+</div>
+
+
+	<div id="futureContainer" style="display: none;">
+
+		<h3>Total tâches en cours: #<? echo mysql_num_rows($sql);?>
+			<div id="clickme2a" style="position: relative; top: -48px; right: 20px;">
+			  <small><a onclick="montrecache2();"><?php echo $html->image('icons/close_tab.gif');?></a></small>
+			</div>			
+		</h3>
+		<table cellpadding="0" cellspacing="0">
+		<tr>
+			<th>project</th>
+			<th>priority</th>
+			<th>status</th>
+		<!--	<th>owner</th>-->
+			<th>name</th>
+			<th>due_date</th>
+			<th>milestone</th>
+			<th class="actions" colspan="2"><?php __('Actions');?></th>
+		</tr>
+		<?
+		while($i<mysql_num_rows($sql)){
+					$class = null;
+				if (intval($i/2) == ($i/2)) {
+					$class = ' class="altrow"';
+				}
+	echo "<tr" .$class;
+						echo " id=\"tr" .mysql_result($sql,$i,'id')."\"";
+						echo  ">";
+			echo "<td>";
+			if(mysql_result($sql,$i,'proj.type')=="p") {
+					perso_list();
+			}
+			echo mysql_result($sql,$i,'proj.name') ."</td>";
+			echo "<td>";
+			prioriteView(mysql_result($sql,$i,'priority'));
+			echo "</td>";
+			echo "<td>";
+			statut(mysql_result($sql,$i,'status'));
+			echo  "</td>";
+			#echo "<td>" .mysql_result($sql,$i,'owner') ."</td>";
+			echo "<td>" .$this->Html->link(__(mysql_result($sql,$i,'name'), true), array('action' => 'view', mysql_result($sql,$i,'id')));
+			echo "</td>";
+			echo "<td>";
+			dateSQL2fr(mysql_result($sql,$i,'due_date'));
+			echo "</td>";
+			echo "<td>" .mysql_result($sql,$i,'milestone') ."</td>";
+			echo "<td>";
+		?>
+
+
+<!-- ################ BEGIN PUSH DELAYS  ################  -->
+<?
+$idc=mysql_result($sql,$i,'id');
+push_delays($idc);
+			e($html->link($html->image('toolbar/loupe.png', array('alt' => 'Voir')), array('action'=>'view', $idc), array('alt' => 'Voir', 'title' => 'Voir', 'escape' => false)));
+			e($html->link($html->image('toolbar/editor.png', array('alt' => 'Modifier')), array('action'=>'edit', $idc), array('alt' => 'Modifier', 'title' => 'Modifier', 'escape' => false)));
+			$delete_text = isset($delete_text) ? $delete_text : ___d('alaxos', 'do you really want to delete this item ?', true);
+			e($html->link($html->image('toolbar/drop.png', array('alt' => __d('alaxos', 'delete', true))), array('action' => 'delete', $idc), array('alt' => ___d('alaxos', 'delete', true), 'title' => ___d('alaxos', 'delete', true), 'escape' => false), $delete_text));
+	echo "</td>";
+
+/* ACTIONS END */
+
+	echo "</tr>\n\n";
+	$i++;
+}
+?>
+<!-- ################ END PUSH DELAYS  ################  -->
+</table>
+</div><!-- CLOSE FUTURE TASKS -->
+
+
+
+
+
+
+
+
