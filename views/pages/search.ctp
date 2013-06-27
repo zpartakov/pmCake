@@ -156,8 +156,8 @@ echo "<a name=\"tasks\" /><h1>Tâches</h1>";
 <table>
 <? 
 
-echo $task;
-
+#echo $task;
+echo utf8_encode($task);
 ?>
 </table>	
 
@@ -205,8 +205,7 @@ echo "<a name=\"hours\" /><h1>Tâches / heures</h1>";
 <table>
 <? 
 
-echo $task;
-
+echo utf8_encode($task);
 ?>
 </table>	
 
@@ -286,8 +285,7 @@ if($boolean=="on") {//boolean
 if($task=="") {
 	$task="<em>Pas de résultats</em>";
 }
-echo $task;
-echo "</table>";
+echo utf8_encode($task);echo "</table>";
 ?>
 
 
@@ -339,8 +337,7 @@ $i=0;
 if($task=="") {
 	$task="<em>Pas de résultats</em>";
 }
-echo $task;
-?>
+echo utf8_encode($task);?>
 </table>
 
 <?php 
@@ -385,8 +382,7 @@ echo "<a name=\"types\" /><h1>Types CMS</h1>
 if($task=="") {
 	$task="<em>Pas de résultats</em>";
 }
-echo $task;
-echo "</table>";
+echo utf8_encode($task);echo "</table>";
 ?>
 
 <?php 
@@ -428,8 +424,7 @@ $sql="SELECT * FROM faqs WHERE
 if($task=="") {
 	$task="<em>Pas de résultats</em>";
 }
-echo $task;
-echo "</table>";
+echo utf8_encode($task);echo "</table>";
 ?>
 
 <?php 
@@ -480,8 +475,7 @@ $sql="SELECT * FROM patchadmins WHERE
 if($task=="") {
 	$task="<em>Pas de résultats</em>";
 }
-echo $task;
-echo "</table>";
+echo utf8_encode($task);echo "</table>";
 ?>
 
 <?php 
@@ -527,8 +521,7 @@ $sql="SELECT * FROM pm_bookmarks WHERE
 if($task=="") {
 	$task="<em>Pas de résultats</em>";
 }
-echo $task;
-echo "</table>";
+echo utf8_encode($task);echo "</table>";
 ?>
 
 <?php 
@@ -568,8 +561,7 @@ $sql="SELECT * FROM fonctions WHERE
 if($task=="") {
 	$task="<em>Pas de résultats</em>";
 }
-echo $task;
-echo "</table>";
+echo utf8_encode($task);echo "</table>";
 ?>
 
 <?php 
@@ -647,6 +639,6 @@ OR `Category` LIKE '%".$q."%' ORDER BY LastName, FirstName";
 if($task=="") {
 	$task="<em>Pas de résultats</em>";
 }
-echo $task;
+echo utf8_encode($task);
 echo "</table>";
 ?>
