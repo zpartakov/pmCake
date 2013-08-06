@@ -507,12 +507,6 @@ echo '<small><a onclick="montrecache2();"><img src="/intranet/pmcake/img/icons/o
 	echo '<h3>Total tâches en cours: #'.mysql_num_rows($sql).'</h3>
 			<table cellpadding="0" cellspacing="0">
 			<tr>
-			<!--
-	<th style="padding: 0px 3px;">
-	<input id="_TechSelectAll_" type="hidden" value="0" name="data[_Tech][selectAll]">
-	<input id="_TechSelectAll" type="checkbox" value="1" style="margin-bottom: 8px;" name="data[_Tech][selectAll]" class="checkAll" onclick="checkAll(document.getElementById(\'prof\'), \'cb-element\', this.checked);">
-	</th>
-	-->
 				<th>project</th>
 				<th>priority</th>
 				<th>status</th>
@@ -520,14 +514,15 @@ echo '<small><a onclick="montrecache2();"><img src="/intranet/pmcake/img/icons/o
 				<th>name</th>
 				<th>due_date</th>
 				<th>milestone</th>
-				<th class="actions" colspan="2">Actions</th>
+				<th class="actions" colspan="2">Actions
+				</th>
 			</tr>
 	';
 
 	/*
 	 * loop on results
 	 */
-	$i=0;
+	$i=0;$lesid="";
 	while($i<mysql_num_rows($sql)){
 		$class = null;
 		if (intval($i/2) == ($i/2)) {
@@ -588,10 +583,17 @@ echo '<small><a onclick="montrecache2();"><img src="/intranet/pmcake/img/icons/o
 	 ################ END PUSH DELAYS  ################  
 	/* ACTIONS END */
 		echo "</tr>\n\n";
+		/* stores id's */
+		$lesid=$lesid.mysql_result($sql,$i,'id').";";
+		
 		$i++;
 	}
 	echo '
-	</table>
+	</table>';
+	
+
+	
+	echo '
 <!--
 <div class="choose_action">
 Action à effectuer sur les éléments sélectionnés&nbsp;
@@ -601,6 +603,8 @@ push_all_delays($catlib);
 </div>
 !-->
 </form>';
+	
+	
 	if($quand=="demain"||$quand=="futur") {
 		echo "</div>";
 	}
@@ -1428,7 +1432,7 @@ echo "<form action=\"repousser\" method=\"get\" name=\"" .$idc ."\">
 delais();
 echo "        </select>
       <!-- ############ task ok ######### -->
- 	&nbsp;<input style=\"background: orange\" type=\"checkbox\" title=\"OK?\" onchange=\"task_ok(" .$idc .",this.value)\" />
+ 	&nbsp;<input style=\"background: orange\" type=\"checkbox\" title=\"OK?\" name=\"ok\" onchange=\"task_ok(" .$idc .",this.value)\" />
       </form>
       </td>
       <td>";

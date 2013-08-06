@@ -82,7 +82,8 @@ for($i=0;$i<mysql_num_rows($sql);$i++){
 			$class = ' class="altrow"';
 		}
 		echo "<tr " .$class .">";
-						echo  "<td><a href=\"" .CHEMIN ."pm_projects/view/" .mysql_result($sql,$i,'id') ."\">" .mysql_result($sql,$i,'name') ."</a></td>";
+						echo  "<td><a href=\"" .CHEMIN ."pm_projects/view/" .mysql_result($sql,$i,'id') ."\">" 
+						.utf8_encode(mysql_result($sql,$i,'name')) ."</a></td>";
 
 			echo "</tr>";
 }
@@ -122,16 +123,20 @@ $i=0;
 if($tache<17) {
 			$task .=  "<tr " .$class .">";
 #			$task .=  "<td>" .$html->link(mysql_result($sql,$i,'name'),'/pmcake/pm_tasks/edit/'.mysql_result($sql,$i,'id')) ."</td>";
-			$task .=  "<td>" .statutreturn(mysql_result($sql,$i,'status'))." <a href=\"" .CHEMIN ."pm_tasks/edit/" .mysql_result($sql,$i,'id') ."\">" .mysql_result($sql,$i,'name') ."</a> <em>(" .projet_nom_return(mysql_result($sql,$i,'project')) ." - " .mysql_result($sql,$i,'due_date').")</em></td>";
+			$task .=  "<td>" .statutreturn(mysql_result($sql,$i,'status'))
+			." <a href=\"" .CHEMIN ."pm_tasks/edit/" .mysql_result($sql,$i,'id') ."\">" .mysql_result($sql,$i,'name') 
+			."</a> <em>(" .utf8_decode(projet_nom_return(mysql_result($sql,$i,'project'))) ." - " .mysql_result($sql,$i,'due_date').")</em></td>";
 			$task .=  "</tr>";
 }elseif($tache==17) {
 			$incub .=  "<tr " .$class .">";
-			$incub .=  "<td>" ."<a href=\"" .CHEMIN ."pm_tasks/edit/" .mysql_result($sql,$i,'id') ."\">" .mysql_result($sql,$i,'name') ."</a></td>";
+			$incub .=  "<td>" ."<a href=\"" .CHEMIN ."pm_tasks/edit/" .mysql_result($sql,$i,'id') ."\">" 
+			.mysql_result($sql,$i,'name') ."</a></td>";
 			$incub .=  "</tr>";
 }elseif($tache==22) {
 	//echo "id ref=".mysql_result($sql,$i,'id')."<br>";
 			$ref .=  "<tr " .$class .">";
-			$ref .=  "<td>" ."<a href=\"" .CHEMIN ."pm_tasks/edit/" .mysql_result($sql,$i,'id') ."\">" .mysql_result($sql,$i,'name') ."</a></td>";
+			$ref .=  "<td>" ."<a href=\"" .CHEMIN ."pm_tasks/edit/" .mysql_result($sql,$i,'id') ."\">" 
+			.mysql_result($sql,$i,'name') ."</a></td>";
 			$ref .=  "</tr>";
 	//echo $ref;		
 	//echo "len: " .strlen($ref);
@@ -140,14 +145,14 @@ if($tache<17) {
 			$i++;
 			}
 if($task=="") {
-	$task="<em>Pas de résultats</em>";
+	$task="<em>Pas de r&eacute;sultats</em>";
 }
 if($incub=="") {
-	$incub="<em>Pas de résultats</em>";
+	$incub="<em>Pas de r&eacute;sultats</em>";
 }
 if(strlen($ref)<1) {
 	//echo 'bla';
-	$ref="<em>Pas de résultats</em>";
+	$ref="<em>Pas de r&eacute;sultats</em>";
 }
 echo "<a name=\"tasks\" /><h1>Tâches</h1>";
 
@@ -190,13 +195,13 @@ $i=0;
 			$i++;
 			}
 if($task=="") {
-	$task="<em>Pas de résultats</em>";
+	$task="<em>Pas de r&eacute;sultats</em>";
 }
 if($incub=="") {
-	$incub="<em>Pas de résultats</em>";
+	$incub="<em>Pas de r&eacute;sultats</em>";
 }
 if($ref=="") {
-	$ref="<em>Pas de résultats</em>";
+	$ref="<em>Pas de r&eacute;sultats</em>";
 }
 echo "<a name=\"hours\" /><h1>Tâches / heures</h1>";
 
@@ -283,7 +288,7 @@ if($boolean=="on") {//boolean
 			}
 			
 if($task=="") {
-	$task="<em>Pas de résultats</em>";
+	$task="<em>Pas de r&eacute;sultats</em>";
 }
 echo utf8_encode($task);echo "</table>";
 ?>
@@ -335,7 +340,7 @@ $i=0;
 			}
 			
 if($task=="") {
-	$task="<em>Pas de résultats</em>";
+	$task="<em>Pas de r&eacute;sultats</em>";
 }
 echo utf8_encode($task);?>
 </table>
@@ -380,7 +385,7 @@ echo "<a name=\"types\" /><h1>Types CMS</h1>
 			}
 			
 if($task=="") {
-	$task="<em>Pas de résultats</em>";
+	$task="<em>Pas de r&eacute;sultats</em>";
 }
 echo utf8_encode($task);echo "</table>";
 ?>
@@ -422,7 +427,7 @@ $sql="SELECT * FROM faqs WHERE
 			}
 			
 if($task=="") {
-	$task="<em>Pas de résultats</em>";
+	$task="<em>Pas de r&eacute;sultats</em>";
 }
 echo utf8_encode($task);echo "</table>";
 ?>
@@ -473,7 +478,7 @@ $sql="SELECT * FROM patchadmins WHERE
 			}
 			
 if($task=="") {
-	$task="<em>Pas de résultats</em>";
+	$task="<em>Pas de r&eacute;sultats</em>";
 }
 echo utf8_encode($task);echo "</table>";
 ?>
@@ -519,7 +524,7 @@ $sql="SELECT * FROM pm_bookmarks WHERE
 			}
 			
 if($task=="") {
-	$task="<em>Pas de résultats</em>";
+	$task="<em>Pas de r&eacute;sultats</em>";
 }
 echo utf8_encode($task);echo "</table>";
 ?>
@@ -559,7 +564,7 @@ $sql="SELECT * FROM fonctions WHERE
 			}
 			
 if($task=="") {
-	$task="<em>Pas de résultats</em>";
+	$task="<em>Pas de r&eacute;sultats</em>";
 }
 echo utf8_encode($task);echo "</table>";
 ?>
@@ -637,7 +642,7 @@ OR `Category` LIKE '%".$q."%' ORDER BY LastName, FirstName";
 			}
 			
 if($task=="") {
-	$task="<em>Pas de résultats</em>";
+	$task="<em>Pas de r&eacute;sultats</em>";
 }
 echo utf8_encode($task);
 echo "</table>";
