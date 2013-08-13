@@ -177,8 +177,9 @@ function search() {
 	$cherche=trim($cherche);
 		//tri begin
 			if(!$_GET['ordre']) { //if type is passed in url
-			$ordre="id";
-		}else{
+			//$ordre="id";
+			$ordre="path";
+			}else{
 			$ordre=$_GET['ordre'];
 		}
 		//sens du tri
