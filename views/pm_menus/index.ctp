@@ -1,5 +1,23 @@
 <div class="pmMenus index">
 	<h2><?php __('Pm Menus');?></h2>
+	<!-- begin search form -->
+	<?php
+
+	echo $form->create("PmMenu",array('action' => 'index'));
+	?>
+	<table>
+		<tr>
+			<td>     
+			<?
+				echo $form->input("q", array('label' => 'Search for'));
+			?>
+</td>
+			<td>    <?
+    echo $form->end("Search"); 
+    ?></td>
+		</tr>
+	</table>
+<!-- end search form -->  
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>

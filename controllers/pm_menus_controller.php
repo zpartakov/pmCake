@@ -11,7 +11,22 @@ var $paginate = array(
 	);
 	function index() {
 		$this->PmMenu->recursive = 0;
+		if($this->data['PmMenu']['q']) {
+				//echo "yo"; exit;
+						$input = $this->data['PmMenu']['q']; 
+					# sanitize the query
+					App::import('Sanitize');
+					$q = Sanitize::escape($input);
+					//echo $q; exit;
+					$options = array(
+					"PmMenu.lib LIKE '%" .$q ."%'" 
+					." OR PmMenu.url LIKE '%" .$q ."%'"
+					
+					);
+				$this->set(array('pmMenus' => $this->paginate('PmMenu', $options))); 
+					}else{
 		$this->set('pmMenus', $this->paginate());
+					}
 	}
 
 	function view($id = null) {
