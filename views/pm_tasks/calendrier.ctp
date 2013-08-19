@@ -20,12 +20,14 @@ window.location.href = "repousser?identifiant="+id+"&ajout="+value;
  
 $mois_selectionne=$_GET['mois'];
 $annee_selectionne=$_GET['annee'];
+
 if(!$mois_selectionne) {
 	$mois_selectionne=date("m");
 }
 if(!$annee_selectionne) {
 	$annee_selectionne=date("Y");
 }
+
 $mois_aff=$mois_selectionne; 
  $t_calendar_months_full=array(1=>"Janvier","F&eacute;vrier","Mars","Avril","Mai","Juin","Juillet","Ao&ucirc;t","Septembre","Octobre","Novembre","D&eacute;cembre");
  $t_calendar_days_abreviate=array(1=>"Lu","Ma","Me","Je","Ve","Sa","Di");
@@ -147,7 +149,10 @@ echo "<td class=\"selected\"><a name=\"jour".$annee_selectionne.$mois_aff.$jour_
 		$mois_aff1="0".$mois_aff;
 	}
 //echo "<a name=\"" .$annee_selectionne.$mois_aff1.$jour_aff ."\" />";
-extrait_donnees($annee_selectionne,$mois_aff,$jour_aff);
+	
+	
+	extrait_donnees($annee_selectionne,$mois_aff,$jour_aff);
+//echo "<br>annee_selectionne - mois_aff - jour_aff: " .$annee_selectionne ."-".$mois_aff ."-".$jour_aff ."<br>";
 echo "</td>";
 }
 else{

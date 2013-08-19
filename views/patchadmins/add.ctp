@@ -2,30 +2,44 @@
 <?php echo $form->create('Patchadmin');?>
 	<fieldset>
  		<legend><?php __('Add Patchadmin');?></legend>
-	<?php
+		<?php
+		echo $form->input('id');
+		echo $form->input('version');
 		echo $form->input('server');
-		echo $form->input('type');
-		echo $form->input('db');
-		echo $form->input('sqlserver');
-		echo $form->input('contenu');
 		echo $form->input('url');
+		echo $form->input('urladmin');
 		echo $form->input('racine');
+		echo $form->input('meladmin');
+ 		?>
+ 	<h2><?php __('(S)FTP');?></h2>
+ 	<?
 		echo $form->input('login');
 		echo $form->input('mdp');
-		echo $form->input('loginmysql');
-		echo $form->input('passwdmysql');
-		echo $form->input('urladmin');
-		echo $form->input('loginadmin');
-		echo $form->input('passwdadmin');
-		echo $form->input('version');
-		echo $form->input('todos');
-		echo $form->input('rem');
 		echo $form->input('miseajour');
 		echo $form->input('scriptpatch');
 		echo $form->input('typetrans');
 		echo $form->input('priv');
-		echo $form->input('meladmin');
+ 	?>
+ 	<h2><?php __('MySQL');?></h2>
+ 	<?
+		echo $form->input('db');
+		echo $form->input('sqlserver');
+		echo $form->input('loginmysql');
+		echo $form->input('passwdmysql');
+ 	?>
+ 	<h2><?php __('Type');?></h2>
+ 	<?
+		echo $form->input('type');
+		echo $form->input('contenu');
+		echo $form->input('loginadmin');
+		echo $form->input('passwdadmin');
+ 	?>
+ 	<h2><?php __('Div');?></h2>
+ 	<?
+		echo $form->input('todos');
+		echo $form->input('rem');
 	?>
+	
 	</fieldset>
 <?php echo $form->end('Submit');?>
 </div>
