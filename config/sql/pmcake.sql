@@ -62,6 +62,26 @@ CREATE TABLE `__log` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `basesmysqls`
+--
+
+DROP TABLE IF EXISTS `basesmysqls`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `basesmysqls` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `db` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `user` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `server_id` int(10) NOT NULL,
+  `migration_id` int(12) DEFAULT NULL,
+  `datemod` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `user_id` int(12) DEFAULT NULL,
+  `statut_id` int(12) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=275 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `cms`
 --
 
@@ -199,6 +219,45 @@ DROP TABLE IF EXISTS `lesmigrations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `lesmigrations` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `serveursource` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `serveurcible` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `type_id` int(12) NOT NULL,
+  `urlsource` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `urlcible` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pathsrc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pathcible` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `datedebut` datetime DEFAULT NULL,
+  `datefin` datetime DEFAULT NULL,
+  `user_id` int(12) DEFAULT NULL,
+  `loginresp` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `emailscc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `loginscc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ticket` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `vhost` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `unix` text COLLATE utf8_unicode_ci,
+  `mysql` text COLLATE utf8_unicode_ci,
+  `limesurvey` text COLLATE utf8_unicode_ci,
+  `limesrc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `limecible` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cms` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `statut_id` int(12) DEFAULT NULL,
+  `temps_prevu` int(3) DEFAULT NULL,
+  `temps_reel` int(3) DEFAULT NULL,
+  `parent` int(12) DEFAULT NULL,
+  `difficulte` int(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `lesmigrations20130828`
+--
+
+DROP TABLE IF EXISTS `lesmigrations20130828`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `lesmigrations20130828` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `serveursource` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `serveurcible` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -661,7 +720,7 @@ CREATE TABLE `pm_tasks_revs` (
   `version_id` int(11) NOT NULL AUTO_INCREMENT,
   `version_created` datetime NOT NULL,
   PRIMARY KEY (`version_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -682,7 +741,7 @@ CREATE TABLE `pm_tasks_time` (
   `created` datetime DEFAULT NULL,
   `modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=20186 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=20189 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -987,4 +1046,4 @@ CREATE TABLE `zefiles` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-08-28  8:59:47
+-- Dump completed on 2013-08-28 10:05:35

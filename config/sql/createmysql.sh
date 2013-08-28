@@ -1,1 +1,1 @@
-mysqldump -d --add-drop-table akademiach4 > pmcake.sql
+mysqldump -d --add-drop-table cake_pm > pmcake.sql
