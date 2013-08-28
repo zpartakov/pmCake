@@ -1,4 +1,6 @@
-<?
+<?php
+App::import('Lib', 'functions'); //imports app/libs/functions
+
 $this->pageTitle="Migrations";
 ?>
 <div class="lesmigrations index">
@@ -115,7 +117,7 @@ $this->pageTitle="Migrations";
 						echo "<br>";
 						
 						/*may bug if server empty comment/uncomment following lines and correct the bug - todo: function checkExistServer */
-						serveur($lesmigration['Lesmigration']['serveursource']);
+						//serveur($lesmigration['Lesmigration']['serveursource']);
 						#echo $lesmigration['Lesmigration']['serveursource'];
 						?>
 						
@@ -146,7 +148,7 @@ $this->pageTitle="Migrations";
 	
 		
 			<?php 
-						$limage = affichestatut($lesmigration['Statut']['libelle']); //graphical view
+						//$limage = affichestatut($lesmigration['Statut']['libelle']); //graphical view
 						echo "<td style=\"background-color: " .$limage[1].";\">" .$html->image($limage[0], array("alt"=>$lesmigration['Statut']['libelle'], "title"=>$lesmigration['Statut']['libelle']));
 						#echo $lesmigration['Lesmigration']['statut_id']; 
 			?>
