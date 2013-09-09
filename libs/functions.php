@@ -3,6 +3,32 @@
  * all the external cakePHP functions for pmcake
  */
 ####### PROJECTS ##########
+function temps_moyen_booking($pid,$cherche) {
+$sql2="
+SELECT SUM(hours) AS hours, COUNT(id) AS tasks   
+FROM pm_tasks_time 
+WHERE pm_tasks_time.task 
+IN 
+	(
+		SELECT id FROM pm_tasks 
+		WHERE project=32 
+		AND pm_tasks.name LIKE 'idBooking%'
+	) ";
+	
+	
+//	echo $sql2;
+	#echo mysql_result($sql,$i,'hours');
+	$sql2=mysql_query($sql2);
+	$hours=mysql_result($sql2,0,'hours');
+	$sql3="	SELECT COUNT(id) AS tasks FROM pm_tasks WHERE project=32 AND pm_tasks.name LIKE '".$cherche."%'";
+	$sql3=mysql_query($sql3);
+	$tasks=mysql_result($sql3,0,'tasks');
+	
+	echo "<br>Total heures pour ce type de demande: " .$hours ." pour: #" .$tasks ." demandes";
+	echo "<br>Moyenne heures pour ce type de demande: " .intval($hours/$tasks) ." heures";
+	
+}
+
 function Total_heures($pid) {
 $sql2="
 SELECT SUM(hours) AS hours FROM pm_tasks_time WHERE pm_tasks_time.task IN (SELECT id FROM pm_tasks WHERE project=" .$pid .") ";

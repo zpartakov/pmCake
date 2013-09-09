@@ -131,6 +131,12 @@ $this->pageTitle = 'Détail projet: ' .$pmProject['PmProject']['name'];
 			<?
 			Total_heures($pmProject['PmProject']['id']);
 			?>
+			
+			<?php
+
+				temps_moyen_booking($pmProject['PmProject']['id']==32,'idBooking');
+			
+			?>
 			</dd>
 
 	</dl>
