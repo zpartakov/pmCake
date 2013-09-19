@@ -2,11 +2,16 @@
 App::import('Lib', 'functions'); //imports app/libs/functions
 #cake title of the page
 $this->pageTitle = 'Voir tâche: ' .$pmTask['PmTask']['name']; 
+//print_r($pmTask); exit;
+//print_r($pmTask[Tag]); exit;
 ?>
-
+	
+	
 	<div class="pmTasks view">
 	<h2><div class="imprimepas"><?php echo $this->pageTitle;?></div></h2>
 	<a href="#Fichiers" class="imprimepas">Fichiers</a>
+	 | 
+	<a href="#tags">tags</a>
 
 	 <div style="background-color:#FFFFB5 ;margin-top: 5px; width: 50%" class="imprimepas">
 	 <?
@@ -241,4 +246,23 @@ echo "</table>";
 ?>
 
 </div>
-
+<h2><a name="tags"></a>Tags</h2>
+	<?php
+	$tags=$pmTask[Tag];
+	
+	$i = 0;
+	foreach ($tags as $tag):
+		$class = null;
+		if ($i++ % 2 == 0)
+		{
+			$class = ' class="row"';
+		}
+		else
+		{
+			$class = ' class="altrow"';
+		}
+	?>
+	<span<?php echo $class;?>>
+			<?php echo $this->Html->link($tag['lib'], array('action' => '../tags/view', $tag['PmTasksTag']['id']), array('class' => 'to_detail', 'escape' => false)); ?>
+	</span>&nbsp;|&nbsp;
+<?php endforeach; ?>
