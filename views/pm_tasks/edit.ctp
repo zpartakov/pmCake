@@ -51,6 +51,9 @@ $pid=$this->data['PmProject']['id'];
 					<?php 
 			dateSQLlong2fr( $this->data['PmTask']['mod_date']); 
 		?>
+			 | 
+	<a href="#tags"><?php  __('Tags');?></a>
+		
 <div class="pmTasks form" style="margin-top: 10px;">
 
 	<?php echo $this->AlaxosForm->create('PmTask', array("name"=>"etDForm"));?>
@@ -367,3 +370,37 @@ while($i<mysql_num_rows($sql)){
 echo "</table>";
 ?>
 </div>
+<h2><a name="tags"></a>Tags</h2>
+	<?php
+	
+	//print_r($pmTags); exit;
+	//echo $pmTags[1];
+		//$tags=$this->data[Tag];
+	//	$tags=$pmTags;
+		$i = 0;
+	foreach ($tags as $tag):
+		$class = null;
+		if ($i++ % 2 == 0)
+		{
+			$class = ' class="row"';
+		}
+		else
+		{
+			$class = ' class="altrow"';
+		}
+	?>
+	<span<?php echo $class;?>>
+			<?php echo $this->Html->link($tag['lib'], array('action' => '../tags/view', $tag['PmTasksTag']['id']), array('class' => 'to_detail', 'escape' => false)); ?>
+	</span>&nbsp;|&nbsp;
+<?php endforeach; ?>
+	<?php echo $this->AlaxosForm->create('PmTask');?>
+	<?php echo $this->AlaxosForm->input('id'); ?>
+
+<?php 
+
+#echo $this->AlaxosForm->input('Tag', array('label' => false, 'multiple' => 'checkbox')); 
+#echo $this->AlaxosForm->input($tags, array('label' => false, 'multiple' => 'checkbox'));
+echo $this->AlaxosForm->input('PmTag', array('label' => false, 'multiple' => 'checkbox'));
+
+?>
+<?php echo $this->AlaxosForm->end(___('update', true)); ?>

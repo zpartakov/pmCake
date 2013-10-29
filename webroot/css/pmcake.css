@@ -173,6 +173,11 @@ table .altrow td {
 /* background: red;*/
 }
 
+.altrow  {
+background-color: #E5E5E5;
+padding: 2px;
+padding-left: 4px;
+		}
 
 
 td.actions {

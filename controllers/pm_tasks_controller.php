@@ -3,7 +3,7 @@ class PmTasksController extends AppController {
 		var $name = 'PmTasks';
 	var $helpers = array('Form', 'Alaxos.AlaxosForm', 'Alaxos.AlaxosHtml');
 	var $components = array('Alaxos.AlaxosFilter');
-	
+		
 	function taches() {
 		if(!$_GET['pid']) {
 			echo "Missing project id!"; exit;
@@ -110,10 +110,12 @@ class PmTasksController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->PmTask->read(null, $id);
 		}
-		/*$pmProjects = $this->PmTask->PmProject->find('list');
-		$pmMembers = $this->PmTask->PmMember->find('list');
-		$pmTasksTimes = $this->PmTask->PmTasksTime->find('list');
-		$this->set(compact('pmProjects', 'pmMembers', 'pmTasksTimes'));*/
+				
+		
+		$pmTags = $this->PmTask->Tag->find('list');
+		$this->set(compact('pmTags'));
+		
+		
 	}
 	
 	/*

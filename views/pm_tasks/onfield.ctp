@@ -1,7 +1,7 @@
 	<?php
 	App::import('Lib', 'functions'); //imports app/libs/functions
 //Configure::write('debug', 2);
-$this->pageTitle = 'GTD ' .dateen2fr(date("D, d-M-Y")); 
+$this->pageTitle = 'GTD ' .dateen2fr(date("D d-M-Y, H\hi")); 
 $datenow = date("Y-m-d");
 
 /* currents tasks */

@@ -28,6 +28,7 @@ App::import('Lib', 'functions'); //imports app/libs/functions
 //Configure::write('debug', 2);
 #cake title of the page
 $this->pageTitle = 'Détail projet: ' .$pmProject['PmProject']['name']; 
+$finished=$_GET['finished'];
 ?>
 	<a name="home"></a>
 	<div class="pmProjects view">
@@ -37,7 +38,7 @@ $this->pageTitle = 'Détail projet: ' .$pmProject['PmProject']['name'];
 <a href="#delegated">Tâches déléguées</a>
  | <a href="#suspended">Suspendues</a> 
  | <a href="#references">Références</a> 
- | <a href="javascript:finished();">Terminé</a>
+ | <a href="<?php echo $_SERVER["REQUEST_URI"];?>?finished=1#finished">Terminé</a>
   | <a href="#notes">Notes</a> <? e($html->link($html->image('toolbar/editor.png', array('alt' => 'Modifier')), array('action'=>'edit', $pmProject['PmProject']['id']), array('alt' => 'Modifier', 'title' => 'Modifier', 'escape' => false)));?>
 </div>
 <div class="zactions">
@@ -179,11 +180,15 @@ project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
  * 
  */
 /* ################### CLOSED TASKS ########################
+ * 
+ * defaut not show for improving performances
  * */
-echo "<div id=\"closedtasks\" style=\"display: none;\">";
-echo "<a href=\"javascript:finished();\">Cacher tâches terminées</a>";
+
+if($finished=="1") {
 $plib="Tâches terminées"; $pid=$pmProject['PmProject']['id']; $order="priority DESC,status,due_date"; $status="1";  $operator="="; $anchor="finished"; 
 project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
+}
+
 ?>
 </div>
 	<!-- ##################### NOTES ##################### -->

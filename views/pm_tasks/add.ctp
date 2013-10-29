@@ -120,7 +120,12 @@ if(preg_match("/pm_projects\/view/",$_SERVER["HTTP_REFERER"])) {
 			});
 			</script></div>
 		";
-	?>
+		
+		
+		
+		?>
+	
+	
 	</td>
 </tr>
 <tr>
