@@ -1,5 +1,4 @@
 <?php
-Configure::write('debug', 2);
 $task_id=$_GET['task_id'];
 $this->pageTitle="Nouveau Document pour la tâche #" .$task_id;
 $_SESSION["task_id"]=$task_id;	//both define language
