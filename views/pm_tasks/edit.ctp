@@ -127,29 +127,20 @@ echo "&nbsp;";
 		<td>
 			<?php ___('Priorité') ?>
 		<br/>
-<!-- 			<select name="data[PmTask][priority]" id="PmTaskPriority" /> -->
-<?		
-//priorite($this->data['PmTask']['priority']);
-
-	prioriteViewSelCol($this->data['PmTask']['priority'], $this->data['PmTask']['id']);
-
-?>		
-<!--</select>	 -->
+			<?		
+				prioriteViewSelCol($this->data['PmTask']['priority'], $this->data['PmTask']['id']);
+			?>		
 		</td>
 	</tr>
-	
 	<tr>
 		<td colspan="2">
-			<?php ___('Libellé');
-
-//			echo $this->data['PmTask']['id'];
-			?>
+			<?php ___('Libellé');?>
 
 			<?php 
 			$changer="'name','libelletache','".$this->data['PmTask']['id']."'";
 			//echo $changer;
 			echo $this->AlaxosForm->input('name', array('id'=>'libelletache', 'label' => false, "style"=>"width: 800px;", "onChange" => "libelle_change_status($changer)")); ?>
-</td>
+		</td>
 	</tr>
 	<tr>
 		<td>
@@ -158,22 +149,13 @@ echo "&nbsp;";
 			echo $this->AlaxosForm->input('description', array('label' => false,  "cols"=>"80", "rows"=>"25")); ?>
 		</td>
 		<?
-			$changer="'description','ladescription','".$this->data['PmTask']['id']."'";
-		
+		$changer="'description','ladescription','".$this->data['PmTask']['id']."'";
 		echo
 		"<td class=\"imprimepas\" style=\"background-color: #FFFED8; padding: 0px;\"><div style=\"font-size: smaller\">";
 		$description=$this->AlaxosForm->value('description', array('id'=>'ladescription', "onChange" => "libelle_change_status($changer)"));
-		//$description=extrait_titres($description);
 		$chaine=extrait_titres($description);
-		//$chaine=$text;
-//		global $chaine;
 		$chaine=urlise($chaine);
-		
-		//global $text;
 		$chaine=link_task($chaine);
-		
-		
-		
 		echo $chaine;
 		echo "</div></td>";
 		?>
@@ -181,49 +163,47 @@ echo "&nbsp;";
 	<tr>
 		<td>
 			<?php ___('Date de début') ?>
-<br/>
+			<br/>
 			<?php echo $this->AlaxosForm->input('start_date', array('label' => false)); 
 			//display a nice calendar
-		$sd=$this->Form->value('start_date');
-echo "<div class=\"calendrierjs\"><script type=\"text/javascript\">
-Calendar.setup({ inputField:\"sel1\", button:\"trigger_a\" });
-</script>
-<script language=\"JavaScript\">
-	new tcal ({
-		// form name
-		'formname': 'etDForm',
-		// input name
-		'controlname': 'data[PmTask][start_date]',
-		'selected': '" .$sd ."',
-		'today' : '" .$sd ."'
-	});
-	</script></div>
-";	
+			$sd=$this->Form->value('start_date');
+			echo "<div class=\"calendrierjs\"><script type=\"text/javascript\">
+			Calendar.setup({ inputField:\"sel1\", button:\"trigger_a\" });
+			</script>
+			<script language=\"JavaScript\">
+				new tcal ({
+					// form name
+					'formname': 'etDForm',
+					// input name
+					'controlname': 'data[PmTask][start_date]',
+					'selected': '" .$sd ."',
+					'today' : '" .$sd ."'
+				});
+				</script></div>
+			";	
 			?>
-
 		</td>
-
 		<td>
 			<?php ___('Délai') ?>
-<br/>
+			<br/>
 			<?php 
 			echo $this->AlaxosForm->input('due_date', array('label' => false)); 
 			//display a nice calendar
-		$sd=$this->Form->value('due_date');
-echo "<div class=\"calendrierjs\"><script type=\"text/javascript\">
-Calendar.setup({ inputField:\"sel1\", button:\"trigger_a\" });
-</script>
-<script language=\"JavaScript\">
-	new tcal ({
-		// form name
-		'formname': 'etDForm',
-		// input name
-		'controlname': 'data[PmTask][due_date]',
-		'selected': '" .$sd ."',
-		'today' : '" .$sd ."'
-	});
-	</script></div>
-";
+			$sd=$this->Form->value('due_date');
+			echo "<div class=\"calendrierjs\"><script type=\"text/javascript\">
+			Calendar.setup({ inputField:\"sel1\", button:\"trigger_a\" });
+			</script>
+			<script language=\"JavaScript\">
+				new tcal ({
+					// form name
+					'formname': 'etDForm',
+					// input name
+					'controlname': 'data[PmTask][due_date]',
+					'selected': '" .$sd ."',
+					'today' : '" .$sd ."'
+				});
+				</script></div>
+			";
 			?>
 		</td>
 	</tr>
@@ -235,27 +215,13 @@ Calendar.setup({ inputField:\"sel1\", button:\"trigger_a\" });
 						$changer="'comments','commentstache','".$this->data['PmTask']['id']."'";
 			
 			echo $this->AlaxosForm->input('comments', array('label' => false,  "cols"=>"80", "rows"=>"15", 'id'=>'commentstache', "onChange" => "libelle_change_status($changer)")); ?>
-			
-			<?php 
-$qrcode='http://'.$_SERVER["REMOTE_ADDR"].$_SERVER["REQUEST_URI"];
-/*
- * ne marche pas bien: le formatage est moche... à revoir!
- */
-/*$qrcode.="\n\n";
-$qrcode.="Project: " .$this->data['PmProject']['name'];
-$qrcode.="\n\n";
-$qrcode.="Libellé " .$this->data['PmTask']['name'];
-$qrcode.="\n\n";
-$qrcode.="Description: " .$this->data['PmTask']['description'];
-$qrcode.="\n\n";
-$qrcode.="Délai: " .$this->data['PmTask']['due_date'];
-echo $qrcode;
-echo "<br><br>length: " .strlen($qrcode);
-*/
-QRcode::png($qrcode, '/var/www/qrcode/pm.jpg'); // creates file
- ?>
-  <img style="position: relative; left: 700px; top: -250px;" src="/qrcode/pm.jpg" />
-			
+			<!-- 			
+						<?php 
+			$qrcode='http://'.$_SERVER["REMOTE_ADDR"].$_SERVER["REQUEST_URI"];
+			QRcode::png($qrcode, '/var/www/qrcode/pm.jpg'); // creates file
+			 ?>
+			  <img style="position: relative; left: 700px; top: -250px;" src="/qrcode/pm.jpg" />
+			 -->			
 		</td>
 	</tr>
 	<tr>
@@ -275,34 +241,32 @@ QRcode::png($qrcode, '/var/www/qrcode/pm.jpg'); // creates file
  		<td></td>
  		<td>
 			<?php echo $this->AlaxosForm->end(___('Modifier', true)); ?> 		</td>
- 	</tr>
- 	
+ 	</tr> 	
  	<?php
+ 	/*
+ 	 * linked tasks
+ 	 */
  	parent_task($this->data['PmTask']['id']);
  	children_tasks($this->data['PmTask']['id']);
- 	?>
- 	
+ 	?> 	
 	</table>
  	<span class="imprimepas"><?php
 	echo $this->element('toolbar/toolbar', array('plugin' => 'alaxos', 'list' => true, 'back_to_view_id' => $this->data['PmTask']['id']));
 	?></span>
 </div>
-	<div class="add_time">
-<form name="ajoutheure" action="/intranet/pmcake/pm_tasks_times/ajoutheure">
-<input type="hidden" name="projectid" value="<? echo $this->data['PmProject']['id'];?>">
-<input type="hidden" name="idtache" value="<? echo $this->data['PmTask']['id'];?>">
-<select name="addtime" onChange="Javascript:document.ajoutheure.submit()"><option value==""> *** Temps travail *** </option>
-<?
-ajoutheure();
-?>
-</select>
-		<? 
-		echo $html->image("icons/chronometre.png", array('alt' => 'Ajout temps travail', 'style'=>'width: 30px'));
-		?>
-</form>
-
-
-
+<div class="add_time">
+	<form name="ajoutheure" action="/intranet/pmcake/pm_tasks_times/ajoutheure">
+	<input type="hidden" name="projectid" value="<? echo $this->data['PmProject']['id'];?>">
+	<input type="hidden" name="idtache" value="<? echo $this->data['PmTask']['id'];?>">
+	<select name="addtime" onChange="Javascript:document.ajoutheure.submit()"><option value==""> *** Temps travail *** </option>
+	<?
+	ajoutheure();
+	?>
+	</select>
+	<? 
+	echo $html->image("icons/chronometre.png", array('alt' => 'Ajout temps travail', 'style'=>'width: 30px'));
+	?>
+	</form>
 </div>
 <!-- ###################### FILES #################### -->
 <div class="fichiers">
@@ -316,9 +280,7 @@ $sql=mysql_query($sql);
 if(!$sql) {
 	echo "SQL error: " .mysql_error(); exit;
 }
-
 $i=0;
-
 echo "<table>";
 while($i<mysql_num_rows($sql)){
 	echo "<tr><td>#" .mysql_result($sql,$i,'id') ."</td><td><a href=\"" .CHEMIN ."files/" .mysql_result($sql,$i,'task_id') ."/" .mysql_result($sql,$i,'name') ."\">".mysql_result($sql,$i,'name') ."</a></td><td>";
@@ -363,11 +325,6 @@ echo "</table>";
 </div>
 <h2><a name="tags"></a>Tags</h2>
 	<?php
-	
-	//print_r($pmTags); exit;
-	//echo $pmTags[1];
-		//$tags=$this->data[Tag];
-	//	$tags=$pmTags;
 		$i = 0;
 	foreach ($tags as $tag):
 		$class = null;
@@ -384,14 +341,9 @@ echo "</table>";
 			<?php echo $this->Html->link($tag['lib'], array('action' => '../tags/view', $tag['PmTasksTag']['id']), array('class' => 'to_detail', 'escape' => false)); ?>
 	</span>&nbsp;|&nbsp;
 <?php endforeach; ?>
-	<?php echo $this->AlaxosForm->create('PmTask');?>
-	<?php echo $this->AlaxosForm->input('id'); ?>
-
+<?php echo $this->AlaxosForm->create('PmTask');?>
+<?php echo $this->AlaxosForm->input('id'); ?>
 <?php 
-
-#echo $this->AlaxosForm->input('Tag', array('label' => false, 'multiple' => 'checkbox')); 
-#echo $this->AlaxosForm->input($tags, array('label' => false, 'multiple' => 'checkbox'));
-echo $this->AlaxosForm->input('PmTag', array('label' => false, 'multiple' => 'checkbox'));
-
+	echo $this->AlaxosForm->input('PmTag', array('label' => false, 'multiple' => 'checkbox'));
 ?>
 <?php echo $this->AlaxosForm->end(___('update', true)); ?>
