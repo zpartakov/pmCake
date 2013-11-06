@@ -407,7 +407,7 @@ function prioriteView($i) {
 function prioriteViewSelCol($priorite,$idtask) {
 	$prioritelib=array("Vide","Très faible","Faible","Moyenne","Elevée","Très élevée");
 	$prioritecolor=array(  "white", "#00FF00", "#90EE90" ,"#FFA500" ,"#FFC0CB","#FF6C7F");
-	echo "<div style=\"padding: 3px; background-color:"  .$prioritecolor[$priorite] ."\">";
+	echo "<div id=\"priorite" .$idtask ."\" style=\"padding: 3px; background-color:"  .$prioritecolor[$priorite] ."\">";
 	echo "<select name=\"priorite\" ";
 	//echo "size=\"6\"";
 	echo " onchange=\"change_priorite('".$idtask ."',this.value)\">";

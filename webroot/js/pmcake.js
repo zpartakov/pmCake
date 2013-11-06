@@ -28,6 +28,8 @@ function task_ok(id,value) {
 
 /* one click change priority */
 function change_priorite(id,priorite) {
+	 var prioritecolor=new Array("white", "#00FF00", "#90EE90" ,"#FFA500" ,"#FFC0CB","#FF6C7F");
+
 	$.ajax({
 	   type: "GET",
 	   url: "/intranet/pmcake/pm_tasks/changepriorite?identifiant="+id+"&priorite="+priorite,
@@ -35,9 +37,10 @@ function change_priorite(id,priorite) {
 		 alert( "Error !: " + msg );
 	   },
 	   success:function(data){
-		   lid="#tr"+id;
+		   lid="#priorite"+id;
 		   /*cache la tache déplacée*/
-		   /*$(lid).fadeOut();*/
+		   $(lid).css("background-color",prioritecolor[priorite]);
+		   
 		}
 	});
 }
