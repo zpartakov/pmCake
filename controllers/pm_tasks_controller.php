@@ -177,6 +177,16 @@ $last_id=mysql_result($last_id, 0,'id');
 	/* a function to change the priority */
 	function changepriorite() {
 	}
+		/* a function to change the init date */
+	
+	function changedatedebut() {
+	}
+	
+		/* a function to change the due date */
+	
+	function changedatefin() {
+	}
+	
 	/* a function to get the task libelle changed */
 	function changelibelle() {
 	}

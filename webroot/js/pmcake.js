@@ -42,6 +42,36 @@ function change_priorite(id,priorite) {
 		}
 	});
 }
+
+/*
+ * fonction changer date de debut
+ */
+function change_date_debut(idtask,startdate){
+	$.ajax({
+		   type: "GET",
+		   url: "/intranet/pmcake/pm_tasks/changedatedebut?identifiant="+idtask+"&startdate="+startdate,
+		   error:function(msg){
+			 alert( "Error !: " + msg );
+		   },
+		   success:function(data){
+			}
+		});
+}
+
+/*
+ * fonction changer date de fin
+ */
+function change_date_fin(idtask,enddate){
+	$.ajax({
+		   type: "GET",
+		   url: "/intranet/pmcake/pm_tasks/changedatefin?identifiant="+idtask+"&enddate="+enddate,
+		   error:function(msg){
+			 alert( "Error !: " + msg );
+		   },
+		   success:function(data){
+			}
+		});
+}
 /* ajout_heure: ajax add time for a given task  
  * 
  * */

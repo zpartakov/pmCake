@@ -162,9 +162,12 @@ echo "&nbsp;";
 	</tr>
 	<tr>
 		<td>
-			<?php ___('Date de début') ?>
+			<?php ___('Date de début') ?><em> (click pour enregistrer)</em>
 			<br/>
-			<?php echo $this->AlaxosForm->input('start_date', array('label' => false)); 
+			<?php 
+			$idtask=$this->data['PmTask']['id'];
+			$startdate=$this->Form->value('start_date');
+			echo $this->AlaxosForm->input("start_date", array("label" => false,"onClick" => "change_date_debut($idtask,'$startdate')")); 
 			//display a nice calendar
 			$sd=$this->Form->value('start_date');
 			echo "<div class=\"calendrierjs\"><script type=\"text/javascript\">
@@ -184,10 +187,11 @@ echo "&nbsp;";
 			?>
 		</td>
 		<td>
-			<?php ___('Délai') ?>
+			<?php ___('Délai') ?><em> (click pour enregistrer)</em>
 			<br/>
 			<?php 
-			echo $this->AlaxosForm->input('due_date', array('label' => false)); 
+			$enddate=$this->Form->value('due_date');
+			echo $this->AlaxosForm->input('due_date', array('label' => false,"onClick" => "change_date_fin($idtask,'$enddate')")); 
 			//display a nice calendar
 			$sd=$this->Form->value('due_date');
 			echo "<div class=\"calendrierjs\"><script type=\"text/javascript\">
