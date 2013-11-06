@@ -38,16 +38,12 @@ function change_priorite(id,priorite) {
 	   },
 	   success:function(data){
 		   lid="#priorite"+id;
-		   /*cache la tache déplacée*/
 		   $(lid).css("background-color",prioritecolor[priorite]);
-		   
 		}
 	});
 }
 /* ajout_heure: ajax add time for a given task  
  * 
- * 		$changer="'remarqueheuretask','".$projectid ."','".$idtache ."'";
-
  * */
 function ajout_heure(champ,pid,taskid) {
 	task=document.getElementById(champ).value;
