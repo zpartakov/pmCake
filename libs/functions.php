@@ -103,6 +103,7 @@ if(strlen(	mysql_result($sql,$i,'description'))>0) {
 	echo '		</td>
 		<td>';
 	prioriteView( mysql_result($sql,$i,'priority'));
+
 	echo '&nbsp;</td>
 				<td>';
 	echo mysql_result($sql,$i,'start_date');
@@ -242,6 +243,7 @@ function statut_sel($statut) {
 			}
 	}
 }
+
 
 /*function to get a scrolling list of projets and highlight the current project if exists*/
 function statut_radio($id,$statut) {
@@ -399,6 +401,29 @@ function prioriteView($i) {
 		echo "<span style=\"background-color: "  .$prioritecolor[$i] ."\">" .$prioritelib[$i] ."</span>";
 }
 	
+/*
+ * change priority of a given task
+ */
+function prioriteViewSelCol($priorite,$idtask) {
+	$prioritelib=array("Vide","Très faible","Faible","Moyenne","Elevée","Très élevée");
+	$prioritecolor=array(  "white", "#00FF00", "#90EE90" ,"#FFA500" ,"#FFC0CB","#FF6C7F");
+	echo "<div style=\"padding: 3px; background-color:"  .$prioritecolor[$priorite] ."\">";
+	echo "<select name=\"priorite\" ";
+	//echo "size=\"6\"";
+	echo " onchange=\"change_priorite('".$idtask ."',this.value)\">";
+	for($i=0;$i<6;$i++) {	
+		echo "<option value=\"" .$i ."\"";
+
+			echo " style=\"background-color: "  .$prioritecolor[$i] ."\"";
+			if($i==$priorite) {
+			echo " selected";
+			}		echo ">";
+		
+		echo $prioritelib[$i] ."</option>";
+	}
+	echo "</select></div>";
+}
+
 /*function to print the name of a given task*/
 function task_nom_print($pid) {
 $sql="SELECT name FROM pm_tasks WHERE id=".$pid; 
@@ -572,7 +597,8 @@ echo '<small><a onclick="montrecache2();"><img src="/intranet/pmcake/img/icons/o
 	echo '<a href="/intranet/pmcake/pm_projects/view/'.mysql_result($sql,$i,'proj.id').'">'.mysql_result($sql,$i,'proj.name').'</a>';
 	echo "</td>";
 	echo "<td>";
-	prioriteView(mysql_result($sql,$i,'priority'));
+	//prioriteView(mysql_result($sql,$i,'priority'));
+	prioriteViewSelCol(mysql_result($sql,$i,'priority'), mysql_result($sql,$i,'id'));
 	echo "</td>";
 	echo "<td>";
 	statut(mysql_result($sql,$i,'status'));

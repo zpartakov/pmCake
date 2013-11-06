@@ -26,6 +26,21 @@ function task_ok(id,value) {
 	});
 }
 
+/* one click change priority */
+function change_priorite(id,priorite) {
+	$.ajax({
+	   type: "GET",
+	   url: "/intranet/pmcake/pm_tasks/changepriorite?identifiant="+id+"&priorite="+priorite,
+	   error:function(msg){
+		 alert( "Error !: " + msg );
+	   },
+	   success:function(data){
+		   lid="#tr"+id;
+		   /*cache la tache déplacée*/
+		   /*$(lid).fadeOut();*/
+		}
+	});
+}
 /* ajout_heure: ajax add time for a given task  
  * 
  * 		$changer="'remarqueheuretask','".$projectid ."','".$idtache ."'";

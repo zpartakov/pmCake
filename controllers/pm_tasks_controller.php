@@ -174,7 +174,9 @@ $last_id=mysql_result($last_id, 0,'id');
 	/* a function to get the task status = done */
 	function ok() {
 	}
-	
+	/* a function to change the priority */
+	function changepriorite() {
+	}
 	/* a function to get the task libelle changed */
 	function changelibelle() {
 	}

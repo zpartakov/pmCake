@@ -66,6 +66,7 @@ $pid=$this->data['PmProject']['id'];
  	<?php echo "<a href=\"#Remarques\">Remarques</a> | <a href=\"#Fichiers\">Fichiers</a>"; ?>
  	
 	 <div class="imprimepas" style="background-color:#FFFFB5 ;margin-top: 5px; width: 80%">
+	 Statut: 
 	 <?
 #	 echo $this->data['PmTask']['id'] ."-" .$this->data['PmTask']['status']; exit;
 	 statut_radio($this->data['PmTask']['id'],$this->data['PmTask']['status']);
@@ -126,24 +127,14 @@ echo "&nbsp;";
 		<td>
 			<?php ___('Priorité') ?>
 		<br/>
-			<select name="data[PmTask][priority]" id="PmTaskPriority" />
+<!-- 			<select name="data[PmTask][priority]" id="PmTaskPriority" /> -->
 <?		
-priorite($this->data['PmTask']['priority']);
+//priorite($this->data['PmTask']['priority']);
+
+	prioriteViewSelCol($this->data['PmTask']['priority'], $this->data['PmTask']['id']);
+
 ?>		
-</select>	
-		</td>
-		<td>
-			<?php ___('Statut') ?>
-<br/>
-			<?php #echo $this->AlaxosForm->input('status', array('label' => false));
-					echo "<select name=\"status\" id=\"status\" />";
-		statut_sel($this->data['PmTask']['status']);
-		echo "</select>";
-		 
-		 echo $this->Form->input('owner', array("type"=>"hidden", "value"=>$this->data['PmTask']['owner']));
-		echo $this->Form->input('assigned_to', array("type"=>"hidden", "value"=>$this->data['PmTask']['assigned_to']));?>
-		
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total heures: <?php total_hours_task($this->data['PmTask']['id']);?>
+<!--</select>	 -->
 		</td>
 	</tr>
 	
