@@ -131,6 +131,13 @@ echo "&nbsp;";
 				prioriteViewSelCol($this->data['PmTask']['priority'], $this->data['PmTask']['id']);
 			?>		
 		</td>
+		
+			<td><?php __('Heures'); ?>: 
+		<!-- ###################### HOURS #################### -->
+		<?php
+			total_hours_task($this->data['PmTask']['id']);		
+		?>
+		</td>
 	</tr>
 	<tr>
 		<td colspan="2">
