@@ -134,9 +134,15 @@ $finished=$_GET['finished'];
 			?>
 			
 			<?php
-
+if($pmProject['PmProject']['id']==32){
 				temps_moyen_booking($pmProject['PmProject']['id']==32,'idBooking');
-			
+} elseif($pmProject['PmProject']['id']==36) {
+				temps_moyen_lime($pmProject['PmProject']['id']==36,'%');
+	
+} else {
+				temps_moyen($pmProject['PmProject']['id'],'%');
+	
+}
 			?>
 			</dd>
 
