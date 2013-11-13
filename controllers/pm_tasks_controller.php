@@ -1,6 +1,6 @@
 <?php
 class PmTasksController extends AppController {
-		var $name = 'PmTasks';
+	var $name = 'PmTasks';
 	var $helpers = array('Form', 'Alaxos.AlaxosForm', 'Alaxos.AlaxosHtml');
 	var $components = array('Alaxos.AlaxosFilter');
 		

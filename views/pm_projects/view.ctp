@@ -54,7 +54,7 @@ $finished=$_GET['finished'];
 		<td>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Qui?'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php clients( $pmProject['PmProject']['organization']); ?>
+			<?php clients( $pmProject['PmProject']['pm_organization_id']); ?>
 			&nbsp;
 		</dd>
 <!--		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Owner'); ?></dt>

@@ -94,6 +94,10 @@ function project_tasks_show($plib,$pid,$order,$statut,$operator,$anchor) {
 	
 	$sql="SELECT * FROM pm_tasks WHERE project=".$pid;
 
+	/*tâche 	statut 	priorité 	début 	délai 	milestone 	heures 	ok 	Actions*/
+	$sql="SELECT `id`, `priority`, `status`, `name`, `start_date`,`due_date`,`milestone` FROM `pm_tasks` WHERE project=".$pid;
+	
+	
 	if($_GET['statut']) {$statut = $_GET['statut'];}
 		$statut = " AND status" .$operator .$statut;
 
@@ -139,9 +143,10 @@ while($i<mysql_num_rows($sql)){
 	#echo '<a href="/intranet/pmcake/pm_tasks/view/' .mysql_result($sql,$i,'id') .'">' .mysql_result($sql,$i,'name') .'</a>';
 	
 		echo '<a href="' .CHEMIN .'pm_tasks/edit/'.mysql_result($sql,$i,'id').'" class="tooltip">'.mysql_result($sql,$i,'name');
+/*
 if(strlen(	mysql_result($sql,$i,'description'))>0) {
 	echo '<em><span></span>'.nl2br(mysql_result($sql,$i,'description')).'</em>';
-}
+}*/
 	echo '</a>';
 	
 	
@@ -1016,7 +1021,7 @@ function clients($id) {
 
 /* list of projets for a given client */
 function client_projets($id) {
-	$sql="SELECT id, name FROM pm_projects  WHERE organization=".$id;
+	$sql="SELECT id, name FROM pm_projects  WHERE pm_organization_id=".$id;
 	$sql=mysql_query($sql);
 	if(!$sql) { echo "SQL error: " .mysql_error(); }
 	
@@ -1035,7 +1040,7 @@ function client_tasks($id) {
 	$sql="
 	SELECT * FROM pm_tasks AS tas, pm_projects as proj 
 	WHERE tas.project=proj.id
-	AND proj.organization=".$id ." 
+	AND proj.pm_organization_id=".$id ." 
 	ORDER BY tas.due_date ASC
 	";
 	$sql=mysql_query($sql);

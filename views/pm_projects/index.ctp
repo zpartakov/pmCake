@@ -37,8 +37,8 @@ $this->pageTitle = 'Liste des projets';
 	<tr<?php echo $class;?>>
 		<td>
 		<?php 
-		clients($pmProject['PmProject']['organization']);
-		#echo $pmProject['PmProject']['organization']; ?>&nbsp;</td>
+		clients($pmProject['PmProject']['pm_organization_id']);
+		#echo $pmProject['PmProject']['pm_organization_id']; ?>&nbsp;</td>
 		<!--<td><?php membres($pmProject['PmProject']['owner']); ?>&nbsp;</td>-->
 		<td><?php prioriteView($pmProject['PmProject']['priority']); ?></td>
 		<td><?php 
