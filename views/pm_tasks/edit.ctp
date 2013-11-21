@@ -89,12 +89,14 @@ $datewebcal=explode("-",$this->Form->value('start_date'));
 $webcal="edit_entry.php?year=".$datewebcal[0] ."&month=" .$datewebcal[1] ."&day=".$datewebcal[2] ."&name=" .$this->Form->value('name') ."&id=".$this->data['PmTask']['id'];
 
 
-	?> 		<a href="/webcalendar/<?php echo $webcal;?>" target="_blank"><? 
+	?> 		
+	<!-- 
+	<a href="/webcalendar/<?php echo $webcal;?>" target="_blank"><? 
 		echo $html->image("calendrier.jpg", array('alt' => 'WebCalendar', 'title' => 'WebCalendar', 'style'=>'width: 28px'));
 		//, array('url' => 'http://www.bloglines.com/', 'alt' => 'Flux RSS', 'title' => 'Flux RSS', 'style'=>'width: 23px'));
 		?>
 	</a>
-
+	 -->
 </div>	
 
  	
@@ -177,7 +179,8 @@ echo "&nbsp;";
 			echo $this->AlaxosForm->input("start_date", array("label" => false,"onClick" => "change_date_debut($idtask,'$startdate')")); 
 			//display a nice calendar
 			$sd=$this->Form->value('start_date');
-			echo "<div class=\"calendrierjs\"><script type=\"text/javascript\">
+			echo "<div class=\"calendrierjs\">
+			<script type=\"text/javascript\">
 			Calendar.setup({ inputField:\"sel1\", button:\"trigger_a\" });
 			</script>
 			<script language=\"JavaScript\">

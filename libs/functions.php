@@ -464,6 +464,7 @@ function prioriteViewSelCol($priorite,$idtask) {
 	echo "<select name=\"priorite\" ";
 	//echo "size=\"6\"";
 	echo " onchange=\"change_priorite('".$idtask ."',this.value)\">";
+	echo "<option value=\"\">*** priorité *** </option>";
 	for($i=0;$i<6;$i++) {	
 		echo "<option value=\"" .$i ."\"";
 

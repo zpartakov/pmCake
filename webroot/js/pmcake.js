@@ -29,7 +29,8 @@ function task_ok(id,value) {
 /* one click change priority */
 function change_priorite(id,priorite) {
 	 var prioritecolor=new Array("white", "#00FF00", "#90EE90" ,"#FFA500" ,"#FFC0CB","#FF6C7F");
-
+/* alert("id: "+id + " priorite: "+priorite); */
+	 if(priorite) {
 	$.ajax({
 	   type: "GET",
 	   url: "/radeff/intranet/pmcake/pm_tasks/changepriorite?identifiant="+id+"&priorite="+priorite,
@@ -41,6 +42,7 @@ function change_priorite(id,priorite) {
 		   $(lid).css("background-color",prioritecolor[priorite]);
 		}
 	});
+}
 }
 
 /*
