@@ -123,7 +123,7 @@ function libelle_change_status(champ,libelle,id) {
 
 /* change task status */
 function task_change_status(id,status) {
-	alert(id,status);
+	/*alert(id,status);*/
 	$.ajax({
 	   type: "GET",
 	   url: "/radeff/intranet/pmcake/pm_tasks/ok?identifiant="+id+"&status="+status,
