@@ -37,18 +37,31 @@ while($i<mysql_num_rows($sqlq)){
 echo "</select>";
 ?>
 </div>
-<?
-#echo $form->input('server');
-?>
+
 <div class="input select"><label for="CmTypeId">server</label>
 <select name="data[Cm][server]" id="CmServer">
-<option>cms.unige.ch</option>
-<option>www.unige.ch</option>
-<option>asso-etud.unige.ch</option>
-<option>blogs.unige.ch</option>
-<option>lnxweb.unige.ch</option>
-<option>weblocal.unige.ch</option>
-</select>
+
+<option value="">--- Servers ---</option>
+<?
+$sql="SELECT * FROM servers ORDER BY name";
+$sqlq=mysql_query($sql);
+if(!$sqlq) {
+	echo "sql error: " .$sql ."<br>" .mysql_error(); exit;
+}
+/* Type */
+$i=0;
+while($i<mysql_num_rows($sqlq)){
+	echo "<option value=\"" .mysql_result($sqlq,$i,'id')."\"";
+		if($form->value('type_id')==mysql_result($sqlq,$i,'id')) {
+			echo " selected";
+		}
+	echo ">" .mysql_result($sqlq,$i,'name');
+	echo "</option>";
+	$i++;
+	}			
+echo "</select>";
+?>
+
 </div>
 <?
 		
