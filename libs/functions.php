@@ -463,7 +463,7 @@ function prioriteViewSelCol($priorite,$idtask) {
 	echo "<div id=\"priorite" .$idtask ."\" style=\"padding: 3px; background-color:"  .$prioritecolor[$priorite] ."\">";
 	echo "<select name=\"priorite\" ";
 	//echo "size=\"6\"";
-	echo " onchange=\"change_priorite('".$idtask ."',this.value)\">";
+	echo " onchange=\"change_priorite(".$idtask .",this.value)\">";
 	echo "<option value=\"\">*** priorité *** </option>";
 	for($i=0;$i<6;$i++) {	
 		echo "<option value=\"" .$i ."\"";
@@ -1470,6 +1470,15 @@ $pass=PASSWORDMYSQL;                                   // pass word to the datab
 		
 	return $db;
 	
+	}
+	
+	function use_database($db) {
+	$sql="USE "	.DBMYSQL;
+	//echo $sql; exit;
+	$sql=mysql_query($sql);
+	if(!$sql){
+		echo "Erreur SQL: " .mysql_error();
+	} 
 	}
 
 function db_name()	{

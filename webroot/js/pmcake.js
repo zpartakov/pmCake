@@ -14,7 +14,7 @@ window.location.href = "/intranet/pmcake/pm_menus/deplacer?id="+id+"&deplacer="+
 function task_ok(id,value) {
 	$.ajax({
 	   type: "GET",
-	   url: "/radeff/intranet/pmcake/pm_tasks/ok?identifiant="+id+"&ajout="+value,
+	   url: "/intranet/pmcake/pm_tasks/ok?identifiant="+id+"&ajout="+value,
 	   error:function(msg){
 		 alert( "Error !: " + msg );
 	   },
@@ -29,11 +29,12 @@ function task_ok(id,value) {
 /* one click change priority */
 function change_priorite(id,priorite) {
 	 var prioritecolor=new Array("white", "#00FF00", "#90EE90" ,"#FFA500" ,"#FFC0CB","#FF6C7F");
-/* alert("id: "+id + " priorite: "+priorite); */
+/* alert("id: "+id + " priorite: "+priorite);*/ 
 	 if(priorite) {
+//		 alert(priorite);
 	$.ajax({
 	   type: "GET",
-	   url: "/radeff/intranet/pmcake/pm_tasks/changepriorite?identifiant="+id+"&priorite="+priorite,
+	   url: "/intranet/pmcake/pm_tasks/changepriorite?identifiant="+id+"&priorite="+priorite,
 	   error:function(msg){
 		 alert( "Error !: " + msg );
 	   },
@@ -51,7 +52,7 @@ function change_priorite(id,priorite) {
 function change_date_debut(idtask,startdate){
 	$.ajax({
 		   type: "GET",
-		   url: "/radeff/intranet/pmcake/pm_tasks/changedatedebut?identifiant="+idtask+"&startdate="+startdate,
+		   url: "/intranet/pmcake/pm_tasks/changedatedebut?identifiant="+idtask+"&startdate="+startdate,
 		   error:function(msg){
 			 alert( "Error !: " + msg );
 		   },
@@ -66,7 +67,7 @@ function change_date_debut(idtask,startdate){
 function change_date_fin(idtask,enddate){
 	$.ajax({
 		   type: "GET",
-		   url: "/radeff/intranet/pmcake/pm_tasks/changedatefin?identifiant="+idtask+"&enddate="+enddate,
+		   url: "/intranet/pmcake/pm_tasks/changedatefin?identifiant="+idtask+"&enddate="+enddate,
 		   error:function(msg){
 			 alert( "Error !: " + msg );
 		   },
@@ -88,7 +89,7 @@ function ajout_heure(champ,pid,taskid) {
 		/*alert("/intranet/pmcake/pm_tasks_times/ajoutheure?projectid="+pid+"&idtache="+taskid+"&addtime="+heure+"&comments="+task);*/ 
 	$.ajax({
 		   type: "GET",
-		   url: "/radeff/intranet/pmcake/pm_tasks_times/ajoutheure?projectid="+pid+"&idtache="+taskid+"&addtime="+heure+"&comments="+task,
+		   url: "/intranet/pmcake/pm_tasks_times/ajoutheure?projectid="+pid+"&idtache="+taskid+"&addtime="+heure+"&comments="+task,
 		   error:function(msg){
 			 alert( "Error !: " + msg );
 		   },
@@ -105,7 +106,7 @@ function libelle_change_status(champ,libelle,id) {
 	modif=document.getElementById(libelle).value;
 	$.ajax({
 		   type: "GET",
-		   url: "/radeff/intranet/pmcake/pm_tasks/changelibelle?identifiant="+id+"&champ="+libelle+"&ajout="+modif,
+		   url: "/intranet/pmcake/pm_tasks/changelibelle?identifiant="+id+"&champ="+libelle+"&ajout="+modif,
 		   error:function(msg){
 			   /*
 			    * todo fixme: makes a bug, so deactivated
@@ -126,12 +127,12 @@ function task_change_status(id,status) {
 	/*alert(id,status);*/
 	$.ajax({
 	   type: "GET",
-	   url: "/radeff/intranet/pmcake/pm_tasks/ok?identifiant="+id+"&status="+status,
+	   url: "/intranet/pmcake/pm_tasks/ok?identifiant="+id+"&status="+status,
 	   error:function(msg){
 		 alert( "Error !: " + msg );
 	   },
 	   success:function(data){
-			/*alert("Status changed to: "+status);*/
+			alert("Status changed to: "+status);
 		}
 	});
 }
