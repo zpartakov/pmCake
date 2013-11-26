@@ -461,9 +461,10 @@ function prioriteViewSelCol($priorite,$idtask) {
 	$prioritelib=array("Vide","Très faible","Faible","Moyenne","Elevée","Très élevée");
 	$prioritecolor=array(  "white", "#00FF00", "#90EE90" ,"#FFA500" ,"#FFC0CB","#FF6C7F");
 	echo "<div id=\"priorite" .$idtask ."\" style=\"padding: 3px; background-color:"  .$prioritecolor[$priorite] ."\">";
-	echo "<select name=\"priorite\" ";
+	echo "<select id=\"PmTaskPriority\" name=\"data[PmTask][priority]\" ";
 	//echo "size=\"6\"";
-	echo " onchange=\"change_priorite(".$idtask .",this.value)\">";
+	//echo " onchange=\"change_priorite(".$idtask .",this.value)\">";
+	echo ">";
 	echo "<option value=\"\">*** priorité *** </option>";
 	for($i=0;$i<6;$i++) {	
 		echo "<option value=\"" .$i ."\"";
