@@ -132,7 +132,7 @@ function task_change_status(id,status) {
 		 alert( "Error !: " + msg );
 	   },
 	   success:function(data){
-			alert("Status changed to: "+status);
+			/* alert("Status changed to: "+status); */
 		}
 	});
 }
