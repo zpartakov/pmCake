@@ -112,66 +112,6 @@ class CmsController extends AppController {
 	}
 
 
-	function admin_index() {
-		$this->Cm->recursive = 0;
-		$this->set('cms', $this->paginate());
-	}
-
-	function admin_view($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid Cm.', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		$this->set('cm', $this->Cm->read(null, $id));
-	}
-
-	function admin_add() {
-		if (!empty($this->data)) {
-			$this->Cm->create();
-			if ($this->Cm->save($this->data)) {
-				$this->Session->setFlash(__('The Cm has been saved', true));
-				$this->redirect(array('action'=>'index'));
-			} else {
-				$this->Session->setFlash(__('The Cm could not be saved. Please, try again.', true));
-			}
-		}
-		$types = $this->Cm->Type->find('list');
-		$this->set(compact('types'));
-	}
-
-	function admin_edit($id = null) {
-		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid Cm', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		if (!empty($this->data)) {
-			if ($this->Cm->save($this->data)) {
-				$this->Session->setFlash(__('The Cm has been saved', true));
-				$this->redirect(array('action'=>'index'));
-			} else {
-				$this->Session->setFlash(__('The Cm could not be saved. Please, try again.', true));
-			}
-		}
-		if (empty($this->data)) {
-			$this->data = $this->Cm->read(null, $id);
-		}
-		$types = $this->Cm->Type->find('list');
-		$this->set(compact('types'));
-	}
-
-	function admin_delete($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for Cm', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		if ($this->Cm->del($id)) {
-			$this->Session->setFlash(__('Cm deleted', true));
-			$this->redirect(array('action'=>'index'));
-		}
-	}
-	
-	
-	
 function search() {
 	$cherche=$this->data['Cm']['q'];
 	$cherche=trim($cherche);
@@ -206,6 +146,7 @@ $requetesql.="(";
 
 $requetesql.="
 `url` LIKE '%" .$cherche."%'  
+OR `server` LIKE '%" .$cherche."%'  
 OR `path` LIKE '%" .$cherche."%'  
 OR `login` LIKE '%" .$cherche."%'  
 OR `email` LIKE '%" .$cherche."%'  

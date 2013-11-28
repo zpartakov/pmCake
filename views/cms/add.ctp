@@ -48,7 +48,7 @@ $sqlq=mysql_query($sql);
 if(!$sqlq) {
 	echo "sql error: " .$sql ."<br>" .mysql_error(); exit;
 }
-/* Type */
+/* servers */
 $i=0;
 while($i<mysql_num_rows($sqlq)){
 	echo "<option value=\"" .mysql_result($sqlq,$i,'id')."\"";

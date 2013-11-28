@@ -653,7 +653,8 @@ echo '<small><a onclick="montrecache2();"><img src="/intranet/pmcake/img/icons/o
 	echo "</td>";
 	echo "<td>";
 	//prioriteView(mysql_result($sql,$i,'priority'));
-	prioriteViewSelCol(mysql_result($sql,$i,'priority'), mysql_result($sql,$i,'id'));
+	prioriteView(mysql_result($sql,$i,'priority'), mysql_result($sql,$i,'id'));
+	
 	echo "</td>";
 	echo "<td>";
 	statut(mysql_result($sql,$i,'status'));
