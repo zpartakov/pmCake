@@ -57,6 +57,25 @@ class CmsController extends AppController {
 
 	function add() {
 		if (!empty($this->data)) {
+
+			$server=($this->data['Cm']['server']);
+			
+			if($server=="6") {
+				$server="asinara.unige.ch";
+			} elseif($server=="1") {
+				$server="cms.unige.ch";
+			} elseif($server=="4") {
+				$server="geneva2003.unige.ch";
+			}elseif($server=="7") {
+				$server="lnxweb.unige.ch";
+			}elseif($server=="5") {
+				$server="silene3.unige.ch";
+			}elseif($server=="8") {
+				$server="silene5.unige.ch";
+			}elseif($server=="3") {
+				$server="www.unige.ch";
+			}
+			$this->data['Cm']['server']=$server;
 			$this->Cm->create();
 			if ($this->Cm->save($this->data)) {
 				$this->Session->setFlash(__('The Cm has been saved', true));
