@@ -1,3 +1,8 @@
+<style>
+html > body > div#container > div#content > div.cms.form > form#CmEditForm > fieldset > div.input.text > input, html > body > div#container > div#content > div.cms.form > form#CmEditForm > fieldset > div.input.textarea > textarea#CmRem {
+width: 50%;
+}
+</style>
 <?php
 /**
 * @version        $Id: edit.ctp v1.0 25.02.2010 09:49:08 CET $
