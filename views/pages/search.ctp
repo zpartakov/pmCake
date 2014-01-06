@@ -12,6 +12,7 @@
  * retrieve GET datas
  */	
 $q=$_GET['q'];
+$q=trim($q);
 $boolean=$_GET['boolean'];
 
 				

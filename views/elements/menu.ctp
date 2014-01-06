@@ -35,7 +35,7 @@ while($i<mysql_num_rows($sqlM)){
 		echo $html->link(__(mysql_result($sqlM,$i,'lib'), true), mysql_result($sqlM,$i,"url"));
 	}
 	
-	/*sous-menus begin */
+	/*sous-menus niveau 2 begin */
 	
 	$sqlSsMenus="SELECT * FROM pm_menus WHERE parent =".mysql_result($sqlM,$i,"id") ." ORDER BY rank";
 	#echo $sqlSsMenus;
@@ -54,6 +54,42 @@ while($i<mysql_num_rows($sqlM)){
 		} else {
 			echo $html->link(__(mysql_result($sqlSsMenus,$i2,'lib'), true), mysql_result($sqlSsMenus,$i2,"url"));
 		}
+		
+		/* sous-menus niveau 3 */
+		/*
+		$sqlSsMenus3="SELECT * FROM pm_menus WHERE parent =".mysql_result($sqlSsMenus,$i2,"id") ." ORDER BY rank";
+			//echo $sqlSsMenus3;
+			
+			$sqlSsMenus3=mysql_query($sqlSsMenus3);
+			if(!$sqlSsMenus3) { echo "SQL error: " .mysql_error(); }
+
+			
+			if(mysql_num_rows($sqlSsMenus3)>0) {
+				echo "sous-menuxxx";
+				echo '\r<ul class="sousMenu3">';
+		
+			$i3=0;
+			while($i3<mysql_num_rows($sqlSsMenus3)){
+				echo "<li>";
+				if(preg_match("/\?/",mysql_result($sqlSsMenus3,$i3,"url"))&&!preg_match("/^http/",mysql_result($sqlSsMenus3,$i3,"url"))) { //link with variable
+					echo "<a href=\"" .CHEMIN. mysql_result($sqlSsMenus3,$i3,"url") ."\">"
+					.mysql_result($sqlSsMenus3,$i3,'lib') ."</a>";
+		
+				} else {
+					echo $html->link(__(mysql_result($sqlSsMenus3,$i3,'lib'), true), mysql_result($sqlSsMenus3,$i3,"url"));
+				}
+				
+				
+				
+				echo "</li>";
+				
+				$i3++;
+				}
+				echo "</ul>\n";
+			}
+			*/
+		
+		
 		echo "</li>";
 		
 		if(mysql_result($sqlSsMenus,$i2,'line_after')=="1") { //put a line after that item

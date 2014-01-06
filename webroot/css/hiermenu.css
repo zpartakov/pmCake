@@ -151,17 +151,16 @@
  * Third level navigation
  * ------------------------------------
  */
-#cakephp-global-navigation ul ul ul {
+#cakephp-global-navigation ul ul ul, .sousMenu3 {
 	display: none;
 	border: 0;
 	background: #fae1a7;
-	
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	/*box-shadow: none;
 	padding-left: 25px;*/
 	position: relative;
-	left: 200px;
+	left: 300px;
 	top: -20px;
 	-webkit-box-shadow: 0 3px 4px #222;
 	-moz-box-shadow: 0 3px 4px #222;
