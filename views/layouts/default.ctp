@@ -13,8 +13,16 @@
 	echo $html->meta('icon');
 	
 	echo $html->css('pmcake');
-	echo $html->css('hiermenu');
+	
 	echo $html->script('jquery/jquery');
+/*
+ * dynamic menus http://users.tpg.com.au/j_birch/plugins/superfish/
+ */
+	echo $html->css('superfish/superfish');
+	echo $html->script('superfish/superfish');
+	echo $html->script('superfish/hoverIntent');
+	
+	
 	?>
 	<script type="text/javascript">
 //<![CDATA[
@@ -52,6 +60,39 @@ var application_root = "<? echo CHEMIN;?>";
 		setTimeout("$('#suggestions').hide();", 200);
 	}
 </script>
+<script>
+
+		(function($){ //create closure so we can safely use $ as alias for jQuery
+
+			$(document).ready(function(){
+
+				// initialise plugin
+				var example = $('#example').superfish({
+					//add options here if required
+				});
+
+				// buttons to demonstrate Superfish's public methods
+				$('.destroy').on('click', function(){
+					example.superfish('destroy');
+				});
+
+				$('.init').on('click', function(){
+					example.superfish();
+				});
+
+				$('.open').on('click', function(){
+					example.children('li:first').superfish('show');
+				});
+
+				$('.close').on('click', function(){
+					example.children('li:first').superfish('hide');
+				});
+			});
+
+		})(jQuery);
+
+
+		</script>
 <?
 
 

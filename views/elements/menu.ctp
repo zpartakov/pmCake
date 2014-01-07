@@ -1,8 +1,9 @@
 <!-- dynamic menu/navigation -->
 <?php
 			App::import('Lib', 'functions'); //imports app/libs/functions
-?><div id="cakephp-global-navigation">
-<ul id="menuDeroulant">
+?>
+<!-- <div id="cakephp-global-navigation"> -->
+<ul class="sf-menu" id="example">
 <?php
 /*dynamic cake navigation */
 #echo "<h1>Menus</h1>"; 
@@ -56,7 +57,7 @@ while($i<mysql_num_rows($sqlM)){
 		}
 		
 		/* sous-menus niveau 3 */
-		/*
+		
 		$sqlSsMenus3="SELECT * FROM pm_menus WHERE parent =".mysql_result($sqlSsMenus,$i2,"id") ." ORDER BY rank";
 			//echo $sqlSsMenus3;
 			
@@ -65,8 +66,8 @@ while($i<mysql_num_rows($sqlM)){
 
 			
 			if(mysql_num_rows($sqlSsMenus3)>0) {
-				echo "sous-menuxxx";
-				echo '\r<ul class="sousMenu3">';
+				//echo "sous-menuxxx";
+				echo "\n<ul class=\"sousMenu3\">";
 		
 			$i3=0;
 			while($i3<mysql_num_rows($sqlSsMenus3)){
@@ -87,7 +88,7 @@ while($i<mysql_num_rows($sqlM)){
 				}
 				echo "</ul>\n";
 			}
-			*/
+			
 		
 		
 		echo "</li>";
@@ -115,8 +116,10 @@ while($i<mysql_num_rows($sqlM)){
 	}
 
 ?>
-<li style="width: 200px; margin-left: -50px;"><?php 
+<!-- <li style="width: 200px; margin-left: -50px;"> -->
+<li style="width: 100px; padding-top: 15px; padding-bottom: -5px; height: 35px">
+<?php 
 			$date=date("Y-m-d", mktime (0, 0, 0, date("m"), date("d"), date("Y")));
 task_total_today($date);?></li>
 </ul>	  
-</div>
+<!-- </div> -->
