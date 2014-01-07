@@ -67,6 +67,9 @@ class PatchadminsController extends AppController {
 
  function search() {
 	$cherche=$this->data['Patchadmin']['q'];
+	if($cherche==''){
+		$cherche=$_GET['chercher'];
+	}
 #$this->set('results',$this->Patchadmin->find('all',array('conditions'=>array('Patchadmin.* LIKE'=>"%" .$cherche."%"))));
 $this->set('results',$this->Patchadmin->query("
 SELECT * FROM patchadmins WHERE 

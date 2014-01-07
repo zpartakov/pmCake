@@ -17,6 +17,7 @@
     ?></td>
 		</tr>
 	</table>
+<?php echo $this->Html->link(__('New Pm Menu', true), array('action' => 'add')); ?>
 <!-- end search form -->  
 	<table cellpadding="0" cellspacing="0">
 	<tr>

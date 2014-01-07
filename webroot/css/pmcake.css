@@ -686,10 +686,12 @@ padding-left: 5px;
 /* autocomplete */
 .globalsearch {
 position: absolute;
-right: 12%;
+right: 10%;
 top: 2px;
-background: #204c58;
-z-index: 499;
+	background: #FFD382;
+color: black;
+/*background: #204c58;
+z-index: 499;*/
 }
 
 .autofill {

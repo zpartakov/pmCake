@@ -121,11 +121,11 @@ echo $this->element('menu');
 
 ?>  
 <!-- ########################### GLOBAL SEARCH ENGINE ######################## -->
-<div class="globalsearch">
+<div class="globalsearch" style="background: #FFD382; height: 45px">
 <!-- begin search form -->
 <form action="<? echo CHEMIN; ?>pages/search/">
 <input type="text" size="10" value="" name="q" id="inputString" onkeyup="lookup(this.value);" onblur="fill();" value="<?php echo $_GET['q'];?>"/>
-<input type="checkbox" style="position: relative; top: 12px;" name="boolean" id="boolean" /><span style="position: relative; top: 1px; left: -150px">boolean&nbsp;</span>
+<input type="checkbox" style="position: relative; top: 12px;" name="boolean" id="boolean" /><span style="background: #FFD382; height: 45px; position: relative; top: 17px; left: -100px">boolean&nbsp;</span>
 <input style="position: relative; top: 5px; left: -10px" type="image" src="<? echo CHEMIN; ?>img/toolbar/loupe.png" title="Chercher" />
 <div class="suggestionsBox" id="suggestions" style="display: none;">
 <img src="<? echo CHEMIN?>img/upArrow.png" style="position: relative; top: -12px; left: 30px;" alt="upArrow" />
