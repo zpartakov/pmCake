@@ -80,8 +80,6 @@ IN
 function Total_heures($pid) {
 $sql2="
 SELECT SUM(hours) AS hours FROM pm_tasks_time WHERE pm_tasks_time.task IN (SELECT id FROM pm_tasks WHERE project=" .$pid .") ";
-	
-	
 	//echo $sql2;
 	#echo mysql_result($sql,$i,'hours');
 	$sql2=mysql_query($sql2);

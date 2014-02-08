@@ -18,7 +18,7 @@ $modified=$created;
 
 
 $sql="
-INSERT INTO `pm_projects` (`id`, `organization`, `owner`, `priority`, `status`, `name`, `description`, `url_dev`, `url_prod`, `created`, `modified`, `published`, `upload_max`, `phase_set`, `type`) VALUES (
+INSERT INTO `pm_projects` (`id`, `pm_organization_id`, `owner`, `priority`, `status`, `name`, `description`, `url_dev`, `url_prod`, `created`, `modified`, `published`, `upload_max`, `phase_set`, `type`) VALUES (
 NULL,
  '$organisation', '$owner', '$priority', '$status', '$name', '$description', '$url_dev', '$url_prod', '$created', '$modified', '$published', '$upload_max', '$phase_set', '$type')";
 #echo $sql; exit;

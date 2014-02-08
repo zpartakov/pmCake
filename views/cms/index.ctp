@@ -157,11 +157,14 @@ e(strftime("%d&nbsp;%b&nbsp;%Y&nbsp;%H:%M", $timestamp));
 		<td>
 			<?php echo $cm['Cm']['version']; ?>
 		</td>
-			<td>				<?php echo substr($cm['Cm']['rem'],0,20); ?>
-										<?php 
-							if(preg_match("/httpsok/",$cm['cms']['rem'])) { //https protected
-							echo "&nbsp;<span style=\"float: right\">" .$html->image('s_passwd.png') ."</span>";
-							} ?>
+		<td>				
+		    <?php echo substr($cm['Cm']['rem'],0,20); ?>
+			<?php 
+    			if(preg_match("/httpsok/",$cm['cms']['rem'])) {
+    			  //https protected
+    			echo "&nbsp;<span style=\"float: right\">" .$html->image('s_passwd.png') ."</span>";
+			} 
+			?>
 		</td>
 		<td class="actions">
 			<?php echo $html->link(__('View', true), array('action'=>'view', $cm['Cm']['id'])); ?>

@@ -52,6 +52,8 @@ class PmProjectsController extends AppController {
 
 	function add() {
 		if (!empty($this->data)) {
+
+            
 			$this->PmProject->create();
 			if ($this->PmProject->save($this->data)) {
 				$this->Session->setFlash(__('The pm project has been saved', true));
