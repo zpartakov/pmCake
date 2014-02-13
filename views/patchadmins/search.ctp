@@ -26,6 +26,7 @@ foreach ($results as $post):
 	}
 ?>
 <tr<?php echo $class;?>>
+<a name="<?php echo $post['patchadmins']['id']; ?>"></a>
     <td>
         <?php 
         $lid=$post['patchadmins']['id'];
@@ -60,6 +61,13 @@ foreach ($results as $post):
 		<?php 
 		if($goodversion==$post['patchadmins']['version']) {
 			echo " <span style=\"background-color: #6DFF93\">";
+		} else {
+		    /*
+             * is there any upgrade to be done?
+             */
+        echo "<a href=\"upgrade?cms_id=" .$post['patchadmins']['id'] ."&type_id=" .$post['patchadmins']['type'] ."\">";
+        echo $html->image('icons/upgrade.png', array("alt"=>"Upgrade","title"=>"Upgrade","width"=>"25","height"=>"25"));
+        echo "</a>&nbsp;";
 		}
 		echo $post['patchadmins']['version']; 
 		if($goodversion==$post['patchadmins']['version']) {

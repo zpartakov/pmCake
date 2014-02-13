@@ -218,10 +218,8 @@ function csv() { //a function to export in csv
 
 }	   
 
-function upgrade() {
-			  $this->layout = '';
-	
-	//a function to upgrade a software
+function upgrade() {//a function to upgrade a software
+  $this->layout = '';
 }
 
 }

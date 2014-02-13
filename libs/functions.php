@@ -1336,7 +1336,6 @@ function dateSQL2fr($date) {
 	echo strftime("%a, %d-%m-%Y", $date);
 }	
 
-/*convert SQL long date time to french date*/
 function dateSQLlong2fr($date) {
 	if($date>1000000000) {
 	//unixtime

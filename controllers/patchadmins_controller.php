@@ -1,6 +1,7 @@
 <?php
 class PatchadminsController extends AppController {
 
+
 	var $name = 'Patchadmins';
 	var $helpers = array('Html', 'Form');
 	// Options de pagination par défaut :
@@ -98,6 +99,10 @@ OR `meladmin` LIKE '%" .$cherche."%'
  
     }
 	function joomlapatch() {
+}
+
+function upgrade() {//a function to upgrade a software
+  $this->layout = '';
 }
 
 }

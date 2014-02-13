@@ -22,7 +22,7 @@ $sql=mysql_query($sql);
 if(!$sql){
 	echo "error SQL: " .mysql_error();
 } else {
-	header("Location: /intranet/pmcake/cms/search?letype=".$type_id."#".$cms_id);
+	header("Location: " .CHEMIN."/cms/search?letype=".$type_id."#".$cms_id);
 }
 
 /*
