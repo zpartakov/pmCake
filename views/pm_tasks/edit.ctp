@@ -1,38 +1,28 @@
+<?php
+/*
+ * edit a given task
+ * */  
+?>
 <script>
 /*
  * keyboard shortcuts
  */
 var isCtrl = false;$(document).keyup(function (e) {
-
 	if(e.which == 17) isCtrl=false;
-
 	}).keydown(function (e) {
-
 	    if(e.which == 17) isCtrl=true;
-
 	    if(e.which == 83 && isCtrl == true) {
-
 	        // Votre fonction à déclencher au Ctrl+S
 	    	$.ajax({
 	    	    url:'/intranet/pmcake/pm_tasks/sauver',
 	    	    type:'POST',
 	    	    data:data
 	    	});
-
 	   return true;
-
 	 }
-
 	});
-
-
-
 </script>
-
-
 <?php
-
-
 /* include a calendar */
 	$datenow = date("Y-m-d");
 	echo $html->script('tigra_calendar/calendar_db');
@@ -66,7 +56,7 @@ $pid=$this->data['PmProject']['id'];
  	<?php echo "<a href=\"#Remarques\">Remarques</a> | <a href=\"#Fichiers\">Fichiers</a>"; ?>
  	
 	 <div class="imprimepas" style="background-color:#FFFFB5 ;margin-top: 5px; width: 80%">
-	 Statut: 
+	 <strong>Statut:</strong> 
 	 <?
 #	 echo $this->data['PmTask']['id'] ."-" .$this->data['PmTask']['status']; exit;
 	 statut_radio($this->data['PmTask']['id'],$this->data['PmTask']['status']);
@@ -218,7 +208,19 @@ echo "&nbsp;";
 				});
 				</script></div>
 			";
+
+		 /*
+		  * is the task a copy? if yes, change dates to current dates
+		  *  */
+		if($_GET['copy']=="yes") {
 			?>
+				<script language="JavaScript">
+					current_mysql_date("#PmTaskStartDate");
+					current_mysql_date("#PmTaskDueDate");
+				</script>
+			<?php
+		}
+		?>
 		</td>
 	</tr>
 	<tr>

@@ -75,6 +75,27 @@ function change_date_fin(idtask,enddate){
 			}
 		});
 }
+
+		
+/*
+Javascript DateTime Function return MySQL datetime format?
+http://stackoverflow.com/questions/2280104/convert-javascript-to-date-object-to-mysql-date-format-yyyy-mm-dd
+CREDITS: http://stackoverflow.com/users/1299678/kmt
+*/
+function js2Sql(cDate) {
+    return cDate.getFullYear()
+           + '-'
+           + ("00" + (cDate.getMonth()+1)).slice(-2)
+           + '-'
+           + ("00" + cDate.getDate()).slice(-2);
+}
+
+function current_mysql_date(field) {
+		var d = new Date();
+		d=js2Sql(d);
+		$(field).val(d)
+}
+
 /* ajout_heure: ajax add time for a given task  
  * 
  * */

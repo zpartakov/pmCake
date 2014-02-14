@@ -137,7 +137,7 @@ $this->PmTask->copy($id);
 $last_id=mysql_query("SELECT id FROM pm_tasks ORDER BY id DESC LIMIT 0,1");
 $last_id=mysql_result($last_id, 0,'id');
 //echo "lastid: " .$last_id; exit;
-			$this->redirect(array('action'=>'edit', $last_id));
+			$this->redirect(array('action'=>'edit', $last_id ."&copy=yes"));
 
 	}
 	
