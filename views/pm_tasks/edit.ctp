@@ -103,6 +103,8 @@ echo "&nbsp;";
 #echo " " .$this->Html->link(__('View', true), array('action' => '../pm_projects/view/'. $this->data['PmProject']['id']));
 	e($html->link($html->image('toolbar/loupe.png', array('alt' => 'Voir le projet', 'title' => 'Voir le projet')), 
 	array('action'=>'../pm_projects/view/'. $this->data['PmProject']['id']), array('escape' => false)));
+echo "<br/>";
+echo "web: " .$this->Html->link($this->data['PmProject']['url_prod'], $this->data['PmProject']['url_prod'], array('target'=>'_blank'));
 
 			?>
 		</td>

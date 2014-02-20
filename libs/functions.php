@@ -880,8 +880,131 @@ function task_total_today($s_edate2) {
 	echo "h";
 	
 }
+			    
+/* resume times for a given week */
+function task_resume_week() {
+	/*
+	 * semaine précédente
+	 */
+	$jour=date("D");
+	if($jour=="Mon"){
+			$recule=7;
+		}elseif($jour=="Tue"){
+			$recule=8;
+		}elseif($jour=="Wed"){
+			$recule=9;
+		}elseif($jour=="Thu"){
+			$recule=10;
+		}elseif($jour=="Fri"){
+			$recule=11;
+		}elseif($jour=="Sat"){
+			$recule=12;
+		}elseif($jour=="Sun"){
+			$recule=13;
+		}
+	$recule=$recule*24*3600;
+	$date_beg=date("U");
+	$date_beg=$date_beg-$recule;
+	$week = date('W', $date_beg);
+	$date_fin=$date_beg+(7*24*3600);
+	$date_fin=$date_beg+(4*24*3600);	
+	$date_begL= date('D, Y-m-d',$date_beg);
+	$date_beg= date('Y-m-d',$date_beg);
+	$date_finL= date('D, Y-m-d',($date_fin-(24*2600)));
+	$date_fin= date('Y-m-d',$date_fin);
+	$sql="
+	SELECT  SUM(pm_tasks_time.hours) AS hours, pm_projects.name 
+	FROM pm_tasks_time, pm_projects 
+	WHERE 
+	pm_tasks_time.date >= '$date_beg'
+	AND  pm_tasks_time.date <= '$date_fin'
+	AND pm_tasks_time.project=pm_projects.id 
+	AND pm_projects.type NOT LIKE 'p' 
+	GROUP BY pm_projects.name 
+	";
+//	echo nl2br($sql)."<br>";
+	$sql=mysql_query($sql);
+	if(!$sql) {
+		echo "SQL error: " .mysql_error(); exit;
+	}
+	$i=0;
+	$total=0;
+	echo "<h2>Total pour la semaine #" .$week ." du " .$date_begL ." au " .$date_finL ."</h2><table>";
+	while($i<mysql_num_rows($sql)){
+	echo "<tr><td style=\"padding: 3px\">";
+	echo mysql_result($sql,$i,'pm_projects.name');
+	echo "</td><td>";
+	echo mysql_result($sql,$i,'hours');
+	$total=$total+mysql_result($sql,$i,'hours');
+	echo "</td></tr>";
+	$i++;
+	}
+	echo "<tr><td>Total</td><td>".$total ."</td></tr>";
+	echo "</table>";
+
+/*
+ * semaine courante
+ */
+
+	$jour=date("D");
+		if($jour=="Mon"){
+			$recule=0;
+		}elseif($jour=="Tue"){
+			$recule=1;
+		}elseif($jour=="Wed"){
+			$recule=2;
+		}elseif($jour=="Thu"){
+			$recule=3;
+		}elseif($jour=="Fri"){
+			$recule=4;
+		}elseif($jour=="Sat"){
+			$recule=5;
+		}elseif($jour=="Sun"){
+			$recule=6;
+		}
+	$recule=$recule*24*3600;
+	$date_beg=date("U");
+	$date_beg=$date_beg-$recule;
+	$week = date('W', $date_beg);
+	$date_fin=$date_beg+(7*24*3600);
+	$date_fin=$date_beg+(4*24*3600);
+	$date_begL= date('D, Y-m-d',$date_beg);
+	$date_beg= date('Y-m-d',$date_beg);
+	$date_finL= date('D, Y-m-d',($date_fin-(24*2600)));
+	$date_fin= date('Y-m-d',$date_fin);
+	$sql="
+	SELECT  SUM(pm_tasks_time.hours) AS hours, pm_projects.name 
+	FROM pm_tasks_time, pm_projects 
+	WHERE 
+	pm_tasks_time.date >= '$date_beg'
+	AND  pm_tasks_time.date <= '$date_fin'
+	AND pm_tasks_time.project=pm_projects.id 
+	AND pm_projects.type NOT LIKE 'p' 
+	GROUP BY pm_projects.name 
+	";
+//	echo nl2br($sql)."<br>";
+	$sql=mysql_query($sql);
+	if(!$sql) {
+		echo "SQL error: " .mysql_error(); exit;
+	}
+	$i=0;
+	$total=0;
+	echo "<h2>Total pour la semaine courante #" .$week ." du " .$date_begL ." au " .$date_finL ."</h2><table>";
+	while($i<mysql_num_rows($sql)){
+	echo "<tr><td style=\"padding: 3px\">";
+	echo mysql_result($sql,$i,'pm_projects.name');
+	echo "</td><td>";
+	echo mysql_result($sql,$i,'hours');
+	$total=$total+mysql_result($sql,$i,'hours');
+	echo "</td></tr>";
+	$i++;
+	}
+	echo "<tr><td>Total</td><td>".$total ."</td></tr>";
+	echo "</table>";
+}
 
 /* resume task for a given date */
+
 function task_resume($s_edate2) {
 	$sql="
 	SELECT * FROM pm_tasks_time, pm_projects 
