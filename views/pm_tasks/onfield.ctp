@@ -8,12 +8,9 @@ $datenow = date("Y-m-d");
 
 ?>
 <script language="JavaScript" type="text/javascript">
-
-
 function task_detail(id) {
 	id='detail'+id;
 				document.getElementById(id).style.display="block";		
-
 }
 </script>
 

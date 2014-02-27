@@ -9,7 +9,28 @@ window.location.href = "/intranet/pmcake/pm_menus/deplacer?id="+id+"&deplacer="+
 
 
 /* #################### NEW AJAX JQUERY #################### */
+/* a function to push all select with a given delay */
 
+function sendselected() {
+    $(document).ready(function(){
+			var delai = $('#pousserdelais').val();
+            var checkValues = $('input[name=checkboxlist]:checked').map(function()
+            {
+                return $(this).val();
+            }).get();
+
+            $.ajax({
+                type: 'get',
+                url: '/intranet/pmcake/pm_tasks/pushdelays?ids='+checkValues+'&delai='+delai,
+/*                data: { ids: checkValues },*/
+			   error:function(msg){
+				 alert( "Error !: " + msg );
+			   },
+                success:function(data){
+                }
+            });
+    });
+}
 /* one click task completed */
 function task_ok(id,value) {
 	$.ajax({

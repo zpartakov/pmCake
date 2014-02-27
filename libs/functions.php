@@ -642,8 +642,9 @@ echo '<small><a onclick="montrecache2();"><img src="/intranet/pmcake/img/icons/o
 	echo  ">";
 	//experimental not working (select all and apply a common action
 	#echo '<input id="User1Id" class="model_id" type="checkbox" value="1" name="data[User][1][id]">';
-	#echo '<td><input id="PmTask' .mysql_result($sql,$i,'id').'Id" class="cb-element" type="checkbox" value="' .mysql_result($sql,$i,'id').'" name="data[PmTask][' .mysql_result($sql,$i,'id').'][id]"></td>';
+//	<input id="PmTask' .mysql_result($sql,$i,'id').'" class="cb-element" type="checkbox" value="' .mysql_result($sql,$i,'id').'" name="data[PmTask][' .mysql_result($sql,$i,'id').'][id]"></td>';
 	echo "<td>";
+echo     '<input type="checkbox" name="checkboxlist" value="'.mysql_result($sql,$i,'id').'" />';
 	if(mysql_result($sql,$i,'proj.type')=="p") {
 		perso_list();
 	}
@@ -696,9 +697,9 @@ echo '<small><a onclick="montrecache2();"><img src="/intranet/pmcake/img/icons/o
 	}
 	echo '
 	</table>';
-	
-
-	
+	    echo '<select id="pousserdelais" class="btnadd" onChange="sendselected()">';
+    delais();
+    echo '</select>';
 	echo '
 <!--
 <div class="choose_action">

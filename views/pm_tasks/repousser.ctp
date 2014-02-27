@@ -1,4 +1,4 @@
-<?
+<?php
 App::import('Lib', 'functions'); //imports app/libs/functions
 /* push delay for a given task */
 $ajout=$_GET['ajout'];

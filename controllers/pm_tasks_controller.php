@@ -241,7 +241,12 @@ $last_id=mysql_result($last_id, 0,'id');
 	function test(){
 	$this->runtest = 1; // THIS is HOW ($this) should be used
 	}
-
+/*
+ * pousser les delais de plusieurs taches
+ */
+function pushdelays() {
+    
+}
 	function printThis(){
 	echo $this->runtest;
 	}
