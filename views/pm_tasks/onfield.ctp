@@ -22,7 +22,8 @@ function task_detail(id) {
 		<a href="#perso">Perso</a> | 
 		<a href="#demain" onclick="montrecache1();">Demain</a> | 
 		<a href="#A venir" onclick="montrecache2();">A venir</a> | 
-		<a href="#random_list_todos">Liste aléatoire</a>
+		<a href="#random_list_todos">Liste aléatoire (unige)</a> | 
+		<a href="#random_list_todosp">Liste aléatoire (perso)</a>
 <?
 $sql="";
 global $sql;
@@ -34,7 +35,8 @@ print_tasks("A venir","futur"); //TOMORROW TASKS
 /*
  *  random list of tasks (todos, wishlist, reference) for home suggestions
  */
-random_list_todos(30);
+random_list_todos(15,'');
+random_list_todos(15,'p');//private
 ?>
 
 

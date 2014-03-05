@@ -527,7 +527,21 @@ function total_hours_task($task_id) {
 /*
  * function random list of tasks (todos, wishlist, reference) for home suggestions
  */
-	function random_list_todos($nrandom) {
+	function random_list_todos($nrandom,$prof_or_private) {
+		/*
+		 * $prof_or_private
+		 * private: proj.type =='p'
+		 */		
+		if($prof_or_private=='p'){
+			$prof_or_private=" LIKE '".$prof_or_private."'";
+			$private="privé";
+			$p="p";
+		} else {
+			$prof_or_private=" NOT LIKE 'p'";
+			$private="prof.";
+			$p="";
+		}
+		
 		echo "
 		<style>
 		li {
@@ -535,16 +549,17 @@ function total_hours_task($task_id) {
 		}
 		</style>
 		
-		<div class=\"random_list_todos\"><a name=\"random_list_todos\"></a>";
+		<div class=\"random_list_todos\"><a name=\"random_list_todos".$p."\"></a>";
 		//echo $this->html->image('dices0.png');
 echo "<h2><img style=\"padding-top: 4px; padding-left: 6px; padding-right: 10px; width: 20px; height: 20px\" src=\"/intranet/pmcake/img/dices0.png\" alt=\"" .$nrandom ." tâches aléatoires\">";
-		echo "Liste aléatoire de #" .$nrandom." tâches/idées</h2>";
+		echo "Liste aléatoire de #" .$nrandom." tâches/idées (".$private .")</h2>";
 		$sql="
 		SELECT * FROM pm_tasks AS tas, pm_projects as proj 
 		WHERE tas.status > 1 
 		AND tas.status < 22 
 	    AND tas.due_date <> '--' 
 		AND tas.project=proj.id 
+		AND proj.type ".$prof_or_private ."  
 		ORDER BY RAND()
 		LIMIT " .$nrandom;
 		//echo $sql;
