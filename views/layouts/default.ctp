@@ -3,6 +3,7 @@
 <head>
 	<?php echo $html->charset(); ?>
 	<title>
+	<?php echo Configure::read('PmCake.site') ." " .Configure::read('PmCake.sitedesc');?>
 		<?php #echo $title_for_layout; ?>
 		<?php echo $this->pageTitle; ?>
 	</title>
