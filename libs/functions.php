@@ -394,6 +394,7 @@ function statutreturn($id) {
 	}
 	
 ####### TASKS #########
+
 /*function to get a scrolling list of tasks and select the current task if exists*/
 function tasks_sel($tid) {
 $sql="SELECT id, name FROM pm_tasks ORDER BY name"; 
@@ -523,7 +524,76 @@ function total_hours_task($task_id) {
 }
 #############################################################################
 
-/* MAIN function to extract the list of current tasks for a given category / period */
+/*
+ * function random list of tasks (todos, wishlist, reference) for home suggestions
+ */
+	function random_list_todos($nrandom) {
+		echo "
+		<style>
+		li {
+		margin-bottom: 3px;
+		}
+		</style>
+		
+		<div class=\"random_list_todos\"><a name=\"random_list_todos\"></a>";
+		//echo $this->html->image('dices0.png');
+echo "<h2><img style=\"padding-top: 4px; padding-left: 6px; padding-right: 10px; width: 20px; height: 20px\" src=\"/intranet/pmcake/img/dices0.png\" alt=\"" .$nrandom ." tâches aléatoires\">";
+		echo "Liste aléatoire de #" .$nrandom." tâches/idées</h2>";
+		$sql="
+		SELECT * FROM pm_tasks AS tas, pm_projects as proj 
+		WHERE tas.status > 1 
+		AND tas.status < 22 
+	    AND tas.due_date <> '--' 
+		AND tas.project=proj.id 
+		ORDER BY RAND()
+		LIMIT " .$nrandom;
+		//echo $sql;
+			$sql=mysql_query($sql);
+	if(!$sql) {
+		echo "SQL error: " .mysql_error(); exit;
+	}
+	$i=0;
+	$i=0;$lesid="";
+	echo "<table>";
+	while($i<mysql_num_rows($sql)){
+		$class = null;
+		if (intval($i/2) == ($i/2)) {
+			$class = ' class="altrow"';
+		} 		
+		
+		if(mysql_result($sql,$i,'status')==5 ) {
+/* special classes for statuts wait */
+			$class = ' class="wait"';
+			} 
+	echo "<tr" .$class ."><td>";
+	if(mysql_result($sql,$i,'proj.type')=="p") {
+		perso_list();
+	}
+	echo "&nbsp;";
+	statut(mysql_result($sql,$i,'status'));
+	echo "</td><td>";
+	echo ' <a href="' .CHEMIN .'pm_tasks/edit/'.mysql_result($sql,$i,'id').'" class="tooltip">'.mysql_result($sql,$i,'name');
+	if(strlen(	mysql_result($sql,$i,'description'))>0) {
+		echo '<em><span></span>'.nl2br(mysql_result($sql,$i,'description')).'</em>';
+	}
+	echo '</a>';
+	echo "</td><td>";
+	echo '<a href="/intranet/pmcake/pm_projects/view/'.mysql_result($sql,$i,'proj.id').'">'.mysql_result($sql,$i,'proj.name').'</a>';
+	echo "</td><td>";	
+	dateSQL2fr(mysql_result($sql,$i,'due_date'));
+	echo "</td><td>";	
+	echo "<em style=\"font-size: smaller\">(";
+	dateSQL2frSmall(mysql_result($sql,$i,'start_date'));
+	echo ")</em> ";
+	echo "</td></tr>";
+		$i++;
+	}
+	echo "</table>";
+	echo "</div>";
+	
+	}
+	
+	/* MAIN function to extract the list of current tasks for a given category / period */
 function print_tasks($catlib,$quand) {
 		$datenow=date("Y-m-d");
 	if($catlib=="prof") {

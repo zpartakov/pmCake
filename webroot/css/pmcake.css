@@ -843,3 +843,10 @@ font-size: smaller;
 background-color: #FFE4B3;
 width: 100px;
 }
+
+.random_list_todos {
+	background-color: #D6EEF6;
+	padding: 10px;
+	margin-bottom: 10px;
+	
+	}
