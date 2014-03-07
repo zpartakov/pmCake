@@ -570,6 +570,7 @@ echo "<h2><img style=\"padding-top: 4px; padding-left: 6px; padding-right: 10px;
 	$i=0;
 	$i=0;$lesid="";
 	echo "<table>";
+    echo "<tr><th>Statut</th><th>Libellé</th><th>Projet</th><th>Délai</th><th>Début</th></tr>";
 	while($i<mysql_num_rows($sql)){
 		$class = null;
 		if (intval($i/2) == ($i/2)) {
