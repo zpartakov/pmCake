@@ -688,12 +688,15 @@ padding-left: 5px;
 position: absolute;
 right: 10%;
 top: 2px;
-	background: #FFD382;
 color: black;
 /*background: #204c58;
 z-index: 499;*/
+ background: #FFF9CF;
+  height: 45px;
 }
-
+.boolean_search {
+background: #FFF9CF; height: 45px; position: relative; top: 17px; left: -100px	
+}
 .autofill {
 position: absolute;
 right: 10%;
@@ -788,8 +791,8 @@ a.tooltip:hover em {
     font-style: normal;
     display: block;
     position: absolute;
-    top: 20px;
-    left: 10px;
+    top: 30px;
+    left: 100px;
     padding: 15px;
     color: #000;
     border: 1px solid #bbb;

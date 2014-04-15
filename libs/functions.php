@@ -567,6 +567,23 @@ echo "<h2><img style=\"padding-top: 4px; padding-left: 6px; padding-right: 10px;
 	if(!$sql) {
 		echo "SQL error: " .mysql_error(); exit;
 	}
+
+/* todo: sort by due_date, not finished, begin */	
+	while ($row = mysql_fetch_array($sql, MYSQL_NUM)) {
+    $all_data[] = $row;
+}
+
+// $all_data is now a 2-D array with all your data.
+usort($all_data, "due_date");
+/*
+echo "<pre>";
+	print_r($all_data); 
+echo "</pre>";
+exit;
+*/
+/* todo: sort by due_date, not finished, end */	
+	
+	
 	$i=0;
 	$i=0;$lesid="";
 	echo "<table>";
@@ -601,10 +618,13 @@ echo "<h2><img style=\"padding-top: 4px; padding-left: 6px; padding-right: 10px;
 	echo "<em style=\"font-size: smaller\">(";
 	dateSQL2frSmall(mysql_result($sql,$i,'start_date'));
 	echo ")</em> ";
+	
+	
 	echo "</td></tr>";
 		$i++;
 	}
 	echo "</table>";
+	/*£££*/
 	echo "</div>";
 	
 	}
@@ -744,7 +764,14 @@ echo     '<input type="checkbox" name="checkboxlist" value="'.mysql_result($sql,
 	echo "<td>";
 	statut(mysql_result($sql,$i,'status'));
 	echo  "</td>";
+/*
+ * affiche titre de la tâche
+ */
 	echo '<td><a href="' .CHEMIN .'pm_tasks/edit/'.mysql_result($sql,$i,'id').'" class="tooltip">'.mysql_result($sql,$i,'name');
+	//echo '<td><a href="' .CHEMIN .'pm_tasks/edit/'.mysql_result($sql,$i,'id').'" class="tooltip"><div class="taskedit">'.mysql_result($sql,$i,'name')."</div>";
+	//echo '<td><a href="#" class="tooltip"><div class="taskedit">'.mysql_result($sql,$i,'name')."</div>";
+	
+/* affiche description, si elle existe */	
 	if(strlen(	mysql_result($sql,$i,'description'))>0) {
 		echo '<em><span></span>'.nl2br(mysql_result($sql,$i,'description')).'</em>';
 	}
