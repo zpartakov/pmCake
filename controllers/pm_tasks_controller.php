@@ -260,6 +260,16 @@ function pushdelays() {
 			// whatever else needs doing... TODO
 		}
 	}
+  public function updateTitle() {
+  	//echo "<oman"; exit;
+        if ($this->data) {
+            App::import('Core', 'sanitize');
+            $title = Sanitize::clean($this->data['Task']['name']);
 
+            $this->Task->id = $this->data['Task']['id'];
+            $this->Task->saveField('name', $title);
+            $this->set('posttitle', $title);
+        }
+    }
 }
 ?>

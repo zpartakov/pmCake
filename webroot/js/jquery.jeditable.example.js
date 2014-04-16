@@ -1,5 +1,5 @@
 $(function() {
-    $('.taskedit').editable('/tasks/sauvetitre', {
+    $('.taskedit').editable('/pm_tasks/updateTitle', {
          id        : 'data[Task][id]',
          name      : 'data[Task][name]',
          type      : 'text',

@@ -767,9 +767,11 @@ echo     '<input type="checkbox" name="checkboxlist" value="'.mysql_result($sql,
 /*
  * affiche titre de la tâche
  */
-	echo '<td><a href="' .CHEMIN .'pm_tasks/edit/'.mysql_result($sql,$i,'id').'" class="tooltip">'.mysql_result($sql,$i,'name');
+	//original
+	//echo '<td><a href="' .CHEMIN .'pm_tasks/edit/'.mysql_result($sql,$i,'id').'" class="tooltip">'.mysql_result($sql,$i,'name');
 	//echo '<td><a href="' .CHEMIN .'pm_tasks/edit/'.mysql_result($sql,$i,'id').'" class="tooltip"><div class="taskedit">'.mysql_result($sql,$i,'name')."</div>";
-	//echo '<td><a href="#" class="tooltip"><div class="taskedit">'.mysql_result($sql,$i,'name')."</div>";
+	//test
+	echo '<td><a href="#" class="tooltip"><div class="taskedit">'.mysql_result($sql,$i,'name')."</div>";
 	
 /* affiche description, si elle existe */	
 	if(strlen(	mysql_result($sql,$i,'description'))>0) {
