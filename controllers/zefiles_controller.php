@@ -102,6 +102,13 @@ class ZefilesController extends AppController {
 		$this->set(__('Zefile was not deleted', true));
             $this->redirect('index');
 	}
+	
+	/*
+	 * check if the document exists, suggest to remove task if not
+	 */
+	function check() {
+		
+	}
 } //end of cake main class
 
 

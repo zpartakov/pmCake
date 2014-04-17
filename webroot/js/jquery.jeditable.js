@@ -58,7 +58,6 @@
   */
 
 (function($) {
-
     $.fn.editable = function(target, options) {
             
         if ('disable' == target) {
@@ -519,6 +518,7 @@
 
         /* Add new input type */
         addInputType: function(name, input) {
+
             $.editable.types[name] = input;
         }
     };

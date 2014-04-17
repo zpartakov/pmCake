@@ -1,6 +1,8 @@
 <?php
 /*
  * all the external cakePHP functions for pmcake
+ * 
+ * fonction principale: print_tasks 
  */
 ####### PROJECTS ##########
 function temps_moyen_booking($pid,$cherche) {
@@ -631,18 +633,28 @@ exit;
 	
 	/* MAIN function to extract the list of current tasks for a given category / period */
 function print_tasks($catlib,$quand) {
-		$datenow=date("Y-m-d");
+	$datenow=date("Y-m-d");
+	/*
+	 * is the task private or not?
+	 */
 	if($catlib=="prof") {
 		$projtyp=" AND proj.type !='p'";
 	} elseif($catlib=="perso") {
 		$projtyp=" AND proj.type ='p'";	
 	}
+	
+	/*
+	 * when
+	 */
 	if($quand=="auj") {
 		$quandSQL=" AND (tas.due_date <= '".date("Y-m-d")."'"; 
 	}elseif($quand=="demain") {
 		$quandSQL=" AND (tas.due_date <= DATE_ADD('$datenow', INTERVAL 1 DAY) AND (tas.due_date > '$datenow') ";
 	}
 	
+	/*
+	 * is it a task, a dream or a reference?
+	 */
 	$taskstatus="< 17";
 
 	if($catlib=="dreams") {
@@ -652,6 +664,9 @@ function print_tasks($catlib,$quand) {
 		$taskstatus="= 22";
 	}
 	
+	/*
+	 * sorting list
+	 */
 	$ordertask=" ORDER BY tas.priority DESC, tas.status ASC, tas.due_date ASC";
 	/*
 	 * present tasks
@@ -734,6 +749,8 @@ echo '<small><a onclick="montrecache2();"><img src="/intranet/pmcake/img/icons/o
 	 */
 	$i=0;$lesid="";
 	while($i<mysql_num_rows($sql)){
+			$idc=mysql_result($sql,$i,'id');
+		
 		$class = null;
 		if (intval($i/2) == ($i/2)) {
 			$class = ' class="altrow"';
@@ -771,15 +788,25 @@ echo     '<input type="checkbox" name="checkboxlist" value="'.mysql_result($sql,
 	//echo '<td><a href="' .CHEMIN .'pm_tasks/edit/'.mysql_result($sql,$i,'id').'" class="tooltip">'.mysql_result($sql,$i,'name');
 	//echo '<td><a href="' .CHEMIN .'pm_tasks/edit/'.mysql_result($sql,$i,'id').'" class="tooltip"><div class="taskedit">'.mysql_result($sql,$i,'name')."</div>";
 	//test
-	echo '<td><a href="#" class="tooltip"><div class="taskedit">'.mysql_result($sql,$i,'name')."</div>";
+	echo '<td>';
 	
+	echo '<a href="#" class="tooltip">';
+/*
+ * dynamic ajax edit frontend see webroot/js/jquery.jeditable.example.js
+ */
+	echo '<div class="task" id="'.mysql_result($sql,$i,'id').'" onclick="cachedetails('.mysql_result($sql,$i,'id').')">'.mysql_result($sql,$i,'name');
+	
+	echo "</div>";
 /* affiche description, si elle existe */	
 	if(strlen(	mysql_result($sql,$i,'description'))>0) {
-		echo '<em><span></span>'.nl2br(mysql_result($sql,$i,'description')).'</em>';
+		echo '<div id="detailstache'.mysql_result($sql,$i,'id').'"><em><span></span>'.nl2br(mysql_result($sql,$i,'description')).'</em></div>';
 	}
 	echo '</a>';
+	
 	echo "</td>";
 	echo "<td>";
+	echo '<a href="/intranet/pmcake/pm_tasks/edit/' .$idc .'" alt="Modifier" title="Modifier"><img src="/intranet/pmcake/img/toolbar/editor.png" alt="Modifier" /></a>';	
+	echo "&nbsp;";
 	dateSQL2fr(mysql_result($sql,$i,'due_date'));
 	echo "<br /><em style=\"font-size: smaller\">(";
 	dateSQL2frSmall(mysql_result($sql,$i,'start_date'));
@@ -788,7 +815,6 @@ echo     '<input type="checkbox" name="checkboxlist" value="'.mysql_result($sql,
 	echo "<td>" .mysql_result($sql,$i,'milestone') ."</td>";
 	echo "<td>";
 	################ BEGIN PUSH DELAYS  ################
-	$idc=mysql_result($sql,$i,'id');
 	push_delays($idc);
 	echo '<td>
 		<a href="/intranet/pmcake/pm_tasks/view/' .$idc .'" alt="Voir" title="Voir">
@@ -2102,5 +2128,44 @@ function display_resume_faqs($txt,$l) {
 	echo $txt;
 }
 
+function check_zefiles($id) {
+	$pmTask['PmTask']['id']=$id;
+$sql="SELECT * FROM zefiles, pm_tasks WHERE task_id=pm_tasks.id";
+//echo $sql;
+#do and check sql
+$sql=mysql_query($sql);
+if(!$sql) {
+	echo "SQL error: " .mysql_error(); exit;
+}
 
+$i=0;
+
+echo "<table>";
+while($i<mysql_num_rows($sql)){
+	echo "<tr><td>#" .mysql_result($sql,$i,'id') 
+	."</td><td><a href=\"" .CHEMIN ."files/" .mysql_result($sql,$i,'task_id') ."/" .mysql_result($sql,$i,'name') 
+	."\">".mysql_result($sql,$i,'name') ."</a></td><td>";
+	dateSQL2fr(mysql_result($sql,$i,'created'));
+	#http://129.194.18.217/pmcake/files/1946/maisonpotterCapture-Google%20Earth.png
+	echo "</td><td>";
+	$extension=preg_replace("/^.*\./","",mysql_result($sql,$i,'name'));
+	typefichier($extension);
+	echo "</td>";
+	
+$filename = "/var/www/radeff/pmcake/app/webroot/" ."files/" .mysql_result($sql,$i,'task_id') ."/" .mysql_result($sql,$i,'name');
+
+if (file_exists($filename)) {
+    echo "<td style=\"background-color: lightgreen; font-size: smaller\">Le fichier $filename existe.</td>";
+} else {
+    echo "<td style=\"background-color: orange\">Le fichier $filename n'existe pas.
+    <a href=\"".CHEMIN."zefiles/delete/".mysql_result($sql,$i,'zefiles.id') ."\">&nbsp;effacer</a>
+    </td>";
+}
+	
+	$i++;
+	echo "</tr>";
+	}
+echo "</table>";
+
+}
 ?>

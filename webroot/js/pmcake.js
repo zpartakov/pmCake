@@ -226,6 +226,13 @@ function showdetailtaskhours() {
 		document.getElementById("showdetailtaskhours").style.display="none";		
 	}
 }
+
+function cachedetails(id){
+	cacher="detailstache"+id;
+			document.getElementById(cacher).style.display="none";		
+	
+	
+}
 /*
  * keyboard shortcuts
  */

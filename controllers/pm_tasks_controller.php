@@ -15,6 +15,10 @@ class PmTasksController extends AppController {
             'due_date' => 'asc'
         )
     );
+
+	/* a function to print currrent overdue tasks */
+	function onfield() {
+	}
 	
 	function index() {
 		$this->PmTask->recursive = 0;
@@ -164,9 +168,7 @@ $last_id=mysql_result($last_id, 0,'id');
 	function incubateur() {
 	}
 	
-	/* a function to print currrent overdue tasks */
-	function onfield() {
-	}
+
 	
 	function repousser() {
 				$this->layout = '';
@@ -260,15 +262,18 @@ function pushdelays() {
 			// whatever else needs doing... TODO
 		}
 	}
-  public function updateTitle() {
+  public function update_title() {
   	//echo "<oman"; exit;
+  			$this->layout = '';
+  	
         if ($this->data) {
-            App::import('Core', 'sanitize');
-            $title = Sanitize::clean($this->data['Task']['name']);
+        	//print_r($this->data['PmTask']); exit;
+            $title = $this->data['PmTask']['name'];
 
-            $this->Task->id = $this->data['Task']['id'];
-            $this->Task->saveField('name', $title);
+            $this->PmTask->id = $this->data['PmTask']['id'];
+            $this->PmTask->saveField('name', $title);
             $this->set('posttitle', $title);
+           // $this->PmTask->save($this->data)
         }
     }
 }
