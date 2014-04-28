@@ -14,6 +14,8 @@
 				$queryString = $db->real_escape_string($_GET['q']);
 			}
 			// Is the string length greater than 0?
+			
+			
 			if(strlen($queryString) >0) {
 /* projects*/
 				$sql="
@@ -43,9 +45,9 @@
 				SELECT name AS value, status FROM pm_tasks 
 				WHERE 
 				name LIKE '%$queryString%' ORDER BY status DESC LIMIT 30";
+//echo $sql; exit;
 				
 				$query = $db->query($sql);
-				#echo $sql;
 				if($query) {
 					// While there are results loop through them - fetching an Object (i like PHP5 btw!).
 					echo "<ul class=\"autofilltask\">";
@@ -54,42 +56,21 @@
 						// The onClick function fills the textbox with the result.
 						
 						// YOU MUST CHANGE: $result->value to $result->your_colum
-	         			echo '<li onClick="fill(\''.utf8_encode($result->value).'\');">';
+	         			/*echo '<li onClick="fill(\''.utf8_encode($result->value).'\');">';
 	         			echo '<span class="projet_autofillR">'.utf8_encode($result->value).'</span>&nbsp;';
 	         			statut($result->status);
-	         			echo '</li>';
-	         		}
+	         			echo '</li>';*/
+	         			echo '<li class="projet_autofill" onClick="fill(\''.utf8_encode($result->value).'\');">'
+	         			.'<span class="projet_autofillR">'.utf8_encode($result->value).'</span></li>';
+	         			
+					
+					}
 	         							echo "</ul>";
 
 				} else {
 					echo 'ERROR: There was a problem with the query:<br>'.$sql;
 				}
-/* clients */
-				
-				$sql="
-				SELECT name AS value, email FROM pm_organizations 
-				WHERE 
-				name LIKE '%$queryString%' OR email LIKE '%$queryString%'  ORDER BY name ASC LIMIT 30";
-				
-				$query = $db->query($sql);
-				#echo $sql;
-				if($query) {
-					// While there are results loop through them - fetching an Object (i like PHP5 btw!).
-					echo "<ul class=\"autofilltask\">";
-
-					while ($result = $query ->fetch_object()) {
-						// Format the results, im using <li> for the list, you can change it.
-						// The onClick function fills the textbox with the result.
-						
-						// YOU MUST CHANGE: $result->value to $result->your_colum
-	         			echo '<li onClick="fill(\''.utf8_encode($result->value).'\');">';
-	         			echo "&nbsp;"  ."<span class=\"projet_autofillR\">" .utf8_encode($result->value).'</span> <span style="font-style: italic; font-size: smaller;">(client)</span></li>';
-	         		}
-	         			         		echo "</ul>";
-
-				} else {
-					echo 'ERROR: There was a problem with the query:<br>'.$sql;
-				}	
+	
 				
 			} else {
 				// Dont do anything.

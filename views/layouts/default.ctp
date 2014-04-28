@@ -47,7 +47,7 @@ var application_root = "<? echo CHEMIN;?>";
 
 <script type="text/javascript">
 	function lookup(inputString) {
-		if(inputString.length <2) {
+		if(inputString.length <3) {
 			// Hide the suggestion box.
 			$('#suggestions').hide();
 		} else {
@@ -62,6 +62,8 @@ var application_root = "<? echo CHEMIN;?>";
 	
 	function fill(thisValue) {
 		$('#inputString').val(thisValue);
+		/*$("form:first").submit();*/
+		/*		$.submit();*/
 		setTimeout("$('#suggestions').hide();", 200);
 	}
 </script>
@@ -129,7 +131,7 @@ echo $this->element('menu');
 <div class="globalsearch">
 <!-- begin search form -->
 <form action="<? echo CHEMIN; ?>pages/search/">
-<input type="text" size="10" value="" name="q" id="inputString" onkeyup="lookup(this.value);" onblur="fill();" value="<?php echo $_GET['q'];?>"/>
+<input type="text" size="10" value="" name="q" id="inputString" onkeyup="lookup(this.value);" onblur="fill()" value="<?php echo $_GET['q'];?>"/>
 <input type="checkbox" style="position: relative; top: 12px;" name="boolean" id="boolean" /><span class="boolean_search">boolean&nbsp;</span>
 <input style="position: relative; top: 5px; left: -10px" type="image" src="<? echo CHEMIN; ?>img/toolbar/loupe.png" title="Chercher" />
 <div class="suggestionsBox" id="suggestions" style="display: none;">
