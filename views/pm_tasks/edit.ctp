@@ -134,13 +134,19 @@ echo "web: " .$this->Html->link($this->data['PmProject']['url_prod'], $this->dat
 		</td>
 	</tr>
 	<tr>
-		<td colspan="2">
+		<td>
 			<?php ___('Libellé');?>
 
 			<?php 
 			$changer="'name','libelletache','".$this->data['PmTask']['id']."'";
 			//echo $changer;
 			echo $this->AlaxosForm->input('name', array('id'=>'libelletache', 'label' => false, "style"=>"width: 800px;", "onChange" => "libelle_change_status($changer)")); ?>
+		</td>
+		<td>
+		Membre
+		<?php 
+				echo $this->Form->input('PmMember');
+		?>
 		</td>
 	</tr>
 	<tr>

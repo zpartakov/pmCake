@@ -1,4 +1,4 @@
-<?php 
+yo<?php 
 /* a special view for incubateur - dreams
  * 
  * 
@@ -6,7 +6,8 @@
  * 
  */
 	App::import('Lib', 'functions'); //imports app/libs/functions
-$this->pageTitle = 'GTD ' .dateen2fr(date("D, d-M-Y")); 
+
+	$this->pageTitle = 'GTD ' .dateen2fr(date("D, d-M-Y")); 
 $datenow = date("Y-m-d");
 //echo phpinfo();
 if(!$_GET['tridate']==1) {

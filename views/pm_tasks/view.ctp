@@ -1,63 +1,29 @@
-<?php
-App::import('Lib', 'functions'); //imports app/libs/functions
-#cake title of the page
-$this->pageTitle = 'Voir tâche: ' .$pmTask['PmTask']['name']; 
-//print_r($pmTask); exit;
-//print_r($pmTask[Tag]); exit;
-?>
-	
-	
-	<div class="pmTasks view">
-	<h2><div class="imprimepas"><?php echo $this->pageTitle;?></div></h2>
-	<a href="#Fichiers" class="imprimepas">Fichiers</a>
-	 | 
-	<a href="#tags">tags</a>
-
-	 <div style="background-color:#FFFFB5 ;margin-top: 5px; width: 50%" class="imprimepas">
-	 <?
-	 statut_radio($pmTask['PmTask']['id'],$pmTask['PmTask']['status']);
-	 ?>
-	 </div>
-<div class="zactions">
-	<?
-	$idaction=$pmTask['PmTask']['id'];
-	e($html->link($html->image('toolbar/add.png', array('alt' => 'Ajouter', 'title' => 'Ajouter')), array('action'=>'add'), array('escape' => false)));
-	e($html->link($html->image('toolbar/editor.png', array('alt' => 'Modifier')), array('action'=>'edit', $idaction), array('alt' => 'Modifier', 'title' => 'Modifier', 'escape' => false)));
-	$delete_text = isset($delete_text) ? $delete_text : ___d('alaxos', 'do you really want to delete this item ?', true);
-	e($html->link($html->image('toolbar/drop.png', array('alt' => __d('alaxos', 'delete', true))), array('action' => 'delete', $idaction), array('alt' => ___d('alaxos', 'delete', true), 'title' => ___d('alaxos', 'delete', true), 'escape' => false), $delete_text));
-	e($html->link($html->image('toolbar/list.png', array('alt' => __d('alaxos', 'list', true))), array('action' => 'index'), array('alt' => ___d('alaxos', 'list', true), 'title' => ___d('alaxos', 'list', true), 'escape' => false)));
-	?>
-</div>
-<div class="delays">
-		<!-- ################ PUSH DELAYS  ################  -->
-	<form action="repousser" method="GET" name="<? echo $pmTask['PmTask']['id'];?>">
-	<input type="hidden" name="identifiant" value="<? echo $pmTask['PmTask']['id'];?>">
-	<input type='image' src="/pmcake/img/icons/bullet_arrow.gif" alt="Déplacer à demain" title="Déplacer à demain" name="demain" value="demain">
-        <select name="ajout" class="micro" size="1" onChange="task_goto_URL(<? echo $pmTask['PmTask']['id'];?>,this.value)">
-<? delais(); ?>
-
-        </select>
-      <!-- ############ task ok ######### -->
-
-      </form>
-</div>
-	<table>
-		<tr>
-			<td>
+<div class="pmTasks view">
+<h2><?php  __('Pm Task');?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $pmTask['PmTask']['id']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Parent Id'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $pmTask['PmTask']['parent_id']; ?>
+			&nbsp;
+		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Pm Project'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $this->Html->link($pmTask['PmProject']['name'], array('controller' => 'pm_projects', 'action' => 'view', $pmTask['PmProject']['id'])); ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Priorité'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Priority'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php prioriteView($pmTask['PmTask']['priority']); ?>
+			<?php echo $pmTask['PmTask']['priority']; ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Status'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php statut($pmTask['PmTask']['status']); ?>
+			<?php echo $pmTask['PmTask']['status']; ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Pm Member'); ?></dt>
@@ -65,24 +31,29 @@ $this->pageTitle = 'Voir tâche: ' .$pmTask['PmTask']['name'];
 			<?php echo $this->Html->link($pmTask['PmMember']['name'], array('controller' => 'pm_members', 'action' => 'view', $pmTask['PmMember']['id'])); ?>
 			&nbsp;
 		</dd>
-	<!--	<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Assigned To'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Assigned To'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $pmTask['PmTask']['assigned_to']; ?>
 			&nbsp;
-		</dd>-->
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Name'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $pmTask['PmTask']['name']; ?>
+			&nbsp;
+		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Description'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo urlise($pmTask['PmTask']['description']); ?>
+			<?php echo $pmTask['PmTask']['description']; ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Start Date'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php dateSQL2fr( $pmTask['PmTask']['start_date']); ?>
+			<?php echo $pmTask['PmTask']['start_date']; ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Due Date'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php dateSQL2fr( $pmTask['PmTask']['due_date']); ?>
+			<?php echo $pmTask['PmTask']['due_date']; ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Estimated Time'); ?></dt>
@@ -97,7 +68,7 @@ $this->pageTitle = 'Voir tâche: ' .$pmTask['PmTask']['name'];
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Comments'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo urlise($pmTask['PmTask']['comments']); ?>
+			<?php echo $pmTask['PmTask']['comments']; ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Completion'); ?></dt>
@@ -107,18 +78,17 @@ $this->pageTitle = 'Voir tâche: ' .$pmTask['PmTask']['name'];
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Created'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php dateSQL2fr( $pmTask['PmTask']['created']); ?>
+			<?php echo $pmTask['PmTask']['created']; ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Modified'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php #dateSQL2fr( $pmTask['PmTask']['modified']); ?>
-				<?php echo $pmTask['PmTask']['mod_date']; ?>
-
+			<?php echo $pmTask['PmTask']['modified']; ?>
+			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Assigned'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php dateSQL2fr( $pmTask['PmTask']['assigned']); ?>
+			<?php echo $pmTask['PmTask']['assigned']; ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Published'); ?></dt>
@@ -146,123 +116,191 @@ $this->pageTitle = 'Voir tâche: ' .$pmTask['PmTask']['name'];
 			<?php echo $pmTask['PmTask']['milestone']; ?>
 			&nbsp;
 		</dd>
-				<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Heures'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Mod Date'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-		<!-- ###################### HOURS #################### -->
-		<?php
-		total_hours_task($pmTask['PmTask']['id']);
-		
-		?>
+			<?php echo $pmTask['PmTask']['mod_date']; ?>
+			&nbsp;
 		</dd>
 	</dl>
 </div>
-</td>
-
-		</tr>
-		<tr>
-		<td>&nbsp;</td>
-		<td>
-
-      </td>
-      </tr>
-      
-      
-       	<?php
- 	parent_task($pmTask['PmTask']['id']);
- 	children_tasks($pmTask['PmTask']['id']);
- 	?>
-	</table>
-	
-	<div class="add_time_view">
-<form name="ajoutheure" action="/pmcake/pm_tasks_times/ajoutheure">
-<input type="hidden" name="projectid" value="<? echo $pmTask['PmProject']['id'];?>">
-<input type="hidden" name="idtache" value="<? echo $pmTask['PmTask']['id'];?>">
-<select name="addtime" onChange="Javascript:document.ajoutheure.submit()"><option value==""> *** Temps travail *** </option>
-<?
-ajoutheure();
-?>
-</select>
-		<? 
-		echo $html->image("icons/chronometre.png", array('alt' => 'Ajout temps travail', 'style'=>'width: 30px'));
-		?>
-</form>
-
+<div class="actions">
+	<h3><?php __('Actions'); ?></h3>
+	<ul>
+		<li><?php echo $this->Html->link(__('Edit Pm Task', true), array('action' => 'edit', $pmTask['PmTask']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('Delete Pm Task', true), array('action' => 'delete', $pmTask['PmTask']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $pmTask['PmTask']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('List Pm Tasks', true), array('action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Pm Task', true), array('action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Pm Projects', true), array('controller' => 'pm_projects', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Pm Project', true), array('controller' => 'pm_projects', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Pm Members', true), array('controller' => 'pm_members', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Pm Member', true), array('controller' => 'pm_members', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Pm Tasks Times', true), array('controller' => 'pm_tasks_times', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Pm Tasks Time', true), array('controller' => 'pm_tasks_times', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Tags', true), array('controller' => 'tags', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Tag', true), array('controller' => 'tags', 'action' => 'add')); ?> </li>
+	</ul>
 </div>
-<!-- ###################### FILES #################### -->
-<div class="fichiers">
-	<a name="Fichiers"></a><h2>Fichiers > 
-	<a href="/pmcake/zefiles/add?task_id=<? echo $pmTask['PmTask']['id'];?>">Nouveau fichier</a>
-</h2>
-<?
-$sql="SELECT * FROM zefiles WHERE task_id=".$pmTask['PmTask']['id'];
-#do and check sql
-$sql=mysql_query($sql);
-if(!$sql) {
-	echo "SQL error: " .mysql_error(); exit;
-}
-
-$i=0;
-
-echo "<table>";
-while($i<mysql_num_rows($sql)){
-	echo "<tr><td>#" .mysql_result($sql,$i,'id') ."</td><td><a href=\"" .CHEMIN ."files/" .mysql_result($sql,$i,'task_id') ."/" .mysql_result($sql,$i,'name') ."\">".mysql_result($sql,$i,'name') ."</a></td><td>";
-	dateSQL2fr(mysql_result($sql,$i,'created'));
-	#http://129.194.18.217/pmcake/files/1946/maisonpotterCapture-Google%20Earth.png
-	echo "</td><td>";
-	$extension=preg_replace("/^.*\./","",mysql_result($sql,$i,'name'));
-	typefichier($extension);
-	echo "</td>";
-	$i++;
-	echo "</tr>";
-	}
-echo "</table>";
-
-/*OLD FILES FROM netoffice*/
-$sql="SELECT * FROM pm_files WHERE task=".$pmTask['PmTask']['id'];
-#do and check sql
-$sql=mysql_query($sql);
-if(!$sql) {
-	echo "SQL error: " .mysql_error(); exit;
-}
-
-$i=0;
-
-echo "<table>";
-while($i<mysql_num_rows($sql)){
-	#echo "<tr><td>#" .mysql_result($sql,$i,'id') ."</td><td>".mysql_result($sql,$i,'comments') ."</td><td>";
-
-	
-		echo "<tr><td>#" .mysql_result($sql,$i,'id') ."</td><td><a href=\"/pm.old/pm/files/" .mysql_result($sql,$i,'id') ."/" .mysql_result($sql,$i,'comments') ."\">".mysql_result($sql,$i,'name') ."</a></td><td>";
-
-		dateSQL2fr(mysql_result($sql,$i,'date'));
-	echo "</td><td>";
-	
-	typefichier(mysql_result($sql,$i,'extension'));
-	echo "</td>";
-	$i++;
-	echo "</tr>";
-	}
-echo "</table>";
-?>
-
-</div>
-<h2><a name="tags"></a>Tags</h2>
+<div class="related">
+	<h3><?php __('Related Pm Tasks Times');?></h3>
+	<?php if (!empty($pmTask['PmTasksTime'])):?>
+	<table cellpadding = "0" cellspacing = "0">
+	<tr>
+		<th><?php __('Id'); ?></th>
+		<th><?php __('Project'); ?></th>
+		<th><?php __('Task'); ?></th>
+		<th><?php __('Owner'); ?></th>
+		<th><?php __('Date'); ?></th>
+		<th><?php __('Hours'); ?></th>
+		<th><?php __('Comments'); ?></th>
+		<th><?php __('Created'); ?></th>
+		<th><?php __('Modified'); ?></th>
+		<th class="actions"><?php __('Actions');?></th>
+	</tr>
 	<?php
-	$tags=$pmTask[Tag];
-	
-	$i = 0;
-	foreach ($tags as $tag):
-		$class = null;
-		if ($i++ % 2 == 0)
-		{
-			$class = ' class="row"';
-		}
-		else
-		{
-			$class = ' class="altrow"';
-		}
-	?>
-	<span<?php echo $class;?>>
-			<?php echo $this->Html->link($tag['lib'], array('action' => '../tags/view', $tag['PmTasksTag']['id']), array('class' => 'to_detail', 'escape' => false)); ?>
-	</span>&nbsp;|&nbsp;
-<?php endforeach; ?>
+		$i = 0;
+		foreach ($pmTask['PmTasksTime'] as $pmTasksTime):
+			$class = null;
+			if ($i++ % 2 == 0) {
+				$class = ' class="altrow"';
+			}
+		?>
+		<tr<?php echo $class;?>>
+			<td><?php echo $pmTasksTime['id'];?></td>
+			<td><?php echo $pmTasksTime['project'];?></td>
+			<td><?php echo $pmTasksTime['task'];?></td>
+			<td><?php echo $pmTasksTime['owner'];?></td>
+			<td><?php echo $pmTasksTime['date'];?></td>
+			<td><?php echo $pmTasksTime['hours'];?></td>
+			<td><?php echo $pmTasksTime['comments'];?></td>
+			<td><?php echo $pmTasksTime['created'];?></td>
+			<td><?php echo $pmTasksTime['modified'];?></td>
+			<td class="actions">
+				<?php echo $this->Html->link(__('View', true), array('controller' => 'pm_tasks_times', 'action' => 'view', $pmTasksTime['id'])); ?>
+				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'pm_tasks_times', 'action' => 'edit', $pmTasksTime['id'])); ?>
+				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'pm_tasks_times', 'action' => 'delete', $pmTasksTime['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $pmTasksTime['id'])); ?>
+			</td>
+		</tr>
+	<?php endforeach; ?>
+	</table>
+<?php endif; ?>
+
+	<div class="actions">
+		<ul>
+			<li><?php echo $this->Html->link(__('New Pm Tasks Time', true), array('controller' => 'pm_tasks_times', 'action' => 'add'));?> </li>
+		</ul>
+	</div>
+</div>
+<div class="related">
+	<h3><?php __('Related Pm Members');?></h3>
+	<?php if (!empty($pmTask['PmMember'])):?>
+	<table cellpadding = "0" cellspacing = "0">
+	<tr>
+		<th><?php __('Id'); ?></th>
+		<th><?php __('Organization'); ?></th>
+		<th><?php __('Login'); ?></th>
+		<th><?php __('Password'); ?></th>
+		<th><?php __('Name'); ?></th>
+		<th><?php __('Title'); ?></th>
+		<th><?php __('Email Work'); ?></th>
+		<th><?php __('Email Home'); ?></th>
+		<th><?php __('Phone Work'); ?></th>
+		<th><?php __('Phone Home'); ?></th>
+		<th><?php __('Mobile'); ?></th>
+		<th><?php __('Fax'); ?></th>
+		<th><?php __('Comments'); ?></th>
+		<th><?php __('Profil'); ?></th>
+		<th><?php __('Created'); ?></th>
+		<th><?php __('Logout Time'); ?></th>
+		<th><?php __('Last Page'); ?></th>
+		<th><?php __('Timezone'); ?></th>
+		<th class="actions"><?php __('Actions');?></th>
+	</tr>
+	<?php
+		$i = 0;
+		foreach ($pmTask['PmMember'] as $pmMember):
+			$class = null;
+			if ($i++ % 2 == 0) {
+				$class = ' class="altrow"';
+			}
+		?>
+		<tr<?php echo $class;?>>
+			<td><?php echo $pmMember['id'];?></td>
+			<td><?php echo $pmMember['organization'];?></td>
+			<td><?php echo $pmMember['login'];?></td>
+			<td><?php echo $pmMember['password'];?></td>
+			<td><?php echo $pmMember['name'];?></td>
+			<td><?php echo $pmMember['title'];?></td>
+			<td><?php echo $pmMember['email_work'];?></td>
+			<td><?php echo $pmMember['email_home'];?></td>
+			<td><?php echo $pmMember['phone_work'];?></td>
+			<td><?php echo $pmMember['phone_home'];?></td>
+			<td><?php echo $pmMember['mobile'];?></td>
+			<td><?php echo $pmMember['fax'];?></td>
+			<td><?php echo $pmMember['comments'];?></td>
+			<td><?php echo $pmMember['profil'];?></td>
+			<td><?php echo $pmMember['created'];?></td>
+			<td><?php echo $pmMember['logout_time'];?></td>
+			<td><?php echo $pmMember['last_page'];?></td>
+			<td><?php echo $pmMember['timezone'];?></td>
+			<td class="actions">
+				<?php echo $this->Html->link(__('View', true), array('controller' => 'pm_members', 'action' => 'view', $pmMember['id'])); ?>
+				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'pm_members', 'action' => 'edit', $pmMember['id'])); ?>
+				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'pm_members', 'action' => 'delete', $pmMember['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $pmMember['id'])); ?>
+			</td>
+		</tr>
+	<?php endforeach; ?>
+	</table>
+<?php endif; ?>
+
+	<div class="actions">
+		<ul>
+			<li><?php echo $this->Html->link(__('New Pm Member', true), array('controller' => 'pm_members', 'action' => 'add'));?> </li>
+		</ul>
+	</div>
+</div>
+<div class="related">
+	<h3><?php __('Related Tags');?></h3>
+	<?php if (!empty($pmTask['Tag'])):?>
+	<table cellpadding = "0" cellspacing = "0">
+	<tr>
+		<th><?php __('Id'); ?></th>
+		<th><?php __('Cdu'); ?></th>
+		<th><?php __('Lib'); ?></th>
+		<th><?php __('Last Update'); ?></th>
+		<th><?php __('Rem1'); ?></th>
+		<th><?php __('Rem2'); ?></th>
+		<th><?php __('Rem3'); ?></th>
+		<th class="actions"><?php __('Actions');?></th>
+	</tr>
+	<?php
+		$i = 0;
+		foreach ($pmTask['Tag'] as $tag):
+			$class = null;
+			if ($i++ % 2 == 0) {
+				$class = ' class="altrow"';
+			}
+		?>
+		<tr<?php echo $class;?>>
+			<td><?php echo $tag['id'];?></td>
+			<td><?php echo $tag['cdu'];?></td>
+			<td><?php echo $tag['lib'];?></td>
+			<td><?php echo $tag['last_update'];?></td>
+			<td><?php echo $tag['rem1'];?></td>
+			<td><?php echo $tag['rem2'];?></td>
+			<td><?php echo $tag['rem3'];?></td>
+			<td class="actions">
+				<?php echo $this->Html->link(__('View', true), array('controller' => 'tags', 'action' => 'view', $tag['id'])); ?>
+				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'tags', 'action' => 'edit', $tag['id'])); ?>
+				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'tags', 'action' => 'delete', $tag['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $tag['id'])); ?>
+			</td>
+		</tr>
+	<?php endforeach; ?>
+	</table>
+<?php endif; ?>
+
+	<div class="actions">
+		<ul>
+			<li><?php echo $this->Html->link(__('New Tag', true), array('controller' => 'tags', 'action' => 'add'));?> </li>
+		</ul>
+	</div>
+</div>

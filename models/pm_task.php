@@ -54,7 +54,22 @@ class PmTask extends AppModel {
 			'deleteQuery' => '',
 			'insertQuery' => ''
 		),
-		'Tag' => array(
+		'PmMember' => array(
+			'className' => 'PmMember',
+			'joinTable' => 'pm_tasks_pm_members',
+			'foreignKey' => 'pm_task_id',
+			'associationForeignKey' => 'pm_member_id',
+			'unique' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		),
+			'Tag' => array(
 			'className' => 'Tag',
 			'joinTable' => 'pm_tasks_tags',
 			'foreignKey' => 'pm_task_id',

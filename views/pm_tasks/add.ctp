@@ -146,6 +146,8 @@ if(preg_match("/pm_projects\/view/",$_SERVER["HTTP_REFERER"])) {
 		echo $this->Form->input('service',array("type"=>"hidden","value"=>0));
 		echo $this->Form->input('milestone',array("type"=>"hidden","value"=>0));
 		echo $this->Form->input('PmTasksTime',array("type"=>"hidden","value"=>0));
+		echo $this->Form->input('PmMember');
+		
 	?>
 	</td>
 </tr>
