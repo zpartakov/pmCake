@@ -19,7 +19,8 @@ while($i<mysql_num_rows($sqlM)){
 	echo "<li style=\"" .mysql_result($sqlM,$i,"style_li") ."\">";
 	if(strlen(mysql_result($sqlM,$i,'img'))>0) { //image
 				echo $html->image(mysql_result($sqlM,$i,'img'), 
-				array('url' => mysql_result($sqlM,$i,"url"), 
+
+						array('url' => mysql_result($sqlM,$i,"url"), 
 				'alt' => mysql_result($sqlM,$i,"lib"), 
 				'title' => mysql_result($sqlM,$i,"lib"), 'style'=>mysql_result($sqlM,$i,"style_img")));
 	}elseif(preg_match("/\?/",mysql_result($sqlM,$i,"lib"))) { //link with variable
@@ -33,7 +34,11 @@ while($i<mysql_num_rows($sqlM)){
 			echo "<span class=\"" .$class ."\">" .$lib ."</span>";
 		}
 	} else { //normal link	
-		echo $html->link(__(mysql_result($sqlM,$i,'lib'), true), mysql_result($sqlM,$i,"url"));
+	//	echo $html->link(__(mysql_result($sqlM,$i,'lib'), array('script'=>"loadafternsec(mysql_result($sqlM,$i,'url'),5000)"), true), mysql_result($sqlM,$i,"url"));
+		//echo $html->link(__(mysql_result($sqlM,$i,'lib'), true), mysql_result($sqlM,$i,"url"),array('script'=>"loadafternsec(mysql_result($sqlM,$i,'url'),5000)"));
+		$lelien="javascript:loadafternsec('".CHEMIN.mysql_result($sqlM,$i,'url') ."',5000)";
+		//echo "<br>$lelien<br>";
+		echo $html->link(__(mysql_result($sqlM,$i,'lib'), true), mysql_result($sqlM,$i,'url'), array('onmouseover'=>$lelien));
 	}
 	
 	/*sous-menus niveau 2 begin */
@@ -53,7 +58,9 @@ while($i<mysql_num_rows($sqlM)){
 			.mysql_result($sqlSsMenus,$i2,'lib') ."</a>";
 
 		} else {
-			echo $html->link(__(mysql_result($sqlSsMenus,$i2,'lib'), true), mysql_result($sqlSsMenus,$i2,"url"));
+			$lelien="javascript:loadafternsec('".CHEMIN.mysql_result($sqlSsMenus,$i2,'url') ."',5000)";
+				
+			echo $html->link(__(mysql_result($sqlSsMenus,$i2,'lib'), true), mysql_result($sqlSsMenus,$i2,"url"), array('onmouseover'=>$lelien));
 		}
 		
 		/* sous-menus niveau 3 */
@@ -77,7 +84,9 @@ while($i<mysql_num_rows($sqlM)){
 					.mysql_result($sqlSsMenus3,$i3,'lib') ."</a>";
 		
 				} else {
-					echo $html->link(__(mysql_result($sqlSsMenus3,$i3,'lib'), true), mysql_result($sqlSsMenus3,$i3,"url"));
+					$lelien="javascript:loadafternsec('".CHEMIN.mysql_result($sqlSsMenus3,$i3,'url') ."',5000)";
+						
+					echo $html->link(__(mysql_result($sqlSsMenus3,$i3,'lib'), true), mysql_result($sqlSsMenus3,$i3,"url"), array('onmouseover'=>$lelien));
 				}
 				
 				

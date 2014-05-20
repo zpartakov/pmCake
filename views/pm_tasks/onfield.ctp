@@ -1,4 +1,6 @@
-	<?php
+<script>
+</script>
+<?php
 	App::import('Lib', 'functions'); //imports app/libs/functions
 //Configure::write('debug', 2);
 $this->pageTitle = 'GTD ' .dateen2fr(date("D d-M-Y, H\hi")); 
@@ -18,12 +20,12 @@ function task_detail(id) {
 
 <h1><?php echo $this->pageTitle; ?></h1>
 
-		<a href="#prof">Prof</a> | 
-		<a href="#perso">Perso</a> | 
-		<a href="#demain" onclick="montrecache1();">Demain</a> | 
-		<a href="#A venir" onclick="montrecache2();">A venir</a> | 
-		<a href="#random_list_todos">Liste aléatoire (unige)</a> | 
-		<a href="#random_list_todosp">Liste aléatoire (perso)</a>
+		<a onmouseover="javascript:loadafternsec('#prof',3000)" href="#prof">Prof</a> | 
+		<a onmouseover="javascript:loadafternsec('#perso',3000)" href="#perso">Perso</a> | 
+		<a onmouseover="javascript:loadafternsec('#demain',3000)" href="#demain" onclick="montrecache1();">Demain</a> | 
+		<a onmouseover="javascript:loadafternsec('#A venir',3000)" href="#A venir" onclick="montrecache2();">A venir</a> | 
+		<a onmouseover="javascript:loadafternsec('#random_list_todos',3000)" href="#random_list_todos">Liste aléatoire (unige)</a> | 
+		<a onmouseover="javascript:loadafternsec('#random_list_todosp',3000)" href="#random_list_todosp">Liste aléatoire (perso)</a>
 <?
 $sql="";
 global $sql;

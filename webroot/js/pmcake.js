@@ -299,3 +299,10 @@ function task_detail(id) {
 				document.getElementById(id).style.display="block";		
 
 }
+
+function loadafternsec(url,delay) {
+	//delayis the number of milliseconds that you want to wait before redirection.
+	setTimeout(function() {
+	window.location.href = url;
+	}, delay);
+}
