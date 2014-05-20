@@ -145,7 +145,9 @@ echo $this->element('menu');
 </div>
 <div id="content">
 
-<?php echo $content_for_layout; ?>
+<?php 
+
+echo $content_for_layout; ?>
 </div>
 </div>
 <!-- END CONTAINER HTML BODY-->
@@ -196,6 +198,6 @@ echo '<a target="_blank" href="http://www.gnu.org/licenses/gpl-3.0.txt">'.$html-
  
 
 </div>
-  
+ 
 </body>
 </html>

@@ -143,8 +143,10 @@ echo "web: " .$this->Html->link($this->data['PmProject']['url_prod'], $this->dat
 			echo $this->AlaxosForm->input('name', array('id'=>'libelletache', 'label' => false, "style"=>"width: 800px;", "onChange" => "libelle_change_status($changer)")); ?>
 		</td>
 		<td>
-		Membre
+		Membre(s)
 		<?php 
+		ts_les_membres($this->data['PmTask']['id']);
+		
 				echo $this->Form->input('PmMember');
 		?>
 		</td>

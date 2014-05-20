@@ -1,6 +1,5 @@
-<script>
-</script>
-<?php
+
+  <?php
 	App::import('Lib', 'functions'); //imports app/libs/functions
 //Configure::write('debug', 2);
 $this->pageTitle = 'GTD ' .dateen2fr(date("D d-M-Y, H\hi")); 
@@ -25,8 +24,9 @@ function task_detail(id) {
 		<a onmouseover="javascript:loadafternsec('#demain',3000)" href="#demain" onclick="montrecache1();">Demain</a> | 
 		<a onmouseover="javascript:loadafternsec('#A venir',3000)" href="#A venir" onclick="montrecache2();">A venir</a> | 
 		<a onmouseover="javascript:loadafternsec('#random_list_todos',3000)" href="#random_list_todos">Liste aléatoire (unige)</a> | 
-		<a onmouseover="javascript:loadafternsec('#random_list_todosp',3000)" href="#random_list_todosp">Liste aléatoire (perso)</a>
-<?
+		<a onmouseover="javascript:loadafternsec('#random_list_todosp',3000)" href="#random_list_todosp">Liste aléatoire (perso)</a> |
+				<a onmouseover="javascript:loadafternsec('#Anniversaires',3000)" href="#Anniversaires">Anniversaires</a>
+		<?
 $sql="";
 global $sql;
 print_tasks("prof","auj"); //PROF TASKS
@@ -40,6 +40,10 @@ print_tasks("A venir","futur"); //TOMORROW TASKS
 random_list_todos(15,'');
 random_list_todos(15,'p');//private
 ?>
+<a name="Anniversaires">Anniversaires</a>
+ <?php 
+  echo $this->render('/contacts/birthday');
+  ?>
 
 
 

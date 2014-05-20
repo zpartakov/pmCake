@@ -22,7 +22,8 @@ header('Content-Disposition: attachment; filename="export.csv"');
    // Define column headers for CSV file, in same array format as the data itself
                 $Equipement= array(
 					'FirstName' => 'FirstName',
-					'LastName' => 'LastName',
+                    'LastName' => 'LastName',
+                    'birthday' => 'birthday',
 					'EmailAddress' => 'EmailAddress',
 					'Email2Address' => 'Email2Address',
 					'Email3Address' => 'Email3Address',

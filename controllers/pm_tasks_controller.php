@@ -115,9 +115,10 @@ class PmTasksController extends AppController {
 			$this->data = $this->PmTask->read(null, $id);
 		}
 				
+		$pmMembers = $this->PmTask->PmMember->find('list');
 		
 		$pmTags = $this->PmTask->Tag->find('list');
-		$this->set(compact('pmTags'));
+		$this->set(compact('pmMembers', 'pmTags'));
 		
 		
 	}

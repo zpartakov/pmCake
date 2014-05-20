@@ -13,11 +13,16 @@
 			<?php echo $contact['Contact']['FirstName']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('LastName'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $contact['Contact']['LastName']; ?>
-			&nbsp;
-		</dd>
+        <dt<?php if ($i % 2 == 0) echo $class;?>><?php __('LastName'); ?></dt>
+        <dd<?php if ($i++ % 2 == 0) echo $class;?>>
+            <?php echo $contact['Contact']['LastName']; ?>
+            &nbsp;
+        </dd>
+        <dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Date de naissance'); ?></dt>
+        <dd<?php if ($i++ % 2 == 0) echo $class;?>>
+            <?php echo $contact['Contact']['birthday']; ?>
+            &nbsp;
+        </dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Notes'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $contact['Contact']['Notes']; ?>

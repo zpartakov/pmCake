@@ -4,7 +4,8 @@ $this->pageTitle="Imprimer contacts";
    // Define column headers for CSV file, in same array format as the data itself
                 $Equipement= array(
 					'FirstName' => 'FirstName',
-					'LastName' => 'LastName',
+                    'LastName' => 'LastName',
+                    'birthday' => 'birthday',
 					'PrimaryPhone' => 'PrimaryPhone',
 					'HomePhone' => 'HomePhone',
 					'HomePhone2' => 'HomePhone2',

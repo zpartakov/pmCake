@@ -1334,6 +1334,24 @@ function membres($id) {
 	echo "<a href=\"../pm_members/view/".mysql_result($sql,0,'id') ."\">" .mysql_result($sql,0,'login') ."</a>";
 	}
 	
+/* function to extract all members (owners) for a given task */
+function ts_les_membres($id) {
+	$sql="SELECT * FROM pm_tasks_pm_members, pm_members 
+			WHERE pm_tasks_pm_members.pm_task_id=".$id
+		." AND pm_tasks_pm_members.pm_member_id=pm_members.id"
+	;
+	$sql=mysql_query($sql);
+	if(!$sql) { echo "SQL error: " .mysql_error(); }
+$i=0;
+	if(mysql_num_rows($sql)>0) {
+		echo "<ol>";
+	while($i<mysql_num_rows($sql)){
+		echo "<li><a href=\"" .mysql_result($sql,$i,'id') ."\">" .mysql_result($sql,$i,'name') ."</a></li>";
+		$i++;
+		}
+		echo "</ol>";
+	}	
+}
 /*function to get a scrolling list of projets and highlight the current project if exists*/
 function membres_sel($pid) {
 $sql="SELECT id, name FROM pm_members ORDER BY name"; 

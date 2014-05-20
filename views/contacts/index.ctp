@@ -50,7 +50,8 @@ if($csv==1) {
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('FirstName');?></th>
-			<th><?php echo $this->Paginator->sort('LastName');?></th>
+            <th><?php echo $this->Paginator->sort('LastName');?></th>
+            <th><?php echo $this->Paginator->sort('birthday');?></th>
 			<th><?php echo $this->Paginator->sort('EmailAddress');?></th>
 			<th><?php echo $this->Paginator->sort('PrimaryPhone');?></th>
 			<th><?php echo $this->Paginator->sort('MobilePhone');?></th>
@@ -71,7 +72,13 @@ if($csv==1) {
 ?>
 		</td>
 		<td><?php echo $contact['Contact']['FirstName']; ?>&nbsp;</td>
-		<td><?php echo $contact['Contact']['LastName']; ?>&nbsp;</td>
+        <td><?php echo $contact['Contact']['LastName']; ?>&nbsp;</td>
+        <td><?php echo $contact['Contact']['birthday']; 
+            ?>&nbsp;</td>
+        
+        
+        
+        
 		<td><?php echo melto($contact['Contact']['EmailAddress']); ?>&nbsp;</td>
 		<td><?php echo $contact['Contact']['PrimaryPhone']; ?>&nbsp;</td>
 		<td><?php echo $contact['Contact']['MobilePhone']; ?>&nbsp;</td>

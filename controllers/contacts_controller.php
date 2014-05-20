@@ -118,4 +118,9 @@ class ContactsController extends AppController {
         						//do not display layout
 		//$this->layout = '';
         }
+        function birthday(){
+        	$this->layout = '';
+        	 
+        	//send automatic email for birthdays
+        }
 }
