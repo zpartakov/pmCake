@@ -36,7 +36,7 @@ while($i<mysql_num_rows($sqlM)){
 	} else { //normal link	
 	//	echo $html->link(__(mysql_result($sqlM,$i,'lib'), array('script'=>"loadafternsec(mysql_result($sqlM,$i,'url'),5000)"), true), mysql_result($sqlM,$i,"url"));
 		//echo $html->link(__(mysql_result($sqlM,$i,'lib'), true), mysql_result($sqlM,$i,"url"),array('script'=>"loadafternsec(mysql_result($sqlM,$i,'url'),5000)"));
-		$lelien="javascript:loadafternsec('".CHEMIN.mysql_result($sqlM,$i,'url') ."',5000)";
+		//$lelien="javascript:loadafternsec('".CHEMIN.mysql_result($sqlM,$i,'url') ."',5000)";
 		//echo "<br>$lelien<br>";
 		echo $html->link(__(mysql_result($sqlM,$i,'lib'), true), mysql_result($sqlM,$i,'url'), array('onmouseover'=>$lelien));
 	}
@@ -58,7 +58,7 @@ while($i<mysql_num_rows($sqlM)){
 			.mysql_result($sqlSsMenus,$i2,'lib') ."</a>";
 
 		} else {
-			$lelien="javascript:loadafternsec('".CHEMIN.mysql_result($sqlSsMenus,$i2,'url') ."',5000)";
+			//$lelien="javascript:loadafternsec('".CHEMIN.mysql_result($sqlSsMenus,$i2,'url') ."',5000)";
 				
 			echo $html->link(__(mysql_result($sqlSsMenus,$i2,'lib'), true), mysql_result($sqlSsMenus,$i2,"url"), array('onmouseover'=>$lelien));
 		}
@@ -84,7 +84,7 @@ while($i<mysql_num_rows($sqlM)){
 					.mysql_result($sqlSsMenus3,$i3,'lib') ."</a>";
 		
 				} else {
-					$lelien="javascript:loadafternsec('".CHEMIN.mysql_result($sqlSsMenus3,$i3,'url') ."',5000)";
+				//	$lelien="javascript:loadafternsec('".CHEMIN.mysql_result($sqlSsMenus3,$i3,'url') ."',5000)";
 						
 					echo $html->link(__(mysql_result($sqlSsMenus3,$i3,'lib'), true), mysql_result($sqlSsMenus3,$i3,"url"), array('onmouseover'=>$lelien));
 				}

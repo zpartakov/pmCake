@@ -119,7 +119,7 @@ class ContactsController extends AppController {
 		//$this->layout = '';
         }
         function birthday(){
-        	$this->layout = '';
+        //	$this->layout = '';
         	 
         	//send automatic email for birthdays
         }

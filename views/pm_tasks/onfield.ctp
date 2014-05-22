@@ -25,7 +25,7 @@ function task_detail(id) {
 		<a onmouseover="javascript:loadafternsec('#A venir',3000)" href="#A venir" onclick="montrecache2();">A venir</a> | 
 		<a onmouseover="javascript:loadafternsec('#random_list_todos',3000)" href="#random_list_todos">Liste aléatoire (unige)</a> | 
 		<a onmouseover="javascript:loadafternsec('#random_list_todosp',3000)" href="#random_list_todosp">Liste aléatoire (perso)</a> |
-				<a onmouseover="javascript:loadafternsec('#Anniversaires',3000)" href="#Anniversaires">Anniversaires</a>
+				<a onmouseover="javascript:loadafternsec('#Anniversaires',3000)" href="/intranet/pmcake/contacts/birthday">Anniversaires</a>
 		<?
 $sql="";
 global $sql;
@@ -40,9 +40,10 @@ print_tasks("A venir","futur"); //TOMORROW TASKS
 random_list_todos(15,'');
 random_list_todos(15,'p');//private
 ?>
-<a name="Anniversaires">Anniversaires</a>
  <?php 
-  echo $this->render('/contacts/birthday');
+//echo '<a name="Anniversaires">Anniversaires</a>';
+  
+//  echo $this->render('/contacts/birthday');
   ?>
 
 
