@@ -1,8 +1,14 @@
-<?
+<?php
 $this->pageTitle="Logins obsolètes";
 ?>
 <div class="obsoletelogins index">
-<a href="<? echo CHEMIN; ?>obsoletelogins/index/page:1/sort:lastmodif/direction:asc"><h2><?php __('Logins obsolètes');?></h2></a>
+<a href="<? echo CHEMIN; ?>obsoletelogins/index/page:1/sort:lastmodif/direction:asc"><h2>
+<?php __('Logins obsolètes');?>
+<?php
+	$image="icons/pm/ghost.png";
+	echo $html->image($image, array('style'=>'vertical-align: top; width: 100px'));
+?>
+</h2></a>
 <a href="http://www.unige.ch/outils/phpMyAdmin/db_structure.php?db=userweb">Base MySQL userweb silene</a>
 <div class="actions">
 	<ul>

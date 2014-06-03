@@ -17,7 +17,12 @@ echo '<input type="checkbox" name="checkno" onclick="redirige()"> uncheck url?';
 }
 ?>
 <div class="pmBookmarks index">
-	<h2><?php __('Pm Bookmarks');?></h2>
+	<h2><?php __('Pm Bookmarks');?>
+	<?php
+	$image="icons/pm/bookmarks_favorites.png";
+	echo $html->image($image, array('style'=>'vertical-align: top; width: 100px'));
+	?>
+	</h2>
 	<!-- begin search form -->
 	<?php
 

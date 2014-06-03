@@ -2,10 +2,14 @@
 App::import('Lib', 'functions'); //imports app/libs/functions
 #cake title of the page
 $this->pageTitle = 'Liste des projets'; 
+
 ?>
 
 <div class="pmProjects index">
-	<h2><?php echo $this->pageTitle;?></h2>
+	<h2><?php echo $this->pageTitle;
+	
+	echo $html->image('icons/pm/project-plan-icon.png ', array('style'=>'vertical-align: top; width: 100px'));
+	?></h2>
 				<?
 				e($html->link($html->image('toolbar/add.png', array('alt' => 'Ajouter', 'title' => 'Ajouter')), array('action'=>'add'), array('escape' => false)));
 				?>

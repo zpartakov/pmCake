@@ -2,6 +2,9 @@
 	<h2><?php __('Faqs');
 	
 	App::import('Lib', 'functions'); //imports app/libs/functions
+	$image="icons/pm/faq1.png";
+	echo $html->image($image, array('style'=>'vertical-align: top; width: 100px'));
+	
 	?></h2>
 
 		<?php echo $this->Html->link(__('New Faq', true), array('action' => 'add')); ?>

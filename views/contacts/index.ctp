@@ -14,7 +14,11 @@ if($csv==1) {
 }
 ?>
 <div class="contacts index">
-	<h2><?php __('Contacts');?></h2>
+	<h2><?php __('Contacts');
+	$image="icons/pm/contacts.jpg";
+	echo $html->image($image, array('style'=>'vertical-align: top; width: 100px'));
+	
+	?></h2>
 <!-- begin search form -->
 	<?php
 

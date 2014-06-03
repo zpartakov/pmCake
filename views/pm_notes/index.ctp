@@ -1,5 +1,10 @@
 <div class="pmNotes index">
-	<h2><?php __('Pm Notes');?></h2>
+	<h2><?php __('Pm Notes');?>
+<?php
+	$image="icons/pm/tags.png";
+	echo $html->image($image, array('style'=>'vertical-align: top; width: 100px'));
+?>
+	</h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>

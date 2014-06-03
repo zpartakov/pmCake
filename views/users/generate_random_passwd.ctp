@@ -15,7 +15,12 @@ if(!$_GET['nbpwd']){
 }
 //echo $longueur ." - " . $nbpwd;
 ?>
-<h1><?php echo $this->pageTitle;?></h1>
+<h1><?php echo $this->pageTitle;?>
+	<?php
+	$image="icons/pm/password.jpg";
+	echo $html->image($image, array('style'=>'vertical-align: top; width: 100px'));
+	?>
+	</h1>
 
 <!-- <form method="GET">
 Longueur du mot de passe: <input type="text" name="longueur" value="10">

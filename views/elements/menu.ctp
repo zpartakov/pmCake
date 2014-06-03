@@ -23,6 +23,7 @@ while($i<mysql_num_rows($sqlM)){
 						array('url' => mysql_result($sqlM,$i,"url"), 
 				'alt' => mysql_result($sqlM,$i,"lib"), 
 				'title' => mysql_result($sqlM,$i,"lib"), 'style'=>mysql_result($sqlM,$i,"style_img")));
+				//echo "IMGXXX";
 	}elseif(preg_match("/\?/",mysql_result($sqlM,$i,"lib"))) { //link with variable
 		//special case=calendrier
 		if(preg_match("/calendrier/",mysql_result($sqlM,$i,"lib"))){

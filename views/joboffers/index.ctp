@@ -1,5 +1,11 @@
 <div class="joboffers index">
-<h2><?php __('Joboffers');?></h2>
+<h2><?php __('Joboffers');?>
+<?php
+	$image="icons/pm/booking-money-bag.png";
+	echo $html->image($image, array('style'=>'vertical-align: top; width: 100px'));
+?>
+
+</h2>
 		<!-- begin search form -->
 	<?php
 

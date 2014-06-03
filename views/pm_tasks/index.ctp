@@ -14,13 +14,28 @@ $x=preg_replace("/Liste des tâches: incub/","Incubateur",$x);
 $this->pageTitle = $x; 
 ?>
 
-<?
+<?php
+if($_GET['tasktype']=="incub") { //incubateur - dreams
+$image="icons/pm/ideas.png";
+}elseif($_GET['tasktype']=="ref") { //incubateur - dreams
+$image="icons/pm/references.png";
+}
+
+
+
 $sql="";
 global $sql;
+?>
+<div class="pmTasks index">
+<h2>
+<?php echo $this->pageTitle;
+echo $html->image($image, array('style'=>'vertical-align: top; width: 100px'));
+?>
+</h2>
+<?php
 if($_GET['tasktype']=="incub") { //incubateur - dreams
 	//echo "incub"; exit;
 print_tasks("dreams","auj"); //PROF TASKS
-
 /*
  * ref
  */
@@ -29,10 +44,11 @@ print_tasks("ref","auj"); //PROF TASKS
 
 } else {
 ?>
+<?php
 
-
-	<div class="pmTasks index">
-	<h2><?php echo $this->pageTitle;?></h2>
+	
+	
+	?>
 			<a href="#perso">Perso</a> | 
 	
 	<table cellpadding="0" cellspacing="0">
