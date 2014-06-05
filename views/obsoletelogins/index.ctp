@@ -46,6 +46,7 @@ echo $paginator->counter(array(
 	<th class="actions"><?php __('Actions');?></th>
 </tr>
 <?php
+$checkuser="";
 $i = 0;
 foreach ($obsoletelogins as $obsoletelogin):
 	$class = null;
@@ -61,7 +62,9 @@ foreach ($obsoletelogins as $obsoletelogin):
 			<?php echo $obsoletelogin['Obsoletelogin']['datenotifpostmaster']; ?>
 		</td>
 		<td>
-			<?php echo $obsoletelogin['Obsoletelogin']['login']; ?>
+			<?php echo $obsoletelogin['Obsoletelogin']['login'];
+			$checkuser=$checkuser."lemail " .preg_replace("/\+/","",$obsoletelogin['Obsoletelogin']['login'])."<br>";
+			 ?>
 		</td>
 		<td>
 			<?php echo "<a href=mailto:" .$obsoletelogin['Obsoletelogin']['mail'] .">" .$obsoletelogin['Obsoletelogin']['mail'] ."</a>"; ?>
@@ -94,6 +97,10 @@ foreach ($obsoletelogins as $obsoletelogin):
 	</tr>
 <?php endforeach; ?>
 </table>
+<h1>Checkmails</h1>
+<?php 
+echo $checkuser;
+?>
 </div>
 <div class="paging">
 	<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>

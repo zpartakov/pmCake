@@ -1,5 +1,10 @@
 <div class="fonctions index">
-	<h2><?php __('Fonctions');?></h2>
+	<h2><?php __('Fonctions');
+	
+		$image="icons/pm/functions.jpg";
+	echo $html->image($image, array('style'=>'vertical-align: top; width: 100px'));
+	
+	?></h2>
 	<!-- begin search form -->
 	<?php
 
