@@ -18,3 +18,4 @@ config/database.php
 !empty
 pmCake/*
 webroot/img/*
+/views/contacts/email.ctp
