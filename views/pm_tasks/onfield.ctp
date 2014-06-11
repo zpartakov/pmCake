@@ -18,14 +18,15 @@ function task_detail(id) {
 </script>
 
 <h1><?php echo $this->pageTitle; ?></h1>
+ 
 
-		<a onmouseover="javascript:loadafternsec('#prof',3000)" href="#prof">Prof</a> | 
-		<a onmouseover="javascript:loadafternsec('#perso',3000)" href="#perso">Perso</a> | 
-		<a onmouseover="javascript:loadafternsec('#demain',3000)" href="#demain" onclick="montrecache1();">Demain</a> | 
-		<a onmouseover="javascript:loadafternsec('#A venir',3000)" href="#A venir" onclick="montrecache2();">A venir</a> | 
-		<a onmouseover="javascript:loadafternsec('#random_list_todos',3000)" href="#random_list_todos">Liste aléatoire (unige)</a> | 
-		<a onmouseover="javascript:loadafternsec('#random_list_todosp',3000)" href="#random_list_todosp">Liste aléatoire (perso)</a> |
-				<a onmouseover="javascript:loadafternsec('#Anniversaires',3000)" href="/intranet/pmcake/contacts/birthday">Anniversaires</a>
+<a href="#prof">Prof</a> | 
+<a href="#perso">Perso</a> | 
+<a href="#demain" onclick="montrecache1();">Demain</a> | 
+<a href="#A venir" onclick="montrecache2();">A venir</a> | 
+<a href="#random_list_todos">Liste aléatoire (unige)</a> | 
+<a href="#random_list_todosp">Liste aléatoire (perso)</a>
+<a href="/intranet/pmcake/contacts/birthday">Anniversaires</a>
 		<?
 $sql="";
 global $sql;

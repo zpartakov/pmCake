@@ -123,4 +123,7 @@ class ContactsController extends AppController {
         	 
         	//send automatic email for birthdays
         }
+function email() {
+	
+}
 }
