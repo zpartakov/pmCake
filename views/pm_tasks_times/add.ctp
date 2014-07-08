@@ -33,16 +33,4 @@ $this->pageTitle = 'Ajouter temps de travail à une tâche';
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
 </div>
-<div class="actions">
-	<h3><?php __('Actions'); ?></h3>
-	<ul>
 
-		<li><?php echo $this->Html->link(__('List Pm Tasks Times', true), array('action' => 'index'));?></li>
-		<li><?php echo $this->Html->link(__('List Pm Projects', true), array('controller' => 'pm_projects', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Pm Project', true), array('controller' => 'pm_projects', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Pm Members', true), array('controller' => 'pm_members', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Pm Member', true), array('controller' => 'pm_members', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Pm Tasks', true), array('controller' => 'pm_tasks', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Pm Task', true), array('controller' => 'pm_tasks', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
