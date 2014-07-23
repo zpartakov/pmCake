@@ -626,7 +626,6 @@ exit;
 		$i++;
 	}
 	echo "</table>";
-	/*£££*/
 	echo "</div>";
 	
 	}
@@ -813,7 +812,23 @@ echo     '<input type="checkbox" name="checkboxlist" value="'.mysql_result($sql,
 	echo ")</em> ";
 	echo "</td>";
 	echo "<td>" .mysql_result($sql,$i,'milestone') ."</td>";
-	echo "<td>";
+	
+	/*
+	 * add time to task £
+	 */
+	echo '	<td>
+	<form name="ajoutheure" action="/intranet/pmcake/pm_tasks_times/ajoutheure">
+	<input type="hidden" name="projectid" value="'.mysql_result($sql,$i,'proj.id') .'">
+	<input type="hidden" name="idtache" value="'.mysql_result($sql,$i,'id') .'">
+	<select name="addtime" onChange="submit()"><option value=""> *** Temps travail *** </option>
+			';
+	ajoutheure();
+echo '
+						</select>
+				</form>
+	</td>';
+
+echo "<td>";
 	################ BEGIN PUSH DELAYS  ################
 	push_delays($idc);
 	echo '<td>
@@ -841,6 +856,8 @@ echo     '<input type="checkbox" name="checkboxlist" value="'.mysql_result($sql,
 	    echo '<select id="pousserdelais" class="btnadd" onChange="sendselected()">';
     delais();
     echo '</select>';
+    
+    
 	echo '
 <!--
 <div class="choose_action">
@@ -852,6 +869,9 @@ push_all_delays($catlib);
 !-->
 </form>';
 	
+	?>
+
+	<?php 	
 	
 	if($quand=="demain"||$quand=="futur") {
 		echo "</div>";
