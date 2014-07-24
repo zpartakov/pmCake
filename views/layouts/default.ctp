@@ -12,21 +12,29 @@
 
 	<?php
 	echo $html->meta('icon');
+	/*
+	 * css
+	 */
+	echo $html->css('cakephp_ori'); //original cakePhp css
+	echo $html->css('pmcake'); //pmCake adapation
+	echo $html->css('tooltip'); //tooltip / infobulles menu
+	echo $html->css('mobile'); //mobile version
 	
-	echo $html->css('pmcake');
+	/*
+	 * js
+	 */
 	
 	echo $html->script('jquery/jquery');
 	echo $html->script('jquery.jeditable');
 	echo $html->script('jquery.jeditable.example');
 	
-/*
- * dynamic menus http://users.tpg.com.au/j_birch/plugins/superfish/
- */
+	/*
+	 * dynamic menus http://users.tpg.com.au/j_birch/plugins/superfish/
+	 */
 	
 	echo $html->css('superfish/superfish');
 	echo $html->script('superfish/superfish');
 	echo $html->script('superfish/hoverIntent');
-	
 	
 	?>
 	<script type="text/javascript">
