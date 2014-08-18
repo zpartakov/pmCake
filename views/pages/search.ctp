@@ -46,6 +46,8 @@ mysql_select_db($db_name,$db);
 
 $qboole=preg_replace("/ /","* +",$q);
 $qboole="+".$qboole."*";
+
+
 //echo $qboole; exit;
 
 $q=preg_replace("/'/","%", $q);
@@ -68,6 +70,7 @@ if($boolean=="on") {//boolean
 }		
 
 
+$sql=wd_remove_accents($sql);
 
 //echo $sql;
 		$sql=mysql_query($sql);

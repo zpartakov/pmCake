@@ -1601,6 +1601,23 @@ function normaliser($string) {
 }
 
 ######### HTML tools #######
+
+function wd_remove_accents($str, $charset='utf-8')
+/*
+ * une fonction pour remplacer les caractères accentués par des caractères non accentués
+* source: http://www.weirdog.com/blog/php/supprimer-les-accents-des-caracteres-accentues.html
+*
+* usage: $sql=wd_remove_accents($sql);
+*/
+{
+	$str = htmlentities($str, ENT_NOQUOTES, $charset);
+
+	$str = preg_replace('#&([A-za-z])(?:acute|cedil|caron|circ|grave|orn|ring|slash|th|tilde|uml);#', '\1', $str);
+	$str = preg_replace('#&([A-za-z]{2})(?:lig);#', '\1', $str); // pour les ligatures e.g. '&oelig;'
+	$str = preg_replace('#&[^;]+;#', '', $str); // supprime les autres caractères
+
+	return $str;
+}
 /* keep record of every transactions for logs history */
 function ecritlog() {	
 	$db=connect_db();
