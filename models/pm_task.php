@@ -15,9 +15,10 @@ class PmTask extends AppModel {
 			),
 		)
 	);
-
-	var $actsAs = array('Revision'=> array('limit'=>100),'Copyable');
-//	var $actsAs = array('Revision'=> array('limit'=>100),'Trim'=> array('fields' => array('name')));
+/*
+ * versioning: a class for keeping versions
+ */
+	var $actsAs = array('Revision'=> array('limit'=>30),'Copyable');
 	
 	var $displayField = 'name';
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
