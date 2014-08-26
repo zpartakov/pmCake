@@ -5,7 +5,7 @@ $ajout=$_GET['ajout'];
 $identifiant=$_GET['identifiant'];
 
 if($identifiant=="prof") {
-	echo phpinfo(); exit;
+//	echo phpinfo(); exit;
 }
 
 #echo $_SERVER["REQUEST_URI"]; exit;

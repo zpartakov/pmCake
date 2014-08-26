@@ -183,7 +183,7 @@ function task_change_status(id,status) {
 	function demain(id) {
 	$.ajax({
 	   type: "GET",
-	   url: "repousser?identifiant=" + id + "&demain=demain",
+	   url: "/intranet/pmcake/pm_tasks/repousser?identifiant=" + id + "&demain=demain",
 	   error:function(msg){
 		 alert( "Error !: " + msg );
 	   },
@@ -203,7 +203,7 @@ function task_change_status(id,status) {
 
 	$.ajax({
 	   type: "GET",
-	   url: "repousser"+ queryString,
+	   url: "/intranet/pmcake/pm_tasks/repousser"+ queryString,
 	   error:function(msg){
 		 alert( "Error !: " + msg );
 	   },

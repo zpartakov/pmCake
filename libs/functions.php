@@ -830,7 +830,7 @@ echo '
 
 echo "<td>";
 	################ BEGIN PUSH DELAYS  ################
-	push_delays($idc);
+	push_delays($idc,$table);
 	echo '<td>
 		<a href="/intranet/pmcake/pm_tasks/view/' .$idc .'" alt="Voir" title="Voir">
 			<img src="/intranet/pmcake/img/toolbar/loupe.png" alt="Voir" />
@@ -1858,18 +1858,25 @@ return $les_actions;
 }
 
 /* report the delay for a given task */
-function push_delays($idc) {
-echo "<form action=\"repousser\" method=\"get\" name=\"" .$idc ."\">
-	<input type=\"hidden\" name=\"identifiant\" value=\"" .$idc ."\" />
+function push_delays($idc,$table) {
+if($table==1){
+$repousser="";
+} else {
+$repousser="../";
+}
+echo "<form action=\"".$repousser."repousser\" method=\"get\" name=\"" .$idc ."\">";
+echo "<input type=\"hidden\" name=\"identifiant\" value=\"" .$idc ."\" />
 	<a href=\"javascript:demain(" .$idc .")\"><img src=\"/pmcake/img/icons/bullet_arrow.gif\" alt=\"Déplacer à demain\" title=\"Déplacer à demain\"></a>
         <select name=\"ajout\" class=\"micro\" size=\"1\" onchange=\"repousser(" .$idc .",this.value)\" id=\"sel" .$idc ."\">";
-delais();
-echo "        </select>
-      <!-- ############ task ok ######### -->
- 	&nbsp;<input style=\"background: orange\" type=\"checkbox\" title=\"OK?\" name=\"ok\" onchange=\"task_ok(" .$idc .",this.value)\" />
-      </form>
-      </td>
-      <td>";
+		delais();
+		echo "</select>";
+	if($table==1){
+		echo "<!-- ############ task ok ######### -->
+		 	&nbsp;<input style=\"background: orange\" type=\"checkbox\" title=\"OK?\" name=\"ok\" onchange=\"task_ok(" .$idc .",this.value)\" />
+		      ";
+			echo"</td><td>";
+	}
+echo "</form>";
 }
 
 /* report the delay for many tasks ££*/
@@ -2185,7 +2192,7 @@ function display_resume_faqs($txt,$l) {
 
 function check_zefiles($id) {
 	$pmTask['PmTask']['id']=$id;
-$sql="SELECT * FROM zefiles, pm_tasks WHERE task_id=pm_tasks.id";
+$sql="SELECT * FROM zefiles, pm_tasks WHERE task_id=pm_tasks.id ORDER BY zefiles.id DESC";
 //echo $sql;
 #do and check sql
 $sql=mysql_query($sql);

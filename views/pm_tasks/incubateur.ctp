@@ -127,7 +127,7 @@ if(strlen(	mysql_result($sql,$i,'description'))>0) {
 	echo "<td>";
 	################ BEGIN PUSH DELAYS  ################
 	$idc=mysql_result($sql,$i,'id');
-	push_delays($idc);
+	push_delays($idc,1);
 	echo '<td><a href="/intranet/pmcake/pm_tasks/view/' .$idc .'" alt="Voir" title="Voir"><img src="/intranet/pmcake/img/toolbar/loupe.png" alt="Voir" /></a><a href="/intranet/pmcake/pm_tasks/edit/' .$idc .'" alt="Modifier" title="Modifier"><img src="/intranet/pmcake/img/toolbar/editor.png" alt="Modifier" /></a><a href="/intranet/pmcake/pm_tasks/delete/' .$idc .'" alt="Effacer" title="Effacer" onclick="return confirm(\'Voulez-vous vraiment effacer cet élément ?\');"><img src="/intranet/pmcake/img/toolbar/drop.png" alt="effacer" /></a></td></tr>';
 	 ################ END PUSH DELAYS  ################  
 	/* ACTIONS END */

@@ -23,6 +23,7 @@ var isCtrl = false;$(document).keyup(function (e) {
 	});
 </script>
 <?php
+			$idtask=$this->data['PmTask']['id'];
 /* include a calendar */
 	$datenow = date("Y-m-d");
 	echo $html->script('tigra_calendar/calendar_db');
@@ -131,6 +132,7 @@ echo "web: " .$this->Html->link($this->data['PmProject']['url_prod'], $this->dat
 		<?php
 			total_hours_task($this->data['PmTask']['id']);		
 		?>
+
 		</td>
 	</tr>
 	<tr>
@@ -174,7 +176,6 @@ echo "web: " .$this->Html->link($this->data['PmProject']['url_prod'], $this->dat
 			<?php ___('Date de début') ?><em> (click pour enregistrer)</em>
 			<br/>
 			<?php 
-			$idtask=$this->data['PmTask']['id'];
 			$startdate=$this->Form->value('start_date');
 			echo $this->AlaxosForm->input("start_date", array("label" => false,"onClick" => "change_date_debut($idtask,'$startdate')")); 
 			//display a nice calendar
@@ -219,6 +220,8 @@ echo "web: " .$this->Html->link($this->data['PmProject']['url_prod'], $this->dat
 				</script></div>
 			";
 
+			
+			
 		 /*
 		  * is the task a copy? if yes, change dates to current dates
 		  *  */
@@ -280,6 +283,14 @@ echo "web: " .$this->Html->link($this->data['PmProject']['url_prod'], $this->dat
 	echo $this->element('toolbar/toolbar', array('plugin' => 'alaxos', 'list' => true, 'back_to_view_id' => $this->data['PmTask']['id']));
 	?></span>
 </div>
+		<?php 
+/*
+ * push delays
+ */
+#echo "<div style=\"position: relative; top: -617px; left: 65%;\">";
+		push_delays($idtask,0);
+	#echo "</div>";
+				?>
 <div class="add_time">
 	<form name="ajoutheure" action="/intranet/pmcake/pm_tasks_times/ajoutheure">
 	<input type="hidden" name="projectid" value="<? echo $this->data['PmProject']['id'];?>">
@@ -294,6 +305,8 @@ echo "web: " .$this->Html->link($this->data['PmProject']['url_prod'], $this->dat
 	?>
 	</form>
 </div>
+
+				
 <!-- ###################### FILES #################### -->
 <div class="fichiers">
 	<a name="Fichiers"></a><h2>Fichiers > 
