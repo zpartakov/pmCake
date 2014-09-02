@@ -283,14 +283,7 @@ echo "web: " .$this->Html->link($this->data['PmProject']['url_prod'], $this->dat
 	echo $this->element('toolbar/toolbar', array('plugin' => 'alaxos', 'list' => true, 'back_to_view_id' => $this->data['PmTask']['id']));
 	?></span>
 </div>
-		<?php 
-/*
- * push delays
- */
-#echo "<div style=\"position: relative; top: -617px; left: 65%;\">";
-		push_delays($idtask,0);
-	#echo "</div>";
-				?>
+
 <div class="add_time">
 	<form name="ajoutheure" action="/intranet/pmcake/pm_tasks_times/ajoutheure">
 	<input type="hidden" name="projectid" value="<? echo $this->data['PmProject']['id'];?>">
