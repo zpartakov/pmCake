@@ -816,6 +816,7 @@ echo     '<input type="checkbox" name="checkboxlist" value="'.mysql_result($sql,
 	/*
 	 * add time to task £
 	 */
+	/*
 	echo '	<td>
 	<form name="ajoutheure" action="/intranet/pmcake/pm_tasks_times/ajoutheure">
 	<input type="hidden" name="projectid" value="'.mysql_result($sql,$i,'proj.id') .'">
@@ -827,7 +828,7 @@ echo '
 						</select>
 				</form>
 	</td>';
-
+*/
 echo "<td>";
 	################ BEGIN PUSH DELAYS  ################
 	push_delays($idc,$table);
