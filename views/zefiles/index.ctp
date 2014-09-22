@@ -24,7 +24,10 @@ $this->pageTitle="Documents";
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $zefile['Zefile']['id']; ?>&nbsp;</td>
-		<td><?php echo $zefile['Zefile']['task_id']; ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->link($zefile['Zefile']['task_id'], array('controller'=>'pm_tasks','action' => 'edit', $zefile['Zefile']['task_id'])); ?>
+		
+		</td>
 		<td><?php echo "<a href=\"../files/" .$zefile['Zefile']['task_id']."/" .$zefile['Zefile']['name'] ."\">" .$zefile['Zefile']['name'] ."</a>"; ?>&nbsp;</td>
 		<td><?php echo $zefile['Zefile']['type']; ?>&nbsp;</td>
 		<td><?php echo $zefile['Zefile']['size']; ?>&nbsp;</td>

@@ -66,4 +66,8 @@ class UsersController extends AppController {
 	function pmstatistics(){
 		
 	}
+	
+	function minuscules() {
+		
+	}
 }
