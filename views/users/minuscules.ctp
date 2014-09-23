@@ -7,24 +7,25 @@ if ($code) {
 #echo $code;
 $code=stripslashes($code);
 $code=strtolower($code);
+$code=trim($code);
 /*
 $code=ereg_replace("Ê", "ê", $code);
 $code=ereg_replace("Â", "â", $code);
 $code=ereg_replace("eau & gaz", "Eau&Gaz", $code);
 $code=ereg_replace("eau& gaz", "Eau&Gaz", $code);
 */
-echo $code;
+echo "<pre>".$code ."</pre>";
 
-} else {
+} 
 echo "
 <FORM METHOD=post>
 <CENTER>
 <HR>
-    <textarea name=code cols=\"150\" rows=\"20\"></textarea>
+    <input name=\"code\" type=\"text\" style=\"width: 400px\" />
 <INPUT TYPE=submit VALUE=\"Transformer en minuscules\">
 <HR>
 </CENTER>
 </FORM>
 ";
-}
+
 ?>
