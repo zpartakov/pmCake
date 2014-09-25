@@ -277,5 +277,8 @@ function pushdelays() {
            // $this->PmTask->save($this->data)
         }
     }
+function push_all_currents() {
 }
+}
+
 ?>

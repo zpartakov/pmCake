@@ -25,8 +25,9 @@ function task_detail(id) {
 <a href="#demain" onclick="montrecache1();">Demain</a> | 
 <a href="#A venir" onclick="montrecache2();">A venir</a> | 
 <a href="#random_list_todos">Liste aléatoire (unige)</a> | 
-<a href="#random_list_todosp">Liste aléatoire (perso)</a>
-<a href="/intranet/pmcake/contacts/birthday">Anniversaires</a>
+<a href="#random_list_todosp">Liste aléatoire (perso)</a> | 
+<a href="/intranet/pmcake/contacts/birthday">Anniversaires</a> | 
+<a href="/intranet/pmcake/pm_tasks/push_all_currents">Tout repousser</a>
 		<?
 $sql="";
 global $sql;
