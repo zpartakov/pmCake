@@ -159,10 +159,15 @@ $last_id=mysql_result($last_id, 0,'id');
 		}
 		if ($this->PmTask->delete($id)) {
 			$this->Session->setFlash(__('Pm task deleted', true));
-			$this->redirect(array('action'=>'index'));
+			//$this->redirect(array('action'=>'index'));
+			//$this->redirect($this->referer());
+			$this->redirect(array('action'=>'onfield'));
+				
 		}
 		$this->Session->setFlash(__('Pm task was not deleted', true));
-		$this->redirect(array('action' => 'index'));
+		
+//		$this->redirect(array('action' => 'index'));
+				
 	}
 	
 	/* a special view for incubateur - dreams */
