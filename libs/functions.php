@@ -779,33 +779,26 @@ echo     '<input type="checkbox" name="checkboxlist" value="'.mysql_result($sql,
 	echo "</td>";
 	echo "<td>";
 	statut(mysql_result($sql,$i,'status'));
+	echo '&nbsp;<a href="/intranet/pmcake/pm_tasks/edit/' .$idc .'" alt="Modifier" title="Modifier"><img src="/intranet/pmcake/img/toolbar/editor.png" style="vertical-align: top;margin-left: 5px" alt="Modifier" /></a>';
 	echo  "</td>";
 /*
  * affiche titre de la tâche
  */
-	//original
-	//echo '<td><a href="' .CHEMIN .'pm_tasks/edit/'.mysql_result($sql,$i,'id').'" class="tooltip">'.mysql_result($sql,$i,'name');
-	//echo '<td><a href="' .CHEMIN .'pm_tasks/edit/'.mysql_result($sql,$i,'id').'" class="tooltip"><div class="taskedit">'.mysql_result($sql,$i,'name')."</div>";
-	//test
 	echo '<td>';
-	
 	echo '<a href="#" class="tooltip">';
 /*
  * dynamic ajax edit frontend see webroot/js/jquery.jeditable.example.js
  */
 	echo '<div class="task" id="'.mysql_result($sql,$i,'id').'" onclick="cachedetails('.mysql_result($sql,$i,'id').')">'.mysql_result($sql,$i,'name');
 	
-	echo "</div>";
 /* affiche description, si elle existe */	
 	if(strlen(	mysql_result($sql,$i,'description'))>0) {
 		echo '<div id="detailstache'.mysql_result($sql,$i,'id').'"><em><span></span>'.nl2br(mysql_result($sql,$i,'description')).'</em></div>';
 	}
 	echo '</a>';
-	
+	echo "</div>";
 	echo "</td>";
 	echo "<td>";
-	echo '<a href="/intranet/pmcake/pm_tasks/edit/' .$idc .'" alt="Modifier" title="Modifier"><img src="/intranet/pmcake/img/toolbar/editor.png" alt="Modifier" /></a>';	
-	echo "&nbsp;";
 	dateSQL2fr(mysql_result($sql,$i,'due_date'));
 	echo "<br /><em style=\"font-size: smaller\">(";
 	dateSQL2frSmall(mysql_result($sql,$i,'start_date'));
