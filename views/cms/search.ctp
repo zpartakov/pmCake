@@ -8,9 +8,13 @@ if($_GET['https']) { //if https searched
 echo "<h3>Applications sécurisées (https)</h3>";
 }
 ?>
-<h3><a href="http://cms.unige.ch/tools/metalogins/cms/patchjoomla">patchjoomla</a></h3>
-
+<p>
+<!-- <a href="http://cms.unige.ch/tools/metalogins/cms/patchjoomla">patchjoomla</a>
+ |  -->
+ <a href="patchlime">patchlime</a>
+ | 
 <a href="http://weblocal.unige.ch/dinf/ntice/wiki/doku.php?id=applicatifs:start" target="_blank">Voir aussi wiki ntice</a>
+</p>
 <div class="actions">
 	<ul>
 		<li><?php echo $html->link(__('New Cm', true), array('action'=>'add')); ?></li>

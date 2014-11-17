@@ -224,6 +224,9 @@ function upgrade() {//a function to upgrade a software
 function newc5website () { //create a new concrete5 cms
 }
 
+function patchlime() {//automatically upgrade limesurvey
+}
+
 }
 ?>
 
