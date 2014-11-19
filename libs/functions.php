@@ -779,24 +779,20 @@ echo     '<input type="checkbox" name="checkboxlist" value="'.mysql_result($sql,
 	echo "</td>";
 	echo "<td>";
 	statut(mysql_result($sql,$i,'status'));
-	echo '&nbsp;<a href="/intranet/pmcake/pm_tasks/edit/' .$idc .'" alt="Modifier" title="Modifier"><img src="/intranet/pmcake/img/toolbar/editor.png" style="vertical-align: top;margin-left: 5px" alt="Modifier" /></a>';
 	echo  "</td>";
 /*
  * affiche titre de la tâche
  */
 	echo '<td>';
-	echo '<a href="#" class="tooltip">';
-/*
- * dynamic ajax edit frontend see webroot/js/jquery.jeditable.example.js
- */
-	echo '<div class="task" id="'.mysql_result($sql,$i,'id').'" onclick="cachedetails('.mysql_result($sql,$i,'id').')">'.mysql_result($sql,$i,'name');
+	echo '&nbsp;<a style="text-align: top" class="tooltip" href="/intranet/pmcake/pm_tasks/edit/' .$idc .'" alt="Modifier" title="Modifier">';
+	echo mysql_result($sql,$i,'name');
 	
 /* affiche description, si elle existe */	
 	if(strlen(	mysql_result($sql,$i,'description'))>0) {
 		echo '<div id="detailstache'.mysql_result($sql,$i,'id').'"><em><span></span>'.nl2br(mysql_result($sql,$i,'description')).'</em></div>';
 	}
 	echo '</a>';
-	echo "</div>";
+	//echo "</div>";
 	echo "</td>";
 	echo "<td>";
 	dateSQL2fr(mysql_result($sql,$i,'due_date'));
@@ -805,24 +801,7 @@ echo     '<input type="checkbox" name="checkboxlist" value="'.mysql_result($sql,
 	echo ")</em> ";
 	echo "</td>";
 	echo "<td>" .mysql_result($sql,$i,'milestone') ."</td>";
-	
-	/*
-	 * add time to task £
-	 */
-	/*
-	echo '	<td>
-	<form name="ajoutheure" action="/intranet/pmcake/pm_tasks_times/ajoutheure">
-	<input type="hidden" name="projectid" value="'.mysql_result($sql,$i,'proj.id') .'">
-	<input type="hidden" name="idtache" value="'.mysql_result($sql,$i,'id') .'">
-	<select name="addtime" onChange="submit()"><option value=""> *** Temps travail *** </option>
-			';
-	ajoutheure();
-echo '
-						</select>
-				</form>
-	</td>';
-*/
-echo "<td>";
+	echo "<td>";
 	################ BEGIN PUSH DELAYS  ################
 	push_delays($idc,$table);
 	echo '<td>
