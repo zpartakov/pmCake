@@ -262,6 +262,10 @@ function pushdelays() {
 	function archive() {
 	}
 	
+	function archive_task($task_id){
+		return $task_id;
+	}
+	
 	function sauver() {
 		if ($this->data != null) {
 			$this->PmTask->save($this->data);
