@@ -3,6 +3,7 @@
  * edit a given task
  * */  
 ?>
+
 <script>
 /*
  * keyboard shortcuts
@@ -28,19 +29,14 @@ var isCtrl = false;$(document).keyup(function (e) {
 	$datenow = date("Y-m-d");
 	echo $html->script('tigra_calendar/calendar_db');
 	echo $html->css('calendar');
-/* voir comment marche echo "\t\t\techo \$alaxosForm->create('{$modelClass}', array('id' => 'chooseActionForm', 'url' => array('controller' => '{$pluralVar}', 'action' => 'actionAll')));\n";
-dans /pm/plugins/alaxos/vendors/shells/templates/alaxos/views/index.ctp
-* 
-* copier les headers de NicO
- * 
- * */
-App::import('Lib', 'functions'); //imports app/libs/functions
-$this->pageTitle = '' .$this->data['PmTask']['name'] ." | " .$this->data['PmProject']['name']; 
-$pid=$this->data['PmProject']['id'];
+
+	App::import('Lib', 'functions'); //imports app/libs/functions
+	$this->pageTitle = '' .$this->data['PmTask']['name'] ." | " .$this->data['PmProject']['name']; 
+	$pid=$this->data['PmProject']['id'];
 ?>
-			Date de la dernière modification: 
-					<?php 
-			dateSQLlong2fr( $this->data['PmTask']['mod_date']); 
+	Date de la dernière modification: 
+			<?php 
+	dateSQLlong2fr( $this->data['PmTask']['mod_date']); 
 		?>
 			 | 
 	<a href="#tags"><?php  __('Tags');?></a>
@@ -67,6 +63,7 @@ $pid=$this->data['PmProject']['id'];
 	<?
 	$idaction=$this->data['PmTask']['id'];
 	e($html->link($html->image('toolbar/loupe.png', array('alt' => 'Voir', 'title' => 'Voir')), array('action'=>'view/'.$idaction), array('escape' => false)));
+	e($html->link($html->image('toolbar/archive.png', array('alt' => 'Archiver', 'title' => 'Archiver')), array('action'=>'archive_task?tid='.$idaction), array('escape' => false)));
 	e($html->link($html->image('toolbar/edit-copy.png', array('alt' => 'Copier', 'title' => 'Copier')), array('action'=>'copier',$idaction), array('escape' => false)));
 	e($html->link($html->image('toolbar/add.png', array('alt' => 'Ajouter', 'title' => 'Ajouter')), array('action'=>'add'), array('escape' => false)));
 	e($html->link($html->image('toolbar/editor.png', array('alt' => 'Modifier')), array('action'=>'edit', $idaction), array('alt' => 'Modifier', 'title' => 'Modifier', 'escape' => false)));
@@ -74,24 +71,11 @@ $pid=$this->data['PmProject']['id'];
 	e($html->link($html->image('toolbar/drop.png', array('alt' => __d('alaxos', 'delete', true))), array('action' => 'delete', $idaction), array('alt' => ___d('alaxos', 'delete', true), 'title' => ___d('alaxos', 'delete', true), 'escape' => false), $delete_text));
 	e($html->link($html->image('toolbar/list.png', array('alt' => __d('alaxos', 'list', true))), array('action' => 'index'), array('alt' => ___d('alaxos', 'list', true), 'title' => ___d('alaxos', 'list', true), 'escape' => false)));
 	
-$datewebcal=explode("-",$this->Form->value('start_date'));
-//print_r($datewebcal); 
-//echo $datewebcal[0]."&month=".$datewebcal[1]."&day=".$datewebcal[2] ; exit;
-$webcal="edit_entry.php?year=".$datewebcal[0] ."&month=" .$datewebcal[1] ."&day=".$datewebcal[2] ."&name=" .$this->Form->value('name') ."&id=".$this->data['PmTask']['id'];
-
-
+	$datewebcal=explode("-",$this->Form->value('start_date'));
+	$webcal="edit_entry.php?year=".$datewebcal[0] ."&month=" .$datewebcal[1] ."&day=".$datewebcal[2] ."&name=" .$this->Form->value('name') ."&id=".$this->data['PmTask']['id'];
 	?> 		
-	<!-- 
-	<a href="/webcalendar/<?php echo $webcal;?>" target="_blank"><? 
-		echo $html->image("calendrier.jpg", array('alt' => 'WebCalendar', 'title' => 'WebCalendar', 'style'=>'width: 28px'));
-		//, array('url' => 'http://www.bloglines.com/', 'alt' => 'Flux RSS', 'title' => 'Flux RSS', 'style'=>'width: 23px'));
-		?>
-	</a>
-	 -->
 </div>	
-
- 	
- 	<table border="0" cellpadding="5" cellspacing="0" class="edit" style="position: relative; top: -50px">
+ 	<table class="edit" style="position: relative; top: -50px">
 	<tr>
 		<td>
 			<?php ___('Projet') ?>
@@ -128,8 +112,10 @@ echo "web: " .$this->Html->link($this->data['PmProject']['url_prod'], $this->dat
 		</td>
 		
 			<td><?php __('Heures'); ?>: 
-		<!-- ###################### HOURS #################### -->
 		<?php
+		/*
+		 * a function displaying hour spent on this given task
+		 */
 			total_hours_task($this->data['PmTask']['id']);		
 		?>
 
