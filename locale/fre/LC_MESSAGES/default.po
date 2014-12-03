@@ -645,6 +645,9 @@ msgstr "Type"
 msgid "List Pm Organizations"
 msgstr "Liste clients"
 
+msgid "Pm Organizations"
+msgstr "Clients"
+
 #: /var/www/pmcake/app/views/pm_organizations/index.ctp:53
 #: /var/www/pmcake/app/views/pm_organizations/view.ctp:91
 msgid "New Pm Organization"
