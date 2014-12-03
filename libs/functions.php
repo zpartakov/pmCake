@@ -5,6 +5,66 @@
  * fonction principale: print_tasks 
  */
 ####### PROJECTS ##########
+function facture($client_id) {
+	//pm_tasks.status=5: statut en attente
+	//echo $client_id;
+	
+	$sql="
+	SELECT id FROM pm_projects
+	WHERE pm_organization_id=".$client_id; 
+	//echo $sql; exit;
+#do and check sql
+$sql=mysql_query($sql);
+if(!$sql) {
+	echo "SQL error: " .mysql_error(); exit;
+}
+$pid=mysql_result($sql,0,'id');
+	
+	$sql="
+	SELECT * FROM pm_tasks
+	WHERE pm_tasks.project=".$pid ."
+	 AND pm_tasks.status=5
+	 ORDER BY pm_tasks.due_date"; 
+	//echo $sql; exit;
+#do and check sql
+$sql=mysql_query($sql);
+if(!$sql) {
+	echo "SQL error: " .mysql_error(); exit;
+}
+$lesheures="<table><tr><th>Date</th><th>Libellé</th><th>Tarif horaire</th><th>Heures</th><th>Total</th></tr>";
+$i=0; $heures=0;
+
+while($i<mysql_num_rows($sql)){
+	
+$lesheures.= "<tr><td>";
+$lesheures.=mysql_result($sql,$i,'pm_tasks.due_date');
+$lesheures .="</td><td>";
+$lesheures.=mysql_result($sql,$i,'pm_tasks.name');
+$lesheures .="</td><td>CHF 90.-";
+$lesheures .="</td><td>";
+
+
+		$sql2="
+			SELECT SUM(hours) AS hours FROM pm_tasks_time 
+			WHERE task=" .mysql_result($sql,$i,'pm_tasks.id');
+			//echo $sql2;
+			#echo mysql_result($sql,$i,'hours');
+			$sql2=mysql_query($sql2);
+			$hours=mysql_result($sql2,0,'hours');
+			$lesheures.= $hours;
+$lesheures .="</td><td>";
+$lesheures .=$hours*90;
+$heures=$heures+$hours*90;
+$lesheures .=".-</td></tr>";
+$i++;
+}
+$lesheures.= "<tr><td><strong>Total</strong></td><td colspan=\"4\"><strong>CHF&nbsp;".$heures.".-</strong></td>";
+
+$lesheures.="</table>";
+	
+return $lesheures;
+}
+
 function temps_moyen_booking($pid,$cherche) {
 $sql2="
 SELECT SUM(hours) AS hours, COUNT(id) AS tasks   
@@ -524,6 +584,8 @@ function total_hours_task($task_id) {
 			echo "</div></p>";
 			
 }
+
+
 #############################################################################
 
 /*

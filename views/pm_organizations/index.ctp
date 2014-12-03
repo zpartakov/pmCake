@@ -1,22 +1,14 @@
 <div class="pmOrganizations index">
-	<h2><?php __('Pm Organizations');?></h2>
+	<h2><?php __('Clients');?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('name');?></th>
-			<th><?php echo $this->Paginator->sort('address1');?></th>
-			<th><?php echo $this->Paginator->sort('address2');?></th>
-			<th><?php echo $this->Paginator->sort('zip_code');?></th>
-			<th><?php echo $this->Paginator->sort('city');?></th>
-			<th><?php echo $this->Paginator->sort('country');?></th>
 			<th><?php echo $this->Paginator->sort('phone');?></th>
-			<th><?php echo $this->Paginator->sort('fax');?></th>
 			<th><?php echo $this->Paginator->sort('url');?></th>
+			<th><?php echo $this->Paginator->sort('fax');?></th>
 			<th><?php echo $this->Paginator->sort('email');?></th>
-			<th><?php echo $this->Paginator->sort('comments');?></th>
 			<th><?php echo $this->Paginator->sort('created');?></th>
-			<th><?php echo $this->Paginator->sort('extension_logo');?></th>
-			<th><?php echo $this->Paginator->sort('owner');?></th>
 			<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -28,21 +20,15 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $pmOrganization['PmOrganization']['id']; ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->link(__('$bill', true), array('action' => 'facture', $pmOrganization['PmOrganization']['id'])); ?>
+		&nbsp;</td>
 		<td><?php echo $pmOrganization['PmOrganization']['name']; ?>&nbsp;</td>
-		<td><?php echo $pmOrganization['PmOrganization']['address1']; ?>&nbsp;</td>
-		<td><?php echo $pmOrganization['PmOrganization']['address2']; ?>&nbsp;</td>
-		<td><?php echo $pmOrganization['PmOrganization']['zip_code']; ?>&nbsp;</td>
-		<td><?php echo $pmOrganization['PmOrganization']['city']; ?>&nbsp;</td>
-		<td><?php echo $pmOrganization['PmOrganization']['country']; ?>&nbsp;</td>
 		<td><?php echo $pmOrganization['PmOrganization']['phone']; ?>&nbsp;</td>
 		<td><?php echo $pmOrganization['PmOrganization']['fax']; ?>&nbsp;</td>
 		<td><?php echo $pmOrganization['PmOrganization']['url']; ?>&nbsp;</td>
 		<td><?php echo $pmOrganization['PmOrganization']['email']; ?>&nbsp;</td>
-		<td><?php echo $pmOrganization['PmOrganization']['comments']; ?>&nbsp;</td>
 		<td><?php echo $pmOrganization['PmOrganization']['created']; ?>&nbsp;</td>
-		<td><?php echo $pmOrganization['PmOrganization']['extension_logo']; ?>&nbsp;</td>
-		<td><?php echo $pmOrganization['PmOrganization']['owner']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $pmOrganization['PmOrganization']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $pmOrganization['PmOrganization']['id'])); ?>

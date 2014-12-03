@@ -58,5 +58,15 @@ class PmOrganizationsController extends AppController {
 		$this->Session->setFlash(__('Pm organization was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
+	
+	function facture($id = null){
+					//do not display layout
+		$this->layout = '';
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid pm organization', true));
+			$this->redirect(array('action' => 'index'));
+		}
+		$this->set('pmOrganization', $this->PmOrganization->read(null, $id));
+	}
 }
 ?>
