@@ -24,7 +24,7 @@ $pid=mysql_result($sql,0,'id');
 	SELECT * FROM pm_tasks
 	WHERE pm_tasks.project=".$pid ."
 	 AND pm_tasks.status=5
-	 ORDER BY pm_tasks.due_date"; 
+	 ORDER BY pm_tasks.start_date"; 
 	//echo $sql; exit;
 #do and check sql
 $sql=mysql_query($sql);
@@ -37,7 +37,7 @@ $i=0; $heures=0;
 while($i<mysql_num_rows($sql)){
 	
 $lesheures.= "<tr><td>";
-$lesheures.=mysql_result($sql,$i,'pm_tasks.due_date');
+$lesheures.=mysql_result($sql,$i,'pm_tasks.start_date');
 $lesheures .="</td><td>";
 $lesheures.=mysql_result($sql,$i,'pm_tasks.name');
 $lesheures .="</td><td>CHF 90.-";

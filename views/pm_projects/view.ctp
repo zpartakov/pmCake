@@ -39,10 +39,10 @@ $finished=$_GET['finished'];
  | <a href="#suspended">Suspendues</a> 
  | <a href="#references">Références</a> 
  | <a href="<?php echo $_SERVER["REQUEST_URI"];?>?finished=1#finished">Terminé</a>
-  | <a href="#notes">Notes</a> <? e($html->link($html->image('toolbar/editor.png', array('alt' => 'Modifier')), array('action'=>'edit', $pmProject['PmProject']['id']), array('alt' => 'Modifier', 'title' => 'Modifier', 'escape' => false)));?>
+  | <a href="#notes">Notes</a> <?php e($html->link($html->image('toolbar/editor.png', array('alt' => 'Modifier')), array('action'=>'edit', $pmProject['PmProject']['id']), array('alt' => 'Modifier', 'title' => 'Modifier', 'escape' => false)));?>
 </div>
 <div class="zactions">
-	<?
+	<?php
 	$idaction=$pmProject['PmProject']['id'];
 	les_actions($idaction);
 	?>
@@ -129,7 +129,7 @@ $finished=$_GET['finished'];
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Total heures'); ?></dt>
 				<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?
+			<?php
 			Total_heures($pmProject['PmProject']['id']);
 			?>
 			
@@ -143,7 +143,10 @@ if($pmProject['PmProject']['id']==32){
 				temps_moyen($pmProject['PmProject']['id'],'%');
 	
 }
+
+echo "<br/><a target=\"_blank\" href=\"/intranet/pmcake/pm_organizations/facture/".$pmProject['PmProject']['pm_organization_id']."\">\$facturation</a>";
 			?>
+			
 			</dd>
 
 	</dl>
@@ -153,7 +156,7 @@ if($pmProject['PmProject']['id']==32){
 </table>
 
 <hr>
-<? 
+<?php 
 /* ################### ACTIVE TASKS ########################
  * 
  * */
