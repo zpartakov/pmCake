@@ -20,6 +20,17 @@ class PmTasksController extends AppController {
 	function onfield() {
 	}
 	
+	/* a function to display tasks in a drag & drop arbitrary order */
+	function draggable() {	//do not display layout
+		$this->layout = 'draggable';
+	}
+	
+	/* a page to save the task drag & drop arbitrary order */
+	function updatelist() {
+	//do not display layout
+		$this->layout = '';
+	}
+
 	function index() {
 		$this->PmTask->recursive = 0;
 		if($_GET['tasktype']=="incub") { //incubateur - dreams

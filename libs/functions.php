@@ -566,7 +566,7 @@ function total_hours_task($task_id) {
 			$hours=mysql_result($sql2,0,'hours');
 			echo $hours;
 		$sql2="
-			SELECT date, sum(hours) AS hours FROM pm_tasks_time 
+			SELECT pm_tasks_time.id AS id, date, sum(hours) AS hours FROM pm_tasks_time 
 			WHERE task=" .$task_id ." 
 			GROUP BY date";
 		echo "&nbsp;<a href=\"javascript:showdetailtaskhours()\">Détail</a><p><div id=\"showdetailtaskhours\" style=\"display: none\">Détail heures:<br/>";
@@ -577,8 +577,9 @@ function total_hours_task($task_id) {
 			while($i<mysql_num_rows($sql2)) {
 			$hours=mysql_result($sql2,$i,'hours');
 			dateSQL2frSmall(mysql_result($sql2,$i,'date'));
-			echo ", " .$hours;
-			echo "<br/>";
+			echo ", <a href=\"/intranet/pmcake/pm_tasks_times/edit/" .mysql_result($sql2,$i,'id')."\">";
+			echo $hours;
+			echo "</a><br/>";
 			$i++;
 			}
 			echo "</div></p>";
@@ -1306,7 +1307,9 @@ echo "</td><td class=\"" .$classe ."\">";
 echo substr(mysql_result($sql,$i,'pm_tasks_time.comments'), 0,100);
 echo "</td><td class=\"" .$classe ."\">";
 echo mysql_result($sql,$i,'pm_tasks_time.hours');
-echo "</td></tr>";
+echo "<span style=\"font-size: smaller\"> (#" .$i .")</span>";
+echo "</td>";
+echo "</tr>";
 $i++;
 }
 echo "</table>";
