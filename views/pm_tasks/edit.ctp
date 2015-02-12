@@ -2,6 +2,10 @@
 /*
  * edit a given task
  * */  
+
+echo $html->script('jquery.runner'); //chronomètre
+$idtask=$this->data['PmTask']['id'];
+
 ?>
 
 <script>
@@ -22,9 +26,45 @@ var isCtrl = false;$(document).keyup(function (e) {
 	   return true;
 	 }
 	});
+
+/*
+ * a function to compute time spend (iddle) on this page
+ */
+function addtime(){
+
+	   var heure = $('#runner').runner('lap');
+		heure=heure/60/60/1000;
+		pid=<?php echo $this->data['PmProject']['id'];?>;
+		taskid=<?php echo $idtask;?>;
+/*		 alert("pid: " +pid +"\ntaskid:" +taskid +"\nheures: "+heure);*/ 
+		$.ajax({
+			   type: "GET",
+			   url: "/intranet/pmcake/pm_tasks_times/ajoutheure?projectid="+pid+"&idtache="+taskid+"&addtime="+heure,
+			   error:function(msg){
+				 alert( "Error !: " + msg );
+			   },
+			   success:function(data){
+			   }
+			});
+}
 </script>
+ <!-- <span style="position: absolute; top: 10px; right: 10px" id="runner" onClick="Javascript:ajout_heure_auto();"></span>-->
+ <div style="position: absolute; top: 10px; right: 10px" > 
+<span style="display: none" id="runner" title="ajouterTemps" onClick="Javascript:addtime();"></span>&nbsp;<?php 
+		echo $html->image("icons/sablier.gif", array('alt' => 'Ajouter temps','onClick'=>"Javascript:addtime();"));
+			?>
+</div>			
+<script>
+$('#runner').runner({
+    milliseconds: false,
+    autostart: true
+    
+});
+</script>
+
+
+
 <?php
-			$idtask=$this->data['PmTask']['id'];
 /* include a calendar */
 	$datenow = date("Y-m-d");
 	echo $html->script('tigra_calendar/calendar_db');
@@ -92,6 +132,8 @@ echo "<br/>";
 echo "web: " .$this->Html->link($this->data['PmProject']['url_prod'], $this->data['PmProject']['url_prod'], array('target'=>'_blank'));
 
 			?>
+			
+			
 		</td>
 		<td>	
 		Parent<br/>

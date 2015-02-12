@@ -143,6 +143,9 @@ function ajout_heure(champ,pid,taskid) {
 	}
 }
 
+
+
+
 /* edit task: change content of a text or textarea field */
 function libelle_change_status(champ,libelle,id) {
 	modif=document.getElementById(libelle).value;
