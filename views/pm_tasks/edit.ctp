@@ -191,7 +191,8 @@ echo "web: " .$this->Html->link($this->data['PmProject']['url_prod'], $this->dat
 		$changer="'description','ladescription','".$this->data['PmTask']['id']."'";
 		echo
 		"<td class=\"imprimepas\" style=\"background-color: #FFFED8; padding: 0px;\"><div style=\"font-size: smaller\">";
-		$description=$this->AlaxosForm->value('description', array('id'=>'ladescription', "onChange" => "libelle_change_status($changer)"));
+		//$description=$this->AlaxosForm->value('description', array('id'=>'ladescription', "onChange" => "libelle_change_status($changer)"));
+		$description=$this->AlaxosForm->value('description', array('id'=>'ladescription'));
 		$chaine=extrait_titres($description);
 		$chaine=urlise($chaine);
 		$chaine=link_task($chaine);
@@ -271,8 +272,9 @@ echo "web: " .$this->Html->link($this->data['PmProject']['url_prod'], $this->dat
 			<?php 
 						$changer="'comments','commentstache','".$this->data['PmTask']['id']."'";
 			
-			echo $this->AlaxosForm->input('comments', array('label' => false,  "cols"=>"80", "rows"=>"15", 'id'=>'commentstache', "onChange" => "libelle_change_status($changer)")); ?>
-			<!-- 			
+			//echo $this->AlaxosForm->input('comments', array('label' => false,  "cols"=>"80", "rows"=>"15", 'id'=>'commentstache', "onChange" => "libelle_change_status($changer)"));
+			echo $this->AlaxosForm->input('comments', array('label' => false,  "cols"=>"80", "rows"=>"15", 'id'=>'commentstache')); ?>
+									<!-- 			
 						<?php 
 			$qrcode='http://'.$_SERVER["REMOTE_ADDR"].$_SERVER["REQUEST_URI"];
 			QRcode::png($qrcode, '/var/www/qrcode/pm.jpg'); // creates file
