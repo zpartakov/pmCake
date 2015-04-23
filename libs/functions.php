@@ -730,6 +730,10 @@ function print_tasks($catlib,$quand) {
 	 * sorting list
 	 */
 	$ordertask=" ORDER BY tas.priority DESC, tas.status ASC, tas.due_date ASC";
+	if($quand=="futur"){
+		$ordertask=" ORDER BY tas.due_date ASC, tas.priority DESC, tas.status ASC";
+		
+	}
 	/*
 	 * present tasks
 	 */
@@ -757,7 +761,7 @@ function print_tasks($catlib,$quand) {
 	/*
 	 * tests: show sql query; uncomment for debug
 	 */
-#	echo nl2br($sql)."<br>"; //tests
+	//echo nl2br($sql)."<br>"; //tests
 	/*
 	 * run sql query
 	 */
