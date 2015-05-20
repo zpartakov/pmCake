@@ -16,8 +16,14 @@ $q=trim($q);
 $boolean=$_GET['boolean'];
 
 				
-echo "<h1>" .$this->pageTitle .": " .$q ."</h1>";
-echo "boolean: " .$boolean;
+echo "<h1 style=\"margin-bottom: 5px\">" .$this->pageTitle .": " .$q ."&nbsp;";
+$qg=preg_replace("/ /","+",$q);
+echo "</h1>";
+echo "<div style=\"background-color: #FFCCB6; margin: 12px; padding: 7px; width: 300px\">";
+echo "<a target=\"_blank\" href=\"http://google.com/?q=".$qg."#safe=off&q=".$qg."\">search on: google :-(</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| ";
+echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+echo "<a target=\"_blank\" href=\"https://duckduckgo.com/?q=".$qg."\">duckduckgo :-)</a>";
+echo "</div>";
 ?>
 <div style="background-color: #FFFEB9">
 <a href="#Projets">Projets</a> | 
