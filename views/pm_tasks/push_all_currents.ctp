@@ -14,14 +14,14 @@ statut
 <option value="wait">en attente seulement</option>
 </select>
 
-<!-- 
+
 <select name="type">
-<option>prof</option>
-<option>priv</option>
-<option>all</option>
+<option value="all">all</option>
+<option value="0">prof</option>
+<option value="p">priv</option>
 </select>
- -->
-<input type="submit">
+ 
+<input type="submit" onclick="return confirm('Confirmer le déplacement?')">
 </form>
 <?php
 
@@ -45,9 +45,12 @@ if($statut=="all"){
 }elseif($statut=="wait"){
 	$statut="status=5";
 }
+
 $due_date=date("Y-m-d");
 	$pousser=date("U")+$ajout*(24*3600);
 	$pousser=date("Y-m-d",$pousser);
+
+	
 	$sql="UPDATE pm_tasks 
 	SET due_date=DATE_ADD(due_date, INTERVAL ".$ajout ." DAY)  
 	WHERE (" .
@@ -55,7 +58,29 @@ $due_date=date("Y-m-d");
 					"AND (".$statut .")" .
 					")" 
 			;
+
+			if($_GET['type'] && $_GET['type']!="all"){
+$sql="UPDATE pm_tasks
+	SET due_date=DATE_ADD(due_date, INTERVAL ".$ajout ." DAY)
+	WHERE (" .
+	"due_date <= '" .$due_date ."' " .
+	"AND (".$statut .")" .
+	") JOIN pm_projects
+       ON pm_tasks.project = pm_projects.id WHERE (pm_projects.type LIKE '".$_GET['type']."')"
+			;
 			
+$sql="SELECT * FROM pm_tasks
+	WHERE (" .
+	"due_date <= '" .$due_date ."' " .
+	"AND (".$statut .")" .
+	") JOIN pm_projects
+       ON pm_tasks.project = pm_projects.id WHERE (pm_projects.type LIKE '".$_GET['type']."')"
+			;
+			
+			echo nl2br($sql);
+				exit;
+			}
+				
 //DATE_ADD(OrderDate,INTERVAL 45 DAY)			
 //	echo $sql; exit;
 	$sql=mysql_query($sql);
