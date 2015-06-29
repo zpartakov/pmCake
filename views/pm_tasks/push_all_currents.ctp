@@ -1,21 +1,26 @@
+<style>
+select {
+vertical-align: top
+}
+</style>
 <form method="get">
 Nombre de jours à repousser:
-<select name="ajout">
+<select name="ajout" size="60" style="">
 <?php
-for($i=1;$i<30;$i++) {
+for($i=1;$i<60;$i++) {
 	echo "<option>".$i."</option>";
 }
 ?>
 </select>
 statut
-<select name="statut">
+<select name="statut" size="4">
 <option value="all">tous</option>
 <option value="cours">en cours seulement</option>
 <option value="wait">en attente seulement</option>
 </select>
 
 
-<select name="type">
+<select name="type" size="4">
 <option value="all">all</option>
 <option value="0">prof</option>
 <option value="p">priv</option>
