@@ -105,6 +105,11 @@ foreach ($results as $cm):
 	<td>
 		<?php  
 		echo "<a href=\"" .$cm['cms']['url'] ."\" target=\"_blank\" title=\"go2 website\">" .$cm['cms']['path'] ."</a>";
+		
+		if($type_id==22) {
+echo "<p style=\"font-size: smaller; font-style: italic\"><a href=\"" .$cm['cms']['url'] ."index.php/tools/required/upgrade\" target=\"_blank\" title=\"upgrade\">upgrade</a></p>";
+}
+		
 		?>
 	</td>
 	<td>
