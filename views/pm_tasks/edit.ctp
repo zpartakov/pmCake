@@ -48,22 +48,6 @@ function addtime(){
 			});
 }
 </script>
- <!-- <span style="position: absolute; top: 10px; right: 10px" id="runner" onClick="Javascript:ajout_heure_auto();"></span>-->
- <div style="position: absolute; top: 10px; right: 10px" > 
-<span style="display: none" id="runner" title="ajouterTemps" onClick="Javascript:addtime();"></span>&nbsp;<?php 
-		echo $html->image("icons/sablier.gif", array('alt' => 'Ajouter temps','onClick'=>"Javascript:addtime();"));
-			?>
-</div>			
-<script>
-$('#runner').runner({
-    milliseconds: false,
-    autostart: true
-    
-});
-</script>
-
-
-
 <?php
 /* include a calendar */
 	$datenow = date("Y-m-d");
@@ -347,7 +331,6 @@ echo "<table>";
 while($i<mysql_num_rows($sql)){
 	echo "<tr><td>#" .mysql_result($sql,$i,'id') ."</td><td><a href=\"" .CHEMIN ."files/" .mysql_result($sql,$i,'task_id') ."/" .mysql_result($sql,$i,'name') ."\">".mysql_result($sql,$i,'name') ."</a></td><td>";
 	dateSQL2fr(mysql_result($sql,$i,'created'));
-	#http://129.194.18.217/pmcake/files/1946/maisonpotterCapture-Google%20Earth.png
 	echo "</td><td>";
 	$extension=preg_replace("/^.*\./","",mysql_result($sql,$i,'name'));
 	typefichier($extension);
@@ -357,32 +340,6 @@ while($i<mysql_num_rows($sql)){
 	}
 echo "</table>";
 
-/*OLD FILES FROM netoffice*/
-$sql="SELECT * FROM pm_files WHERE task=".$this->data['PmTask']['id'];
-#do and check sql
-$sql=mysql_query($sql);
-if(!$sql) {
-	echo "SQL error: " .mysql_error(); exit;
-}
-
-$i=0;
-
-echo "<table>";
-while($i<mysql_num_rows($sql)){
-	#echo "<tr><td>#" .mysql_result($sql,$i,'id') ."</td><td>".mysql_result($sql,$i,'comments') ."</td><td>";
-
-	
-		echo "<tr><td>#" .mysql_result($sql,$i,'id') ."</td><td><a href=\"/pm.old/pm/files/" .mysql_result($sql,$i,'id') ."/" .mysql_result($sql,$i,'comments') ."\">".mysql_result($sql,$i,'name') ."</a></td><td>";
-
-		dateSQL2fr(mysql_result($sql,$i,'date'));
-	echo "</td><td>";
-	
-	typefichier(mysql_result($sql,$i,'extension'));
-	echo "</td>";
-	$i++;
-	echo "</tr>";
-	}
-echo "</table>";
 ?>
 </div>
 <h2><a name="tags"></a>Tags</h2>
