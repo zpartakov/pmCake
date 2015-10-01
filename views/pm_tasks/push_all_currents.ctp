@@ -3,6 +3,9 @@ select {
 vertical-align: top
 }
 </style>
+<?php 
+if(!$_GET['ajout']) { 
+?>
 <form method="get">
 Nombre de jours à repousser:
 <select name="ajout" size="60" style="">
@@ -28,23 +31,17 @@ statut
  
 <input type="submit" onclick="return confirm('Confirmer le déplacement?')">
 </form>
-<?php
+<?php 
+}
+?>
 
+<?php
+//push_all_currents?ajout=7&statut=all&type=p
 if($_GET['ajout']) { 
-	
-	/*
-	 * pm_tasks.project
-	 * pm_projects.type=p
-	 */
 $ajout=$_GET['ajout'];
-/*
- *  
-	3 	ouvert
-	5 	en attente
- */
 $statut=$_GET['statut'];
 if($statut=="all"){
-	$statut="status=3 OR status=5";
+	$statut="status=3 OR status=5";	
 }elseif($statut=="cours"){
 	$statut="status=3";
 }elseif($statut=="wait"){
@@ -73,7 +70,7 @@ $sql="UPDATE pm_tasks
 	") JOIN pm_projects
        ON pm_tasks.project = pm_projects.id WHERE (pm_projects.type LIKE '".$_GET['type']."')"
 			;
-			
+/*			
 $sql="SELECT * FROM pm_tasks
 	WHERE (" .
 	"due_date <= '" .$due_date ."' " .
@@ -81,10 +78,10 @@ $sql="SELECT * FROM pm_tasks
 	") JOIN pm_projects
        ON pm_tasks.project = pm_projects.id WHERE (pm_projects.type LIKE '".$_GET['type']."')"
 			;
-			
-			echo nl2br($sql);
-				exit;
+	*/		
+
 			}
+			//echo nl2br($sql);exit;
 				
 //DATE_ADD(OrderDate,INTERVAL 45 DAY)			
 //	echo $sql; exit;

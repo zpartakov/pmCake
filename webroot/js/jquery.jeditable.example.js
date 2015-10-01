@@ -48,7 +48,7 @@ $(function() {
 	 */
 /*    $('.task').editable('/pm_tasks/update_title', {
 */ 	
-    $('.task').editable('https://radeff.net/intranet/pmcake/pm_tasks/update_title', {
+    $('.task').editable('https://radeff.red/intranet/pmcake/pm_tasks/update_title', {
          id        : 'data[PmTask][id]',
          name      : 'data[PmTask][name]',
          type      : 'textarea',

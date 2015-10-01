@@ -69,7 +69,7 @@ exit\"");
 
 /*
  * "id";"server";"type";"db";"sqlserver";"contenu";"url";"login";"mdp";"loginmysql";"passwdmysql";"urladmin";"loginadmin";"passwdadmin";"version";"todos";"rem";"miseajour";"scriptpatch";"typetrans";"priv";"meladmin"
-"1";"www.akademia.ch";"0";"akademia";;;"http://www.akademia.ch";"sys_akademia";"avdrdsfy";;;;;;;;;"2009-12-02 07:19:00";"1";"ftp";"1";"fradeff@gmail.com"
+"1";"radeff.red";"0";"akademia";;;"http://radeff.red";"sys_akademia";"avdrdsfy";;;;;;;;;"2009-12-02 07:19:00";"1";"ftp";"1";"fradeff@gmail.com"
 
 
 lftp -e "open $leserveur; cd $racine;
