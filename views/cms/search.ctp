@@ -166,9 +166,26 @@ echo "<p style=\"font-size: smaller; font-style: italic\"><a href=\"" .$cm['cms'
 		<?php echo $html->link(__('Delete', true), array('action'=>'delete', $cm['cms']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $cm['cms']['id'])); ?>
 	</td>
 </tr>
-<?php endforeach; ?>
+<?php endforeach; 
+
+$letype=$_POST['data']['Cm']['letype'];
+if($letype){
+$sql="SELECT * FROM types WHERE id=".$letype;
+$sqlq=mysql_query($sql);
+if(!$sqlq) {
+	echo "sql error: " .$sql ."<br>" .mysql_error(); exit;
+}
+$letype=mysql_result($sqlq,0,'lib');
+$url=mysql_result($sqlq,0,'url');
+}
+
+$body="
+Bonjour,%0D%0A%0D%0A
+Une mise à jour de sécurité " .$letype ." est disponible, merci de faire la mise à jour de votre/vos site/s " .$letype .".%0D%0A%0D%0A
+" .$url;
+?>
 </table>
-<a href="mailto:?subject=mise à jour / patch / upgrade &bcc=<?php echo $ecrireatous; ?>">Ecrire à tous</a>
+<a href="mailto:?subject=mise à jour / patch / upgrade <?php echo $letype;?>&bcc=<?php echo $ecrireatous; ?>&body=<?php echo $body;?>">Ecrire à tous</a>
 </div>
 <div class="actions">
 	<ul>
