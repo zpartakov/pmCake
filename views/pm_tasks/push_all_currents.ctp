@@ -57,8 +57,8 @@ $due_date=date("Y-m-d");
 	SET due_date=DATE_ADD(due_date, INTERVAL ".$ajout ." DAY)  
 	WHERE (" .
 			"due_date <= '" .$due_date ."' " .
-					"AND (".$statut .")" .
-					")" 
+					"AND ".$statut ." " .
+					"AND priority=0)" 
 			;
 
 			if($_GET['type'] && $_GET['type']!="all"){
@@ -81,7 +81,7 @@ $sql="SELECT * FROM pm_tasks
 	*/		
 
 			}
-			//echo nl2br($sql);exit;
+			//echo nl2br($sql);exit; //tests sql
 				
 //DATE_ADD(OrderDate,INTERVAL 45 DAY)			
 //	echo $sql; exit;
