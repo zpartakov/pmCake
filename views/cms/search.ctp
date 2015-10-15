@@ -176,6 +176,8 @@ if(!$sqlq) {
 	echo "sql error: " .$sql ."<br>" .mysql_error(); exit;
 }
 $letype=mysql_result($sqlq,0,'lib');
+$version=mysql_result($sqlq,0,'version');
+$letype=$letype ." (" .$version .")";
 $url=mysql_result($sqlq,0,'url');
 }
 
