@@ -19,23 +19,23 @@
 	echo $html->css('pmcake'); //pmCake adapation
 	echo $html->css('tooltip'); //tooltip / infobulles menu
 	echo $html->css('mobile'); //mobile version
-	
+
 	/*
 	 * js
 	 */
-	
+
 	echo $html->script('jquery/jquery');
 	echo $html->script('jquery.jeditable');
 	echo $html->script('jquery.jeditable.example');
-	
+
 	/*
 	 * dynamic menus http://users.tpg.com.au/j_birch/plugins/superfish/
 	 */
-	
+
 	echo $html->css('superfish/superfish');
 	echo $html->script('superfish/superfish');
 	echo $html->script('superfish/hoverIntent');
-	
+
 	?>
 	<script type="text/javascript">
 //<![CDATA[
@@ -47,10 +47,10 @@ var date_format = "d.m.y";
 //<![CDATA[
 var application_root = "<? echo CHEMIN;?>";
 //]]>
-</script>	
+</script>
 	<?php
 	echo $html->script('scrolltopcontrol');
-	
+
 ?>
 
 <script type="text/javascript">
@@ -67,7 +67,7 @@ var application_root = "<? echo CHEMIN;?>";
 			});
 		}
 	} // lookup
-	
+
 	function fill(thisValue) {
 		$('#inputString').val(thisValue);
 		/*$("form:first").submit();*/
@@ -134,7 +134,7 @@ echo $this->element('menu');
 
 //echo $this->element('navbar');
 
-?>  
+?>
 <!-- ########################### GLOBAL SEARCH ENGINE ######################## -->
 <div class="globalsearch">
 <!-- begin search form -->
@@ -153,7 +153,7 @@ echo $this->element('menu');
 </div>
 <div id="content">
 
-<?php 
+<?php
 
 echo $content_for_layout; ?>
 </div>
@@ -173,11 +173,11 @@ echo "</a>";
  </td>
 
 <td class="tablepied">
-<?php 
+<?php
 //print page
 echo "<a class=\"logoprint\" href=\"javascript:window.print();\">";
 echo $html->image('icon-print.jpg', array("alt"=>"Imprimer","title"=>"Imprimer"));
-echo "</a>"; 
+echo "</a>";
 ?>
 </td>
 <!-- about -->
@@ -185,7 +185,7 @@ echo "</a>";
 <?php
 echo '<a target="_blank" class="contact" href="/dokuwiki/fred_radeff" title="Fred Radeff">'.$html->image('linux/tux_che.jpg', array("alt"=>"Fred Radeff")).'</a>';
 ?>
-<br />			<?php 
+<br />			<?php
 		echo $html->image("cake.power.gif", array('url' => 'http://www.cakephp.org/', 'alt' => 'CakePHP', 'title' => 'CakePHP'));
 			?>
 </td>
@@ -203,9 +203,9 @@ echo '<a target="_blank" href="http://www.gnu.org/licenses/gpl-3.0.txt">'.$html-
 ?>
 </td></tr>
 </table>
- 
+
 
 </div>
- 
+
 </body>
 </html>
