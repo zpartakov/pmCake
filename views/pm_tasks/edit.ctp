@@ -120,12 +120,20 @@ echo "web: " .$this->Html->link($this->data['PmProject']['url_prod'], $this->dat
 			
 		</td>
 		<td>	
-		Parent<br/>
+		Parent<br />
 		<?php 
 		echo "<select name=\"data[PmTask][parent_id]\" id=\"parent_id\">";
 		 parent_tasks($this->data['PmProject']['id'],$this->data['PmTask']['parent_id']);
 		echo "</select>";
+		echo "<br />";
+		parent_task_small($this->data['PmTask']['id']);
 		?>
+		<br>Children<br />
+		<?php 
+		
+		 	children_tasks_list($this->data['PmTask']['id']);
+		 	echo "</select>";
+		 ?>
 		</td>
 	</tr>
 	<tr>
@@ -292,6 +300,7 @@ echo "web: " .$this->Html->link($this->data['PmProject']['url_prod'], $this->dat
  	parent_task($this->data['PmTask']['id']);
  	children_tasks($this->data['PmTask']['id']);
  	?> 	
+ 	
 	</table>
  	<span class="imprimepas"><?php
 	echo $this->element('toolbar/toolbar', array('plugin' => 'alaxos', 'list' => true, 'back_to_view_id' => $this->data['PmTask']['id']));

@@ -1016,18 +1016,21 @@ function parent_task_small($task_id) {
 
 /* extract the children tasks for a given task */
 function children_tasks($task_id) {
-	$sql="SELECT id, name FROM pm_tasks WHERE parent_id=".$task_id ." ORDER BY due_date"; 
-	//echo "<br>".$sql ."<br>"; //tests
+	//echo "task id: " .$task_id; exit;
+	$sql="SELECT id, name FROM pm_tasks WHERE parent_id=".$task_id ." ORDER BY due_date";
+	//$sql1=$sql; 
 	#do and check sql
+	//print_r($sql);
 	$sql=mysql_query($sql);
 	if(!$sql) {
 		echo "SQL error: " .mysql_error(); exit;
 	}
 	$i=0;
-	if(mysql_num_rows($sql)>0) {
+
+	//if(mysql_num_rows($sql)>0) {
 		echo "<tr><td>";
 	echo "<h2>Children Tasks</h2>";
-		echo "<ol>";
+	echo "<ol>";
 	while($i<mysql_num_rows($sql)){
 		echo "<li><a href=\"" .mysql_result($sql,$i,'id') ."\">" .mysql_result($sql,$i,'name') ."</a></li>";
 		$i++;
@@ -1036,7 +1039,23 @@ function children_tasks($task_id) {
 
 
 	echo "</td></tr>";	
+	//}
+}
+
+function children_tasks_list($task_id) {
+	$sql="SELECT id, name FROM pm_tasks WHERE parent_id=".$task_id ." ORDER BY due_date";
+	$sql=mysql_query($sql);
+	if(!$sql) {
+		echo "SQL error: " .mysql_error(); exit;
 	}
+	$i=0;
+
+	echo "<ol>";
+	while($i<mysql_num_rows($sql)){
+		echo "<li><a href=\"" .mysql_result($sql,$i,'id') ."\">" .mysql_result($sql,$i,'name') ."</a></li>";
+		$i++;
+		}
+	echo "</ol>";
 }
 
 /* total hours today */

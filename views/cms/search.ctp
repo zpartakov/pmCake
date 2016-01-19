@@ -151,7 +151,7 @@ echo "<p style=\"font-size: smaller; font-style: italic\"><a href=\"" .$cm['cms'
 	</td>
 	<td>
 		<a href="/tools/metalogins/cms/view/<? echo $cm['cms']['id']; ?>" class="tooltip">
-		<?php echo $cm['cms']['rem']; ?>
+		<?php echo nl2br($cm['cms']['rem']); ?>
 		<?php 
 		if(preg_match("/httpsok/",$cm['cms']['rem'])) { //https protected
 		echo "&nbsp;<span style=\"float: right\">" .$html->image('s_passwd.png') ."</span>";
