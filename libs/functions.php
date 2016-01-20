@@ -773,7 +773,7 @@ function print_tasks($catlib,$quand) {
 	/*
 	 * display main category
 	 */
-	echo '<div id="' .$catlib .'"><h2><a name="' .$catlib .'"></a>'. ucfirst($catlib) .'</h2><form id="'.$catlib.'">';
+	echo '<div id="' .$catlib .'"><h2><a name="' .$catlib .'"></a>'. ucfirst($catlib) .'</h2><form id="'.$catlib.'" action="/intranet/pmcake/pm_tasks/pushsomesdelays">';
 	
 	/*
 	 * some special css classes to hide/show
@@ -893,20 +893,14 @@ echo     '<input type="checkbox" name="checkboxlist" value="'.mysql_result($sql,
 	}
 	echo '
 	</table>';
-	    echo '<select id="pousserdelais" class="btnadd" onChange="sendselected()">';
+	    echo '<select name="pousserdelais" class="btnadd">';
     delais();
+    echo '<option value="incubateur">->incubateur</option>';
     echo '</select>';
     
     
 	echo '
-<!--
-<div class="choose_action">
-Action à effectuer sur les éléments sélectionnés&nbsp;
-<?php
-push_all_delays($catlib);
-?>
-</div>
-!-->
+<input type="submit" value="repousser les délais sélectionnés">
 </form>';
 	
 	?>

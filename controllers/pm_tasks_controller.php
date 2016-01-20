@@ -266,7 +266,16 @@ $last_id=mysql_result($last_id, 0,'id');
 function pushdelays() {
     
 }
-	function printThis(){
+
+
+/*
+ * pousser les delais de certaines taches selectionnees
+ */
+function pushsomesdelays() {
+    
+}
+
+function printThis(){
 	echo $this->runtest;
 	}
 	
