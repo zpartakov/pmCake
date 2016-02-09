@@ -1,4 +1,5 @@
-<?php 
+<?php
+ 
 /*
  * a script to upgrade a software instance 
  */
@@ -14,7 +15,6 @@ if(!$sqlq) {
 }
 $sqlq=mysql_query($sql);
 //echo "<br>" .mysql_result($sqlq,$i,'version');
-
 $sql="UPDATE cms SET version='".mysql_result($sqlq,$i,'version') ."' WHERE id=".$cms_id;
 //echo "<br>" .$sql;
 

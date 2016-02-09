@@ -221,6 +221,16 @@ function csv() { //a function to export in csv
 function upgrade() {//a function to upgrade a software
   $this->layout = '';
 }
+
+function upgradelm() {//a function to create the bash script for upgrading limesurveys
+	$this->layout = '';
+}
+
+function wpupgradecheck() {//a function to create the bash script for upgrading wordpress
+	$this->layout = '';
+}
+
+
 function newc5website () { //create a new concrete5 cms
 }
 

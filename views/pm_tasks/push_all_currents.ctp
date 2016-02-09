@@ -84,30 +84,87 @@ $statut=$_GET['statut'];
 $priority=$_GET['priority'];
 
 if($statut=="all"){
-	$statut="status=3 OR status=5";	
+	$statut="t.status=3 OR t.status=5";	
 }elseif($statut=="cours"){
-	$statut="status=3";
+	$statut="t.status=3";
 }elseif($statut=="wait"){
-	$statut="status=5";
+	$statut="t.status=5";
 }
 
 if($priority){
-	$priority="AND priority=".$priority;
+	$priority="AND t.priority=".$priority;
 } else {
 	$priority="";
 }
+
 
 $due_date=date("Y-m-d");
 	$pousser=date("U")+$ajout*(24*3600);
 	$pousser=date("Y-m-d",$pousser);
 
-	
-	$sql="UPDATE pm_tasks 
-	SET due_date=DATE_ADD(due_date, INTERVAL ".$ajout ." DAY)  
+	$sql="SELECT * FROM pm_tasks as t, pm_projects as p
 	WHERE (" .
+	"t.due_date <= '" .$due_date ."' " .
+	"AND ".$statut ." " .$priority ."
+	AND t.project=p.id)"
+	;
+	
+//	echo "<br><pre>".nl2br($sql)."</pre></br>";
+	
+	$sql=mysql_query($sql);
+	
+	if(!$sql){
+		echo "Erreur SQLx: " .mysql_error();
+	}
+	echo "<br>il y a: #".mysql_num_rows($sql)." résultats</br>";
+	
+	$i=0;
+	while($i<mysql_num_rows($sql)){
+		
+		echo "<br>task id: " .mysql_result($sql,$i,'t.id');
+		echo "<br>type: " .mysql_result($sql,$i,'p.type');
+		echo "<br>status: " .mysql_result($sql,$i,'t.status');
+		echo "<br>statusSel: " .mysql_result($sql,$i,'t.status');
+		$type=$_GET['type'];
+		if($type==0||$type=="p") {//type of project selected
+		if($type==mysql_result($sql,$i,'p.type')) {
+				$sql3="UPDATE pm_tasks 
+				SET due_date=DATE_ADD(due_date, INTERVAL ".$ajout ." DAY)  
+				WHERE id=" . mysql_result($sql,$i,'t.id') .";";
+				echo "<br>".$sql3."</br>";
+				$sql3=mysql_query($sql3);
+				if(!$sql3){
+					echo "Erreur SQL3: " .mysql_error();
+				} else {
+					header("Location: " .CHEMIN);
+				}
+		}
+		}else {
+			$sql2="UPDATE pm_tasks
+			SET due_date=DATE_ADD(due_date, INTERVAL ".$ajout ." DAY)
+			WHERE (" .
 			"due_date <= '" .$due_date ."' " .
-					"AND ".$statut ." " .$priority .")" 
+			"AND ".$statut ." " .$priority .")"
 			;
+				
+			$sql2=mysql_query($sql2);
+			if(!$sql2){
+				echo "Erreur SQL2: " .mysql_error();
+			} else {
+				header("Location: " .CHEMIN);
+			}
+		}
+		echo "<br>";
+		/*PmProject.type')=="0" prof
+		 PmProject.type')=="p" perso
+		* 
+		 */	
+			
+		$i++;
+	}
+	
+	exit;
+	
 
 			/*if($_GET['type'] && $_GET['type']!="all"){
 $sql="UPDATE pm_tasks
@@ -135,12 +192,7 @@ $sql="SELECT * FROM pm_tasks
 				
 //DATE_ADD(OrderDate,INTERVAL 45 DAY)			
 //	echo $sql; exit;
-	$sql=mysql_query($sql);
-	if(!$sql){
-		echo "Erreur SQLx: " .mysql_error();
-	} else {
-		header("Location: " .CHEMIN);
-	}
+
 
 }
 ?>

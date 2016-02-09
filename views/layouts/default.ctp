@@ -8,7 +8,7 @@
 		<?php echo $this->pageTitle; ?>
 	</title>
 
-
+<link rel="search" type="application/opensearchdescription+xml" title="unige.ch" href="/opensearch.xml">
 
 	<?php
 	echo $html->meta('icon');
