@@ -144,7 +144,8 @@ if($pmProject['PmProject']['id']==32){
 	
 }
 
-echo "<br/><a target=\"_blank\" href=\"/intranet/pmcake/pm_organizations/facture/".$pmProject['PmProject']['pm_organization_id']."\">\$facturation</a>";
+#echo "<br/><a target=\"_blank\" href=\"/intranet/pmcake/pm_organizations/facture/".$pmProject['PmProject']['pm_organization_id']."\">\$facturation" .$pmProject['PmProject']['id']."</a>";
+echo "<br/><a target=\"_blank\" href=\"/intranet/pmcake/pm_projects/hours_report/".$pmProject['PmProject']['id']."?fee_hour=120&pid=".$pmProject['PmProject']['id']."\">facturation</a>";
 			?>
 			
 			</dd>

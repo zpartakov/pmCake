@@ -106,7 +106,7 @@
 			<?php echo $pmTask['PmTask']['complete_date']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Service'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Prix'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $pmTask['PmTask']['service']; ?>
 			&nbsp;

@@ -118,7 +118,12 @@ echo "<p style=\"font-size: smaller; font-style: italic\"><a href=\"" .$cm['cms'
 	<td>
 		<?php 
 		echo "<a href=\"mailto:" .$cm['cms']['email'] ."\">" .substr($cm['cms']['email'],0,20) ."</a>"; 
+		
+		#if($versionc!=$cm['cms']['version']) {
+		
 		$ecrireatous.=$cm['cms']['email'].";";
+		#$ecrireatous.=$cm['cms']['email']."<br>";
+		#}
 		?>
 	</td>
 	<td>

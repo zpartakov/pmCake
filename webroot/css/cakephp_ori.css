@@ -19,7 +19,7 @@
 * {
 margin:0;
 padding:0;
-font-family: 'trebuchet ms', 'frutiger linotype', 'lucida grande', verdana, helvetica, arial, sans-serif;
+font-family: verdana, helvetica, arial, sans-serif;
 font-size: 12px;
 
 }
@@ -573,7 +573,7 @@ div.caption {
         text-align:center;
 }
         /* tbody optionnel */
-        
+
 div.tbody {
         display:table-row-group;
 }
@@ -684,7 +684,7 @@ padding-left: 10px;
 content:url(/pmcake/img/icons/toolsmall.png);
 padding-left: 5px;
  }
- 
+
 /* autocomplete */
 .globalsearch {
 position: absolute;
@@ -697,7 +697,7 @@ z-index: 499;*/
   height: 45px;
 }
 .boolean_search {
-background: #FFF9CF; height: 45px; position: relative; top: 17px; left: -100px	
+background: #FFF9CF; height: 45px; position: relative; top: 17px; left: -100px
 }
 .autofill {
 position: absolute;
@@ -854,6 +854,5 @@ width: 100px;
 	background-color: #D6EEF6;
 	padding: 10px;
 	margin-bottom: 10px;
-	
+
 	}
-	

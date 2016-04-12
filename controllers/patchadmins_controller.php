@@ -42,7 +42,7 @@ class PatchadminsController extends AppController {
 		if (!empty($this->data)) {
 			if ($this->Patchadmin->save($this->data)) {
 				$this->Session->setFlash(__('The Patchadmin has been saved', true));
-				$this->redirect($this->Session->read('Temp.referer'));					
+				$this->redirect($this->Session->read('Temp.referer'));
 			} else {
 				$this->Session->setFlash(__('The Patchadmin could not be saved. Please, try again.', true));
 			}
@@ -64,7 +64,7 @@ class PatchadminsController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 	}
-	
+
 
  function search() {
 	$cherche=$this->data['Patchadmin']['q'];
@@ -73,30 +73,30 @@ class PatchadminsController extends AppController {
 	}
 #$this->set('results',$this->Patchadmin->find('all',array('conditions'=>array('Patchadmin.* LIKE'=>"%" .$cherche."%"))));
 $this->set('results',$this->Patchadmin->query("
-SELECT * FROM patchadmins WHERE 
+SELECT * FROM patchadmins WHERE
 `server` LIKE '%" .$cherche."%'
-OR `type` LIKE '%" .$cherche."%'  
-OR `db` LIKE '%" .$cherche."%'  
-OR `sqlserver` LIKE '%" .$cherche."%'  
-OR `contenu` LIKE '%" .$cherche."%'  
-OR `url` LIKE '%" .$cherche."%'  
-OR `login` LIKE '%" .$cherche."%'  
-OR `mdp` LIKE '%" .$cherche."%'  
-OR `loginmysql` LIKE '%" .$cherche."%'  
-OR `passwdmysql` LIKE '%" .$cherche."%'  
-OR `urladmin` LIKE '%" .$cherche."%'  
-OR `loginadmin` LIKE '%" .$cherche."%'  
-OR `passwdadmin` LIKE '%" .$cherche."%'  
-OR `version` LIKE '%" .$cherche."%'  
-OR `todos` LIKE '%" .$cherche."%'  
-OR `rem` LIKE '%" .$cherche."%'  
-OR `miseajour` LIKE '%" .$cherche."%'  
-OR `scriptpatch` LIKE '%" .$cherche."%'  
-OR `typetrans` LIKE '%" .$cherche."%'  
-OR `priv` LIKE '%" .$cherche."%'  
-OR `meladmin` LIKE '%" .$cherche."%'  
+OR `type` LIKE '%" .$cherche."%'
+OR `db` LIKE '%" .$cherche."%'
+OR `sqlserver` LIKE '%" .$cherche."%'
+OR `contenu` LIKE '%" .$cherche."%'
+OR `url` LIKE '%" .$cherche."%'
+OR `login` LIKE '%" .$cherche."%'
+OR `mdp` LIKE '%" .$cherche."%'
+OR `loginmysql` LIKE '%" .$cherche."%'
+OR `passwdmysql` LIKE '%" .$cherche."%'
+OR `urladmin` LIKE '%" .$cherche."%'
+OR `loginadmin` LIKE '%" .$cherche."%'
+OR `passwdadmin` LIKE '%" .$cherche."%'
+OR `version` LIKE '%" .$cherche."%'
+OR `todos` LIKE '%" .$cherche."%'
+OR `rem` LIKE '%" .$cherche."%'
+OR `miseajour` LIKE '%" .$cherche."%'
+OR `scriptpatch` LIKE '%" .$cherche."%'
+OR `typetrans` LIKE '%" .$cherche."%'
+OR `priv` LIKE '%" .$cherche."%'
+OR `meladmin` LIKE '%" .$cherche."%'
 ;"));
- 
+
     }
 	function joomlapatch() {
 }
@@ -105,6 +105,23 @@ function upgrade() {//a function to upgrade a software
   $this->layout = '';
 }
 
+/*
+ * copiable behiavor
+ *
+http://jamienay.com/2010/03/copyable-behavior-for-cakephp-1-3-recursive-record-copying/
+
+After attaching Copyable to a model via the $actsAs array – I recommend putting it on AppModel – usage is as simple as:
+
+// From a controller method
+$this->MyModel->copy($id);
+
+// From a model method
+$this->copy($id);
+*/
+function copier($last_id) {
+	$this->Patchadmin->copy($last_id);
+			$this->redirect(array('action'=>'edit', $last_id ."&copy=yes"));
+	}
 }
 /*
  * -- Structure de la table `patchadmins`

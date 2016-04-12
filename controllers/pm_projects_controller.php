@@ -101,6 +101,12 @@ class PmProjectsController extends AppController {
 		$this->Session->setFlash(__('Pm project was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
+	
+	function hours_report($id = null) {
+		//global reporting of hours spent on a project
+		//do not display layout
+			$this->layout = '';
+	}
 
 
 

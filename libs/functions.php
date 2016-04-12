@@ -149,6 +149,59 @@ SELECT SUM(hours) AS hours FROM pm_tasks_time WHERE pm_tasks_time.task IN (SELEC
 	echo $hours;
 }
 
+function Detail_heures($pid,$fee_hour) {
+	//£££
+$sql2="SELECT hours AS hours FROM pm_tasks_time WHERE pm_tasks_time.task IN (SELECT id FROM pm_tasks WHERE project=" .$pid .") ";
+	
+$sql2="
+SELECT SUM(hours) AS hours, pm_tasks.name, pm_tasks.due_date
+FROM pm_tasks_time, pm_tasks 
+WHERE pm_tasks_time.task 
+IN (SELECT id FROM pm_tasks WHERE project=" .$pid .") 
+AND pm_tasks_time.task = pm_tasks.id 
+AND pm_tasks.status=5 
+GROUP BY  pm_tasks.name 
+ORDER BY pm_tasks.due_date
+";
+	//echo $sql2; 
+	//exit;
+echo "<table>";	
+echo "<tr><th>task name</th><th>hours</th><th>hour rate</th><th>amount</th></tr>";
+	$sql2=mysql_query($sql2);
+	$i=0; $totalfee=0; $totalhours=0;
+	while($i<mysql_num_rows($sql2)){
+		echo "<tr>";
+	$hour=mysql_result($sql2,$i,'hours');
+	$totalhours=$totalhours+$hour;
+	$fee=$hour*$fee_hour;
+	$totalfee=$totalfee+$fee;
+	echo "<td>";
+	echo mysql_result($sql2,$i,'pm_tasks.name') ;
+	echo "</td>";
+		echo "<td>";
+		echo $hour;
+		echo "</td>";
+		echo "<td>";
+		echo $fee_hour;
+		echo "</td>";
+		echo "<td>";
+		echo $fee;
+		echo "</td>";
+		$i++;
+		echo "</tr>";
+	}
+	echo "<tr><td><strong>Total</strong></td>
+	<td><strong>".$totalhours."</strong></td>
+	<td><strong>".$fee_hour."</strong></td>
+		<td><strong>".$totalfee."</strong></td>
+	</tr>";
+	echo "</table>";
+	
+
+}
+
+	
+
 /* show tasks for current project */
 function project_tasks_show($plib,$pid,$order,$statut,$operator,$anchor) {
 	

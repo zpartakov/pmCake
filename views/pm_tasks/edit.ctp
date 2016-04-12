@@ -145,15 +145,26 @@ echo "web: " .$this->Html->link($this->data['PmProject']['url_prod'], $this->dat
 			?>		
 		</td>
 		
-			<td><?php __('Heures'); ?>: 
+		<td>
+			
+			<?php __('Heures'); ?>: 
 		<?php
 		/*
 		 * a function displaying hour spent on this given task
 		 */
 			total_hours_task($this->data['PmTask']['id']);		
 		?>
+		<p>
+			<?php __('Prix'); 
+			echo "<br>";
+			echo $this->AlaxosForm->input('service', array('id'=>'service', 'label' => false));
+			?>: 
+		
+		</p>
 
 		</td>
+		
+		
 	</tr>
 	<tr>
 		<td>
