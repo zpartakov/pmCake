@@ -237,6 +237,15 @@ function newc5website () { //create a new concrete5 cms
 function patchlime() {//automatically upgrade limesurvey
 }
 
+function copier($id = null) {
+	//$this->copy($id);
+	$this->Cm->copy($id);
+	$last_id=mysql_query("SELECT id FROM cms ORDER BY id DESC LIMIT 0,1");
+	$last_id=mysql_result($last_id, 0,'id');
+	//echo "lastid: " .$last_id; exit;
+	$this->redirect(array('action'=>'edit', $last_id ."&copy=yes"));
+
+}
 }
 ?>
 
