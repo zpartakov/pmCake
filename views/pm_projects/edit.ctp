@@ -55,6 +55,8 @@ echo "</table>";
 		echo $this->Form->input('description', array("type"=>"textarea", "cols"=>"100", "rows"=>"15"));
 		echo $this->Form->input('url_dev', array('style'=>'width: 800px'));
 		echo $this->Form->input('url_prod', array('style'=>'width: 800px'));
+		echo $this->Form->input('budget', array('style'=>'width: 80px'));
+		echo $this->Form->input('hourly_fee', array('style'=>'width: 80px'));
 		echo $this->Form->input('published', array("type"=>"hidden"));
 ?>
 <table>

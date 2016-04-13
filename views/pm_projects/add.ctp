@@ -23,6 +23,14 @@ App::import('Lib', 'functions'); //imports app/libs/functions
 		</select>
 		</td>
 		<td>
+		
+		<?
+		echo $this->Form->input('budget', array('label'=>'Budget', "style"=>"width: 60px", "value"=>"130"));
+		echo $this->Form->input('hourly_fee', array('label'=>'Tarif horaire', "style"=>"width: 60px", "value"=>"130"));
+		?>
+		
+		</td>
+		<td>
 		<label for="PmTaskPriority">Priorité</label>
 		<select name="data[priority]" id="priority" />
 		<?		

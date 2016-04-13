@@ -102,7 +102,9 @@ function addtime(){
  	<table class="edit" style="position: relative; top: -50px">
 	<tr>
 		<td>
-			<?php ___('Projet') ?>
+			<?php 
+			echo "Projet "; 
+			?>
 <br/>
 			<?php 
 			echo "<select id=\"PmTaskProject\" name=\"data[PmTask][project]\">";
@@ -114,6 +116,9 @@ echo "&nbsp;";
 	array('action'=>'../pm_projects/view/'. $this->data['PmProject']['id']), array('escape' => false)));
 echo "<br/>";
 echo "web: " .$this->Html->link($this->data['PmProject']['url_prod'], $this->data['PmProject']['url_prod'], array('target'=>'_blank'));
+
+			echo "<br/><a target=\"_blank\" href=\"/intranet/pmcake/pm_projects/hours_report/".$this->data['PmProject']['id']."?fee_hour=120&pid=".$this->data['PmProject']['id']."\">$</a>";
+
 
 			?>
 			

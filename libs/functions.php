@@ -149,7 +149,7 @@ SELECT SUM(hours) AS hours FROM pm_tasks_time WHERE pm_tasks_time.task IN (SELEC
 	echo $hours;
 }
 
-function Detail_heures($pid,$fee_hour) {
+function Detail_heures($pid,$fee_hour,$budget) {
 	//£££
 $sql2="SELECT hours AS hours FROM pm_tasks_time WHERE pm_tasks_time.task IN (SELECT id FROM pm_tasks WHERE project=" .$pid .") ";
 	
@@ -165,12 +165,13 @@ ORDER BY pm_tasks.due_date
 ";
 	//echo $sql2; 
 	//exit;
-	echo "<p>Hour rate: " .$fee_hour ."</p>";
+	echo "<p>Budget: CHF " .$budget ."</p>";
+	echo "<p>Tarif horaire: CHF " .$fee_hour ."</p>";
 	
 echo "<table>";	
-echo "<tr><th>task name</th><th>date</th><th>hours</th>";
+echo "<tr><th>Nom de la tâche</th><th>Date</th><th>Heures</th>";
 //echo "<th>hour rate</th>";
-echo "<th>amount</th></tr>";
+echo "<th>Montant</th></tr>";
 $sql2=mysql_query($sql2);
 	$i=0; $totalfee=0; $totalhours=0;
 	while($i<mysql_num_rows($sql2)){
@@ -197,11 +198,20 @@ $sql2=mysql_query($sql2);
 		$i++;
 		echo "</tr>";
 	}
-	echo "<tr><td><strong>Total</strong></td>
+	echo "<tr><td colspan=\"2\"><strong>Total</strong></td>
 	<td><strong>".$totalhours."</strong></td>";
 	//echo "<td><strong>".$fee_hour."</strong></td>";
-	echo "<td><strong>".$totalfee."</strong></td>
+	echo "<td><strong>".$totalfee.".-</strong></td>
 	</tr>";
+	
+	$remains=$budget-$totalfee;
+	$heures=round(($remains/$fee_hour),2);
+	echo "<tr><td colspan=\"2\"><em>Solde</em></td>";
+	echo "<td><em>".$heures."</em></td>";	
+	echo "<td><em>".$remains.".-</em></td>
+	</tr>";
+	
+	
 	echo "</table>";
 	
 
@@ -376,6 +386,32 @@ if(!$sql) {
 }
 
 	return utf8_encode(mysql_result($sql,0,'name'));
+}
+
+/*function to return the budget of a given project*/
+function projet_budget_return($pid) {
+	$sql="SELECT budget FROM pm_projects WHERE id=".$pid;
+	//echo $sql; exit;
+	#do and check sql
+	$sql=mysql_query($sql);
+	if(!$sql) {
+		echo "SQL error: projet_fee_return" .mysql_error(); exit;
+	}
+
+	return intval(mysql_result($sql,0,'budget'));
+}
+
+/*function to return the hourly fee of a given project*/
+function projet_fee_return($pid) {
+	$sql="SELECT hourly_fee FROM pm_projects WHERE id=".$pid;
+	//echo $sql; exit;
+	#do and check sql
+	$sql=mysql_query($sql);
+	if(!$sql) {
+		echo "SQL error: projet_fee_return" .mysql_error(); exit;
+	}
+
+	return intval(mysql_result($sql,0,'hourly_fee'));
 }
 
 /*function to get a scrolling list of projets and highlight the current project if exists*/

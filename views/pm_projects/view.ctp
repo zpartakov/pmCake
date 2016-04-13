@@ -56,6 +56,16 @@ $finished=$_GET['finished'];
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php clients( $pmProject['PmProject']['pm_organization_id']); ?>
 			&nbsp;
+		</dd>		
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Budget'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $pmProject['PmProject']['budget']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Tarif horaire'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $pmProject['PmProject']['hourly_fee']; ?>
+			&nbsp;
 		</dd>
 <!--		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Owner'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
@@ -145,7 +155,7 @@ if($pmProject['PmProject']['id']==32){
 }
 
 #echo "<br/><a target=\"_blank\" href=\"/intranet/pmcake/pm_organizations/facture/".$pmProject['PmProject']['pm_organization_id']."\">\$facturation" .$pmProject['PmProject']['id']."</a>";
-echo "<br/><a target=\"_blank\" href=\"/intranet/pmcake/pm_projects/hours_report/".$pmProject['PmProject']['id']."?fee_hour=120&pid=".$pmProject['PmProject']['id']."\">facturation</a>";
+echo "<br/><a target=\"_blank\" href=\"/intranet/pmcake/pm_projects/hours_report/".$pmProject['PmProject']['id']."?fee_hour=120&pid=".$pmProject['PmProject']['id']."\">$</a>";
 			?>
 			
 			</dd>

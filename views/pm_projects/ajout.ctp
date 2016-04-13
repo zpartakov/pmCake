@@ -3,6 +3,8 @@
 App::import('Lib', 'functions'); //imports app/libs/functions
 $organization=normaliser($_GET['data']['organization']);
 $owner=$_GET['data']['owner'];
+$hourly_fee=$_GET['data']['hourly_fee'];
+$budget=$_GET['data']['budget'];
 $priority=$_GET['data']['priority'];
 $status=$_GET['data']['status'];
 $name=normaliser($_GET['data']['name']);
@@ -18,9 +20,11 @@ $modified=$created;
 
 
 $sql="
-INSERT INTO `pm_projects` (`id`, `pm_organization_id`, `owner`, `priority`, `status`, `name`, `description`, `url_dev`, `url_prod`, `created`, `modified`, `published`, `upload_max`, `phase_set`, `type`) VALUES (
+INSERT INTO `pm_projects` 
+(`id`, `pm_organization_id`, `owner`, `priority`, `status`, `name`, `description`, `url_dev`, `url_prod`, `created`, `modified`, `published`, `upload_max`, `phase_set`, `type`, `hourly_fee`, `budget`) 
+VALUES (
 NULL,
- '$organisation', '$owner', '$priority', '$status', '$name', '$description', '$url_dev', '$url_prod', '$created', '$modified', '$published', '$upload_max', '$phase_set', '$type')";
+ '$organisation', '$owner', '$priority', '$status', '$name', '$description', '$url_dev', '$url_prod', '$created', '$modified', '$published', '$upload_max', '$phase_set', '$type', '$hourly_fee', '$budget')";
 #echo $sql; exit;
 
 #do and check sql
