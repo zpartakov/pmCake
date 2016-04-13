@@ -1,7 +1,8 @@
 <?php
-class Patchadmins extends AppModel {
+class Patchadmin extends AppModel {
 
-	var $name = 'Patchadmins';
+	var $name = 'Patchadmin';
+	
 	var $validate = array(
 		'server' => array('notempty'),
 		'type' => array('notempty'),
@@ -10,6 +11,8 @@ class Patchadmins extends AppModel {
 
 	);
 
+	var $actsAs = array('Revision'=> array('limit'=>30),'Copyable');
+	 
 }
 /*		'passwd' => array('notempty'),
 		'urladmin' => array('notempty'),

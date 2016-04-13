@@ -159,15 +159,19 @@ FROM pm_tasks_time, pm_tasks
 WHERE pm_tasks_time.task 
 IN (SELECT id FROM pm_tasks WHERE project=" .$pid .") 
 AND pm_tasks_time.task = pm_tasks.id 
-AND pm_tasks.status=5 
+AND pm_tasks.status<2
 GROUP BY  pm_tasks.name 
 ORDER BY pm_tasks.due_date
 ";
 	//echo $sql2; 
 	//exit;
+	echo "<p>Hour rate: " .$fee_hour ."</p>";
+	
 echo "<table>";	
-echo "<tr><th>task name</th><th>hours</th><th>hour rate</th><th>amount</th></tr>";
-	$sql2=mysql_query($sql2);
+echo "<tr><th>task name</th><th>date</th><th>hours</th>";
+//echo "<th>hour rate</th>";
+echo "<th>amount</th></tr>";
+$sql2=mysql_query($sql2);
 	$i=0; $totalfee=0; $totalhours=0;
 	while($i<mysql_num_rows($sql2)){
 		echo "<tr>";
@@ -178,12 +182,15 @@ echo "<tr><th>task name</th><th>hours</th><th>hour rate</th><th>amount</th></tr>
 	echo "<td>";
 	echo mysql_result($sql2,$i,'pm_tasks.name') ;
 	echo "</td>";
-		echo "<td>";
+	echo "<td>";
+	echo mysql_result($sql2,$i,'pm_tasks.due_date') ;
+	echo "</td>";
+	echo "<td>";
 		echo $hour;
 		echo "</td>";
-		echo "<td>";
-		echo $fee_hour;
-		echo "</td>";
+		//echo "<td>";
+		//echo $fee_hour;
+		//echo "</td>";
 		echo "<td>";
 		echo $fee;
 		echo "</td>";
@@ -191,9 +198,9 @@ echo "<tr><th>task name</th><th>hours</th><th>hour rate</th><th>amount</th></tr>
 		echo "</tr>";
 	}
 	echo "<tr><td><strong>Total</strong></td>
-	<td><strong>".$totalhours."</strong></td>
-	<td><strong>".$fee_hour."</strong></td>
-		<td><strong>".$totalfee."</strong></td>
+	<td><strong>".$totalhours."</strong></td>";
+	//echo "<td><strong>".$fee_hour."</strong></td>";
+	echo "<td><strong>".$totalfee."</strong></td>
 	</tr>";
 	echo "</table>";
 	

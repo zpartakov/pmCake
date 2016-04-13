@@ -98,29 +98,24 @@ OR `meladmin` LIKE '%" .$cherche."%'
 ;"));
 
     }
+    
 	function joomlapatch() {
-}
+	}
 
-function upgrade() {//a function to upgrade a software
-  $this->layout = '';
-}
-
-/*
- * copiable behiavor
- *
-http://jamienay.com/2010/03/copyable-behavior-for-cakephp-1-3-recursive-record-copying/
-
-After attaching Copyable to a model via the $actsAs array – I recommend putting it on AppModel – usage is as simple as:
-
-// From a controller method
-$this->MyModel->copy($id);
-
-// From a model method
-$this->copy($id);
-*/
-function copier($last_id) {
-	$this->Patchadmin->copy($last_id);
-			$this->redirect(array('action'=>'edit', $last_id ."&copy=yes"));
+	function upgrade() {//a function to upgrade a software
+	  $this->layout = '';
+	}
+	
+	
+	function copier($id = null) {
+		//$this->copy($id);
+		$this->Patchadmin->copy($id);
+		$last_id=mysql_query("SELECT id FROM patchadmins ORDER BY id DESC LIMIT 0,1");
+		$last_id=mysql_result($last_id, 0,'id');
+		$last_id=$last_id+1;
+		//echo "lastid: " .$last_id; exit;
+		$this->redirect(array('action'=>'edit', $last_id ."&copy=yes"));
+	
 	}
 }
 /*

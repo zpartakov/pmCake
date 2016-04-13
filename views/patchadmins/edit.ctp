@@ -45,8 +45,7 @@
 <div class="actions">
 	<ul>
 		<li><?php echo $html->link(__('Delete', true), array('action'=>'delete', $form->value('Patchadmin.id')), null, sprintf(__('Are you sure you want to delete # %s?', true), $form->value('Patchadmin.id'))); ?></li>
-		<li><?php echo$html->link($html->image('toolbar/edit-copy.png', array('alt' => 'Copier', 'title' => 'Copier')), array('action'=>'copier',$form->value('Patchadmin.id')), array('escape' => false)); ?></li>
-
+		<li><?php 	e($html->link($html->image('toolbar/edit-copy.png', array('alt' => 'Copier', 'title' => 'Copier')), array('action'=>'copier',$idaction), array('escape' => false)));?></li>
 		<li><?php echo $html->link(__('List Patchadmins', true), array('action'=>'index'));?></li>
 	</ul>
 </div>
