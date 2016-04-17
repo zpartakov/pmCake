@@ -150,19 +150,40 @@ SELECT SUM(hours) AS hours FROM pm_tasks_time WHERE pm_tasks_time.task IN (SELEC
 }
 
 function Detail_heures($pid,$fee_hour,$budget) {
-	//£££
-$sql2="SELECT hours AS hours FROM pm_tasks_time WHERE pm_tasks_time.task IN (SELECT id FROM pm_tasks WHERE project=" .$pid .") ";
 	
-$sql2="
-SELECT SUM(hours) AS hours, pm_tasks.name, pm_tasks.due_date
-FROM pm_tasks_time, pm_tasks 
-WHERE pm_tasks_time.task 
-IN (SELECT id FROM pm_tasks WHERE project=" .$pid .") 
-AND pm_tasks_time.task = pm_tasks.id 
-AND pm_tasks.status<2
-GROUP BY  pm_tasks.name 
-ORDER BY pm_tasks.due_date
-";
+	/*
+	 * 	if($id==0) {
+		$statut="Complet (client)";
+	}elseif($id==1) {
+		$statut="Complet";
+	}elseif($id==2) {
+		$statut="Non commencé";
+	}elseif($id==3) {
+		$statut="Ouvert";
+	}elseif($id==4) {
+		$statut="Suspendu";
+	}elseif($id==5) {
+	}elseif($id==6) {
+	}elseif($id==7) {
+	}elseif($id==17) { //café papo 17
+		$statut="Incubateur"; //dreams, boîte à idées
+		$lestyle='" style="width: 20px"';
+	}elseif($id==22) { //22 vla les flics
+		$statut="Références"; //references	
+		$lestyle='" style="width: 30px"';
+	}
+	* */
+	
+	$sql2="
+	SELECT SUM(hours) AS hours, pm_tasks.name, pm_tasks.due_date, pm_tasks.status
+	FROM pm_tasks_time, pm_tasks 
+	WHERE pm_tasks_time.task 
+	IN (SELECT id FROM pm_tasks WHERE project=" .$pid .") 
+	AND pm_tasks_time.task = pm_tasks.id 
+	AND pm_tasks.status=1
+	GROUP BY pm_tasks.name 
+	ORDER BY pm_tasks.due_date
+	";
 	//echo $sql2; 
 	//exit;
 	echo "<p>Budget: CHF " .$budget ."</p>";
@@ -185,6 +206,7 @@ $sql2=mysql_query($sql2);
 	echo "</td>";
 	echo "<td>";
 	echo mysql_result($sql2,$i,'pm_tasks.due_date') ;
+	//echo " status: " .mysql_result($sql2,$i,'pm_tasks.status') ;
 	echo "</td>";
 	echo "<td>";
 		echo $hour;
@@ -483,7 +505,8 @@ function statut_radio($id,$statut) {
 	);	
 	for($i=0;$i<count($statuts);$i++) {
 		$zestatut=$statuts[$i];
-			if(strlen($zestatut)>1&&$zestatut!="Complet (client)") {
+//			if(strlen($zestatut)>1&&$zestatut!="Complet (client)") {
+			if(strlen($zestatut)>1) {
 				echo "<span>
 <input type=\"radio\" name=\"radiovalue\" value=\"" .$i ."\"";
 

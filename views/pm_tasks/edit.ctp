@@ -83,7 +83,7 @@ function addtime(){
 	 statut_radio($this->data['PmTask']['id'],$this->data['PmTask']['status']);
 	 ?>
 	 </div>
-<div class="zactions" style="position: relative; top: -46px">
+<div class="zactions" style="position: relative; top: -50px; left: 83%">
 	<?
 	$idaction=$this->data['PmTask']['id'];
 	e($html->link($html->image('toolbar/loupe.png', array('alt' => 'Voir', 'title' => 'Voir')), array('action'=>'view/'.$idaction), array('escape' => false)));
