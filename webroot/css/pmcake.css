@@ -279,3 +279,9 @@ div#container > div#content > div > form > table > tbody > tr > td > a.tooltip >
 {
 	font-size: 1.1em
 }
+
+.tdnumeric {
+padding: 5px;
+text-align: right;
+margin-left: 10px;
+}
