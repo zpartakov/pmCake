@@ -157,7 +157,10 @@ $last_id=mysql_result($last_id, 0,'id');
 
 	}
 	
-	/* a ad hoc function as cake seems to bug here ??? */
+	//link to remedy ticket id
+	function remedy() {
+		
+	}
 	function modifier($id = null) {
 			//do not display layout
 		$this->layout = '';

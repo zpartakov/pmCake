@@ -58,6 +58,13 @@ function addtime(){
 	$this->pageTitle = '' .$this->data['PmTask']['name'] ." | " .$this->data['PmProject']['name']; 
 	$pid=$this->data['PmProject']['id'];
 ?>
+			<form method="get" action="/intranet/pmcake/pm_tasks/remedy" target="_blank">
+			
+			chercher le ticket remedy 
+			<input type="text" name="remedy">
+			<input type="submit">
+			
+			</form>
 	Date de la dernière modification: 
 			<?php 
 	dateSQLlong2fr( $this->data['PmTask']['mod_date']); 
@@ -179,6 +186,9 @@ echo "web: " .$this->Html->link($this->data['PmProject']['url_prod'], $this->dat
 			$changer="'name','libelletache','".$this->data['PmTask']['id']."'";
 			//echo $changer;
 			echo $this->AlaxosForm->input('name', array('id'=>'libelletache', 'label' => false, "style"=>"width: 800px;", "onChange" => "libelle_change_status($changer)")); ?>
+			
+
+
 		</td>
 		<td>
 		Membre(s)
