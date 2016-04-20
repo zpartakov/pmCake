@@ -57,15 +57,12 @@ function addtime(){
 	App::import('Lib', 'functions'); //imports app/libs/functions
 	$this->pageTitle = '' .$this->data['PmTask']['name'] ." | " .$this->data['PmProject']['name']; 
 	$pid=$this->data['PmProject']['id'];
+	//helpdesk ticketing remedy begin
+	echo $this->element('remedy');
+	
 ?>
-			<form method="get" action="/intranet/pmcake/pm_tasks/remedy" target="_blank">
-			
-			chercher le ticket remedy 
-			<input type="text" name="remedy">
-			<input type="submit">
-			
-			</form>
-	Date de la dernière modification: 
+
+			Date de la dernière modification: 
 			<?php 
 	dateSQLlong2fr( $this->data['PmTask']['mod_date']); 
 		?>
