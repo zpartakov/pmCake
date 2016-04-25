@@ -3,6 +3,24 @@
 	$soldeVac="0"; //past year holidays remains
 	$heuresparjour=8; //hours of work pro day
 	$holidaysforyear=5*32; //paied holidays weeks * hours2job
+	$hourstogain=32;
+	$delai = mktime(0,0,0,6,30,2016); //30 juin 2016
+	//$delailib=date("",$delai);	
+	setlocale (LC_TIME, 'fr_FR.utf8','fra');
+	$delailib=(strftime("%A %d %B %Y",$delai));
+	/*
+	 * changement de tarif automatiques
+	*/
+	
+	/*
+	 $aujourdhui=date("U", mktime());
+	
+	$tempsrestant=$delai-$aujourdhui;
+	if($tempsrestant<0) { //delai depasse
+	$prix=intval($prix+($prix*0.2));
+	}
+	
+	*/
 /*
  *  	
 04.07.2016 	
@@ -69,6 +87,7 @@
 <tr><td>Solde initial</td><td><?php echo $holidaysforyear;?>h</td><td><?php echo intval($holidaysforyear/8);?>j</td></tr>	
 <tr><td>Vacances</td><td><?php echo $soldeVac;?>h</td><td><?php echo intval($soldeVac/8);?>j</td></tr>	
 <tr><td>Solde final</td><td><?php echo $holidaysforyear-$soldeVac;?>h</td><td><?php echo intval(($holidaysforyear-$soldeVac)/8);?>j</td></tr>	
+<tr><td>Heures à gagner d'ici au <?php echo $delailib;?></td><td><?php echo $hourstogain-$solde;?>h</td><td><?php echo intval(($hourstogain-$solde)/8);?>j</td></tr>	
 </table>
 	<?php
 	echo $this->Paginator->counter(array(
