@@ -8,6 +8,13 @@
 	//$delailib=date("",$delai);	
 	setlocale (LC_TIME, 'fr_FR.utf8','fra');
 	$delailib=(strftime("%A %d %B %Y",$delai));
+	$today=mktime(0, 0, 0, date("m"), date("d"), date("Y"));
+	$weektoday  = (int)date('W', $today);
+	$weekdelai  = (int)date('W', $delai);
+	//echo "<br>Weeknummer1: " . $weektoday;
+	//echo "<br>Weeknummer2: " . $weekdelai;
+	//echo "<br>#weeks: " . ($weekdelai-$weektoday);
+	
 	/*
 	 * changement de tarif automatiques
 	*/
@@ -87,7 +94,17 @@
 <tr><td>Solde initial</td><td><?php echo $holidaysforyear;?>h</td><td><?php echo intval($holidaysforyear/8);?>j</td></tr>	
 <tr><td>Vacances</td><td><?php echo $soldeVac;?>h</td><td><?php echo intval($soldeVac/8);?>j</td></tr>	
 <tr><td>Solde final</td><td><?php echo $holidaysforyear-$soldeVac;?>h</td><td><?php echo intval(($holidaysforyear-$soldeVac)/8);?>j</td></tr>	
-<tr><td>Heures à gagner d'ici au <?php echo $delailib;?></td><td><?php echo $hourstogain-$solde;?>h</td><td><?php echo intval(($hourstogain-$solde)/8);?>j</td></tr>	
+<tr><td>
+<?php 
+$nsem=($weekdelai-$weektoday);
+$soldeheures=($hourstogain-$solde);
+$soldeheuresparsemaine=($soldeheures/$nsem);
+//$soldeheuresparsemaine=intval($soldeheuresparsemaine);
+$soldeheuresparsemaine=round($soldeheuresparsemaine,1);
+?>
+Heures à gagner d'ici au <?php echo $delailib;?>, soit <?php echo $nsem;?> semaines, 
+soit <?php echo $soldeheuresparsemaine;?> h par semaine
+</td><td><?php echo $soldeheures;?>h</td><td><?php echo intval(($hourstogain-$solde)/8);?>j</td></tr>	
 </table>
 	<?php
 	echo $this->Paginator->counter(array(
