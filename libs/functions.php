@@ -407,7 +407,7 @@ if(!$sql) {
 	echo "SQL error: " .mysql_error(); exit;
 }
 
-	return utf8_encode(mysql_result($sql,0,'name'));
+	return $txt=utf8_encode(mysql_result($sql,0,'name'));
 }
 
 /*function to return the budget of a given project*/
@@ -670,10 +670,30 @@ if(!$sql) {
     echo "<a href=\"" .CHEMIN. "pm_tasks/view/" .$pid ."\">";
 	echo mysql_result($sql,0,'name');
 	echo "</a>";
-	
-	
-	
 }
+
+/*function to return the name of a given task*/
+function task_nom_return($pid) {
+$sql="SELECT name FROM pm_tasks WHERE id=".$pid; 
+		#do and check sql
+	$sql=mysql_query($sql);
+	if(!$sql) {
+		echo "SQL error: " .mysql_error(); exit;
+	}
+	return utf8_encode(mysql_result($sql,0,'name'));
+}
+
+/*function to return the description of a given task*/
+function task_description_return($pid) {
+$sql="SELECT description FROM pm_tasks WHERE id=".$pid; 
+		#do and check sql
+	$sql=mysql_query($sql);
+	if(!$sql) {
+		echo "SQL error: " .mysql_error(); exit;
+	}
+	return utf8_encode(mysql_result($sql,0,'description'));
+}
+
 /*time spent on a task*/
 function total_hours_task($task_id) {
 		$sql2="

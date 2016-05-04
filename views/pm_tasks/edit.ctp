@@ -61,6 +61,7 @@ function addtime(){
 	echo $this->element('remedy');
 	
 ?>
+<div><a href="<?php echo CHEMIN ."mailators/add?pm_project_id=".$this->data['PmProject']['id']."&pm_task_id=".$this->data['PmTask']['id'];?>">send @</a></div>
 
 			Date de la dernière modification: 
 			<?php 

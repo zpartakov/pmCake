@@ -1,8 +1,9 @@
-<?
+<?php
 App::import('Lib', 'functions'); //imports app/libs/functions
 /* set status to done */
 $identifiant=$_GET['identifiant'];
 $status=$_GET['status'];
+
 if(!$status) {
 	$status=1;
 }
