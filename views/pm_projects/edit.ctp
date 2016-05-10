@@ -14,22 +14,36 @@ $this->pageTitle = 'Modifier projet: #' .$id ." " .$name;
  		<legend><?php __('Edit Pm Project'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		#echo $this->Form->input('organization');
+		//echo "org: " .strlen($this->Form->input('pm_organization_id'));exit;
 		?>
 		<table>
 		<tr>
 		<td>
 		<label for="PmProjectPriority">Qui?</label>
-		<select id="PmProjectOrganization" name="data[PmProject][organization]" />
+		
+		<!-- <select id="PmProjectOrganization" name="data[PmProject][organization]" /> -->
+		<?php 
+		//echo $this->Form->value('PmProject.organization'); exit;
+		?>
+				<select id="PmProjectOrganization" name="data[PmProject][pm_organization_id]" />
+				
 			<?
-			if($this->Form->value('PmProject.organization')<4){
-				$organisation=3;
+			
+		if(strlen($this->Form->value('PmProject.pm_organization_id'))<1||$this->Form->value('PmProject.pm_organization_id')==186){
+			echo "yoman"; exit;
+//		if(!$this->Form->value('PmProject.organization')){
+			$organisation=3;
 			} else {
-				$organisation=$this->Form->value('PmProject.organization');
+				$organisation=$this->Form->value('PmProject.pm_organization_id');
 			}
 				clients_sel($organisation);
 			?>
 		</select>
+		 
+		 <?php 
+		 //echo $this->Form->select('pm_organization_id');
+		 	
+		 ?>
 		</td>
 		<td>
 		<?
