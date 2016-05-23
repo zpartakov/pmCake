@@ -39,7 +39,8 @@ $finished=$_GET['finished'];
  | <a href="#suspended">Suspendues</a> 
  | <a href="#references">Références</a> 
  | <a href="<?php echo $_SERVER["REQUEST_URI"];?>?finished=1#finished">Terminé</a>
-  | <a href="#notes">Notes</a> <?php e($html->link($html->image('toolbar/editor.png', array('alt' => 'Modifier')), array('action'=>'edit', $pmProject['PmProject']['id']), array('alt' => 'Modifier', 'title' => 'Modifier', 'escape' => false)));?>
+  | <a href="<?php echo $_SERVER["REQUEST_URI"];?>?finished=0#finishedpaied">Terminé & payé</a>
+   | <a href="#notes">Notes</a> <?php e($html->link($html->image('toolbar/editor.png', array('alt' => 'Modifier')), array('action'=>'edit', $pmProject['PmProject']['id']), array('alt' => 'Modifier', 'title' => 'Modifier', 'escape' => false)));?>
 </div>
 <div class="zactions">
 	<?php
@@ -207,6 +208,16 @@ project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
 if($finished=="1") {
 $plib="Tâches terminées"; $pid=$pmProject['PmProject']['id']; $order="priority DESC,status,due_date"; $status="1";  $operator="="; $anchor="finished"; 
 project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
+}
+
+/* ################### PAIED TASKS ########################
+ *
+* defaut not show for improving performances
+* */
+
+if($finished=="0") {
+	$plib="Tâches terminées & payées"; $pid=$pmProject['PmProject']['id']; $order="priority DESC,status,due_date"; $status="0";  $operator="="; $anchor="finishedpaied";
+	project_tasks_show($plib,$pid,$order,$status,$operator, $anchor);
 }
 
 ?>

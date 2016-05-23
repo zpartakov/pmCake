@@ -48,7 +48,14 @@ class PmTasksController extends AppController {
 
 		} elseif($_GET['tasktype']=="finished") { //achieved projects
 			$options = array(
-					"PmTask.status<2"
+					"PmTask.status=1"
+					);			
+					#echo "test"; exit;
+			$this->set(array('pmTasks' => $this->paginate('PmTask', $options))); 		
+
+		}elseif($_GET['tasktype']=="paied") { //achieved projects
+			$options = array(
+					"PmTask.status=0"
 					);			
 					#echo "test"; exit;
 			$this->set(array('pmTasks' => $this->paginate('PmTask', $options))); 		
