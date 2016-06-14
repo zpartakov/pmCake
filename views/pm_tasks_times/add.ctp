@@ -1,7 +1,13 @@
+<script>
+window.onload = function() {
+    document.getElementById("heuretask").focus();
+};
+</script>
+
 <?php
 App::import('Lib', 'functions'); //imports app/libs/functions
 #cake title of the page
-$this->pageTitle = 'Ajouter temps de travail à une tâche'; 
+$this->pageTitle = 'Ajouter temps de travail à une tâche';
 ?>
 <?
 	$projectid=$_GET['projectid'];
@@ -11,7 +17,7 @@ $this->pageTitle = 'Ajouter temps de travail à une tâche';
 <?php echo $this->Form->create('PmTasksTime');?>
 	<fieldset>
  		<legend><?php echo $this->pageTitle; ?></legend>
- 		
+
  		<label>Projet</label>
  		<select id="PmTasksTimeProject" name="data[PmTasksTime][project]">
  		<? projets_sel($projectid); ?>
@@ -33,4 +39,3 @@ $this->pageTitle = 'Ajouter temps de travail à une tâche';
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
 </div>
-
