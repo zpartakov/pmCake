@@ -1,7 +1,12 @@
+<script>
+window.onload = function() {
+	document.getElementById("name").focus();
+};
+</script>
 <?php
 App::import('Lib', 'functions'); //imports app/libs/functions
 #cake title of the page
-$this->pageTitle = 'Ajouter tâche'; 
+$this->pageTitle = 'Ajouter tâche';
 //test if coming from task = new entry
 
 if(preg_match("/pm_projects\/view/",$_SERVER["HTTP_REFERER"])) {
@@ -30,9 +35,9 @@ if(preg_match("/pm_projects\/view/",$_SERVER["HTTP_REFERER"])) {
 	</td>
 	</tr>
 	<tr>
-	<td>	
+	<td>
 	Parent<br/>
-	<?php 
+	<?php
 	echo "<select name=\"data[PmTask][parent_id]\" id=\"parent_id\">";
 	 parent_tasks($tid,'0');
 	echo "</select>";
@@ -41,18 +46,18 @@ if(preg_match("/pm_projects\/view/",$_SERVER["HTTP_REFERER"])) {
 	<td>
 		<label for="PmTaskPriority">Priorité</label>
 		<select name="data[PmTask][priority]" id="PmTaskPriority" />
-		<?		
-		#echo $this->Form->input('priority');		
+		<?
+		#echo $this->Form->input('priority');
 		priorite();
-		?>		
+		?>
 		</select>
 	</td>
 	<td>
 		<label for="PmTaskStatus">Statut</label>
 		<select name="data[PmTask][status]" id="PmTaskStatus" />
-		<?		
+		<?
 		if($_GET['tasktype']=="incub") { //incubateur - dreams
-			$options = 17;			
+			$options = 17;
 		} elseif($_GET['tasktype']=="ref") { //references
 			$options = 22;
 		} else {
@@ -66,7 +71,7 @@ if(preg_match("/pm_projects\/view/",$_SERVER["HTTP_REFERER"])) {
 	</tr>
 	<tr>
 		<td colspan="3">
-			<?		
+			<?
 			echo $this->Form->input('owner',array('type'=>'hidden', 'value'=>'3'));
 			echo $this->Form->input('assigned_to',array('type'=>'hidden', 'value'=>'3'));
 			echo $this->Form->input('name', array('label'=>'Titre', "style"=>"width: 600px"));
@@ -120,12 +125,12 @@ if(preg_match("/pm_projects\/view/",$_SERVER["HTTP_REFERER"])) {
 			});
 			</script></div>
 		";
-		
-		
-		
+
+
+
 		?>
-	
-	
+
+
 	</td>
 </tr>
 <tr>
@@ -135,7 +140,7 @@ if(preg_match("/pm_projects\/view/",$_SERVER["HTTP_REFERER"])) {
 		?>
 	<?
 		echo $this->Form->input('actual_time',array("type"=>"hidden"));
-	?>	
+	?>
 	<?
 		echo $this->Form->input('comments',array("type"=>"textarea", "cols"=>"90", "rows"=>"10"));
 		echo $this->Form->input('completion',array("type"=>"hidden","value"=>0));
@@ -147,7 +152,7 @@ if(preg_match("/pm_projects\/view/",$_SERVER["HTTP_REFERER"])) {
 		echo $this->Form->input('milestone',array("type"=>"hidden","value"=>0));
 		echo $this->Form->input('PmTasksTime',array("type"=>"hidden","value"=>0));
 		echo $this->Form->input('PmMember');
-		
+
 	?>
 	</td>
 </tr>
@@ -157,4 +162,3 @@ if(preg_match("/pm_projects\/view/",$_SERVER["HTTP_REFERER"])) {
 <?php echo $this->Form->end(__('Enregistrer', true));?>
 </div>
 </div>
-
