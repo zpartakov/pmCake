@@ -7,7 +7,7 @@
 			//echo $this->Form->input('year', array('value'=>date("Y"), 'class'=>'tdnumeric'));
  		echo $this->Form->input('year', array('value'=>date("Y"), 'style'=>$lestyle));
 		//echo $this->Form->input('week_nb', array('value'=> date("oW")));
-		echo $this->Form->input('week_nb', array('value'=> date("W"), 'style'=>$lestyle));
+		echo $this->Form->input('week_nb', array('value'=> (date("W")-1), 'style'=>$lestyle));
 		echo $this->Form->input('hours_to_do', array('value'=>'32', 'style'=>$lestyle));
 		echo $this->Form->input('hours_done', array('value'=>'32', 'style'=>$lestyle));
 		echo $this->Form->input('days_holidays', array('value'=>'0', 'style'=>$lestyle));

@@ -28,21 +28,25 @@ Nombre de jours à repousser:
 <select name="ajout" size="60" style="">
 <?php
 for($i=1;$i<60;$i++) {
-	echo "<option>".$i."</option>";
+	echo "<option";
+	if($i==7){
+		echo " selected";
+	}
+	echo ">".$i."</option>";
 }
 ?>
 </select>
 statut
 <select name="statut" size="4">
-<option value="all">tous</option>
+<!-- <option value="all">tous</option> -->
 <option value="cours">en cours seulement</option>
-<option value="wait">en attente seulement</option>
+<option value="wait" selected>en attente seulement</option>
 </select>
 
 
 <select name="type" size="4">
-<option value="all">all</option>
-<option value="0">prof</option>
+<!-- <option value="all">all</option> -->
+<option value="0" selected>prof</option>
 <option value="p">priv</option>
 </select>
 
