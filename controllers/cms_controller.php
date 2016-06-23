@@ -155,56 +155,73 @@ function search() {
 	}else{
 	$letype=$_GET['letype'];
 	}
-#echo "<pre class=cake-debug>Type: " .$type ."</div>";
-$requetesql="
-SELECT * FROM cms WHERE ";
+	#echo "<pre class=cake-debug>Type: " .$type ."</div>";
+	$requetesql="
+	SELECT * FROM cms WHERE ";
+	
+	if(is_numeric($letype)) {
+	$requetesql.="(";
+	}
+	
+	$requetesql.="
+	`url` LIKE '%" .$cherche."%'  
+	OR `server` LIKE '%" .$cherche."%'  
+	OR `path` LIKE '%" .$cherche."%'  
+	OR `login` LIKE '%" .$cherche."%'  
+	OR `email` LIKE '%" .$cherche."%'  
+	OR `version` LIKE '%" .$cherche."%'  
+	OR `rem` LIKE '%" .$cherche."%'";
+	#echo "<pre class=cake-debug>SQL: " .$requetesql ."</div>";
+	
+	
+	/*special for Joomla15 and Joomla16*/
+	if($letype=="1") {
+	if(is_numeric($letype)) {
+	$requetesql.=") AND (`type_id` = '1' OR `type_id` = '19')";
+	}	
+	} else {
+	if(is_numeric($letype)) {
+	$requetesql.=") AND `type_id` = " .$letype." ";
+	}
+	}
+	$requetesql.=" ORDER BY " .$ordre ." " .$sens;
+	
+	
+	$requetesql.=";";
+	
+	if($_GET['https']) { //if https searched
+	$requetesql="
+	SELECT * FROM cms WHERE `rem` LIKE '%httpsok%' ORDER BY type_id, path";
+	#echo "bla"; exit;
+	}
+	
+	
+	$this->set('results',$this->Cm->query($requetesql));
+   }
+   function saygoodbye() {
+   	$this->layout = '';
+   	
+   		$ordre="type_id";
+   		$sens=" ASC";
+   
+   	#echo "<pre class=cake-debug>Type: " .$type ."</div>";
+   	$requetesql="
+   	SELECT * FROM cms WHERE ";
+    			$requetesql.="(`type_id` = '6' OR `type_id` = '4' OR `type_id` = '30' OR `type_id` = '8' OR `type_id` = '16' OR `type_id` = '18') AND id <> 240";
+   	$requetesql.=" ORDER BY " .$ordre ." " .$sens;
+   	$requetesql.=";";  
+  // 	print_r($requetesql); exit;
+   	$this->set('results',$this->Cm->query($requetesql));
+   }
+    
+function patchjoomla() { //patching joomla's 1.5
+   }
 
-if(is_numeric($letype)) {
-$requetesql.="(";
-}
+function mailjoomla() { //mail automatic joomla's users
+   }
 
-$requetesql.="
-`url` LIKE '%" .$cherche."%'  
-OR `server` LIKE '%" .$cherche."%'  
-OR `path` LIKE '%" .$cherche."%'  
-OR `login` LIKE '%" .$cherche."%'  
-OR `email` LIKE '%" .$cherche."%'  
-OR `version` LIKE '%" .$cherche."%'  
-OR `rem` LIKE '%" .$cherche."%'";
-#echo "<pre class=cake-debug>SQL: " .$requetesql ."</div>";
-
-
-/*special for Joomla15 and Joomla16*/
-if($letype=="1") {
-if(is_numeric($letype)) {
-$requetesql.=") AND (`type_id` = '1' OR `type_id` = '19')";
-}	
-} else {
-if(is_numeric($letype)) {
-$requetesql.=") AND `type_id` = " .$letype." ";
-}
-}
-$requetesql.=" ORDER BY " .$ordre ." " .$sens;
-
-
-$requetesql.=";";
-
-if($_GET['https']) { //if https searched
-$requetesql="
-SELECT * FROM cms WHERE `rem` LIKE '%httpsok%' ORDER BY type_id, path";
-#echo "bla"; exit;
-}
-
-
-$this->set('results',$this->Cm->query($requetesql));
-	   }
-	   
-	   function patchjoomla() { //patching joomla's 1.5
-	   }
-	   function mailjoomla() { //mail automatic joomla's users
-	   }
-	   function versionjoomla() { //check versions
-	   }
+function versionjoomla() { //check versions
+   }
 
 function export() { //a function to export later on dokuwiki or so all info
 //do not display layout
