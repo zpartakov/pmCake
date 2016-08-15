@@ -3,6 +3,10 @@ class HoursController extends AppController {
 
 	var $name = 'Hours';
 
+	var $paginate = array(
+        'limit' => 100
+    );
+
 	function index() {
 		$this->Hour->recursive = 0;
 		$this->set('hours', $this->paginate());

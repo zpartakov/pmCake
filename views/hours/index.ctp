@@ -1,38 +1,31 @@
 <?php
+$soldehsup=0;
 	$solde="17"; //past year remains
 	$soldeVac="0"; //past year holidays remains
 	$heuresparjour=8; //hours of work pro day
 	$holidaysforyear=5*32; //paied holidays weeks * hours2job
 	$hourstogain=32;
 	$delai = mktime(0,0,0,6,30,2016); //30 juin 2016
-	//$delailib=date("",$delai);	
 	setlocale (LC_TIME, 'fr_FR.utf8','fra');
 	$delailib=(strftime("%A %d %B %Y",$delai));
 	$today=mktime(0, 0, 0, date("m"), date("d"), date("Y"));
 	$weektoday  = (int)date('W', $today);
 	$weekdelai  = (int)date('W', $delai);
-	//echo "<br>Weeknummer1: " . $weektoday;
-	//echo "<br>Weeknummer2: " . $weekdelai;
-	//echo "<br>#weeks: " . ($weekdelai-$weektoday);
-	
-	/*
-	 * changement de tarif automatiques
-	*/
-	
-	/*
-	 $aujourdhui=date("U", mktime());
-	
-	$tempsrestant=$delai-$aujourdhui;
-	if($tempsrestant<0) { //delai depasse
-	$prix=intval($prix+($prix*0.2));
-	}
-	
-	*/
-/*
- *  	
-04.07.2016 	
-3 * 4 * 8 = 96
- */
+	$start_count_id=24;
+
+/* openssl_digest
+$solde="17"; //past year remains
+$soldeVac="0"; //past year holidays remains
+$heuresparjour=8; //hours of work pro day
+$holidaysforyear=5*32; //paied holidays weeks * hours2job
+$hourstogain=32;
+$delai = mktime(0,0,0,6,30,2016); //30 juin 2016
+setlocale (LC_TIME, 'fr_FR.utf8','fra');
+$delailib=(strftime("%A %d %B %Y",$delai));
+$today=mktime(0, 0, 0, date("m"), date("d"), date("Y"));
+$weektoday  = (int)date('W', $today);
+$weekdelai  = (int)date('W', $delai);
+*/
 ?>
 <div class="hours index">
 	<h2><?php __('Hours');?></h2>
@@ -52,7 +45,7 @@
 	</tr>
 	<?php
 	$i = 0;
-	
+
 
 	foreach ($hours as $hour):
 		$class = null;
@@ -68,19 +61,26 @@
 		<td><?php echo $hour['Hour']['hours_done']; ?>&nbsp;</td>
 		<td><?php echo $hour['Hour']['days_holidays']; ?>&nbsp;</td>
 		<td><?php echo $hour['Hour']['note']; ?>&nbsp;</td>
-		<td><?php 
+		<td><?php
 		$dif=($hour['Hour']['hours_done']-$hour['Hour']['hours_to_do']);
-		echo $dif; 
+		echo $dif;
 		?>&nbsp;
 		</td>
-				
-				<td><?php 
+
+				<td>
+				<?php
 		$solde=$solde+($hour['Hour']['hours_done']-$hour['Hour']['hours_to_do']);
 		$soldeVac=$soldeVac+(($hour['Hour']['days_holidays'])*8);
-		echo $solde; 
+		echo $solde;
+
+if($hour['Hour']['id']>$start_count_id) {
+	//echo "yo!";
+$soldehsup=$soldehsup+($hour['Hour']['hours_done']-$hour['Hour']['hours_to_do']);
+}
+
 		?>&nbsp;
 		</td>
-				
+
 				<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $hour['Hour']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $hour['Hour']['id'])); ?>
@@ -90,21 +90,26 @@
 <?php endforeach; ?>
 	</table>
 	<table>
-<tr><th colspan="3"><h1>Vacances</h1></th></tr>
-<tr><td>Solde initial</td><td><?php echo $holidaysforyear;?>h</td><td><?php echo intval($holidaysforyear/8);?>j</td></tr>	
-<tr><td>Vacances</td><td><?php echo $soldeVac;?>h</td><td><?php echo intval($soldeVac/8);?>j</td></tr>	
-<tr><td>Solde final</td><td><?php echo $holidaysforyear-$soldeVac;?>h</td><td><?php echo intval(($holidaysforyear-$soldeVac)/8);?>j</td></tr>	
+<!-- Calcul heures sup -->
+<tr><th colspan="3"><h1>Heures à rattraper: <?php echo $soldehsup ?>h</h1></th></tr>
+
+<!--<tr><th colspan="3"><h1>Vacances</h1></th></tr>-->
+<!--
+<tr><td>Solde initial</td><td><?php echo $holidaysforyear;?>h</td><td><?php echo intval($holidaysforyear/8);?>j</td></tr>
+<tr><td>Vacances</td><td><?php echo $soldeVac;?>h</td><td><?php echo intval($soldeVac/8);?>j</td></tr>
+<tr><td>Solde final</td><td><?php echo $holidaysforyear-$soldeVac;?>h</td><td><?php echo intval(($holidaysforyear-$soldeVac)/8);?>j</td></tr>
 <tr><td>
-<?php 
+<?php
 $nsem=($weekdelai-$weektoday);
 $soldeheures=($hourstogain-$solde);
 $soldeheuresparsemaine=($soldeheures/$nsem);
 //$soldeheuresparsemaine=intval($soldeheuresparsemaine);
 $soldeheuresparsemaine=round($soldeheuresparsemaine,1);
 ?>
-Heures à gagner d'ici au <?php echo $delailib;?>, soit <?php echo $nsem;?> semaines, 
+Heures à gagner d'ici au <?php echo $delailib;?>, soit <?php echo $nsem;?> semaines,
 soit <?php echo $soldeheuresparsemaine;?> h par semaine
-</td><td><?php echo $soldeheures;?>h</td><td><?php echo intval(($hourstogain-$solde)/8);?>j</td></tr>	
+</td><td><?php echo $soldeheures;?>h</td><td><?php echo intval(($hourstogain-$solde)/8);?>j</td></tr>
+-->
 </table>
 	<?php
 	echo $this->Paginator->counter(array(
