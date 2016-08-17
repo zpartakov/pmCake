@@ -29,6 +29,8 @@ $weekdelai  = (int)date('W', $delai);
 ?>
 <div class="hours index">
 	<h2><?php __('Hours');?></h2>
+	<li><?php echo $this->Html->link(__('New Hour', true), array('action' => 'add')); ?></li>
+
 	<h3>Last year report: <?php echo $solde;?></h3>
 	<table cellpadding="0" cellspacing="0">
 	<tr>

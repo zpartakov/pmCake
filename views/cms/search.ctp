@@ -12,7 +12,7 @@ echo "<h3>Applications sécurisées (https)</h3>";
 <!-- <a href="http://cms.unige.ch/tools/metalogins/cms/patchjoomla">patchjoomla</a>
  |  -->
  <a href="patchlime">patchlime</a>
- | 
+ |
 <a href="http://weblocal.unige.ch/dinf/ntice/wiki/doku.php?id=applicatifs:start" target="_blank">Voir aussi wiki ntice</a>
 </p>
 <div class="actions">
@@ -42,11 +42,11 @@ echo "<h3>Applications sécurisées (https)</h3>";
     	echo ">" .mysql_result($sqlq,$i,'lib');
     	echo "</option>";
     	$i++;
-    	}			
+    	}
     ?>
 </select>
 <?php
-echo $form->end("Search"); 
+echo $form->end("Search");
 echo "<em>Total " .count($results) ."</em>";
 ?>
 <table cellpadding="0" cellspacing="0">
@@ -87,12 +87,12 @@ foreach ($results as $cm):
 		<a name="<?php echo $cm['cms']['id']; ?>"></a><?php echo $cm['cms']['id']; ?>
 	</td>
 	<td>
-        <?php 
+        <?php
         $i=0;
         while($i<mysql_num_rows($sqlq)){
         	#echo mysql_result($sqlq,$i,'lib') ."<br>";
         	$idtemp1=mysql_result($sqlq,$i,'id'); $idtemp2=$cm['cms']['type_id'];
-        	if($idtemp1==$idtemp2) {	
+        	if($idtemp1==$idtemp2) {
         		echo mysql_result($sqlq,$i,'lib');
         	}
         	$i++;
@@ -103,27 +103,28 @@ foreach ($results as $cm):
 		<?php echo $cm['cms']['server']; ?>
 	</td>
 	<td>
-		<?php  
+		<?php
 		echo "<a href=\"" .$cm['cms']['url'] ."\" target=\"_blank\" title=\"go2 website\">" .$cm['cms']['path'] ."</a>";
-		
+
 		if($type_id==22) {
 echo "<p style=\"font-size: smaller; font-style: italic\"><a href=\"" .$cm['cms']['url'] ."index.php/tools/required/upgrade\" target=\"_blank\" title=\"upgrade\">upgrade</a></p>";
 }
-		
+
 		?>
 	</td>
 	<td>
 		<?php echo $cm['cms']['login']; ?>
 	</td>
 	<td>
-		<?php 
-		echo "<a href=\"mailto:" .$cm['cms']['email'] ."\">" .substr($cm['cms']['email'],0,20) ."</a>"; 
-		
+		<?php
+		echo "<a href=\"mailto:" .$cm['cms']['email'] ."\">" .substr($cm['cms']['email'],0,20) ."</a>";
+
 		#if($versionc!=$cm['cms']['version']) {
-		
+    $zecurrentmail=$cm['cms']['email'];
+		if(!preg_match("/$zecurrentmail/",$ecrireatous)){
 		$ecrireatous.=$cm['cms']['email'].";";
 		#$ecrireatous.=$cm['cms']['email']."<br>";
-		#}
+		}
 		?>
 	</td>
 	<td>
@@ -133,7 +134,7 @@ echo "<p style=\"font-size: smaller; font-style: italic\"><a href=\"" .$cm['cms'
 		<?php echo $cm['cms']['date']; ?>
 	</td>
 	<td style="width: 100px">
-		<?php 
+		<?php
 		if($versionc!=$cm['cms']['version']) {
 			/*
 			 * is there any upgrade to be done?
@@ -148,7 +149,7 @@ echo "<p style=\"font-size: smaller; font-style: italic\"><a href=\"" .$cm['cms'
 		} else { //no upgrade
 			echo " <span style=\"background-color: #6DFF93\">";
 		}
-		echo $cm['cms']['version']; 
+		echo $cm['cms']['version'];
 		if($versionc!=$cm['cms']['version']) {
 			echo "</span>";
 		}
@@ -157,7 +158,7 @@ echo "<p style=\"font-size: smaller; font-style: italic\"><a href=\"" .$cm['cms'
 	<td>
 		<a href="/tools/metalogins/cms/view/<? echo $cm['cms']['id']; ?>" class="tooltip">
 		<?php echo nl2br($cm['cms']['rem']); ?>
-		<?php 
+		<?php
 		if(preg_match("/httpsok/",$cm['cms']['rem'])) { //https protected
 		echo "&nbsp;<span style=\"float: right\">" .$html->image('s_passwd.png') ."</span>";
 		}elseif(preg_match("/nohttps/",$cm['cms']['rem'])) { //https protected
@@ -171,7 +172,7 @@ echo "<p style=\"font-size: smaller; font-style: italic\"><a href=\"" .$cm['cms'
 		<?php echo $html->link(__('Delete', true), array('action'=>'delete', $cm['cms']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $cm['cms']['id'])); ?>
 	</td>
 </tr>
-<?php endforeach; 
+<?php endforeach;
 
 $letype=$_POST['data']['Cm']['letype'];
 if($letype){
@@ -192,7 +193,13 @@ Une mise à jour de sécurité " .$letype ." est disponible, merci de faire la m
 " .$url;
 ?>
 </table>
-<a href="mailto:?subject=mise à jour / patch / upgrade <?php echo $letype;?>&bcc=<?php echo $ecrireatous; ?>&body=<?php echo $body;?>">Ecrire à tous</a>
+<?php
+//$ecrireatous=preg_replace("/,/",";",$ecrireatous);
+$ecrireatous=preg_replace("/;/",",",$ecrireatous);
+$ecrireatous=preg_replace("/,$/","",$ecrireatous);
+//echo "<hr>" .$ecrireatous ."<hr>"; //tests
+ ?>
+<a href="mailto:?subject=mise à jour / patch / upgrade <?php echo $letype;?>&bcc=<?php echo $ecrireatous; ?>'&body=<?php echo $body;?>">Ecrire à tous</a>
 </div>
 <div class="actions">
 	<ul>
