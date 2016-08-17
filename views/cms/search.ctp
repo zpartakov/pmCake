@@ -199,7 +199,7 @@ $ecrireatous=preg_replace("/;/",",",$ecrireatous);
 $ecrireatous=preg_replace("/,$/","",$ecrireatous);
 //echo "<hr>" .$ecrireatous ."<hr>"; //tests
  ?>
-<a href="mailto:?subject=mise à jour / patch / upgrade <?php echo $letype;?>&bcc=<?php echo $ecrireatous; ?>'&body=<?php echo $body;?>">Ecrire à tous</a>
+<a href="mailto:?subject=mise à jour / patch / upgrade <?php echo $letype;?>&bcc=<?php echo $ecrireatous; ?>&body=<?php echo $body;?>">Ecrire à tous</a>
 </div>
 <div class="actions">
 	<ul>
