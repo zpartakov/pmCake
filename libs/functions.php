@@ -1,17 +1,17 @@
 <?php
 /*
  * all the external cakePHP functions for pmcake
- * 
- * fonction principale: print_tasks 
+ *
+ * fonction principale: print_tasks
  */
 ####### PROJECTS ##########
 function facture($client_id) {
 	//pm_tasks.status=5: statut en attente
 	//echo $client_id;
-	
+
 	$sql="
 	SELECT id FROM pm_projects
-	WHERE pm_organization_id=".$client_id; 
+	WHERE pm_organization_id=".$client_id;
 	//echo $sql; exit;
 #do and check sql
 $sql=mysql_query($sql);
@@ -19,12 +19,12 @@ if(!$sql) {
 	echo "SQL error: " .mysql_error(); exit;
 }
 $pid=mysql_result($sql,0,'id');
-	
+
 	$sql="
 	SELECT * FROM pm_tasks
 	WHERE pm_tasks.project=".$pid ."
 	 AND pm_tasks.status=5
-	 ORDER BY pm_tasks.start_date"; 
+	 ORDER BY pm_tasks.start_date";
 	//echo $sql; exit;
 #do and check sql
 $sql=mysql_query($sql);
@@ -35,7 +35,7 @@ $lesheures="<table><tr><th>Date</th><th>Libellé</th><th>Tarif horaire</th><th>H
 $i=0; $heures=0;
 
 while($i<mysql_num_rows($sql)){
-	
+
 $lesheures.= "<tr><td>";
 $lesheures.=mysql_result($sql,$i,'pm_tasks.start_date');
 $lesheures .="</td><td>";
@@ -45,7 +45,7 @@ $lesheures .="</td><td>";
 
 
 		$sql2="
-			SELECT SUM(hours) AS hours FROM pm_tasks_time 
+			SELECT SUM(hours) AS hours FROM pm_tasks_time
 			WHERE task=" .mysql_result($sql,$i,'pm_tasks.id');
 			//echo $sql2;
 			#echo mysql_result($sql,$i,'hours');
@@ -61,23 +61,23 @@ $i++;
 $lesheures.= "<tr><td><strong>Total</strong></td><td colspan=\"4\"><strong>CHF&nbsp;".$heures.".-</strong></td>";
 
 $lesheures.="</table>";
-	
+
 return $lesheures;
 }
 
 function temps_moyen_booking($pid,$cherche) {
 $sql2="
-SELECT SUM(hours) AS hours, COUNT(id) AS tasks   
-FROM pm_tasks_time 
-WHERE pm_tasks_time.task 
-IN 
+SELECT SUM(hours) AS hours, COUNT(id) AS tasks
+FROM pm_tasks_time
+WHERE pm_tasks_time.task
+IN
 	(
-		SELECT id FROM pm_tasks 
-		WHERE project=32 
+		SELECT id FROM pm_tasks
+		WHERE project=32
 		AND pm_tasks.name LIKE 'idBooking%'
 	) ";
-	
-	
+
+
 //	echo $sql2;
 	#echo mysql_result($sql,$i,'hours');
 	$sql2=mysql_query($sql2);
@@ -85,23 +85,23 @@ IN
 	$sql3="	SELECT COUNT(id) AS tasks FROM pm_tasks WHERE project=32 AND pm_tasks.name LIKE '".$cherche."%'";
 	$sql3=mysql_query($sql3);
 	$tasks=mysql_result($sql3,0,'tasks');
-	
+
 	echo "<br>Total heures pour ce type de demande: " .$hours ." pour: #" .$tasks ." demandes";
 	echo "<br>Moyenne heures pour ce type de demande: " .intval($hours/$tasks) ." heures";
 }
 
 function temps_moyen_lime($pid,$cherche) {
 $sql2="
-SELECT SUM(hours) AS hours, COUNT(id) AS tasks   
-FROM pm_tasks_time 
-WHERE pm_tasks_time.task 
-IN 
+SELECT SUM(hours) AS hours, COUNT(id) AS tasks
+FROM pm_tasks_time
+WHERE pm_tasks_time.task
+IN
 	(
-		SELECT id FROM pm_tasks 
+		SELECT id FROM pm_tasks
 		WHERE project=36
 	) ";
-	
-	
+
+
 //	echo $sql2;
 	#echo mysql_result($sql,$i,'hours');
 	$sql2=mysql_query($sql2);
@@ -109,23 +109,23 @@ IN
 	$sql3="	SELECT COUNT(id) AS tasks FROM pm_tasks WHERE project=36 AND pm_tasks.name LIKE '".$cherche."%'";
 	$sql3=mysql_query($sql3);
 	$tasks=mysql_result($sql3,0,'tasks');
-	
+
 	echo "<br>Total heures pour ce type de demande: " .$hours ." pour: #" .$tasks ." demandes";
 	echo "<br>Moyenne heures pour ce type de demande: " .intval($hours/$tasks) ." heures";
 }
 
 function temps_moyen($pid,$cherche) {
 $sql2="
-SELECT SUM(hours) AS hours, COUNT(id) AS tasks   
-FROM pm_tasks_time 
-WHERE pm_tasks_time.task 
-IN 
+SELECT SUM(hours) AS hours, COUNT(id) AS tasks
+FROM pm_tasks_time
+WHERE pm_tasks_time.task
+IN
 	(
-		SELECT id FROM pm_tasks 
+		SELECT id FROM pm_tasks
 		WHERE project=" .$pid ."
 	) ";
-	
-	
+
+
 //	echo $sql2;
 	#echo mysql_result($sql,$i,'hours');
 	$sql2=mysql_query($sql2);
@@ -133,7 +133,7 @@ IN
 	$sql3="	SELECT COUNT(id) AS tasks FROM pm_tasks WHERE project=" .$pid ." AND pm_tasks.name LIKE '".$cherche."%'";
 	$sql3=mysql_query($sql3);
 	$tasks=mysql_result($sql3,0,'tasks');
-	
+
 	echo "<br>Total heures pour ce type de demande: " .$hours ." pour: #" .$tasks ." demandes";
 	echo "<br>Moyenne heures pour ce type de demande: " .intval($hours/$tasks) ." heures";
 }
@@ -150,7 +150,7 @@ SELECT SUM(hours) AS hours FROM pm_tasks_time WHERE pm_tasks_time.task IN (SELEC
 }
 
 function Detail_heures($pid,$fee_hour,$budget) {
-	
+
 	/*
 	 * 	if($id==0) {
 		$statut="Complet (client)";
@@ -169,27 +169,27 @@ function Detail_heures($pid,$fee_hour,$budget) {
 		$statut="Incubateur"; //dreams, boîte à idées
 		$lestyle='" style="width: 20px"';
 	}elseif($id==22) { //22 vla les flics
-		$statut="Références"; //references	
+		$statut="Références"; //references
 		$lestyle='" style="width: 30px"';
 	}
 	* */
-	
+
 	$sql2="
 	SELECT SUM(hours) AS hours, pm_tasks.name, pm_tasks.due_date, pm_tasks.status
-	FROM pm_tasks_time, pm_tasks 
-	WHERE pm_tasks_time.task 
-	IN (SELECT id FROM pm_tasks WHERE project=" .$pid .") 
-	AND pm_tasks_time.task = pm_tasks.id 
+	FROM pm_tasks_time, pm_tasks
+	WHERE pm_tasks_time.task
+	IN (SELECT id FROM pm_tasks WHERE project=" .$pid .")
+	AND pm_tasks_time.task = pm_tasks.id
 	AND pm_tasks.status=1
-	GROUP BY pm_tasks.name 
+	GROUP BY pm_tasks.name
 	ORDER BY pm_tasks.due_date
 	";
-	//echo $sql2; 
+	//echo $sql2;
 	//exit;
 	echo "<p>Budget: CHF " .$budget ."</p>";
 	echo "<p>Tarif horaire: CHF " .$fee_hour ."</p>";
-	
-echo "<table>";	
+
+echo "<table>";
 echo "<tr><th>Nom de la tâche</th><th>Date</th><th>Heures</th>";
 //echo "<th>hour rate</th>";
 echo "<th>Montant</th></tr>";
@@ -225,31 +225,31 @@ $sql2=mysql_query($sql2);
 	//echo "<td><strong>".$fee_hour."</strong></td>";
 	echo "<td><strong>".$totalfee.".-</strong></td>
 	</tr>";
-	
+
 	$remains=$budget-$totalfee;
 	$heures=round(($remains/$fee_hour),2);
 	echo "<tr><td colspan=\"2\"><em>Solde</em></td>";
-	echo "<td><em>".$heures."</em></td>";	
+	echo "<td><em>".$heures."</em></td>";
 	echo "<td><em>".$remains.".-</em></td>
 	</tr>";
-	
-	
+
+
 	echo "</table>";
-	
+
 
 }
 
-	
+
 
 /* show tasks for current project */
 function project_tasks_show($plib,$pid,$order,$statut,$operator,$anchor) {
-	
+
 	$sql="SELECT * FROM pm_tasks WHERE project=".$pid;
 
 	/*tâche 	statut 	priorité 	début 	délai 	milestone 	heures 	ok 	Actions*/
 	$sql="SELECT `id`, `priority`, `status`, `name`, `start_date`,`due_date`,`milestone` FROM `pm_tasks` WHERE project=".$pid;
-	
-	
+
+
 	if($_GET['statut']) {$statut = $_GET['statut'];}
 		$statut = " AND status" .$operator .$statut;
 
@@ -258,7 +258,7 @@ function project_tasks_show($plib,$pid,$order,$statut,$operator,$anchor) {
 	#echo $sql;
 	$sql=mysql_query($sql);
 	if(!$sql) { echo "SQL error: " .mysql_error(); }
-	
+
 echo '	<a name="'.$anchor .'"></a>
 	<div class="pmTasks index" style="background-color: #F1CB84; padding-bottom: 13px;">
 	<a name="taches"></a><h2>';
@@ -293,15 +293,15 @@ while($i<mysql_num_rows($sql)){
 		<td>';
 	//echo $this->Html->link(mysql_result($sql,$i,'name'), array('controller' => 'pm_tasks', 'action' => 'view', mysql_result($sql,$i,'id')));
 	#echo '<a href="/intranet/pmcake/pm_tasks/view/' .mysql_result($sql,$i,'id') .'">' .mysql_result($sql,$i,'name') .'</a>';
-	
+
 		echo '<a href="' .CHEMIN .'pm_tasks/edit/'.mysql_result($sql,$i,'id').'" class="tooltip">'.mysql_result($sql,$i,'name');
 /*
 if(strlen(	mysql_result($sql,$i,'description'))>0) {
 	echo '<em><span></span>'.nl2br(mysql_result($sql,$i,'description')).'</em>';
 }*/
 	echo '</a>';
-	
-	
+
+
 	echo '</td>
 				<td>';
 		statut(mysql_result($sql,$i,'status'));
@@ -357,7 +357,7 @@ if(strlen(	mysql_result($sql,$i,'description'))>0) {
 
 /*function to get a scrolling list of projets and highlight the current project if exists*/
 function projets_sel($pid) {
-$sql="SELECT id, name, type FROM pm_projects ORDER BY name"; 
+$sql="SELECT id, name, type FROM pm_projects ORDER BY name";
 #do and check sql
 $sql=mysql_query($sql);
 if(!$sql) {
@@ -370,7 +370,7 @@ while($i<mysql_num_rows($sql)){
 		$css="projet_sel_perso";
 	} else {
 		$css="projet_sel";
-		
+
 	}
 	echo "<option class=\"" .$css ."\" value=\"" .mysql_result($sql,$i,'id') ."\"";
 	if($pid==mysql_result($sql,$i,'id')){
@@ -384,14 +384,14 @@ while($i<mysql_num_rows($sql)){
 
 /*function to print the name of a given project*/
 function projet_nom_print($pid) {
-$sql="SELECT name FROM pm_projects WHERE id=".$pid; 
+$sql="SELECT name FROM pm_projects WHERE id=".$pid;
 #do and check sql
 $sql=mysql_query($sql);
 if(!$sql) {
 	echo "SQL error: " .mysql_error(); exit;
 }
 
-	
+
 	echo "<a href=\"" .CHEMIN. "pm_projects/view/" .$pid ."\">";
 	echo mysql_result($sql,0,'name');
 	echo "</a>";
@@ -400,7 +400,7 @@ if(!$sql) {
 
 /*function to return the name of a given project*/
 function projet_nom_return($pid) {
-$sql="SELECT name FROM pm_projects WHERE id=".$pid; 
+$sql="SELECT name FROM pm_projects WHERE id=".$pid;
 #do and check sql
 $sql=mysql_query($sql);
 if(!$sql) {
@@ -439,10 +439,10 @@ function projet_fee_return($pid) {
 /*function to get a scrolling list of projets and highlight the current project if exists*/
 function statut_sel($statut) {
 	$statuts=array(
-	"Complet (client)", 
-	"Complet", 
-	"Non commencé", 
-	"Ouvert", 
+	"Complet (client)",
+	"Complet",
+	"Non commencé",
+	"Ouvert",
 	"Suspendu",
 	 "En attente",
 	 "Délégué",
@@ -462,7 +462,7 @@ function statut_sel($statut) {
 	 "",
 	 "",
 	"Références"
-	);	
+	);
 	for($i=0;$i<23;$i++) {
 		$zestatut=$statuts[$i];
 			if(strlen($zestatut)>1) {
@@ -479,10 +479,10 @@ function statut_sel($statut) {
 /*function to get a scrolling list of projets and highlight the current project if exists*/
 function statut_radio($id,$statut) {
 	$statuts=array(
-	"Complet (client)", 
-	"Complet", 
-	"Non commencé", 
-	"Ouvert", 
+	"Complet (client)",
+	"Complet",
+	"Non commencé",
+	"Ouvert",
 	"Suspendu",
 	 "En attente",
 	 "Délégué",
@@ -502,7 +502,7 @@ function statut_radio($id,$statut) {
 	 "",
 	 "",
 	"Références"
-	);	
+	);
 	for($i=0;$i<count($statuts);$i++) {
 		$zestatut=$statuts[$i];
 //			if(strlen($zestatut)>1&&$zestatut!="Complet (client)") {
@@ -539,10 +539,10 @@ function statut($id) {
 		$statut="Incubateur"; //dreams, boîte à idées
 		$lestyle='" style="width: 20px"';
 	}elseif($id==22) { //22 vla les flics
-		$statut="Références"; //references	
+		$statut="Références"; //references
 		$lestyle='" style="width: 30px"';
 	}
-	
+
 	echo '<img src="/pmcake/img/gfx_status/' .$id .'.gif" alt="' .$statut .'" title="' .$statut .'" ' .$lestyle .' />';
 
 	}
@@ -566,19 +566,19 @@ function statutreturn($id) {
 		$statut="Incubateur"; //dreams, boîte à idées
 		$lestyle='" style="width: 20px"';
 	}elseif($id==22) { //22 vla les flics
-		$statut="Références"; //references	
+		$statut="Références"; //references
 		$lestyle='" style="width: 20px"';
 	}
-	
+
 	return '<img src="/pmcake/img/gfx_status/' .$id .'.gif" alt="' .$statut .'" title="' .$statut .'" ' .$lestyle .' />';
 
 	}
-	
+
 ####### TASKS #########
 
 /*function to get a scrolling list of tasks and select the current task if exists*/
 function tasks_sel($tid) {
-$sql="SELECT id, name FROM pm_tasks ORDER BY name"; 
+$sql="SELECT id, name FROM pm_tasks ORDER BY name";
 #do and check sql
 $sql=mysql_query($sql);
 if(!$sql) {
@@ -597,7 +597,7 @@ while($i<mysql_num_rows($sql)){
 
 function completion($completion) {
 	$pourcent=array(0,10,20,30,40,50,60,70,80,90,100);
-	for($i=0;$i<11;$i++) {	
+	for($i=0;$i<11;$i++) {
 		echo "<option value=\"" .$pourcent[$i] ."\"";
 		if($i==$completion) {
 			echo " selected";
@@ -605,11 +605,11 @@ function completion($completion) {
 		echo ">" .$pourcent[$i] ."%</option>";
 	}
 }
-	
+
 function priorite($priorite) {
 	$prioritelib=array("Vide","Très faible","Faible","Moyenne","Elevée","Très élevée");
 	$prioritecolor=array(  "white", "#00FF00", "#90EE90" ,"#FFA500" ,"#FFC0CB","#FF6C7F");
-	for($i=0;$i<6;$i++) {	
+	for($i=0;$i<6;$i++) {
 		echo "<option value=\"" .$i ."\"";
 		if($i==$priorite) {
 			echo " selected";
@@ -624,16 +624,16 @@ function prioritehighlight($priorite) {
 	$prioritecolor=array(  "white","#00FF00"           , "#90EE90"     ,"#FFA500"       ,"#FFC0CB","#FF6C7F");
 
 	echo "<div style=\"background-color: "  .$prioritecolor[$priorite] ."\">";
-	
+
 }
-	
+
 function prioriteView($i) {
 	$prioritelib=array("Vide","Très faible","Faible","Moyenne","Elevée","Très élevée");
 	$prioritecolor=array(  "white","#00FF00"           , "#90EE90"     ,"#FFA500"       ,"#FFC0CB","#FF6C7F");
 
 		echo "<span style=\"background-color: "  .$prioritecolor[$i] ."\">" .$prioritelib[$i] ."</span>";
 }
-	
+
 /*
  * change priority of a given task
  */
@@ -646,14 +646,14 @@ function prioriteViewSelCol($priorite,$idtask) {
 	//echo " onchange=\"change_priorite(".$idtask .",this.value)\">";
 	echo ">";
 	echo "<option value=\"\">*** priorité *** </option>";
-	for($i=0;$i<6;$i++) {	
+	for($i=0;$i<6;$i++) {
 		echo "<option value=\"" .$i ."\"";
 
 			echo " style=\"background-color: "  .$prioritecolor[$i] ."\"";
 			if($i==$priorite) {
 			echo " selected";
 			}		echo ">";
-		
+
 		echo $prioritelib[$i] ."</option>";
 	}
 	echo "</select></div>";
@@ -661,7 +661,7 @@ function prioriteViewSelCol($priorite,$idtask) {
 
 /*function to print the name of a given task*/
 function task_nom_print($pid) {
-$sql="SELECT name FROM pm_tasks WHERE id=".$pid; 
+$sql="SELECT name FROM pm_tasks WHERE id=".$pid;
 #do and check sql
 $sql=mysql_query($sql);
 if(!$sql) {
@@ -674,7 +674,7 @@ if(!$sql) {
 
 /*function to return the name of a given task*/
 function task_nom_return($pid) {
-$sql="SELECT name FROM pm_tasks WHERE id=".$pid; 
+$sql="SELECT name FROM pm_tasks WHERE id=".$pid;
 		#do and check sql
 	$sql=mysql_query($sql);
 	if(!$sql) {
@@ -685,7 +685,7 @@ $sql="SELECT name FROM pm_tasks WHERE id=".$pid;
 
 /*function to return the description of a given task*/
 function task_description_return($pid) {
-$sql="SELECT description FROM pm_tasks WHERE id=".$pid; 
+$sql="SELECT description FROM pm_tasks WHERE id=".$pid;
 		#do and check sql
 	$sql=mysql_query($sql);
 	if(!$sql) {
@@ -697,7 +697,7 @@ $sql="SELECT description FROM pm_tasks WHERE id=".$pid;
 /*time spent on a task*/
 function total_hours_task($task_id) {
 		$sql2="
-			SELECT SUM(hours) AS hours FROM pm_tasks_time 
+			SELECT SUM(hours) AS hours FROM pm_tasks_time
 			WHERE task=" .$task_id;
 			#echo $sql2;
 			#echo mysql_result($sql,$i,'hours');
@@ -705,8 +705,8 @@ function total_hours_task($task_id) {
 			$hours=mysql_result($sql2,0,'hours');
 			echo $hours;
 		$sql2="
-			SELECT pm_tasks_time.id AS id, date, sum(hours) AS hours FROM pm_tasks_time 
-			WHERE task=" .$task_id ." 
+			SELECT pm_tasks_time.id AS id, date, sum(hours) AS hours FROM pm_tasks_time
+			WHERE task=" .$task_id ."
 			GROUP BY date";
 		echo "&nbsp;<a href=\"javascript:showdetailtaskhours()\">Détail</a><p><div id=\"showdetailtaskhours\" style=\"display: none\">Détail heures:<br/>";
 			#echo $sql2;
@@ -722,7 +722,7 @@ function total_hours_task($task_id) {
 			$i++;
 			}
 			echo "</div></p>";
-			
+
 }
 
 
@@ -735,7 +735,7 @@ function total_hours_task($task_id) {
 		/*
 		 * $prof_or_private
 		 * private: proj.type =='p'
-		 */		
+		 */
 		if($prof_or_private=='p'){
 			$prof_or_private=" LIKE '".$prof_or_private."'";
 			$private="privé";
@@ -745,25 +745,25 @@ function total_hours_task($task_id) {
 			$private="prof.";
 			$p="";
 		}
-		
+
 		echo "
 		<style>
 		li {
 		margin-bottom: 3px;
 		}
 		</style>
-		
+
 		<div class=\"random_list_todos\"><a name=\"random_list_todos".$p."\"></a>";
 		//echo $this->html->image('dices0.png');
 echo "<h2><img style=\"padding-top: 4px; padding-left: 6px; padding-right: 10px; width: 20px; height: 20px\" src=\"/intranet/pmcake/img/dices0.png\" alt=\"" .$nrandom ." tâches aléatoires\">";
 		echo "Liste aléatoire de #" .$nrandom." tâches/idées (".$private .")</h2>";
 		$sql="
-		SELECT * FROM pm_tasks AS tas, pm_projects as proj 
-		WHERE tas.status > 1 
-		AND tas.status < 22 
-	    AND tas.due_date <> '--' 
-		AND tas.project=proj.id 
-		AND proj.type ".$prof_or_private ."  
+		SELECT * FROM pm_tasks AS tas, pm_projects as proj
+		WHERE tas.status > 1
+		AND tas.status < 22
+	    AND tas.due_date <> '--'
+		AND tas.project=proj.id
+		AND proj.type ".$prof_or_private ."
 		ORDER BY RAND()
 		LIMIT " .$nrandom;
 		//echo $sql;
@@ -772,7 +772,7 @@ echo "<h2><img style=\"padding-top: 4px; padding-left: 6px; padding-right: 10px;
 		echo "SQL error: " .mysql_error(); exit;
 	}
 
-/* todo: sort by due_date, not finished, begin */	
+/* todo: sort by due_date, not finished, begin */
 	while ($row = mysql_fetch_array($sql, MYSQL_NUM)) {
     $all_data[] = $row;
 }
@@ -781,13 +781,13 @@ echo "<h2><img style=\"padding-top: 4px; padding-left: 6px; padding-right: 10px;
 usort($all_data, "due_date");
 /*
 echo "<pre>";
-	print_r($all_data); 
+	print_r($all_data);
 echo "</pre>";
 exit;
 */
-/* todo: sort by due_date, not finished, end */	
-	
-	
+/* todo: sort by due_date, not finished, end */
+
+
 	$i=0;
 	$i=0;$lesid="";
 	echo "<table>";
@@ -796,12 +796,12 @@ exit;
 		$class = null;
 		if (intval($i/2) == ($i/2)) {
 			$class = ' class="altrow"';
-		} 		
-		
+		}
+
 		if(mysql_result($sql,$i,'status')==5 ) {
 /* special classes for statuts wait */
 			$class = ' class="wait"';
-			} 
+			}
 	echo "<tr" .$class ."><td>";
 	if(mysql_result($sql,$i,'proj.type')=="p") {
 		perso_list();
@@ -816,22 +816,22 @@ exit;
 	echo '</a>';
 	echo "</td><td>";
 	echo '<a href="/intranet/pmcake/pm_projects/view/'.mysql_result($sql,$i,'proj.id').'">'.mysql_result($sql,$i,'proj.name').'</a>';
-	echo "</td><td>";	
+	echo "</td><td>";
 	dateSQL2fr(mysql_result($sql,$i,'due_date'));
-	echo "</td><td>";	
+	echo "</td><td>";
 	echo "<em style=\"font-size: smaller\">(";
 	dateSQL2frSmall(mysql_result($sql,$i,'start_date'));
 	echo ")</em> ";
-	
-	
+
+
 	echo "</td></tr>";
 		$i++;
 	}
 	echo "</table>";
 	echo "</div>";
-	
+
 	}
-	
+
 	/* MAIN function to extract the list of current tasks for a given category / period */
 function print_tasks($catlib,$quand) {
 	$datenow=date("Y-m-d");
@@ -841,18 +841,18 @@ function print_tasks($catlib,$quand) {
 	if($catlib=="prof") {
 		$projtyp=" AND proj.type !='p'";
 	} elseif($catlib=="perso") {
-		$projtyp=" AND proj.type ='p'";	
+		$projtyp=" AND proj.type ='p'";
 	}
-	
+
 	/*
 	 * when
 	 */
 	if($quand=="auj") {
-		$quandSQL=" AND (tas.due_date <= '".date("Y-m-d")."'"; 
+		$quandSQL=" AND (tas.due_date <= '".date("Y-m-d")."'";
 	}elseif($quand=="demain") {
 		$quandSQL=" AND (tas.due_date <= DATE_ADD('$datenow', INTERVAL 1 DAY) AND (tas.due_date > '$datenow') ";
 	}
-	
+
 	/*
 	 * is it a task, a dream or a reference?
 	 */
@@ -864,24 +864,24 @@ function print_tasks($catlib,$quand) {
 	if($catlib=="ref") {
 		$taskstatus="= 22";
 	}
-	
+
 	/*
 	 * sorting list
 	 */
 	$ordertask=" ORDER BY tas.priority DESC, tas.status ASC, tas.due_date ASC";
 	if($quand=="futur"){
 		$ordertask=" ORDER BY tas.due_date ASC, tas.priority DESC, tas.status ASC";
-		
+
 	}
 	/*
 	 * present tasks
 	 */
 	global $sql, $idc;
 	$sql="
-	SELECT * FROM pm_tasks AS tas, pm_projects as proj 
-	WHERE tas.status > 1 
+	SELECT * FROM pm_tasks AS tas, pm_projects as proj
+	WHERE tas.status > 1
 	AND tas.status " .$taskstatus . $quandSQL
-	." AND tas.due_date <> '--') 
+	." AND tas.due_date <> '--')
 	AND tas.project=proj.id " .$projtyp .$ordertask;
 
 	/*
@@ -889,14 +889,14 @@ function print_tasks($catlib,$quand) {
 	 */
 	if($quand=="futur") {
 		$sql="
-		SELECT * FROM pm_tasks AS tas, pm_projects as proj 
-		WHERE tas.status > 1 
-		AND tas.status < 17 
-		AND (tas.due_date > DATE_ADD('".$datenow."', INTERVAL 1 DAY)) AND tas.due_date <> '--' 
-		AND tas.project=proj.id " .$ordertask ." 
+		SELECT * FROM pm_tasks AS tas, pm_projects as proj
+		WHERE tas.status > 1
+		AND tas.status < 17
+		AND (tas.due_date > DATE_ADD('".$datenow."', INTERVAL 1 DAY)) AND tas.due_date <> '--'
+		AND tas.project=proj.id " .$ordertask ."
 		LIMIT 0, 30";
 	}
-	
+
 	/*
 	 * tests: show sql query; uncomment for debug
 	 */
@@ -913,7 +913,7 @@ function print_tasks($catlib,$quand) {
 	 * display main category
 	 */
 	echo '<div id="' .$catlib .'"><h2><a name="' .$catlib .'"></a>'. ucfirst($catlib) .'</h2><form id="'.$catlib.'" action="/intranet/pmcake/pm_tasks/pushsomesdelays">';
-	
+
 	/*
 	 * some special css classes to hide/show
 	 */
@@ -955,16 +955,16 @@ echo '<small><a onclick="montrecache2();"><img src="/intranet/pmcake/img/icons/o
 	$i=0;$lesid="";
 	while($i<mysql_num_rows($sql)){
 			$idc=mysql_result($sql,$i,'id');
-		
+
 		$class = null;
 		if (intval($i/2) == ($i/2)) {
 			$class = ' class="altrow"';
-		} 		
-		
+		}
+
 		if(mysql_result($sql,$i,'status')==5 ) {
 /* special classes for statuts wait */
 			$class = ' class="wait"';
-			} 
+			}
 	echo "<tr" .$class;
 	echo " id=\"tr" .mysql_result($sql,$i,'id')."\"";
 	echo  ">";
@@ -981,7 +981,7 @@ echo     '<input type="checkbox" name="checkboxlist" value="'.mysql_result($sql,
 	echo "<td>";
 	//prioriteView(mysql_result($sql,$i,'priority'));
 	prioriteView(mysql_result($sql,$i,'priority'), mysql_result($sql,$i,'id'));
-	
+
 	echo "</td>";
 	echo "<td>";
 	statut(mysql_result($sql,$i,'status'));
@@ -992,8 +992,8 @@ echo     '<input type="checkbox" name="checkboxlist" value="'.mysql_result($sql,
 	echo '<td>';
 	echo '&nbsp;<a style="text-align: top" class="tooltip" href="/intranet/pmcake/pm_tasks/edit/' .$idc .'" alt="Modifier" title="Modifier">';
 	echo mysql_result($sql,$i,'name');
-	
-/* affiche description, si elle existe */	
+
+/* affiche description, si elle existe */
 	if(strlen(	mysql_result($sql,$i,'description'))>0) {
 		echo '<div id="detailstache'.mysql_result($sql,$i,'id').'"><em><span></span>'.nl2br(mysql_result($sql,$i,'description')).'</em></div>';
 	}
@@ -1022,12 +1022,12 @@ echo     '<input type="checkbox" name="checkboxlist" value="'.mysql_result($sql,
 		</a>
 		</td>
 		</tr>';
-	 ################ END PUSH DELAYS  ################  
+	 ################ END PUSH DELAYS  ################
 	/* ACTIONS END */
 		echo "</tr>\n\n";
 		/* stores id's */
 		$lesid=$lesid.mysql_result($sql,$i,'id').";";
-		
+
 		$i++;
 	}
 	echo '
@@ -1036,16 +1036,16 @@ echo     '<input type="checkbox" name="checkboxlist" value="'.mysql_result($sql,
     delais();
     echo '<option value="incubateur">->incubateur</option>';
     echo '</select>';
-    
-    
+
+
 	echo '
 <input type="submit" value="repousser les délais sélectionnés">
 </form>';
-	
+
 	?>
 
-	<?php 	
-	
+	<?php
+
 	if($quand=="demain"||$quand=="futur") {
 		echo "</div>";
 	}
@@ -1060,9 +1060,9 @@ echo '</div>
 function parent_tasks($pid,$task_id) {
 	//no project (new task)
 	if($pid=="") {
-	echo "<option value=\"0\">--- no parent ---</option>";	
+	echo "<option value=\"0\">--- no parent ---</option>";
 	} else {
-$sql="SELECT id, name FROM pm_tasks WHERE project=".$pid." AND status>2 AND status < 10 ORDER BY name"; 
+$sql="SELECT id, name FROM pm_tasks WHERE project=".$pid." AND status>2 AND status < 10 ORDER BY name";
 #do and check sql
 $sql=mysql_query($sql);
 if(!$sql) {
@@ -1084,7 +1084,7 @@ while($i<mysql_num_rows($sql)){
 /* extract the parent task for a given task */
 function parent_task($task_id) {
 		//no project (new task)
-	$sql="SELECT parent_id FROM pm_tasks WHERE id=".$task_id; 
+	$sql="SELECT parent_id FROM pm_tasks WHERE id=".$task_id;
 //	echo "<br>".$sql ."<br>"; //tests
 	$sql=mysql_query($sql);
 	if(!$sql) {
@@ -1092,7 +1092,7 @@ function parent_task($task_id) {
 	}
 	$task_id=mysql_result($sql,0,'parent_id');
 	if($task_id>0) {
-	$sql="SELECT id, name FROM pm_tasks WHERE id=".$task_id ." ORDER BY due_date"; 
+	$sql="SELECT id, name FROM pm_tasks WHERE id=".$task_id ." ORDER BY due_date";
 	echo "<tr><td>";
 //	echo "<br>".$sql ."<br>"; //tests
 	#do and check sql
@@ -1119,7 +1119,7 @@ function parent_task($task_id) {
 
 function parent_task_small($task_id) {
 		//no project (new task)
-	$sql="SELECT parent_id FROM pm_tasks WHERE id=".$task_id; 
+	$sql="SELECT parent_id FROM pm_tasks WHERE id=".$task_id;
 //	echo "<br>".$sql ."<br>"; //tests
 	$sql=mysql_query($sql);
 	if(!$sql) {
@@ -1127,7 +1127,7 @@ function parent_task_small($task_id) {
 	}
 	$task_id=mysql_result($sql,0,'parent_id');
 	if($task_id>0) {
-	$sql="SELECT id, name FROM pm_tasks WHERE id=".$task_id ." ORDER BY due_date"; 
+	$sql="SELECT id, name FROM pm_tasks WHERE id=".$task_id ." ORDER BY due_date";
 	#do and check sql
 	$sql=mysql_query($sql);
 	if(!$sql) {
@@ -1151,7 +1151,7 @@ function parent_task_small($task_id) {
 function children_tasks($task_id) {
 	//echo "task id: " .$task_id; exit;
 	$sql="SELECT id, name FROM pm_tasks WHERE parent_id=".$task_id ." ORDER BY due_date";
-	//$sql1=$sql; 
+	//$sql1=$sql;
 	#do and check sql
 	//print_r($sql);
 	$sql=mysql_query($sql);
@@ -1171,7 +1171,7 @@ function children_tasks($task_id) {
 		echo "</ol>";
 
 
-	echo "</td></tr>";	
+	echo "</td></tr>";
 	//}
 }
 
@@ -1193,13 +1193,13 @@ function children_tasks_list($task_id) {
 
 /* total hours today */
 function task_total_today($s_edate2) {
-	
+
 	$sql="
-	SELECT * FROM pm_tasks_time, pm_projects 
-	WHERE pm_tasks_time.date 
-	LIKE '$s_edate2' 
-	AND pm_tasks_time.project=pm_projects.id 
-	AND pm_projects.type NOT LIKE 'p' 
+	SELECT * FROM pm_tasks_time, pm_projects
+	WHERE pm_tasks_time.date
+	LIKE '$s_edate2'
+	AND pm_tasks_time.project=pm_projects.id
+	AND pm_projects.type NOT LIKE 'p'
 	GROUP BY pm_projects.name
 
 	";
@@ -1219,9 +1219,9 @@ function task_total_today($s_edate2) {
 	while($i<mysql_num_rows($sql)){
 	$pmid=mysql_result($sql,$i,'pm_tasks_time.project');
 	$sql2="
-	SELECT SUM(hours) AS hours FROM pm_tasks_time 
-	WHERE pm_tasks_time.date 
-	LIKE '$s_edate2' 
+	SELECT SUM(hours) AS hours FROM pm_tasks_time
+	WHERE pm_tasks_time.date
+	LIKE '$s_edate2'
 	AND pm_tasks_time.project=$pmid
 	";
 	$sql2=mysql_query($sql2);
@@ -1232,9 +1232,9 @@ function task_total_today($s_edate2) {
 	}
 	echo $total;
 	echo "h";
-	
+
 }
-			    
+
 /* resume times for a given week */
 function task_resume_week() {
 	/*
@@ -1261,20 +1261,20 @@ function task_resume_week() {
 	$date_beg=$date_beg-$recule;
 	$week = date('W', $date_beg);
 	$date_fin=$date_beg+(7*24*3600);
-	$date_fin=$date_beg+(4*24*3600);	
+	$date_fin=$date_beg+(4*24*3600);
 	$date_begL= date('D, Y-m-d',$date_beg);
 	$date_beg= date('Y-m-d',$date_beg);
 	$date_finL= date('D, Y-m-d',($date_fin-(24*2600)));
 	$date_fin= date('Y-m-d',$date_fin);
 	$sql="
-	SELECT  SUM(pm_tasks_time.hours) AS hours, pm_projects.name 
-	FROM pm_tasks_time, pm_projects 
-	WHERE 
+	SELECT  SUM(pm_tasks_time.hours) AS hours, pm_projects.name
+	FROM pm_tasks_time, pm_projects
+	WHERE
 	pm_tasks_time.date >= '$date_beg'
 	AND  pm_tasks_time.date <= '$date_fin'
-	AND pm_tasks_time.project=pm_projects.id 
-	AND pm_projects.type NOT LIKE 'p' 
-	GROUP BY pm_projects.name 
+	AND pm_tasks_time.project=pm_projects.id
+	AND pm_projects.type NOT LIKE 'p'
+	GROUP BY pm_projects.name
 	";
 //	echo nl2br($sql)."<br>";
 	$sql=mysql_query($sql);
@@ -1327,14 +1327,14 @@ function task_resume_week() {
 	$date_finL= date('D, Y-m-d',($date_fin-(24*2600)));
 	$date_fin= date('Y-m-d',$date_fin);
 	$sql="
-	SELECT  SUM(pm_tasks_time.hours) AS hours, pm_projects.name 
-	FROM pm_tasks_time, pm_projects 
-	WHERE 
+	SELECT  SUM(pm_tasks_time.hours) AS hours, pm_projects.name
+	FROM pm_tasks_time, pm_projects
+	WHERE
 	pm_tasks_time.date >= '$date_beg'
 	AND  pm_tasks_time.date <= '$date_fin'
-	AND pm_tasks_time.project=pm_projects.id 
-	AND pm_projects.type NOT LIKE 'p' 
-	GROUP BY pm_projects.name 
+	AND pm_tasks_time.project=pm_projects.id
+	AND pm_projects.type NOT LIKE 'p'
+	GROUP BY pm_projects.name
 	";
 //	echo nl2br($sql)."<br>";
 	$sql=mysql_query($sql);
@@ -1361,12 +1361,12 @@ function task_resume_week() {
 
 function task_resume($s_edate2) {
 	$sql="
-	SELECT * FROM pm_tasks_time, pm_projects 
-	WHERE pm_tasks_time.date 
-	LIKE '$s_edate2' 
-	AND pm_tasks_time.project=pm_projects.id 
-	AND pm_projects.type NOT LIKE 'p' 
-	GROUP BY pm_projects.name 
+	SELECT * FROM pm_tasks_time, pm_projects
+	WHERE pm_tasks_time.date
+	LIKE '$s_edate2'
+	AND pm_tasks_time.project=pm_projects.id
+	AND pm_projects.type NOT LIKE 'p'
+	GROUP BY pm_projects.name
 	";
 
 	#echo nl2br($sql)."<br>";
@@ -1387,9 +1387,9 @@ function task_resume($s_edate2) {
 	$pmid=mysql_result($sql,$i,'pm_tasks_time.project');
 	echo "</td><td>";
 	$sql2="
-	SELECT SUM(hours) AS hours FROM pm_tasks_time 
-	WHERE pm_tasks_time.date 
-	LIKE '$s_edate2' 
+	SELECT SUM(hours) AS hours FROM pm_tasks_time
+	WHERE pm_tasks_time.date
+	LIKE '$s_edate2'
 	AND pm_tasks_time.project=$pmid
 	";
 	#echo $sql2;
@@ -1414,11 +1414,11 @@ function task_detail($s_edate2) {
 	######### DETAIL #########
 $sql="
 SELECT * FROM pm_tasks_time,pm_projects,pm_tasks
-WHERE pm_tasks_time.date 
-LIKE '$s_edate2' 
+WHERE pm_tasks_time.date
+LIKE '$s_edate2'
 AND pm_tasks_time.project=pm_projects.id
-AND pm_tasks.id=pm_tasks_time.task 
-AND pm_projects.type NOT LIKE 'p' 
+AND pm_tasks.id=pm_tasks_time.task
+AND pm_projects.type NOT LIKE 'p'
 ORDER BY pm_tasks_time.id
 ";
 #echo $sql;
@@ -1431,13 +1431,13 @@ $sql=mysql_query($sql);
 $i=0;
 $total=0;
 while($i<mysql_num_rows($sql)){
-	
+
 	if(intval($i/2)==($i/2)) {
 		$classe="";
 	}else{
 		$classe="pair";
 	}
-	
+
 echo "<tr><td class=\"" .$classe ."\">";
 echo mysql_result($sql,$i,'pm_projects.name');
 echo "</td><td class=\"" .$classe ."\">";
@@ -1476,7 +1476,7 @@ echo "</table>";
 ####### CLIENTS #########
 /*function to get a scrolling list of projets and highlight the current project if exists*/
 function clients_sel($pid) {
-$sql="SELECT id, name FROM pm_organizations ORDER BY name"; 
+$sql="SELECT id, name FROM pm_organizations ORDER BY name";
 #do and check sql
 $sql=mysql_query($sql);
 if(!$sql) {
@@ -1505,28 +1505,28 @@ function client_projets($id) {
 	$sql="SELECT id, name FROM pm_projects  WHERE pm_organization_id=".$id;
 	$sql=mysql_query($sql);
 	if(!$sql) { echo "SQL error: " .mysql_error(); }
-	
+
 	$i=0;
 	echo "<ul>";
 	while($i<mysql_num_rows($sql)){
 		echo "<li><a href=\"" .CHEMIN."/pm_projects/view/".mysql_result($sql,$i,'id') ."\">" .mysql_result($sql,0,'name') ."</a></li>";
 		$i++;
 		}
-	echo "</ul>";	
+	echo "</ul>";
 }
 
 /* list of all tasks for a given client */
 function client_tasks($id) {
 	$datenow = date("Y-m-d");
 	$sql="
-	SELECT * FROM pm_tasks AS tas, pm_projects as proj 
+	SELECT * FROM pm_tasks AS tas, pm_projects as proj
 	WHERE tas.project=proj.id
-	AND proj.pm_organization_id=".$id ." 
+	AND proj.pm_organization_id=".$id ."
 	ORDER BY tas.due_date ASC
 	";
 	$sql=mysql_query($sql);
 	if(!$sql) { echo "SQL error: " .mysql_error(); }
-	
+
 	$i=0;
 	echo "<ul class=\"puce_cache\">";
 	while($i<mysql_num_rows($sql)){
@@ -1537,7 +1537,7 @@ function client_tasks($id) {
 		echo "</li>";
 		$i++;
 		}
-	echo "</ul>";	
+	echo "</ul>";
 }
 
 ######### USERS ###########
@@ -1548,10 +1548,10 @@ function membres($id) {
 	if(!$sql) { echo "SQL error: " .mysql_error(); }
 	echo "<a href=\"../pm_members/view/".mysql_result($sql,0,'id') ."\">" .mysql_result($sql,0,'login') ."</a>";
 	}
-	
+
 /* function to extract all members (owners) for a given task */
 function ts_les_membres($id) {
-	$sql="SELECT * FROM pm_tasks_pm_members, pm_members 
+	$sql="SELECT * FROM pm_tasks_pm_members, pm_members
 			WHERE pm_tasks_pm_members.pm_task_id=".$id
 		." AND pm_tasks_pm_members.pm_member_id=pm_members.id"
 	;
@@ -1565,11 +1565,11 @@ $i=0;
 		$i++;
 		}
 		echo "</ol>";
-	}	
+	}
 }
 /*function to get a scrolling list of projets and highlight the current project if exists*/
 function membres_sel($pid) {
-$sql="SELECT id, name FROM pm_members ORDER BY name"; 
+$sql="SELECT id, name FROM pm_members ORDER BY name";
 #do and check sql
 $sql=mysql_query($sql);
 if(!$sql) {
@@ -1607,13 +1607,13 @@ function ae_gen_password($syllables = 3, $use_prefix = false)
 
     // 10 random suffixes
     $suffix = array('dom', 'ity', 'ment', 'sion', 'ness',
-                    'ence', 'er', 'ist', 'tion', 'or'); 
+                    'ence', 'er', 'ist', 'tion', 'or');
 
-    // 8 vowel sounds 
-    $vowels = array('a', 'o', 'e', 'i', 'y', 'u', 'ou', 'oo'); 
+    // 8 vowel sounds
+    $vowels = array('a', 'o', 'e', 'i', 'y', 'u', 'ou', 'oo');
 
-    // 20 random consonants 
-    $consonants = array('w', 'r', 't', 'p', 's', 'd', 'f', 'g', 'h', 'j', 
+    // 20 random consonants
+    $consonants = array('w', 'r', 't', 'p', 's', 'd', 'f', 'g', 'h', 'j',
                         'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'qu');
 
     $password = $use_prefix?ae_arr($prefix):'';
@@ -1635,7 +1635,7 @@ function ae_gen_password($syllables = 3, $use_prefix = false)
         $password .= ae_arr($vowels);
 
         if ($i == $syllables - 1) // if suffix begin with vovel
-            if (in_array($password_suffix[0], $vowels)) // add one more consonant 
+            if (in_array($password_suffix[0], $vowels)) // add one more consonant
                 $password .= ae_arr($consonants);
 
     }
@@ -1649,12 +1649,12 @@ function ae_gen_password($syllables = 3, $use_prefix = false)
 function generate_password($length){
      // A List of vowels and vowel sounds that we can insert in
      // the password string
-     $vowels = array("a",  "e",  "i",  "o",  "u",  "ae",  "ou",  "io",  
-                     "ea",  "ou",  "ia",  "ai"); 
+     $vowels = array("a",  "e",  "i",  "o",  "u",  "ae",  "ou",  "io",
+                     "ea",  "ou",  "ia",  "ai");
      // A List of Consonants and Consonant sounds that we can insert
      // into the password string
      $consonants = array("b",  "c",  "d",  "g",  "h",  "j",  "k",  "l",  "m",
-                         "n",  "p",  "r",  "s",  "t",  "u",  "v",  "w",  
+                         "n",  "p",  "r",  "s",  "t",  "u",  "v",  "w",
                          "tr",  "cr",  "fr",  "dr",  "wr",  "pr",  "th",
                          "ch",  "ph",  "st",  "sl",  "cl");
      // For the call to rand(), saves a call to the count() function
@@ -1667,12 +1667,12 @@ function generate_password($length){
          $pass .= $consonants[rand(0,  $consonant_count - 1)] .
                   $vowels[rand(0,  $vowel_count - 1)];
      }
-     
+
      // Since some of our consonants and vowels are more than one
      // character, our string can be longer than $length, use substr()
      // to truncate the string
      return substr($pass,  0,  $length);
- 
+
 }
 
 function generatePassword($length=9, $strength=0) {
@@ -1690,7 +1690,7 @@ function generatePassword($length=9, $strength=0) {
 	if ($strength & 8) {
 		$consonants .= '@#$%';
 	}
- 
+
 	$password = '';
 	$alt = time() % 2;
 	for ($i = 0; $i < $length; $i++) {
@@ -1713,7 +1713,7 @@ function passe_mnemo(){
 #Auteur : Damien Seguy
 #Url : http://www.nexen.net
  if (func_num_args() == 1){ $nb = func_get_arg(0);} else { $nb = 6;}
- 
+
   // on utilise certains chiffres : 1 = i, 5 = S, 6=b, 3=E, 9=G, 0=O
   $lettre = array();
   $lettre[0] = array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
@@ -1732,11 +1732,11 @@ function passe_mnemo(){
   'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Z',
   '5', '6', '9');
 
-  
+
  /*
  * mod radeff: suppressed i, I, 1, o, O and 0
- * 
- */   $lettre[0] = array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 
+ *
+ */   $lettre[0] = array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
   'j', 'k', 'm', 'n', 'p', 'q', 'r',
   's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A',
   'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
@@ -1751,13 +1751,13 @@ function passe_mnemo(){
   'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Z',
   '5', '6', '9');
 
- 
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
   $retour = "";
   $prec = 1;
   $precprec = -1;
@@ -1771,7 +1771,7 @@ function passe_mnemo(){
   $retour .= $r;
   $precprec = $prec;
   $prec = in_array($r, $lettre[-1]) - in_array($r, $lettre[1]);
- 
+
   }
 //  if(!preg_match("/i/i",$retour)&&!preg_match("/0/",$retour)&&!preg_match("/o/",$retour)){
   return $retour;
@@ -1813,8 +1813,21 @@ function wd_remove_accents($str, $charset='utf-8')
 
 	return $str;
 }
+
+function accents($chaine)
+//remplacer tous les caractères accentués
+{
+
+		$accents = Array("/é/", "/è/", "/ê/","/ë/", "/ç/", "/à/", "/â/","/á/","/ä/","/ã/","/å/", "/î/", "/ï/", "/í/", "/ì/", "/ù/", "/ô/", "/ò/", "/ó/", "/ö/");
+		$sans = Array("e", "e", "e", "e", "c", "a", "a","a", "a","a", "a", "i", "i", "i", "i", "u", "o", "o", "o", "o");
+
+		$chaine = preg_replace($accents, $sans,$chaine);
+		$chaine = preg_replace('#[^A-Za-z0-9]#','',$chaine);
+
+		return $chaine;
+}
 /* keep record of every transactions for logs history */
-function ecritlog() {	
+function ecritlog() {
 	$db=connect_db();
 	$db_name=db_name();
 	mysql_select_db($db_name,$db);
@@ -1849,30 +1862,30 @@ function dateSQL2fr($date) {
 //	$date=mktime(0,0,0,$date[2],$date[1],$date[0]);
 	$date=mktime(0,0,0,$date[1],$date[2],$date[0]);
 	echo strftime("%a, %d-%m-%Y", $date);
-}	
+}
 
 function dateSQLlong2fr($date) {
 	if($date>1000000000) {
 	//unixtime
 	$timestamp=$date;
 	} else {
-			$timestamp=strtotime($date);		
+			$timestamp=strtotime($date);
 	}
 		//echo $date;
 	$date_mod= date('D, d-m-Y H:i',$timestamp);
 	$today1=dateen2fr($date_mod);
 	echo $today1;
-}	
+}
 /*same but no day name (shorter)*/
 function dateSQL2frSmall($date) {
 	$date=explode(" ", $date);
 	$hour=$date[1];
 	$date=$date[0];
 	$date=explode("-", $date);
-	
+
 	$date=mktime(0,0,0,$date[1],$date[2],$date[0]);
 	echo strftime("%d-%m-%Y", $date);
-}	
+}
 
 /*convert english short date to french short date*/
 function dateen2fr($today1) {
@@ -1904,7 +1917,7 @@ return $today1;
 }
 
 /* function to extract urls from variables */
-function urlise($chaine) { 
+function urlise($chaine) {
 	$chaine = preg_replace("/(https:\/\/)(([[:punct:]]|[[:alnum:]]=?)*)/","<a target=\"_blank\" href=\"\\0\">\\0</a>",$chaine);
 	$chaine=preg_replace("/(http:\/\/)(([[:punct:]]|[[:alnum:]]=?)*)/","<a target=\"_blank\" href=\"\\0\">\\0</a>",$chaine);
 	if(preg_match("/([a-zA-Z0-9]*\.)?[a-zA-Z0-9]*\.[a-zA-Z0-9]*@/",$chaine)){ 	//replace emails with mailto
@@ -1914,15 +1927,15 @@ function urlise($chaine) {
 	}else {
 	if(!preg_match("/http:.*/",$chaine)){	//avoid to put a mailto: if the email is a GET variable
 	$chaine = preg_replace('/[-a-zA-Z0-9]*\.?[-a-zA-Z0-9!#$%&\'*+\/=?^_`{|}~]+@([.]?[a-zA-Z0-9_\/-])*/','<a href="mailto:\\0">\\0</a>',$chaine);
-	}	
-	
+	}
+
 	}
 
 	//echo nl2br($chaine);
 	$chaine=nl2br($chaine);
 	return $chaine;
 }
-function urlise2($chaine) { 
+function urlise2($chaine) {
 	#echo "test urlize: <br>" .$chaine ."<hr>";
 	#$chaine=ereg_replace("(http://)(([[:punct:]]|[[:alnum:]]=?)*)","<a href=\"\\0\">\\0</a>",$chaine);
 	$chaine = preg_replace("/(https:\/\/)(([[:punct:]]|[[:alnum:]]=?)*)/","<a target=\"_blank\" href=\"\\0\">\\0</a>",$chaine);
@@ -1932,7 +1945,7 @@ function urlise2($chaine) {
 	#$chaine = ereg_replace('[-a-zA-Z0-9!#$%&\'*+/=?^_`{|}~]+@([.]?[a-zA-Z0-9_/-])*','<a href="mailto:\\0">\\0</a>',$chaine);
 	#$chaine = preg_replace('/[-a-zA-Z0-9!#$%&\'*+/=?^_`{|}~]+@([.]?[a-zA-Z0-9_\/-])*/','<a href="mailto:\\0">\\0</a>',$chaine);
 	}else {
-	$chaine = preg_replace('/[-a-zA-Z0-9]*\.?[-a-zA-Z0-9!#$%&\'*+\/=?^_`{|}~]+@([.]?[a-zA-Z0-9_\/-])*/','<a href="mailto:\\0">\\0</a>',$chaine);	
+	$chaine = preg_replace('/[-a-zA-Z0-9]*\.?[-a-zA-Z0-9!#$%&\'*+\/=?^_`{|}~]+@([.]?[a-zA-Z0-9_\/-])*/','<a href="mailto:\\0">\\0</a>',$chaine);
 	}
 
 	//echo nl2br($chaine);
@@ -1955,7 +1968,7 @@ function link_task($chaine) {
 
 
 /* function to extract titles from variables */
-function extrait_titres($chaine) { 
+function extrait_titres($chaine) {
 	#echo "test urlize: <br>" .$chaine ."<hr>";
 	#$chaine=ereg_replace("(http://)(([[:punct:]]|[[:alnum:]]=?)*)","<a href=\"\\0\">\\0</a>",$chaine);
 	$chaine = preg_replace("/=== (.*)/","<br/><h2>\\1</h2>",$chaine);
@@ -1967,52 +1980,52 @@ function extrait_titres($chaine) {
 }
 
 
-function melto($chaine) { 
+function melto($chaine) {
 	#echo "test urlize: <br>" .$chaine ."<hr>";
 	#$chaine=ereg_replace("(http://)(([[:punct:]]|[[:alnum:]]=?)*)","<a href=\"\\0\">\\0</a>",$chaine);
 	$chaine = "<a href=\"mailto:" .$chaine ."\">".$chaine ."</a>";
 	echo $chaine;
 }
 ######### BAD ###########
-/* todo bad : used mysql connection, to remove - settings are in config/core.php 
+/* todo bad : used mysql connection, to remove - settings are in config/core.php
  * */
 function connect_db()	{
 //radeff todo change on another server
 $login=LOGINMYSQL;                              // user name for you database
-$pass=PASSWORDMYSQL;                                   // pass word to the database if you dont have a password 
+$pass=PASSWORDMYSQL;                                   // pass word to the database if you dont have a password
 	$db=mysql_connect("localhost",$login,$pass) or  die("Unable  to  select  database");
-		
+
 	return $db;
-	
+
 	}
-	
+
 	function use_database($db) {
 	$sql="USE "	.DBMYSQL;
 	//echo $sql; exit;
 	$sql=mysql_query($sql);
 	if(!$sql){
 		echo "Erreur SQL: " .mysql_error();
-	} 
+	}
 	}
 
 function db_name()	{
 $database_name=DBMYSQL;                     //name of the database
 
 	$db_name=$database_name;
-	
+
 	return $db_name;
-	
+
 	}
-	
+
 /* a function to distinct private projets / tasks */
-/* other available images: fleur.jpg redstar.jpg  redStar.png redstar.png * */	
+/* other available images: fleur.jpg redstar.jpg  redStar.png redstar.png * */
 
 function perso_list() {
 		echo '<img src="/pmcake/img/icons/redstar.png" alt="Perso" title="Perso" style="width: 10px"/>&nbsp;';
 }
 
 /* options for delaying tasks */
-function delais() {	
+function delais() {
 		echo '<option value="">--- repousser ---</option>';
 		$sql="SELECT * FROM pm_delays ORDER BY days";
 		$sql=mysql_query($sql);
@@ -2027,7 +2040,7 @@ function delais() {
 }
 
 /* options for tasks hours */
-function ajoutheure() {	
+function ajoutheure() {
 		$sql="SELECT * FROM pm_times ORDER BY hours";
 		$sql=mysql_query($sql);
 		if(!$sql) {
@@ -2078,7 +2091,7 @@ echo "</form>";
 function push_all_delays($idc) {
 echo "<form method=\"get\">
 	<a href=\"javascript:demain(" .$idc .")\"><img src=\"/pmcake/img/icons/bullet_arrow.gif\" alt=\"Déplacer à demain\" title=\"Déplacer à demain\"></a>
-	
+
         <select name=\"global_repousser\" class=\"micro\" size=\"1\" onchange=\"this.form.submit()\">";
 delais();
 echo "        </select>
@@ -2090,15 +2103,15 @@ echo "        </select>
 function champiprevisualiser($id = null) {
 		echo '<img width="100" src="' .CHEMINPHOTOS .'/'.$id.'"></em><span></span>';
 	}
-		
-########################## UPLOADER #########################################	
+
+########################## UPLOADER #########################################
 			/**
  * Upload a file to a specified destination
- * 
+ *
  * @param string $path Path of original file
  * @param string $source Temp file
  * @param string $dest Destination path
- * @access public 
+ * @access public
  */
 function uploadFile($path, $source, $dest)
 {
@@ -2108,15 +2121,15 @@ function uploadFile($path, $source, $dest)
         }*/
         $destination = $path . '/' . $dest;
         move_uploaded_file($source, $destination)||die("unable to mv tmp file and create");
-    
+
 }
 function createDir($path)
 {
 	/**
  * Folder creation
- * 
+ *
  * @param string $path Path to the new directory
- * @access public 
+ * @access public
  */
 #            @mkdir('../webroot/files/' . $path, 0777)||die("unable to create dir");
             @mkdir('../webroot/files/' . $path, 0777);
@@ -2124,16 +2137,16 @@ function createDir($path)
 
 //Link checker source http://www.phptoys.com/tutorial/create-link-checker.html
 function getPage($link){
-   
+
    if ($fp = fopen($link, 'r')) {
       $content = '';
-        
+
       while ($line = fread($fp, 1024)) {
          $content .= $line;
       }
    }
 
-   //echo $content;  
+   //echo $content;
    if(strlen($content)<1) {
 	echo "<pre>Broken link: " .$link ."</pre>";
 	echo $content;
@@ -2162,7 +2175,7 @@ function gethead($url) {
         // If it is empty it fills it
         $info["path"] = "/";
      }
-     $query = ""; 
+     $query = "";
 
      // Checks if there is a query string in the url
      if( isset( $info["query"] ) ) {
@@ -2202,12 +2215,12 @@ function gethead($url) {
       $status = preg_replace( "/http\/[0-9]\.[0-9]/i", "", $headers[$i] );
     }
   }
-  //return $status; 
+  //return $status;
   $status=trim($status);
   if($status!="200 OK") {
 	 echo "<span style=\"background-color: #FFC8C8; padding: 3px;\">".$status."</span>";
 }
-} 
+}
 
 function contacts_groupes() {
 	$sql="SELECT DISTINCT(Category) AS lib FROM contacts WHERE Category NOT LIKE '' GROUP BY Category";
@@ -2224,10 +2237,10 @@ function contacts_groupes() {
 }
 
 /* look calendar */
-/* ################# task ################# */ 
+/* ################# task ################# */
 
 function extrait_donnees($annee_selectionne,$mois_aff,$jour_aff) {
-	
+
 //	echo "$annee_selectionne,$mois_aff,$jour_aff";
 	echo "<strong>".$jour_aff."</strong>";
 
@@ -2262,21 +2275,21 @@ function extrait_donnees($annee_selectionne,$mois_aff,$jour_aff) {
 		?>
 
 		<form action="repousser" method="GET" name="<? echo mysql_result($sql,$i,'id');?>">
-		
+
 		<input type="hidden" name="identifiant" value="<? echo mysql_result($sql,$i,'id');?>">
 		<input type='image' src="/pmcake/img/icons/bullet_arrow.gif" alt="Déplacer à demain" title="Déplacer à demain" name="demain" value="demain">
 			<select name="ajout" class="petit" size="1" onChange="goto_URL(<? echo mysql_result($sql,$i,'id');?>,this.value)">
 				<? delais(); ?>
 			</select>
 			<!--<input type="submit" class="micro">--></form>
-	</td>	
+	</td>
 		<?
 		echo "</tr>";
 		$i++;
-		} 
+		}
 	echo "</table>";
 }
-/* ################# calendar ################# */ 
+/* ################# calendar ################# */
 
 function calendrier($annee_selectionne,$mois_aff,$jour_aff) {
 	echo "<strong>".$jour_aff."</strong>";
@@ -2284,14 +2297,14 @@ if(!is_numeric($mois_aff)) {
 	$mois_aff1=date("m");
 } else {
 	$mois_aff1=$mois_aff;
-}	
+}
 	if($mois_aff<10) {
 		$mois_aff1="0".$mois_aff;
 	}
-	$sql="SELECT * FROM events, event_types WHERE 
+	$sql="SELECT * FROM events, event_types WHERE
 	(start LIKE '".$annee_selectionne."-".$mois_aff1."-".$jour_aff."%'
-	OR end LIKE '".$annee_selectionne."-".$mois_aff1."-".$jour_aff."%') 
-	AND event_type_id=event_types.id   
+	OR end LIKE '".$annee_selectionne."-".$mois_aff1."-".$jour_aff."%')
+	AND event_type_id=event_types.id
 	ORDER BY events.start";
 	//echo "<br>" .$sql; //tests
 	$sql=mysql_query($sql);
@@ -2316,19 +2329,19 @@ if(!is_numeric($mois_aff)) {
 		statut(mysql_result($sql,$i,'end'));
 		echo "<br />";
 		?>
-	</td>	
+	</td>
 		<?
 		echo "</tr>";
 		$i++;
-		} 
+		}
 	echo "</table>";
 }
 /* extract events for a specific day */
 function extraitjour($jour_aff) {
-	$sql="SELECT * FROM events, event_types WHERE 
+	$sql="SELECT * FROM events, event_types WHERE
 	(start LIKE '".$jour_aff."%'
-	OR end LIKE '".$jour_aff ."%') 
-	AND event_type_id=event_types.id   
+	OR end LIKE '".$jour_aff ."%')
+	AND event_type_id=event_types.id
 	ORDER BY events.start";
 	//echo "<br>" .$sql; //tests
 	$sql=mysql_query($sql);
@@ -2358,11 +2371,11 @@ function extraitjour($jour_aff) {
 		statut(mysql_result($sql,$i,'end'));
 		echo "<br />";
 		?>
-	</td>	
+	</td>
 		<?
 		echo "</tr>";
 		$i++;
-		} 
+		}
 	echo "</table>";
 }
  function getFirstMonday($week, $year)
@@ -2371,13 +2384,13 @@ function extraitjour($jour_aff) {
 	if (date("W",mktime(0,0,0,1,1,$year)) == 53)
 	{
 		$week++;
-	}	
+	}
 #	$startdate =  strtotime('+' . ($week-1) . ' week',mktime(0,0,0,1,1,$year));
 	$startdate =  strtotime('+' . ($week) . ' week',mktime(0,0,0,1,1,$year));
 	return strtotime('last monday',$startdate);
 }
 
-/* ################# faqs ################# */ 
+/* ################# faqs ################# */
 
 function display_resume_faqs($txt,$l) {
 	$txt=substr($txt,0,$l);
@@ -2399,8 +2412,8 @@ $i=0;
 
 echo "<table>";
 while($i<mysql_num_rows($sql)){
-	echo "<tr><td>#" .mysql_result($sql,$i,'id') 
-	."</td><td><a href=\"" .CHEMIN ."files/" .mysql_result($sql,$i,'task_id') ."/" .mysql_result($sql,$i,'name') 
+	echo "<tr><td>#" .mysql_result($sql,$i,'id')
+	."</td><td><a href=\"" .CHEMIN ."files/" .mysql_result($sql,$i,'task_id') ."/" .mysql_result($sql,$i,'name')
 	."\">".mysql_result($sql,$i,'name') ."</a></td><td>";
 	dateSQL2fr(mysql_result($sql,$i,'created'));
 	#http://129.194.18.217/pmcake/files/1946/maisonpotterCapture-Google%20Earth.png
@@ -2408,7 +2421,7 @@ while($i<mysql_num_rows($sql)){
 	$extension=preg_replace("/^.*\./","",mysql_result($sql,$i,'name'));
 	typefichier($extension);
 	echo "</td>";
-	
+
 $filename = "/var/www/radeff/pmcake/app/webroot/" ."files/" .mysql_result($sql,$i,'task_id') ."/" .mysql_result($sql,$i,'name');
 
 if (file_exists($filename)) {
@@ -2418,7 +2431,7 @@ if (file_exists($filename)) {
     <a href=\"".CHEMIN."zefiles/delete/".mysql_result($sql,$i,'zefiles.id') ."\">&nbsp;effacer</a>
     </td>";
 }
-	
+
 	$i++;
 	echo "</tr>";
 	}
