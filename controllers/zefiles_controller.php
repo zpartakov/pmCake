@@ -9,7 +9,7 @@ class ZefilesController extends AppController {
             'id' => 'desc'
         )
     );
-	
+
 	function index() {
 		$this->Zefile->recursive = 0;
 		$this->set('zefiles', $this->paginate());
@@ -42,21 +42,21 @@ class ZefilesController extends AppController {
              is_uploaded_file($this->data['Zefile']['File']['tmp_name'])) {
             $this->data['Zefile']['task_id'] = $this->data['Zefile']['task_id'];
 			$path='../webroot/files/' .$this->data['Zefile']['task_id'];
-			$dest=$this->data['Zefile']['File']['name'];
+			$dest=date("YMDhi")."_".$this->data['Zefile']['File']['name']; //add current date + hour/time to the uploaded filename
 			$source=$this->data['Zefile']['File']['tmp_name'];
 			createDir($this->data['Zefile']['task_id']); //create dir with the id of the task - to uncomment if necessary
 			uploadFile($path, $source, $dest);
-            $this->data['Zefile']['name'] = $this->data['Zefile']['File']['name'];
+            $this->data['Zefile']['name'] = date("YMDhi")."_".$this->data['Zefile']['File']['name']; //add current date + hour/time to the uploaded filename
             $this->data['Zefile']['type'] = $this->data['Zefile']['File']['type'];
             $this->data['Zefile']['size'] = $this->data['Zefile']['File']['size'];
             $this->Zefile->save($this->data);
 //            echo $_SESSION["task_id"]; exit;
-			$this->redirect($this->Session->read('Temp.referer'));			
+			$this->redirect($this->Session->read('Temp.referer'));
         }
 		// On enregistre l'url de la page qui a mené ici
-		$this->Session->write('Temp.referer', $this->referer());	
+		$this->Session->write('Temp.referer', $this->referer());
     }
-    
+
     function download($id) {
     Configure::write('debug', 0);
     $file = $this->Zefile->findById($id);
@@ -102,12 +102,12 @@ class ZefilesController extends AppController {
 		$this->set(__('Zefile was not deleted', true));
             $this->redirect('index');
 	}
-	
+
 	/*
 	 * check if the document exists, suggest to remove task if not
 	 */
 	function check() {
-		
+
 	}
 } //end of cake main class
 
