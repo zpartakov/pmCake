@@ -1,6 +1,6 @@
-/* 
- * CSS Table styles pmCake src: https://github.com/zpartakov/pmCake 
- * 
+/*
+ * CSS Table styles pmCake src: https://github.com/zpartakov/pmCake
+ *
 */
 
 /* tables */
@@ -21,7 +21,7 @@ div.caption {
         text-align:center;
 }
         /* tbody optionnel */
-        
+
 div.tbody {
         display:table-row-group;
 }
@@ -97,8 +97,8 @@ background-color: #FFFFE0;
 /* js calendar */
 .calendrierjs {
 position: relative;
-top: -45px;
-left: 160px;
+top: -43px;
+left: 175px;
 }
 
 /* smaller font */
@@ -136,7 +136,7 @@ padding-left: 10px;
 content:url(/pmcake/img/icons/toolsmall.png);
 padding-left: 5px;
  }
- 
+
 /* autocomplete */
 .globalsearch {
 position: absolute;
@@ -149,7 +149,7 @@ z-index: 499;*/
   height: 45px;
 }
 .boolean_search {
-background: #FFF9CF; height: 45px; position: relative; top: 17px; left: -100px	
+background: #FFF9CF; height: 45px; position: relative; top: 17px; left: -100px
 }
 .autofill {
 position: absolute;
@@ -274,8 +274,8 @@ width: 100px;
 }
 
 /* highlight homepage task's titles */
-/* html > body > div#container > div#content > div#prof > form#prof > table > tbody > tr > td > a.tooltip > div */ 
-div#container > div#content > div > form > table > tbody > tr > td > a.tooltip > div 
+/* html > body > div#container > div#content > div#prof > form#prof > table > tbody > tr > td > a.tooltip > div */
+div#container > div#content > div > form > table > tbody > tr > td > a.tooltip > div
 {
 	font-size: 1.1em
 }
