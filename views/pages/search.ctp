@@ -15,9 +15,10 @@
  */
 $q=$_GET['q'];
 $q=trim($q);
+$q=preg_replace('/%25/','%', $q);
 
-$q=accents($q);
-
+//$q=accents($q);
+echo "<p style=\"font-size: 2em\">search: " .$q ."</p>";
 $boolean=$_GET['boolean'];
 
 
