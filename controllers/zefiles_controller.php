@@ -42,7 +42,7 @@ class ZefilesController extends AppController {
              is_uploaded_file($this->data['Zefile']['File']['tmp_name'])) {
             $this->data['Zefile']['task_id'] = $this->data['Zefile']['task_id'];
 			$path='../webroot/files/' .$this->data['Zefile']['task_id'];
-			$dest=date("YMDhi")."_".$this->data['Zefile']['File']['name']; //add current date + hour/time to the uploaded filename
+			$dest=date("Ymdhi")."_".$this->data['Zefile']['File']['name']; //add current date + hour/time to the uploaded filename
 			$source=$this->data['Zefile']['File']['tmp_name'];
 			createDir($this->data['Zefile']['task_id']); //create dir with the id of the task - to uncomment if necessary
 			uploadFile($path, $source, $dest);
