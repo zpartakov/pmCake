@@ -17,7 +17,7 @@ if($csv==1) {
 	<h2><?php __('Contacts');
 	$image="icons/pm/adressbook.jpg";
 	echo $html->image($image, array('style'=>'vertical-align: top; width: 100px'));
-	
+
 	?></h2>
 <!-- begin search form -->
 	<?php
@@ -26,7 +26,7 @@ if($csv==1) {
 	?>
 	<table>
 		<tr>
-			<td>     
+			<td>
 			<?
 				echo $form->input("q", array('label' => 'Search for'));
 			?>
@@ -42,11 +42,11 @@ if($csv==1) {
 
 			</td>
 			<td>    <?
-    echo $form->end("Search"); 
+    echo $form->end("Search");
     ?></td>
 		</tr>
 	</table>
-<!-- end search form -->   
+<!-- end search form -->
 	<ul>
 		<li><?php echo $this->Html->link(__('New Contact', true), array('action' => 'add')); ?></li>
 	</ul>
@@ -55,7 +55,7 @@ if($csv==1) {
 			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('FirstName');?></th>
             <th><?php echo $this->Paginator->sort('LastName');?></th>
-            <th><?php echo $this->Paginator->sort('birthday');?></th>
+            <th>Anniversaire</th>
 			<th><?php echo $this->Paginator->sort('EmailAddress');?></th>
 			<th><?php echo $this->Paginator->sort('PrimaryPhone');?></th>
 			<th><?php echo $this->Paginator->sort('MobilePhone');?></th>
@@ -72,25 +72,36 @@ if($csv==1) {
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php 			e($html->link($html->image('toolbar/editor.png', array('alt' => 'Modifier')), array('action'=>'edit', $idaction), array('alt' => 'Modifier', 'title' => 'Modifier', 'escape' => false)));
+		<td><?php
+		//print_r($contact[Contact]); //tests
+		e($html->link($html->image('toolbar/editor.png', array('alt' => 'Modifier')), array('action'=>'edit', $idaction), array('alt' => 'Modifier', 'title' => 'Modifier', 'escape' => false)));
 ?>
 		</td>
 		<td><?php echo $contact['Contact']['FirstName']; ?>&nbsp;</td>
         <td><?php echo $contact['Contact']['LastName']; ?>&nbsp;</td>
-        <td><?php echo $contact['Contact']['birthday']; 
-            ?>&nbsp;</td>
-        
-        
-        
-        
+        <td><?php
+				$ddn=$contact['Contact']['birthdayDay']."-"$contact['Contact']['birthdayMonth']."-".$contact['Contact']['birthdayYear'];
+
+				echo $contact['Contact']['birthdayDay'];
+				echo "-";
+				echo $contact['Contact']['birthdayMonth'];
+				echo "-";
+				echo $contact['Contact']['birthdayYear'];
+
+
+				?>&nbsp;</td>
+
+
+
+
 		<td><?php echo melto($contact['Contact']['EmailAddress']); ?>&nbsp;</td>
 		<td><?php echo $contact['Contact']['PrimaryPhone']; ?>&nbsp;</td>
 		<td><?php echo $contact['Contact']['MobilePhone']; ?>&nbsp;</td>
 		<td><?php echo $contact['Contact']['Profession']; ?>&nbsp;</td>
 		<td><?php echo $contact['Contact']['Category']; ?>&nbsp;</td>
 		<td class="actions">
-			
-<?php				
+
+<?php
 			$idaction=$contact['Contact']['id'];
 			e($html->link($html->image('toolbar/loupe.png', array('alt' => 'Voir')), array('action'=>'view', $idaction), array('alt' => 'Voir', 'title' => 'Voir', 'escape' => false)));
 			e($html->link($html->image('toolbar/editor.png', array('alt' => 'Modifier')), array('action'=>'edit', $idaction), array('alt' => 'Modifier', 'title' => 'Modifier', 'escape' => false)));

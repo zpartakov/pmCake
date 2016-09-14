@@ -7,7 +7,9 @@
 		echo $this->Form->input('id');
 		echo $this->Form->input('FirstName');
 		echo $this->Form->input('LastName');
-		echo $this->Form->input('birthday', array('type'=>'text')); 
+		echo $this->Form->input('birthdayYear', array('type'=>'text', 'label'=>'Année de naissance'));
+		echo $this->Form->input('birthdayMonth', array('type'=>'text', 'label'=>'Mois de naissance'));
+		echo $this->Form->input('birthdayDay', array('type'=>'text', 'label'=>'Jour de naissance'));
 		echo $this->Form->input('Notes');
 		echo $this->Form->input('EmailAddress');
 		echo $this->Form->input('Email2Address');

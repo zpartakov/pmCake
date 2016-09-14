@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 5.5.49, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.52, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: cake_pm
 -- ------------------------------------------------------
@@ -101,7 +101,7 @@ CREATE TABLE `cms` (
   `version` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `rem` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=301 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=303 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,7 +130,9 @@ CREATE TABLE `contacts` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
   `FirstName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `LastName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `birthday` date NOT NULL,
+  `birthdayYear` int(4) NOT NULL,
+  `birthdayMonth` int(2) NOT NULL,
+  `birthdayDay` int(2) NOT NULL,
   `Notes` text COLLATE utf8_unicode_ci NOT NULL,
   `EmailAddress` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `Email2Address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -246,7 +248,7 @@ CREATE TABLE `hours` (
   `days_holidays` float(2,1) NOT NULL,
   `note` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1 COMMENT='hours to do current year';
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1 COMMENT='hours to do current year';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -457,7 +459,7 @@ CREATE TABLE `patchadmins` (
   `priv` tinyint(4) NOT NULL DEFAULT '1',
   `meladmin` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=129 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=132 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -580,7 +582,7 @@ CREATE TABLE `pm_menus` (
   `moddate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `line_after` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=113 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='application menus';
+) ENGINE=MyISAM AUTO_INCREMENT=116 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='application menus';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -627,7 +629,7 @@ CREATE TABLE `pm_organizations` (
   `extension_logo` char(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `owner` mediumint(8) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -656,7 +658,7 @@ CREATE TABLE `pm_projects` (
   `hourly_fee` int(3) NOT NULL,
   `budget` int(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=164 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=166 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -692,7 +694,7 @@ CREATE TABLE `pm_tasks` (
   `milestone` char(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `mod_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7650 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8043 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1033,7 +1035,7 @@ CREATE TABLE `pm_tasks_pm_members` (
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `rem` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1673 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1884 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1069,7 +1071,7 @@ CREATE TABLE `pm_tasks_revs` (
   `version_id` int(11) NOT NULL AUTO_INCREMENT,
   `version_created` datetime NOT NULL,
   PRIMARY KEY (`version_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13836 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=15379 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1105,7 +1107,7 @@ CREATE TABLE `pm_tasks_time` (
   `created` datetime DEFAULT NULL,
   `modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=33802 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=35323 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1436,7 +1438,7 @@ CREATE TABLE `zefiles` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=383 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=419 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -1448,4 +1450,4 @@ CREATE TABLE `zefiles` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-04 14:35:38
+-- Dump completed on 2016-09-14 16:01:33

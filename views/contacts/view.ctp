@@ -20,7 +20,14 @@
         </dd>
         <dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Date de naissance'); ?></dt>
         <dd<?php if ($i++ % 2 == 0) echo $class;?>>
-            <?php echo $contact['Contact']['birthday']; ?>
+            <?php
+						echo $contact['Contact']['birthdayDay']; 
+						echo "-";
+						echo $contact['Contact']['birthdayMonth'];
+						echo "-";
+						echo $contact['Contact']['birthdayYear'];
+
+						?>
             &nbsp;
         </dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Notes'); ?></dt>

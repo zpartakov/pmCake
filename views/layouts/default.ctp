@@ -132,6 +132,7 @@ var application_root = "<? echo CHEMIN;?>";
 #echo $this->element('navigation');
 echo $this->element('menu');
 
+
 //echo $this->element('navbar');
 
 ?>
@@ -147,15 +148,18 @@ echo $this->element('menu');
 <div class="suggestionList" id="autoSuggestionsList">
 &amp;nbsp;
 </div>
+
 </div>
 </form>
 <!-- end search form -->
+
 </div>
 <div id="content">
 
 <?php
 
-echo $content_for_layout; ?>
+echo $content_for_layout;
+?>
 </div>
 </div>
 <!-- END CONTAINER HTML BODY-->

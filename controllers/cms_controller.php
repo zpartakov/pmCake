@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `cms` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=62 ;
 
 */
-?>    
+?>
 
 <?php
 class CmsController extends AppController {
@@ -59,7 +59,7 @@ class CmsController extends AppController {
 		if (!empty($this->data)) {
 
 			$server=($this->data['Cm']['server']);
-			
+
 			if($server=="6") {
 				$server="asinara.unige.ch";
 			} elseif($server=="1") {
@@ -96,14 +96,14 @@ class CmsController extends AppController {
 		if (!empty($this->data)) {
 			if ($this->Cm->save($this->data)) {
 				$this->Session->setFlash(__('The Cm has been saved', true));
-				$this->redirect($this->Session->read('Temp.referer'));			
-				
+				$this->redirect($this->Session->read('Temp.referer'));
+
 			} else {
 				$this->Session->setFlash(__('The Cm could not be saved. Please, try again.', true));
 			}
 		}
 				// On enregistre l'url de la page qui a mené ici
-		$this->Session->write('Temp.referer', $this->referer());	
+		$this->Session->write('Temp.referer', $this->referer());
 		if (empty($this->data)) {
 			$this->data = $this->Cm->read(null, $id);
 		}
@@ -123,11 +123,11 @@ class CmsController extends AppController {
 							echo '<meta http-equiv="refresh" content="0;URL=/migrations/cms/">';
 
 		}
-			
+
 		$this->Session->setFlash(___('Cm was not deleted', true), 'flash_error');
 		$this->redirect(array('action' => 'index'));
-		
-		
+
+
 	}
 
 
@@ -149,7 +149,7 @@ function search() {
 		}
 		//tri end
 
-	
+
 	if(!$_GET['letype']) { //if type is passed in url
 	$letype=$this->data['Cm']['letype'];
 	}else{
@@ -158,62 +158,65 @@ function search() {
 	#echo "<pre class=cake-debug>Type: " .$type ."</div>";
 	$requetesql="
 	SELECT * FROM cms WHERE ";
-	
+
 	if(is_numeric($letype)) {
 	$requetesql.="(";
 	}
-	
+
 	$requetesql.="
-	`url` LIKE '%" .$cherche."%'  
-	OR `server` LIKE '%" .$cherche."%'  
-	OR `path` LIKE '%" .$cherche."%'  
-	OR `login` LIKE '%" .$cherche."%'  
-	OR `email` LIKE '%" .$cherche."%'  
-	OR `version` LIKE '%" .$cherche."%'  
+	`url` LIKE '%" .$cherche."%'
+	OR `server` LIKE '%" .$cherche."%'
+	OR `path` LIKE '%" .$cherche."%'
+	OR `login` LIKE '%" .$cherche."%'
+	OR `email` LIKE '%" .$cherche."%'
+	OR `version` LIKE '%" .$cherche."%'
 	OR `rem` LIKE '%" .$cherche."%'";
 	#echo "<pre class=cake-debug>SQL: " .$requetesql ."</div>";
-	
-	
+
+
 	/*special for Joomla15 and Joomla16*/
 	if($letype=="1") {
 	if(is_numeric($letype)) {
 	$requetesql.=") AND (`type_id` = '1' OR `type_id` = '19')";
-	}	
+	}
 	} else {
 	if(is_numeric($letype)) {
 	$requetesql.=") AND `type_id` = " .$letype." ";
 	}
 	}
 	$requetesql.=" ORDER BY " .$ordre ." " .$sens;
-	
-	
+
+
 	$requetesql.=";";
-	
+
 	if($_GET['https']) { //if https searched
 	$requetesql="
 	SELECT * FROM cms WHERE `rem` LIKE '%httpsok%' ORDER BY type_id, path";
 	#echo "bla"; exit;
 	}
-	
-	
+
+
 	$this->set('results',$this->Cm->query($requetesql));
    }
    function saygoodbye() {
    	$this->layout = '';
-   	
+
    		$ordre="type_id";
    		$sens=" ASC";
-   
+
    	#echo "<pre class=cake-debug>Type: " .$type ."</div>";
    	$requetesql="
    	SELECT * FROM cms WHERE ";
     			$requetesql.="(`type_id` = '6' OR `type_id` = '4' OR `type_id` = '30' OR `type_id` = '8' OR `type_id` = '16' OR `type_id` = '18') AND id <> 240";
    	$requetesql.=" ORDER BY " .$ordre ." " .$sens;
-   	$requetesql.=";";  
+   	$requetesql.=";";
   // 	print_r($requetesql); exit;
    	$this->set('results',$this->Cm->query($requetesql));
    }
-    
+    function lime_urls() { //a list of limesurveys urls
+			$this->layout = '';
+
+   }
 function patchjoomla() { //patching joomla's 1.5
    }
 
@@ -233,7 +236,7 @@ function csv() { //a function to export in csv
 	//do not display layout
 		  $this->layout = 'csv';
 
-}	   
+}
 
 function upgrade() {//a function to upgrade a software
   $this->layout = '';
@@ -265,4 +268,3 @@ function copier($id = null) {
 }
 }
 ?>
-
