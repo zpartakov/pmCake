@@ -1,5 +1,6 @@
 <div class="pmOrganizations index">
 	<h2><?php __('Clients');?></h2>
+	<p><?php echo $this->Html->link(sprintf(__('Nouveau client', true), __('Pm Organization', true)), array('action' => 'add')); ?></p>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
@@ -54,6 +55,6 @@
 <div class="actions">
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(sprintf(__('New %s', true), __('Pm Organization', true)), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(sprintf(__('Nouveau client', true), __('Pm Organization', true)), array('action' => 'add')); ?></li>
 	</ul>
 </div>

@@ -80,8 +80,11 @@ if($csv==1) {
 		<td><?php echo $contact['Contact']['FirstName']; ?>&nbsp;</td>
         <td><?php echo $contact['Contact']['LastName']; ?>&nbsp;</td>
         <td><?php
-				$ddn=$contact['Contact']['birthdayDay']."-"$contact['Contact']['birthdayMonth']."-".$contact['Contact']['birthdayYear'];
-
+				/*
+				$ddn=$contact['Contact']['birthdayDay']
+				."-"$contact['Contact']['birthdayMonth']
+				."-".$contact['Contact']['birthdayYear'];
+*/
 				echo $contact['Contact']['birthdayDay'];
 				echo "-";
 				echo $contact['Contact']['birthdayMonth'];

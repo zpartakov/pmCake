@@ -1,7 +1,7 @@
 <div class="pmOrganizations form">
 <?php echo $this->Form->create('PmOrganization');?>
 	<fieldset>
- 		<legend><?php printf(__('Add %s', true), __('Pm Organization', true)); ?></legend>
+ 		<legend><?php printf(__('Ajouter un nouveau client', true), __('Pm Organization', true)); ?></legend>
 	<?php
 		echo $this->Form->input('name');
 		echo $this->Form->input('address1');
