@@ -13,7 +13,7 @@ cakePHP 3 https://github.com/cakephp/cakephp/tree/master
 
 Download this software:
 
-git clone https://gitlab.com/zpartakov/pmCake
+git clone https://github.com/zpartakov/pmCake.git
 
 Or (older versions): https://github.com/zpartakov/pmCake/releases 
 
